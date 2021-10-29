@@ -1,0 +1,12 @@
+{
+  "name": "litten",
+  "version": "0.0.1",
+  "scripts": {
+    "start": "npm run dev"
+  },
+  "main": "",
+  "module": "",
+  "gitHooks": {
+    "pre-commit": "lint-staged"
+  }
+}
