@@ -9,4 +9,4 @@
 ## 测试覆盖率
 调式工程启动后，打开另一个终端，
 运行：yarn test-storybook --coverage 
-在运行 yarn test-storybook
+再运行 yarn test-storybook
