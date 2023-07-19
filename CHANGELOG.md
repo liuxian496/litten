@@ -1,6 +1,10 @@
 ## 0.0.9 (2023-07-19)
 
 
+### build
+
+* litten工程构建 ([0c8867c](https://github.com/liuxian496/litten/commit/0c8867cc0b326e99501d9187d6b2e349f0b747df))
+
 ### chore
 
 * 测试多重提交 ([c260d53](https://github.com/liuxian496/litten/commit/c260d534f4f7e1c0ce0f025497c43c376ea87ec8))

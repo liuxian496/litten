@@ -1,0 +1,78 @@
+@import '../litten.less';
+
+@component-cls: ~'@{litten-prefix}-iconButton';
+
+.@{component-cls} {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    outline: none;
+    text-decoration: none;
+    background-color: transparent;
+
+    &:not(&--disabled) {
+        color: @white;
+    }
+
+    &:is(&--defaultColor):not(&--disabled) {
+        color: @blue-primary-main;
+    }
+
+    &:is(&--danger):not(&--disabled) {
+        color: @red-error-main;
+    }
+
+    &:is(&--success):not(&--disabled) {
+        color: @green-success-main;
+    }
+
+    &:is(&--warning):not(&--disabled) {
+        color: @orange-warning-main;
+    }
+
+    &:hover:not(&--disabled) {
+        background-color: @blue-primary-alphaPoint04;
+    }
+
+    &:hover:not(&--disabled):is(&--danger) {
+        background-color: @red-error-light;
+    }
+
+    &:hover:not(&--disabled):is(&--success) {
+        background-color: @green-success-light;
+    }
+
+    &:hover:not(&--disabled):is(&--warning) {
+        background-color: @orange-warning-light;
+    }
+
+    //size
+    &--small {
+        padding: 6px;
+        font-size: 1rem;
+    }
+
+    &--medium {
+        padding: 9px;
+        font-size: 1.25rem;
+    }
+
+    &--large {
+        padding: 12px;
+        font-size: 1.5rem;
+    }
+
+
+    //禁用
+    &--disabled {
+        color: @gray-dark;
+    }
+
+    &--disabled:is(&--primary) {
+        background-color: @gray-main;
+    }
+}

@@ -1,0 +1,78 @@
+@import '../litten.less';
+
+@component-cls: ~'@{litten-prefix}-summary';
+
+.@{component-cls} {
+    display: flex;
+    font-size: 16px;
+    flex-flow: column;
+    justify-content: center;
+    background-color: #edf5fc;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    min-height: 60px;
+    padding: 16px;
+    margin: 16px 0;
+
+    :is(&--note) {
+        background-color: #F4FBF9;
+    }
+
+    :is(&--warning) {
+        background-color: #FEF5E7;
+    }
+
+    :is(&--deep) {
+        background-color: #F4F4FC;
+    }
+
+    &__title {
+        display: flex;
+        align-items: center;
+        font-size: 1.5em;
+        font-weight: 700;
+        margin-bottom: 0.25em;
+
+        svg {
+            width: 1.5em;
+            height: 1.5em;
+            margin-left: -0.25em;
+        }
+
+        :is(&--note) {
+            color: #2B6E62;
+        }
+
+        :is(&--warning) {
+            align-items: end;
+            color: #C76A15;
+        }
+
+        :is(&--deep) {
+            color: #575FB7;
+
+            svg {
+                width: 1em;
+                height: 1em;
+                margin-left: -0.25em;
+                margin-right: 0.25em;
+            }
+        }
+    }
+
+    &__content {
+        font-size: 1.25em;
+        line-height: 1.5;
+        color: #232725;
+    }
+
+    code {
+        border: 1px solid #E5E7EB;
+        background-color: rgba(153, 161, 179, 0.1);
+        color: #404756;
+        border-radius: 8px;
+        padding: 0.25em 0.5em;
+        margin: 0 0.125em;
+        vertical-align: baseline;
+    }
+}

@@ -1,0 +1,43 @@
+@import '../litten.less';
+
+@component-cls: ~'@{litten-prefix}-textField';
+
+.@{component-cls} {
+    position: relative;
+    display: inline-block;
+    border: 1px solid #ababab;
+    border-radius: 4px;
+
+    transition:
+        background-color 360ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+        box-shadow 360ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+        border-color 360ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+        color 360ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+
+    &:hover:not(&--disabled) {
+        border-color: @blue-primary-main;
+    }
+
+    &--focused {
+        border-color: @blue-primary-main;
+    }
+
+    &__input {
+        position: relative;
+        cursor: text;
+        height: 1.4375rem;
+        margin: 0;
+        padding: 5px 12px;
+        font: inherit;
+        letter-spacing: inherit;
+        color: currentColor;
+        background: none;
+        border: 0;
+        outline: none;
+    }
+
+    &--disabled {
+        color: @gray-dark;
+        border-color: @gray-main;
+    }
+}
