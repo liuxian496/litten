@@ -36,7 +36,7 @@
     "test": "",
     "test-storybook": "test-storybook",
     "eject": "react-scripts eject",
-    "changelog": "conventional-changelog -p eslint -i CHANGELOG.md -w -s -r 0",
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "prepare": "husky install"
