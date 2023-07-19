@@ -96,6 +96,7 @@
     "rimraf": "^5.0.1",
     "rollup": "^3.26.2",
     "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-minification": "^0.2.0",
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "rollup-plugin-postcss": "^4.0.2",
     "rollup-plugin-typescript2": "^0.35.0",
