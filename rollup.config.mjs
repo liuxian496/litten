@@ -5,6 +5,7 @@ import typescript from "rollup-plugin-typescript2";
 import postcss from "rollup-plugin-postcss";
 import json from "@rollup/plugin-json";
 import babel from '@rollup/plugin-babel';
+import { terser } from "rollup-plugin-minification";
 import less from 'less';
 import { readFileSync } from 'node:fs';
 
@@ -26,6 +27,10 @@ const babelOptions = {
   babelHelpers: 'bundled',
   exclude: '**/node_modules/**'
 };
+
+function getTerser(isProd) {
+  return isProd ? terser() : undefined;
+}
 
 const processLess = function (context, payload) {
   return new Promise((resolve, reject) => {
@@ -77,6 +82,7 @@ export default {
     typescript({
       useTsconfigDeclarationDir: true
     }),
+    getTerser(isProd),
     postcss({
       extract: true,
       process: processLess
