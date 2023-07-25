@@ -1,8 +1,7 @@
 
 import React, { useEffect, useState } from 'react';
 
-import { within } from '@storybook/testing-library';
-import { fireEvent } from '../global/testLib';
+import { userEvent, within } from '@storybook/testing-library';
 import { expect } from '@storybook/jest';
 
 import { Button } from '../components/button/button';
@@ -57,34 +56,44 @@ export const LocalizationTest: Story = {
     controls: { hideNoControlsWarning: true },
   },
   render: () => <ChangeI18N />,
-  play: async ({ canvasElement }) => {
+  play: async ({ canvasElement, step }) => {
     const canvas = within(canvasElement);
 
-    await expect(
-      getLocal('饮食', '午餐')
-    ).toStrictEqual({});
+    await step('Local "饮食"->"午餐" is {}', async () => {
+      await expect(
+        getLocal('饮食', '午餐')
+      ).toStrictEqual({});
+    });
 
-    await expect(
-      getLocal(LocalType.i18n, '赛博坦')
-    ).toStrictEqual({});
+    await step('Local "LocalType.i18n"->"赛博坦" is {}', async () => {
+      await expect(
+        getLocal(LocalType.i18n, '赛博坦')
+      ).toStrictEqual({});
+    });
 
-    await setI18N('赛博坦');
+    await step('Set I18N to "赛博坦",and get I18N Config,result is {}', async () => {
+      await setI18N('赛博坦');
 
-    await expect(
-      getI18NConfig()
-    ).toStrictEqual({});
+      await expect(
+        getI18NConfig()
+      ).toStrictEqual({});
+    });
 
-    await setI18N(I18N.enUs);
+    await step('Set I18N to "I18N.enUs","close" to be in the document', async () => {
+      await setI18N(I18N.enUs);
 
-    await expect(
-      canvas.getByText('close')
-    ).toBeInTheDocument;
+      await expect(
+        canvas.getByText('close')
+      ).toBeInTheDocument;
+    });
 
-    await fireEvent.click(canvas.getByTestId('change-btu'));
+    await step('Change I18N to "I18N.zhCn","关闭" to be in the document', async () => {
+      await userEvent.click(canvas.getByTestId('change-btu'));
 
-    await expect(
-      canvas.getByText('关闭')
-    ).toBeInTheDocument;
+      await expect(
+        canvas.getByText('关闭')
+      ).toBeInTheDocument;
+    });
   }
 };
 

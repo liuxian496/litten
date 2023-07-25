@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { within } from '@storybook/testing-library';
-import { fireEvent } from '../global/testLib';
+import { fireEvent, userEvent, waitFor, within } from '@storybook/testing-library';
 import { Meta, StoryObj } from '@storybook/react';
 import { expect } from '@storybook/jest';
 
@@ -61,41 +60,51 @@ export const DefaultTest: Story = {
         }
     },
     render: () => <TestDefault />,
-    play: async ({ canvasElement }) => {
+    play: async ({ canvasElement, step }) => {
         const canvas = within(canvasElement);
 
-        //测试wave部件
-        await fireEvent.mouseDown(canvas.getByTestId('litten-ripple'));
+        await step('It "wave" in the document,when "ripple" mousedown', async () => {
+            await fireEvent.mouseDown(canvas.getByTestId('litten-ripple'));
 
-        await expect(
-            canvas.getByTestId('litten-ripple__wave')
-        ).toBeInTheDocument();
+            await waitFor(() => expect(
+                canvas.getByTestId('litten-ripple__wave')
+            ).toBeInTheDocument());
+        });
 
-        await fireEvent.animationStart(canvas.getByTestId('litten-ripple__wave'));
-        await fireEvent.animationEnd(canvas.getByTestId('litten-ripple__wave'));
+        await step('It "wave" not in the document,when "ripple" mouseup', async () => {
+            await fireEvent.animationStart(canvas.getByTestId('litten-ripple__wave'));
+            await fireEvent.animationEnd(canvas.getByTestId('litten-ripple__wave'));
 
-        await fireEvent.mouseUp(canvas.getByTestId('litten-ripple'));
+            await fireEvent.mouseUp(canvas.getByTestId('litten-ripple'));
 
-        await expect(
-            canvas.queryByTestId('litten-ripple__wave')
-        ).not.toBeInTheDocument();
 
-        await fireEvent.mouseOver(canvas.getByTestId('litten-ripple'));
-        await fireEvent.mouseOut(canvas.getByTestId('litten-ripple'));
+            await waitFor(() => expect(
+                canvas.queryByTestId('litten-ripple__wave')
+            ).not.toBeInTheDocument());
+        });
 
-        //测试focused部件
-        await fireEvent.click(canvas.getByText('Change Focused'));
 
-        await expect(
-            canvas.getByTestId('litten-ripple__focus')
-        ).toBeInTheDocument();
+        await step('Mouseover and mouseout', async () => {
+            await fireEvent.mouseOver(canvas.getByTestId('litten-ripple'));
+            await fireEvent.mouseOut(canvas.getByTestId('litten-ripple'));
+        });
 
-        await fireEvent.click(canvas.getByText('Change Focused'));
+        await step('Ripple is focused', async () => {
+            await userEvent.click(canvas.getByText('Change Focused'));
 
-        await expect(
-            canvas.queryByTestId('litten-ripple__focus')
-        ).not.toBeInTheDocument();
 
+            await waitFor(() => expect(
+                canvas.getByTestId('litten-ripple__focus')
+            ).toBeInTheDocument());
+        });
+
+        await step('Ripple is not focused', async () => {
+            await userEvent.click(canvas.getByText('Change Focused'));
+
+            await waitFor(() => expect(
+                canvas.queryByTestId('litten-ripple__focus')
+            ).not.toBeInTheDocument());
+        });
     }
 };
 
@@ -166,9 +175,10 @@ export const WaveTest: Story = {
         await fireEvent.animationStart(canvas.queryAllByTestId('litten-ripple__wave')[0]);
         await fireEvent.animationEnd(canvas.queryAllByTestId('litten-ripple__wave')[0]);
 
-        await expect(
+        await waitFor(() => expect(
             canvas.getByText('State:0Animation end')
-        ).toBeInTheDocument();
+        ).toBeInTheDocument(), { timeout: 500 });
+
 
         await fireEvent.mouseUp(canvas.getByTestId('parent'));
 

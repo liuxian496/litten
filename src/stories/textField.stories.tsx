@@ -1,6 +1,5 @@
 import React, { ChangeEvent, useState } from 'react';
-import { within } from '@storybook/testing-library';
-import { fireEvent } from '../global/testLib';
+import { fireEvent, waitFor, within } from '@storybook/testing-library';
 import { userEvent } from '@storybook/testing-library';
 import { expect } from '@storybook/jest';
 
@@ -83,7 +82,7 @@ const TestFocus = () => {
 
   return (
     <>
-      <TextField data-testid="submit" onFocus={handleFocus} onBlur={handleBlur} />
+      <TextField data-testid="submitField" onFocus={handleFocus} onBlur={handleBlur} />
       <Button mode={Mode.primary} style={{ marginLeft: "15px" }}>Submit</Button>
       <p>
         {msg}
@@ -97,20 +96,24 @@ export const FocusTest: Story = {
     controls: { hideNoControlsWarning: true },
   },
   render: () => <TestFocus />,
-  play: async ({ canvasElement }) => {
+  play: async ({ canvasElement, step }) => {
     const canvas = within(canvasElement);
 
-    await fireEvent.focus(canvas.getByTestId('submit'));
+    await step('TextField is focused', async () => {
+      await userEvent.click(canvas.getByTestId('submitField'));
 
-    await expect(
-      canvas.getByText("TextField is focused")
-    ).toBeInTheDocument();
+      await waitFor(() => expect(
+        canvas.getByText("TextField is focused")
+      ).toBeInTheDocument());
+    });
 
-    await fireEvent.blur(canvas.getByTestId('submit'));
+    await step('TextField is blur', async () => {
+      await userEvent.click(canvas.getByText('Submit'));
 
-    await expect(
-      canvas.getByText("TextField is blur")
-    ).toBeInTheDocument();
+      await waitFor(() => expect(
+        canvas.getByText("TextField is blur")
+      ).toBeInTheDocument());
+    });
   }
 }
 
@@ -138,19 +141,24 @@ export const ValueTest: Story = {
     controls: { hideNoControlsWarning: true },
   },
   render: () => <TestValue />,
-  play: async ({ canvasElement }) => {
+  play: async ({ canvasElement, step }) => {
     const canvas = within(canvasElement);
 
-    await userEvent.type(canvas.getByTestId('text'), 'Tom');
+    await step('"Value:Tom" to be in the document', async () => {
+      await userEvent.type(canvas.getByTestId('text'), 'Tom');
 
-    await expect(
-      canvas.getByText("Value:Tom")
-    ).toBeInTheDocument();
+      await expect(
+        canvas.getByText("Value:Tom")
+      ).toBeInTheDocument();
+    });
 
-    await userEvent.type(canvas.getByTestId('text'), '&Jerry');
 
-    await expect(
-      canvas.getByText("Value:Tom&Jerry")
-    ).toBeInTheDocument();
+    await step('"Value:Tom&Jerry" to be in the document', async () => {
+      await userEvent.type(canvas.getByTestId('text'), '&Jerry');
+
+      await expect(
+        canvas.getByText("Value:Tom&Jerry")
+      ).toBeInTheDocument();
+    });
   }
 }

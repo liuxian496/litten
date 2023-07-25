@@ -1,8 +1,6 @@
-import React, { useState } from 'react';
-import { within } from '@storybook/testing-library';
-import { fireEvent } from '../global/testLib';
+import React from 'react';
+
 import { Meta, StoryObj } from '@storybook/react';
-import { expect } from '@storybook/jest';
 
 import { Summary } from '../components/summary/summary';
 import { Color } from '../global/enum';
