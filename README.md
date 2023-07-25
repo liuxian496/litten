@@ -1,4 +1,5 @@
 # litten
+[![Coverage Status](https://coveralls.io/repos/github/liuxian496/litten/badge.svg?branch=developer)](https://coveralls.io/github/liuxian496/litten?branch=developer)
 
 ## 使用yarn安装依赖
 打开终端，运行：yarn install
