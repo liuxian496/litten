@@ -10,3 +10,7 @@
 调式工程启动后，打开另一个终端，
 运行：yarn test-storybook --coverage 
 再运行 yarn test-storybook
+
+## 生成 lcov report
+1. 运行：npx nyc report --reporter=lcov -t coverage/storybook --report-dir coverage/storybook
+2. 使用浏览器打开 coverage/storybook/lcov-report/index.html 文件，即可查看报告
