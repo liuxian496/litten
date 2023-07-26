@@ -1,7 +1,7 @@
 # Litten
 ![GitHub](https://img.shields.io/github/license/liuxian496/litten)
 ![GitHub Workflow Status (with event)](https://img.shields.io/github/actions/workflow/status/liuxian496/litten/litten.yml)
-[![Coverage Status](https://coveralls.io/repos/github/liuxian496/litten/badge.svg?branch=developer)](https://coveralls.io/github/liuxian496/litten?branch=developer)
+[![Coverage Status](https://coveralls.io/repos/github/liuxian496/litten/badge.svg?branch=main)](https://coveralls.io/github/liuxian496/litten?branch=main)
 ![GitHub Repo stars](https://img.shields.io/github/stars/liuxian496/litten)
 
 
