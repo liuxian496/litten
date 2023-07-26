@@ -22,7 +22,7 @@ export default {
 
 type Story = StoryObj<typeof Summary>;
 
-const DefaultTest = () => {
+const TestDefault = () => {
 
     return (
         <>
@@ -45,6 +45,6 @@ const DefaultTest = () => {
     );
 }
 
-export const Default: Story = {
-    render: () => <DefaultTest />
+export const DefaultTest: Story = {
+    render: () => <TestDefault />
 };
