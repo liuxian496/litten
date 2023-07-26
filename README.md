@@ -10,10 +10,10 @@
 
 ## 使用
 
-### 引入Litten
+### 1. 引入Litten
 npm i litten
 
-### Litten的依赖
+### 2. Litten的依赖
 使用Litten，需要引入下列两个库。
 1. <p>classnames</p>：npm i classnames
 2. <p>lodash</p>：npm i lodash
@@ -21,17 +21,17 @@ npm i litten
 ## 开发与测试
 <p>使用Storybook进行Litten的开发和单元测试。语义选择TypeScript。</p>
 
-### 1.安装依赖
+### 1. 安装依赖
 打开终端，运行：yarn install
 
-### 2.启动调试工程
+### 2. 启动调试工程
 打开终端，运行：yarn storybook
 
-### 3.测试覆盖率
+### 3. 测试覆盖率
 调式工程启动后，打开另一个终端，
 运行：yarn test-storybook --coverage 
 再运行 yarn test-storybook
 
-### 4.生成 lcov report
+### 4. 生成 lcov report
 1. 运行：npx nyc report --reporter=lcov -t coverage/storybook --report-dir coverage/storybook
 2. 使用浏览器打开 coverage/storybook/lcov-report/index.html 文件，即可查看报告
