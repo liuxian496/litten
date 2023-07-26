@@ -15,6 +15,7 @@ package-lock.json
 
 # production
 /build
+/storybook-static
 
 # npm
 .npmrc
