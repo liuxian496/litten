@@ -6,7 +6,7 @@
 
 
 
-<p>Litten是一个React UI控件库，样式上参考Google's Material Design，并做了适当取舍。</p>
+<p>Litten是一个React UI控件库，样式风格参考Google's Material Design，并做了适当取舍。</p>
 
 ## 使用
 
