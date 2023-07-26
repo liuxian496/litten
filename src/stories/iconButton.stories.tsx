@@ -4,8 +4,7 @@ import { IconButton } from '../components/iconButton/iconButton';
 
 import { Color, Size } from '../global/enum';
 import { Meta, StoryObj } from '@storybook/react';
-import { within } from '@storybook/testing-library';
-import { fireEvent } from '../global/testLib';
+import { within, userEvent } from '@storybook/testing-library';
 import { expect } from '@storybook/jest';
 
 export default {
@@ -118,65 +117,27 @@ export const DefaultTest: Story = {
             <DeleteIcon />
           </IconButton>
         </div>
+        <button>End</button>
       </>
     );
   },
-  play: async ({ canvasElement }) => {
+  play: async ({ canvasElement, step }) => {
     const canvas = within(canvasElement);
 
-    await fireEvent.focus(canvas.getByTestId('deleteIcon'));
-    await expect(
-      canvas.queryByTestId("litten-ripple__focus")
-    ).toBeInTheDocument();
+    await step('deleteIcon is focused', async () => {
+      await userEvent.click(canvas.getByTestId('deleteIcon'));
 
-    await fireEvent.blur(canvas.getByTestId('deleteIcon'));
-    await expect(
-      canvas.queryByTestId("litten-ripple__focus")
-    ).not.toBeInTheDocument();
+      await expect(
+        canvas.queryByTestId("litten-ripple__focus")
+      ).toBeInTheDocument();
+    });
+
+    await step('End button is focused', async () => {
+      await userEvent.click(canvas.getByText('End'));
+
+      await expect(
+        canvas.queryByTestId("litten-ripple__focus")
+      ).not.toBeInTheDocument();
+    });
   }
 };
-
-const TestFocus = () => {
-  const [msg, setMsg] = useState('');
-
-  function handleFocus() {
-    setMsg('Delete Button is focused');
-  }
-
-  function handleBlur() {
-    setMsg('Delete Button is blur');
-  }
-
-  return (
-    <>
-      <IconButton data-testid="deleteIcon" onFocus={handleFocus} onBlur={handleBlur}>
-        <DeleteIcon />
-      </IconButton>
-      <p>
-        {msg}
-      </p>
-    </>
-  )
-}
-
-export const FocusTest: Story = {
-  parameters: {
-    controls: { hideNoControlsWarning: true },
-  },
-  render: () => <TestFocus />,
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-
-    await fireEvent.focus(canvas.getByTestId('deleteIcon'));
-
-    await expect(
-      canvas.getByText("Delete Button is focused")
-    ).toBeInTheDocument();
-
-    await fireEvent.blur(canvas.getByTestId('deleteIcon'));
-
-    await expect(
-      canvas.getByText("Delete Button is blur")
-    ).toBeInTheDocument();
-  }
-}

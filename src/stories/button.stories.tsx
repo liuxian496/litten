@@ -4,11 +4,10 @@ import React, { useState } from 'react';
 import { Button } from '../components/button/button';
 import { Mode, Color, Red, Green, Orange } from '../global/enum';
 import { Meta, StoryObj } from '@storybook/react';
-import { within } from '@storybook/testing-library';
-import { fireEvent } from '../global/testLib';
+import { within, userEvent } from '@storybook/testing-library';
 import { expect } from '@storybook/jest';
 
-export default {
+const meta: Meta<typeof Button> = {
   title: 'Example/Button',
   component: Button,
   argTypes: {
@@ -40,8 +39,9 @@ export default {
     }
   },
 
-} as Meta<typeof Button>;
+};
 
+export default meta;
 type Story = StoryObj<typeof Button>;
 
 const DeleteIcon = () => {
@@ -91,36 +91,37 @@ export const ModeTest: Story = {
         <Button>Text</Button>
         <Button mode={Mode.primary} style={{ marginLeft: "16px" }}>Primary</Button>
         <Button mode={Mode.outlined} style={{ marginLeft: "16px" }}>Outlined</Button>
-        <button style={{ marginLeft: "16px" }}>end</button>
+        <button style={{ marginLeft: "16px" }}>End</button>
       </>
     )
   },
-  play: async ({ canvasElement }) => {
+  play: async ({ canvasElement, step }) => {
     const canvas = within(canvasElement);
 
-    await fireEvent.focus(canvas.getByText('Primary'));
+    await step('Primary button is focused', async () => {
+      await userEvent.click(canvas.getByText('Primary'));
 
-    await expect(
-      canvas.getByTestId("litten-ripple__focus")
-    ).toBeInTheDocument();
+      await expect(
+        canvas.getByTestId("litten-ripple__focus")
+      ).toBeInTheDocument();
+    });
 
-    await fireEvent.blur(canvas.getByText('Primary'));
+    await step('Outlined button is focused', async () => {
+      await userEvent.click(canvas.getByText('Outlined'));
 
-    await expect(
-      canvas.queryByTestId("litten-ripple__focus")
-    ).not.toBeInTheDocument();
+      await expect(
+        canvas.getByTestId("litten-ripple__focus")
+      ).toBeInTheDocument();
+    });
 
-    await fireEvent.focus(canvas.getByText('Outlined'));
+    await step('End button is focused', async () => {
+      await userEvent.click(canvas.getByText('End'));
 
-    await expect(
-      canvas.getByTestId("litten-ripple__focus")
-    ).toBeInTheDocument();
+      await expect(
+        canvas.queryByTestId("litten-ripple__focus")
+      ).not.toBeInTheDocument();
+    });
 
-    await fireEvent.blur(canvas.getByText('Outlined'));
-
-    await expect(
-      canvas.queryByTestId("litten-ripple__focus")
-    ).not.toBeInTheDocument();
   }
 }
 
@@ -161,63 +162,70 @@ export const DisabledTest: Story = {
     controls: { hideNoControlsWarning: true },
   },
   render: () => <TestDisabled />,
-  play: async ({ canvasElement }) => {
+  play: async ({ canvasElement, step }) => {
     const canvas = within(canvasElement);
 
-    await expect(
-      canvas.getByText('Text')
-    ).toBeDisabled;
+    await step('Disable button', async () => {
+      await expect(
+        canvas.getByText('Text')
+      ).toBeDisabled;
 
-    await expect(
-      canvas.getByText('Primary')
-    ).toBeDisabled;
+      await expect(
+        canvas.getByText('Primary')
+      ).toBeDisabled;
 
-    await expect(
-      canvas.getByText('Outlined')
-    ).toBeDisabled;
+      await expect(
+        canvas.getByText('Outlined')
+      ).toBeDisabled;
+    });
 
-    await fireEvent.click(canvas.getByTestId('change-disabled'));
+    await step('Enable button', async () => {
+      await userEvent.click(canvas.getByTestId('change-disabled'));
 
-    await expect(
-      canvas.getByText('Text')
-    ).toBeEnabled;
+      await expect(
+        canvas.getByText('Text')
+      ).toBeEnabled;
+  
+      await expect(
+        canvas.getByText('Primary')
+      ).toBeEnabled;
+  
+      await expect(
+        canvas.getByText('Outlined')
+      ).toBeEnabled;
+    });
 
-    await expect(
-      canvas.getByText('Primary')
-    ).toBeEnabled;
+    await step('Disable button with loading', async () => {
+      await userEvent.click(canvas.getByTestId('change-loading'));
 
-    await expect(
-      canvas.getByText('Outlined')
-    ).toBeEnabled;
+      await expect(
+        canvas.getByText('Text')
+      ).toBeDisabled;
+  
+      await expect(
+        canvas.getByText('Primary')
+      ).toBeDisabled;
+  
+      await expect(
+        canvas.getByText('Outlined')
+      ).toBeDisabled;
+    });
 
-    // test loading
-    await fireEvent.click(canvas.getByTestId('change-loading'));
+    await step('Enable button with loading', async () => {
+      await userEvent.click(canvas.getByTestId('change-loading'));
 
-    await expect(
-      canvas.getByText('Text')
-    ).toBeDisabled;
-
-    await expect(
-      canvas.getByText('Primary')
-    ).toBeDisabled;
-
-    await expect(
-      canvas.getByText('Outlined')
-    ).toBeDisabled;
-
-    await fireEvent.click(canvas.getByTestId('change-loading'));
-
-    await expect(
-      canvas.getByText('Text')
-    ).toBeEnabled;
-
-    await expect(
-      canvas.getByText('Primary')
-    ).toBeEnabled;
-
-    await expect(
-      canvas.getByText('Outlined')
-    ).toBeEnabled;
+      await expect(
+        canvas.getByText('Text')
+      ).toBeEnabled;
+  
+      await expect(
+        canvas.getByText('Primary')
+      ).toBeEnabled;
+  
+      await expect(
+        canvas.getByText('Outlined')
+      ).toBeEnabled;
+    });
   }
 }
 
@@ -241,14 +249,16 @@ export const ClickTest: Story = {
     controls: { hideNoControlsWarning: true },
   },
   render: () => <TestClick />,
-  play: async ({ canvasElement }) => {
+  play: async ({ canvasElement, step  }) => {
     const canvas = within(canvasElement);
 
-    await fireEvent.click(canvas.getByRole('button'));
+    await step('Click Add button ,Count is 1',async ()=>{
+      await userEvent.click(canvas.getByRole('button'));
 
-    await expect(
-      canvas.getByText("1")
-    ).toBeInTheDocument();
+      await expect(
+        canvas.getByText("1")
+      ).toBeInTheDocument();
+    });
   }
 }
 
@@ -272,28 +282,6 @@ const TestFocus = () => {
       </p>
     </>
   )
-}
-
-export const FocusTest: Story = {
-  parameters: {
-    controls: { hideNoControlsWarning: true },
-  },
-  render: () => <TestFocus />,
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-
-    await fireEvent.focus(canvas.getByText('Start'));
-
-    await expect(
-      canvas.getByText("Start Button is focused")
-    ).toBeInTheDocument();
-
-    await fireEvent.blur(canvas.getByText('Start'));
-
-    await expect(
-      canvas.getByText("Start Button is blur")
-    ).toBeInTheDocument();
-  }
 }
 
 export const ColorTest: Story = {

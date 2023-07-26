@@ -4,7 +4,6 @@ import React, { ChangeEvent, useState } from 'react';
 import { Form, useForm } from '../components/form/form';
 import { Meta, StoryObj } from '@storybook/react';
 import { expect } from '@storybook/jest';
-import { fireEvent } from '../global/testLib';
 import { userEvent, within } from '@storybook/testing-library';
 
 import { FormControl } from '../components/form/formControl';
@@ -79,34 +78,38 @@ const TestDefault = () => {
 
 export const DefaultTest: Story = {
     render: () => <TestDefault />,
-    play: async ({ canvasElement }) => {
+    play: async ({ canvasElement, step }) => {
         const canvas = within(canvasElement);
 
-        await userEvent.type(canvas.getByTestId('name__text'), 'Tom');
-        await userEvent.type(canvas.getByTestId('age__text'), '6');
-        await userEvent.click(canvas.getByText('Show Value'));
+        await step('Type Name:Tom，Age:6', async () => {
+            await userEvent.type(canvas.getByTestId('name__text'), 'Tom');
+            await userEvent.type(canvas.getByTestId('age__text'), '6');
+            await userEvent.click(canvas.getByText('Show Value'));
 
-        await expect(
-            canvas.getByText('Name:Tom')
-        ).toBeInTheDocument();
+            await expect(
+                canvas.getByText('Name:Tom')
+            ).toBeInTheDocument();
 
-        await expect(
-            canvas.getByText('Age:6')
-        ).toBeInTheDocument();
+            await expect(
+                canvas.getByText('Age:6')
+            ).toBeInTheDocument();
+        });
 
-        await userEvent.clear(canvas.getByTestId('name__text'));
-        await userEvent.clear(canvas.getByTestId('age__text'));
+        await step('Clear and Type Name:Jerry，Age:5', async () => {
+            await userEvent.clear(canvas.getByTestId('name__text'));
+            await userEvent.clear(canvas.getByTestId('age__text'));
 
-        await userEvent.type(canvas.getByTestId('name__text'), 'Jerry');
-        await userEvent.type(canvas.getByTestId('age__text'), '5');
-        await userEvent.click(canvas.getByText('Show Value'));
+            await userEvent.type(canvas.getByTestId('name__text'), 'Jerry');
+            await userEvent.type(canvas.getByTestId('age__text'), '5');
+            await userEvent.click(canvas.getByText('Show Value'));
 
-        await expect(
-            canvas.getByText('Name:Jerry')
-        ).toBeInTheDocument();
-        await expect(
-            canvas.getByText('Age:5')
-        ).toBeInTheDocument();
+            await expect(
+                canvas.getByText('Name:Jerry')
+            ).toBeInTheDocument();
+            await expect(
+                canvas.getByText('Age:5')
+            ).toBeInTheDocument();
+        });
     }
 };
 
@@ -207,29 +210,33 @@ const TestValue = () => {
 
 export const ValueTest: Story = {
     render: () => <TestValue />,
-    play: async ({ canvasElement }) => {
+    play: async ({ canvasElement, step }) => {
         const canvas = within(canvasElement);
 
-        await userEvent.click(canvas.getByText('Set Name'));
+        await step('Tom has 1000000 salary', async () => {
+            await userEvent.click(canvas.getByText('Set Name'));
 
-        await expect(
-            canvas.getByTestId('name').getAttribute('value')
-        ).toEqual('Tom');
+            await expect(
+                canvas.getByTestId('name').getAttribute('value')
+            ).toEqual('Tom');
 
-        // await userEvent.click(canvas.getByText('Set Salary'));
-        await fireEvent.click(canvas.getByText('Set Salary'));
+            await userEvent.click(canvas.getByText('Set Salary'));
 
-        await expect(
-            canvas.getByTestId('salary').getAttribute('value')
-        ).toEqual('1000000');
-        
-        await expect(
-           canvas.getByText('恭喜，达成百万年薪')
-        ).toBeInTheDocument();
+            await expect(
+                canvas.getByTestId('salary').getAttribute('value')
+            ).toEqual('1000000');
 
-        await userEvent.clear(canvas.getByTestId('salary'));
-        await expect(
-            canvas.queryByText('恭喜，达成百万年薪')
-        ).not.toBeInTheDocument();
+            await expect(
+                canvas.getByText('恭喜，达成百万年薪')
+            ).toBeInTheDocument();
+        });
+
+        await step('Clear', async () => {
+            await userEvent.clear(canvas.getByTestId('salary'));
+
+            await expect(
+                canvas.queryByText('恭喜，达成百万年薪')
+            ).not.toBeInTheDocument();
+        });
     }
 }
