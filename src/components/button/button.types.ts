@@ -31,7 +31,7 @@ export interface ButtonBaseProps extends UserControlProps<HTMLButtonElement> {
 export interface ButtonProps extends ButtonBaseProps {
 
     /** 
-     * 设置波浪组件的颜色
+     * 设置ripple组件的颜色
      */
     rippleColor?: RippleColor;
     /**
