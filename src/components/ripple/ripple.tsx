@@ -38,7 +38,8 @@ export const Ripple = (props: RippleProps) => {
         prefixCls: customizePrefixCls,
         focused,
         color,
-        diameterOffset
+        diameterOffset,
+        children,
     } = props;
     const prefixCls = getPrefixNs('ripple', customizePrefixCls);
 
@@ -193,6 +194,7 @@ export const Ripple = (props: RippleProps) => {
                 color={color}
                 diameterOffset={diameterOffset}
             />
+            {children}
         </span>
     );
 }
