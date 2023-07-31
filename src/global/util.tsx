@@ -1,8 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { isString, isArray, forOwn } from 'lodash';
 
-import { UserControlType } from './enum';
-
 /**
  * 检测是否是空字符串
  * @param 需要判断的值 {any}
@@ -51,23 +49,6 @@ export function printArrayItem(list?: Object[]) {
         })
     }
     return log.toString();
-}
-
-/**
- * 
- * @param type 组件类型
- * @returns value
- */
-export function getInitialValue(type: string) {
-    let value;
-
-    switch (type) {
-        case UserControlType.TextField:
-            value = '';
-            break;
-    }
-
-    return value;
 }
 
 /**

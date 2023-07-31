@@ -3,13 +3,13 @@ import './textField.less';
 
 import classnames from 'classnames';
 
+import { ChangeEventState } from '../../global/enum';
 import { getPrefixNs } from '../control/control';
 import { useDisabled } from '../control/userControl';
+import { useCurrentValue } from '../control/contentControl';
 import { VisualStates } from '../control/control.types';
 
-import { TextFieldProps } from './textField.types';
-import { usePrevious } from '../../global/util';
-import { ChangeEventState } from '../../global/enum';
+import { TextFieldProps, TextFieldValue } from './textField.types';
 
 function getVisualStates(props: TextFieldProps, states: VisualStates) {
     const {
@@ -45,6 +45,7 @@ export const TextField = ({
     disabled: disabledProp = false,
     loading = false,
     value,
+    defaultValue,
     style,
     ...props
 }: TextFieldProps) => {
@@ -52,26 +53,25 @@ export const TextField = ({
 
     const disabled = useDisabled({ disabled: disabledProp, loading });
 
+    const currentValue = useCurrentValue<TextFieldProps, TextFieldValue>({ value, defaultValue });
+
     const [focused, setFocused] = useState(false);
-    const previousValue = usePrevious(value);
 
     const [status, setStatus] = useState(ChangeEventState.Default);
 
     useEffect(() => {
         if (status !== ChangeEventState.UserInput) {
-            onChange?.({
-                previousValue,
-                value
+            currentValue !== undefined && onChange?.({
+                value:currentValue
             });
         }
         setStatus(ChangeEventState.DevSet);
-    }, [value])
+    }, [currentValue])
 
     function handleChange(e: ChangeEvent<HTMLInputElement>) {
         setStatus(ChangeEventState.UserInput);
         onChange?.({
             e,
-            previousValue,
             value: e.target.value
         });
     }
@@ -101,7 +101,8 @@ export const TextField = ({
                 })}
                 disabled={disabled}
                 {...props}
-                value={value}
+                value={currentValue}
+                defaultValue={defaultValue}
                 onChange={handleChange}
                 onFocus={handleFocus}
                 onBlur={handleBlur}

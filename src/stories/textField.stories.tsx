@@ -1,5 +1,5 @@
 import React, { ChangeEvent, useState } from 'react';
-import { fireEvent, waitFor, within } from '@storybook/testing-library';
+import { waitFor, within } from '@storybook/testing-library';
 import { userEvent } from '@storybook/testing-library';
 import { expect } from '@storybook/jest';
 
@@ -28,31 +28,28 @@ type Story = StoryObj<typeof TextField>;
 
 const TestDefault = () => {
   const [value, setValue] = useState('');
-  const [previousValue, setPreviousValue] = useState('');
   const [targetValue, setTargetValue] = useState<string | undefined>('');
 
-
   function handleChange(event: LittenEvent<ChangeEvent<HTMLInputElement>>) {
-    const { e, previousValue, value } = event;
+    const { e, value } = event;
 
     setTargetValue(e?.target.value);
     setValue(value);
-    setPreviousValue(previousValue);
   }
 
   function handleTestClick() {
     setValue('100');
   }
 
+
   return (
     <>
       <div>
-        <TextField value={value} onChange={handleChange} />
-        <TextField disabled value='123123' style={{ marginLeft: '10px', marginRight: '10px' }} />
+        <TextField value={value} defaultValue="nihao" onChange={handleChange} />
+        <TextField disabled defaultValue='2233' style={{ marginLeft: '10px', marginRight: '10px' }} />
         <Button mode={Mode.primary} onClick={handleTestClick}>Set value to 100</Button>
       </div>
       <div>{`value is: ${value}`}</div>
-      <div>{`previousValue is: ${previousValue}`}</div>
       <div>{`e.target.value is: ${targetValue}`}</div>
     </>
   );

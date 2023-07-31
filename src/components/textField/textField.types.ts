@@ -1,5 +1,7 @@
 import { ContentControlProps } from "../control/control.types";
 
-export interface TextFieldProps extends ContentControlProps<HTMLInputElement, string | ReadonlyArray<string> | number | undefined> {
+export type TextFieldValue = string | ReadonlyArray<string> | number | undefined;
+
+export interface TextFieldProps extends ContentControlProps<HTMLInputElement, TextFieldValue> {
 
 }
