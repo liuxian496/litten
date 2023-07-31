@@ -1,0 +1,24 @@
+@import '../litten.less';
+
+@component-cls: ~'@{litten-prefix}-formLabel';
+
+.@{component-cls} {
+    display: flex;
+    box-sizing: border-box;
+    vertical-align: middle;
+    user-select: none;
+    -webkit-user-select: none;
+    cursor: pointer;
+
+    &--placementLeft,
+    &--placementRight {
+        flex-direction: row;
+        align-items: center;
+    }
+
+    &--placementTop,
+    &--placementBottom {
+        flex-direction: column;
+        justify-content: center;
+    }
+}

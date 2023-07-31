@@ -1,5 +1,6 @@
-import { ReactElement, ReactNode } from "react";
-import { ControlProps } from "../control/control.types";
+import { ReactNode } from "react";
+import { ControlProps, LayoutControl } from "../control/control.types";
+import { Placement } from "../../global/enum";
 
 export interface FormProps extends ControlProps {
     /**
@@ -20,8 +21,17 @@ export interface FormControlProps extends ControlProps {
     /**
      * 子组件
      */
-    // children: ReactElement;
     children: JSX.Element;
+}
+
+export interface FormLabelProps extends LayoutControl {
+    /**
+     * 子组件
+     */
+    children?: ReactNode;
+    htmlFor?: string;
+    label: string;
+    labelPlacement?: Placement;
 }
 
 export interface FormContextProps {
@@ -46,7 +56,7 @@ export interface FormRef {
      * 设置表单的值
      * @returns void
      */
-    setValues: (values:object) => void;
+    setValues: (values: object) => void;
     /**
      * 通过属性路径，获取多赢控件的值
      * @returns void
