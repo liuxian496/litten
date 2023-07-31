@@ -3,20 +3,39 @@ import './form.less';
 
 import { FormControlProps } from './form.types';
 import { FormContext } from './form';
-import { getInitialValue } from '../../global/util';
 
 import { LittenEvent } from '../control/control.types';
+import { UserControlType } from '../../global/enum';
+import { getCurrentValue } from '../control/contentControl';
+import { TextFieldValue } from '../textField/textField.types';
+
+/**
+ * 
+ * @param type 组件类型
+ * @returns value
+ */
+// export function getInitialValue(type: string, defaultValue: any) {
+//     let value;
+
+//     switch (type) {
+//         case UserControlType.TextField:
+//             value = getCurrentValue<TextFieldValue>(value, defaultValue);
+//             break;
+//     }
+
+//     return value;
+// }
 
 export const FormControl = (props: FormControlProps) => {
     const { children, valuePath } = props;
 
     const { type: Component, props: childrenProps } = children;
 
-    const { onChange } = childrenProps;
+    const { onChange, defaultValue = '' } = childrenProps;
 
-    const { displayName } = Component;
+    // const { displayName } = Component;
 
-    const [value, setValue] = useState(getInitialValue(displayName));
+    const [value, setValue] = useState();
 
     const formContext = useContext(FormContext);
 
@@ -48,7 +67,7 @@ export const FormControl = (props: FormControlProps) => {
 
     return (
         <>
-            <Component value={value} {...childrenProps} onChange={handleChange} />
+            <Component {...childrenProps} value={value} defaultValue={defaultValue} onChange={handleChange} />
         </>
     );
 }
