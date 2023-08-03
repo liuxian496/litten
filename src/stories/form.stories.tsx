@@ -224,7 +224,7 @@ const TestMultiForm = () => {
 
     function handleSalaryClick() {
         salaryForm.setValues({
-            salary: 1000000
+            salary: '1000000'
         })
     }
 

@@ -8,7 +8,7 @@ import { expect } from '@storybook/jest';
 
 import { Mode, Color, Red, Green, Orange, Size, Placement } from '../global/enum';
 import { Button } from '../components/button/button';
-import { Checkbox } from '../components/checkbox/checkbox';
+// import { Checkbox } from '../components/checkbox/checkbox';
 import { FormLabel } from '../components/form/formLabel';
 import { LittenEvent } from '../components/control/control.types';
 
@@ -188,16 +188,23 @@ const TestDisabled = () => {
   const [disabled, setDisabled] = useState<boolean | undefined>(true);
   const [loading, setLoading] = useState<boolean | undefined>(true);
 
-  function handleDisableCheckboxChange(event: LittenEvent<ChangeEvent<HTMLInputElement>>) {
-    const { checked } = event;
-    setDisabled(checked);
+  // function handleDisableCheckboxChange(event: LittenEvent<ChangeEvent<HTMLInputElement>>) {
+  //   const { checked } = event;
+  //   setDisabled(checked);
+  // }
+
+  // function handleLoadingCheckboxChange(event: LittenEvent<ChangeEvent<HTMLInputElement>>) {
+  //   const { checked } = event;
+  //   setLoading(checked);
+  // }
+
+  function handleDisableCheckboxChange(e: ChangeEvent<HTMLInputElement>) {
+    setDisabled(e.target.checked);
   }
 
-  function handleLoadingCheckboxChange(event: LittenEvent<ChangeEvent<HTMLInputElement>>) {
-    const { checked } = event;
-    setLoading(checked);
+  function handleLoadingCheckboxChange(e: ChangeEvent<HTMLInputElement>) {
+    setLoading(e.target.checked);
   }
-
 
   return (
     <>
@@ -205,10 +212,12 @@ const TestDisabled = () => {
       <Button mode={Mode.primary} disabled={disabled} loading={loading} style={{ marginLeft: "16px" }} >Primary</Button>
       <Button mode={Mode.outlined} disabled={disabled} loading={loading} style={{ marginLeft: "16px" }}>Outlined</Button>
       <FormLabel label='Disabled' labelPlacement={Placement.right}>
-        <Checkbox data-testid="disabled-checkbox" checked={disabled} onChange={handleDisableCheckboxChange} />
+        <input type="checkbox" data-testid="disabled-checkbox" checked={disabled} onChange={handleDisableCheckboxChange} />
+        {/* <Checkbox data-testid="disabled-checkbox" checked={disabled} onChange={handleDisableCheckboxChange} /> */}
       </FormLabel>
       <FormLabel label='Loading' labelPlacement={Placement.right}>
-        <Checkbox data-testid="loading-checkbox" checked={loading} onChange={handleLoadingCheckboxChange} />
+        <input type="checkbox" data-testid="loading-checkbox" checked={loading} onChange={handleLoadingCheckboxChange}  />
+        {/* <Checkbox data-testid="loading-checkbox" checked={loading} onChange={handleLoadingCheckboxChange} /> */}
       </FormLabel>
     </>
   )
