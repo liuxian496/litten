@@ -1,11 +1,10 @@
 
-import React, { useEffect, useState } from 'react';
+import React, { ChangeEvent, useEffect, useState } from 'react';
 
-import { userEvent, within } from '@storybook/testing-library';
+import { userEvent, waitFor, within } from '@storybook/testing-library';
 import { expect } from '@storybook/jest';
 
-import { Button } from '../components/button/button';
-import { Mode, Red, I18N, LocalType } from '../global/enum';
+import { Red, I18N, LocalType } from '../global/enum';
 import { getI18NConfig, setI18N, getI18N, getLocal } from '../global/local';
 import { Meta, StoryObj } from '@storybook/react';
 import { Blue } from '../global/enum';
@@ -19,29 +18,36 @@ export default {
 type Story = StoryObj<typeof I18N>;
 
 
-const ChangeI18N = () => {
-  const [currentI18N, setCurrentI18N] = useState(getI18N());
+const TestLocalization = () => {
+  const [currentI18N, setCurrentI18N] = useState(I18N.enUs);
   const [config, setConfig] = useState<any>(getI18NConfig());
 
-  function handClick() {
-    if (getI18N() === I18N.zhCn) {
-      setI18N(I18N.enUs);
-      setCurrentI18N(I18N.enUs);
-    } else {
-      setI18N(I18N.zhCn);
-      setCurrentI18N(I18N.zhCn);
-    }
+  function handleI18NSelectChange(e: ChangeEvent<HTMLSelectElement>) {
+    const current = e.target.value as I18N;
+    setI18N(current);
+    setCurrentI18N(current);
   }
 
   useEffect(() => {
     setConfig(getI18NConfig());
-  }, [currentI18N])
+  }, [currentI18N]);
+
+  useEffect(() => {
+    return () => {
+      setI18N(I18N.enUs);
+    }
+  }, [])
+
 
   return (
     <>
-      <Button data-testid="change-btu" mode={Mode.outlined} onClick={handClick}>Change I18N</Button>
+      <select data-testid="I18nSelect" onChange={handleI18NSelectChange} defaultValue={I18N.enUs}>
+        <option value={I18N.zhCn}>简体中文</option>
+        <option value={I18N.enUs}>English</option>
+        <option value="jap">日本語</option>
+      </select>
       <div>
-        <span style={{ color: Blue.main }}>I18N: </span><span>{currentI18N}</span>
+        <span style={{ color: Blue.main }}>I18N: </span><span>{getI18N()}</span>
       </div>
       <span style={{ color: Red.main }}>Msg: </span>
       <div>
@@ -55,9 +61,11 @@ export const LocalizationTest: Story = {
   parameters: {
     controls: { hideNoControlsWarning: true },
   },
-  render: () => <ChangeI18N />,
+  render: () => <TestLocalization />,
   play: async ({ canvasElement, step }) => {
     const canvas = within(canvasElement);
+
+    const I18nSelect = canvas.getByTestId('I18nSelect');
 
     await step('Local "饮食"->"午餐" is {}', async () => {
       await expect(
@@ -65,34 +73,26 @@ export const LocalizationTest: Story = {
       ).toStrictEqual({});
     });
 
-    await step('Local "LocalType.i18n"->"赛博坦" is {}', async () => {
-      await expect(
-        getLocal(LocalType.i18n, '赛博坦')
-      ).toStrictEqual({});
-    });
-
-    await step('Set I18N to "赛博坦",and get I18N Config,result is {}', async () => {
-      await setI18N('赛博坦');
-
-      await expect(
-        getI18NConfig()
-      ).toStrictEqual({});
-    });
-
-    await step('Set I18N to "I18N.enUs","close" to be in the document', async () => {
-      await setI18N(I18N.enUs);
-
+    await step('Default I18N is english, "close" means "close"', async () => {
       await expect(
         canvas.getByText('close')
-      ).toBeInTheDocument;
+      ).toBeInTheDocument();
     });
 
-    await step('Change I18N to "I18N.zhCn","关闭" to be in the document', async () => {
-      await userEvent.click(canvas.getByTestId('change-btu'));
+    await step('Change I18N to Jap, "close" means ""', async () => {
+      await userEvent.selectOptions(I18nSelect, 'jap');
+
+      await expect(
+        canvas.getByText('close:')
+      ).toBeInTheDocument();
+    });
+
+    await step('Change I18N to 简体中文, "close" means "关闭"', async () => {
+      await userEvent.selectOptions(I18nSelect, I18N.zhCn);
 
       await expect(
         canvas.getByText('关闭')
-      ).toBeInTheDocument;
+      ).toBeInTheDocument();
     });
   }
 };
@@ -108,20 +108,3 @@ export const I18NTest: Story = {
     );
   }
 }
-
-// const TestLocal = () => {
-//   const config: any = getLocal('赛博坦', '国派');
-
-//   return (
-//     <>
-//       <span>赛博坦: </span><span>{config.toString()}</span>
-//     </>
-//   )
-// }
-
-// export const LocalTest = {
-//   parameters: {
-//     controls: { hideNoControlsWarning: true },
-//   },
-//   render: () => <TestLocal />
-// }

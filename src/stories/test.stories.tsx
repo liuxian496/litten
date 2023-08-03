@@ -18,7 +18,7 @@ const useForm = () => {
     return {};
 }
 
-const Panel = forwardRef(function MyInput(props: any, panelRef) {
+const Panel = forwardRef(function Panel(props: any, panelRef) {
     const { children, form } = props;
 
 
