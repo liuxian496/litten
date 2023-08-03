@@ -5,7 +5,6 @@
 ![GitHub Repo stars](https://img.shields.io/github/stars/liuxian496/litten)
 
 
-
 <p>Litten是一个React UI控件库，样式风格参考Google's Material Design，并做了适当取舍。</p>
 
 ## 使用
@@ -35,3 +34,7 @@ npm i litten
 ### 4. 生成 lcov report
 1. 运行：npx nyc report --reporter=lcov -t coverage/storybook --report-dir coverage/storybook
 2. 使用浏览器打开 coverage/storybook/lcov-report/index.html 文件，即可查看报告
+
+## Buy Me a Mixue Ice Cream & Tea
+<img src=".\\public\\wechat.jpg" height="360">
+<img src=".\\public\\alipay.jpg" height="360">
