@@ -6,7 +6,7 @@ export interface FormProps extends ControlProps {
     /**
      * 设置Form的引用对象
      */
-    formRef: FormRef;
+    formRef: FormRef<any>;
     /**
      * 子组件
      */
@@ -32,6 +32,7 @@ export interface FormLabelProps extends LayoutControl {
     htmlFor?: string;
     label: string;
     labelPlacement?: Placement;
+    disabled?: boolean;
 }
 
 export interface FormContextProps {
@@ -46,19 +47,24 @@ export interface FormRegisterProps {
     set: any;
 }
 
-export interface FormRef {
+export interface FormRef<T> {
     /**
-     * 获取表单当前，输入的值
-     * @returns 表单当前的值
+     * 获取表单当前数据
+     * @returns 表单当前数据
      */
-    getValues: () => object;
+    getValues: () => T;
     /**
      * 设置表单的值
      * @returns void
      */
-    setValues: (values: object) => void;
+    setValues: (values: T) => void;
     /**
-     * 通过属性路径，获取多赢控件的值
+     * 设置表单数据
+     * @returns void
+     */
+    clear: () => void;
+    /**
+     * 通过属性路径，获取对应控件的值
      * @returns void
      */
     getValueByPath: (path: string) => any;
@@ -68,4 +74,8 @@ export interface FormRef {
      * @returns void
      */
     setValueByPath: (path: string, value: any) => void;
+    /**
+     * 注册formRegister
+     */
+    _setFormRegister?: React.Dispatch<any>,
 }

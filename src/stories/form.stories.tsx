@@ -1,16 +1,19 @@
 
 import React, { ChangeEvent, useState } from 'react';
 
-import { Form, useForm } from '../components/form/form';
 import { Meta, StoryObj } from '@storybook/react';
 import { expect } from '@storybook/jest';
-import { userEvent, within } from '@storybook/testing-library';
+import { userEvent, within, waitFor } from '@storybook/testing-library';
 
+import { Mode } from '../global/enum';
+import { LittenEvent } from '../components/control/control.types';
+import { Form } from '../components/form/form';
+import { useForm } from '../components/form/useForm';
+import { FormRef } from '../components/form/form.types';
 import { FormControl } from '../components/form/formControl';
+import { FormLabel } from '../components/form/formLabel';
 import { TextField } from '../components/textField/textField';
 import { Button } from '../components/button/button';
-import { FormRef } from '../components/form/form.types';
-import { LittenEvent } from '../components/control/control.types';
 
 export default {
     title: 'Example/Form',
@@ -39,38 +42,46 @@ export default {
 
 type Story = StoryObj<typeof Form>;
 
-const TestDefault = () => {
-    const myForm: any = useForm();
 
-    const [name, setName] = useState('');
-    const [age, setAge] = useState('');
+const TestDefault = () => {
+    type Data = {
+        name: string,
+        animation: string;
+    }
+
+    const myForm: FormRef<Data> = useForm();
+
+    const [msg, setMsg] = useState('');
 
     function handleShowValueClick() {
-        const value = myForm.getValues();
+        const { name, animation } = myForm.getValues();
 
-        setName(`Name:${value.name}`);
-        setAge(`Age:${myForm.getValueByPath('age')}`);
+        setMsg(`Name: ${name}, Animation: ${animation}`);
+    }
+
+    function handleClearClick() {
+        myForm.clear();
     }
 
     return (
         <>
             <Form formRef={myForm}>
                 <span>今天天气不错，挺风和日丽的</span>
-                <div style={{ marginBottom: '10px' }}>
+                <FormLabel label='Name:'>
                     <FormControl valuePath='name'>
-                        <TextField data-testid="name__text" />
+                        <TextField data-testid="nameTextField" />
                     </FormControl>
-                </div>
-                <FormControl valuePath='age'>
-                    <TextField data-testid="age__text" />
-                </FormControl>
+                </FormLabel>
+                <FormLabel label='Animation:'>
+                    <FormControl valuePath='animation'>
+                        <TextField data-testid="animationTextField" defaultValue="Tom & Jerry" />
+                    </FormControl>
+                </FormLabel>
             </Form>
-            <Button onClick={handleShowValueClick}>Show Value</Button>
+            <Button mode={Mode.primary} onClick={handleShowValueClick}>Show Value</Button>
+            <Button onClick={handleClearClick}>Clear</Button>
             <div style={{ marginTop: '10px' }}>
-                {name}
-            </div>
-            <div>
-                {age}
+                {msg}
             </div>
         </>
     );
@@ -81,60 +92,79 @@ export const DefaultTest: Story = {
     play: async ({ canvasElement, step }) => {
         const canvas = within(canvasElement);
 
-        await step('Type Name:Tom，Age:6', async () => {
-            await userEvent.type(canvas.getByTestId('name__text'), 'Tom');
-            await userEvent.type(canvas.getByTestId('age__text'), '6');
-            await userEvent.click(canvas.getByText('Show Value'));
+        const nameTextField = canvas.getByTestId('nameTextField');
+        const animationTextField = canvas.getByTestId('animationTextField');
+
+        const showValueBtu = canvas.getByText('Show Value');
+        const clearBtu = canvas.getByText('Clear');
+
+        await step('Default "Name" is "", defualt "Animation" is Tom & Jerry', async () => {
+            await expect(
+                nameTextField
+            ).toHaveValue('');
 
             await expect(
-                canvas.getByText('Name:Tom')
-            ).toBeInTheDocument();
+                animationTextField
+            ).toHaveValue('Tom & Jerry');
+        });
+
+        await step('Type "Name" Tom, "Age" 6, "Animation" 2', async () => {
+            await userEvent.type(nameTextField, 'Tom');
+            await userEvent.type(animationTextField, '2');
 
             await expect(
-                canvas.getByText('Age:6')
+                nameTextField
+            ).toHaveValue('Tom');
+
+            await expect(
+                animationTextField
+            ).toHaveValue('Tom & Jerry2');
+
+            await userEvent.click(showValueBtu);
+
+            await expect(
+                canvas.getByText('Name: Tom, Animation: Tom & Jerry2')
             ).toBeInTheDocument();
         });
 
-        await step('Clear and Type Name:Jerry，Age:5', async () => {
-            await userEvent.clear(canvas.getByTestId('name__text'));
-            await userEvent.clear(canvas.getByTestId('age__text'));
-
-            await userEvent.type(canvas.getByTestId('name__text'), 'Jerry');
-            await userEvent.type(canvas.getByTestId('age__text'), '5');
-            await userEvent.click(canvas.getByText('Show Value'));
+        await step('Clear Form, then default "Name" is "", defualt "Animation" is Tom & Jerry', async () => {
+            await userEvent.click(clearBtu);
 
             await expect(
-                canvas.getByText('Name:Jerry')
-            ).toBeInTheDocument();
+                nameTextField
+            ).toHaveValue('');
+
             await expect(
-                canvas.getByText('Age:5')
+                animationTextField
+            ).toHaveValue('Tom & Jerry');
+
+            await userEvent.click(showValueBtu);
+
+            await expect(
+                canvas.getByText('Name: , Animation: Tom & Jerry')
             ).toBeInTheDocument();
         });
     }
 };
 
 const TestDuplicateValuePath = () => {
-    const myForm: any = useForm();
+    type Data = {
+        name: string,
+    }
 
-    function renderDuplicate() {
-        return (
-            <Form formRef={myForm}>
-                <div style={{ marginBottom: '10px' }}>
-                    <FormControl valuePath='name'>
-                        <TextField />
-                    </FormControl>
-                </div>
+    const myForm = useForm<Data>();
+
+    return (
+        <Form formRef={myForm}>
+            <div style={{ marginBottom: '10px' }}>
                 <FormControl valuePath='name'>
                     <TextField />
                 </FormControl>
-            </Form>
-        )
-    }
-
-    return (
-        <>
-            {renderDuplicate()}
-        </>
+            </div>
+            <FormControl valuePath='name'>
+                <TextField />
+            </FormControl>
+        </Form>
     );
 }
 
@@ -144,21 +174,37 @@ function myException() {
 }
 
 export const DuplicateValuePathTest: Story = {
+    parameters: {
+        controls: { hideNoControlsWarning: true },
+    },
     render: () => <TestDuplicateValuePath />,
-    play: async ({ canvasElement }) => {
+    play: async ({ canvasElement, step }) => {
+
         const canvas = within(canvasElement);
 
-        await expect(
-            () => myException()
-        ).toThrow('Please check your code.');
+        await step('Duplicate valuePath', async () => {
+            await waitFor(() => expect(
+                canvas.getByText('[litten error]: The valuePath "name" is used by other FormControl, Please check your form.')
+            ).toBeInTheDocument());
 
+            await expect(
+                () => myException()
+            ).toThrow('Please check your code.');
+        });
     }
 }
 
-const TestValue = () => {
-    const salaryForm = useForm();
-    const nameForm = useForm();
-    const spiritForm = useForm();
+const TestMultiForm = () => {
+    type Name = {
+        name: string,
+    }
+
+    type Salary = {
+        salary: string,
+    }
+
+    const nameForm = useForm<Name>();
+    const salaryForm = useForm<Salary>();
 
     const [salary, setSalary] = useState(0);
 
@@ -171,11 +217,8 @@ const TestValue = () => {
 
         //测试分支
         nameForm.getValueByPath('mana');
+        nameForm.getValueByPath('name');
         nameForm.setValueByPath('mana', 10000000);
-        spiritForm.getValues();
-        spiritForm.getValueByPath('mana');
-        spiritForm.setValues({ mana: 10000000 });
-        spiritForm.setValueByPath('mana', 10000000);
 
     }
 
@@ -208,8 +251,11 @@ const TestValue = () => {
     )
 }
 
-export const ValueTest: Story = {
-    render: () => <TestValue />,
+export const MultiFormTest: Story = {
+    parameters: {
+        controls: { hideNoControlsWarning: true },
+    },
+    render: () => <TestMultiForm />,
     play: async ({ canvasElement, step }) => {
         const canvas = within(canvasElement);
 
@@ -239,4 +285,29 @@ export const ValueTest: Story = {
             ).not.toBeInTheDocument();
         });
     }
+}
+
+const TestUseForm = () => {
+    type Name = {
+        name: string
+    };
+
+    const spiritForm = useForm<Name>();
+
+    spiritForm.getValues();
+    spiritForm.clear();
+    spiritForm.getValueByPath('name');
+    spiritForm.setValues({ name: 'Jerry' });
+    spiritForm.setValueByPath('name', 'Jerry');
+
+    return (
+        <>Test TestUseForm</>
+    )
+}
+
+export const UseFormTest: Story = {
+    parameters: {
+        controls: { hideNoControlsWarning: true },
+    },
+    render: () => <TestUseForm />,
 }
