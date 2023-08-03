@@ -1,20 +1,39 @@
 
-import React, { useState } from 'react';
+import React, { ChangeEvent, useState } from 'react';
 
-import { Button } from '../components/button/button';
-import { Mode, Color, Red, Green, Orange } from '../global/enum';
 import { Meta, StoryObj } from '@storybook/react';
-import { within, userEvent } from '@storybook/testing-library';
+import { within, userEvent, waitFor } from '@storybook/testing-library';
 import { expect } from '@storybook/jest';
+
+
+import { Mode, Color, Red, Green, Orange, Size, Placement } from '../global/enum';
+import { Button } from '../components/button/button';
+import { Checkbox } from '../components/checkbox/checkbox';
+import { FormLabel } from '../components/form/formLabel';
+import { LittenEvent } from '../components/control/control.types';
 
 const meta: Meta<typeof Button> = {
   title: 'Example/Button',
   component: Button,
   argTypes: {
+    endIcon: {
+      control: false,
+    },
+    children: {
+      table: {
+        disable: true,
+      },
+    },
+    prefixCls: {
+      control: false,
+    },
     rippleColor: {
       control: false,
     },
-    prefixCls: {
+    startIcon: {
+      control: false,
+    },
+    style: {
       control: false,
     },
     tabindex: {
@@ -22,23 +41,16 @@ const meta: Meta<typeof Button> = {
         disable: true,
       },
     },
-    //在示例文档中移除children属性的显示
-    children: {
-      table: {
-        disable: true,
-      },
-    },
     onClick: {
       action: '点击'
     },
-    onFocus: {
-      action: '焦点'
-    },
-    onBlur: {
-      action: '失去焦点'
+  },
+  parameters: {
+    controls: {
+      expanded: true,
+      sort: 'requiredFirst'
     }
   },
-
 };
 
 export default meta;
@@ -66,7 +78,12 @@ const BroadcastIcon = () => {
 }
 
 export const DefaultTest: Story = {
-  args: { mode: Mode.primary, },
+  args: {
+    mode: Mode.primary,
+    size: Size.medium,
+    disabled: false,
+    loading: false,
+  },
   render: (args) => {
     return (
       <>
@@ -75,13 +92,12 @@ export const DefaultTest: Story = {
         >
           {'Submit'}
         </Button >
-        <button style={{ marginLeft: "16px" }}>end</button>
       </>
     );
   }
 };
 
-export const ModeTest: Story = {
+export const FocusTest: Story = {
   parameters: {
     controls: { hideNoControlsWarning: true },
   },
@@ -98,51 +114,88 @@ export const ModeTest: Story = {
   play: async ({ canvasElement, step }) => {
     const canvas = within(canvasElement);
 
-    await step('Primary button is focused', async () => {
-      await userEvent.click(canvas.getByText('Primary'));
+    const textBtu = canvas.getByText('Text');
+    const primaryBtu = canvas.getByText('Primary');
+    const outlinedBtu = canvas.getByText('Outlined');
+    const endBtu = canvas.getByText('End');
+
+    await step('"Text" button is focused', async () => {
+
+      await userEvent.click(textBtu);
 
       await expect(
+        textBtu
+      ).toHaveFocus();
+
+      await waitFor(() => expect(
         canvas.getByTestId("litten-ripple__focus")
-      ).toBeInTheDocument();
+      ).toBeInTheDocument());
+
+      await expect(
+        textBtu
+      ).toContainElement(canvas.getByTestId("litten-ripple__focus"));
     });
 
-    await step('Outlined button is focused', async () => {
-      await userEvent.click(canvas.getByText('Outlined'));
+    await step('"Primary" button is focused', async () => {
+
+      await userEvent.click(primaryBtu);
 
       await expect(
+        primaryBtu
+      ).toHaveFocus();
+
+      await waitFor(() => expect(
         canvas.getByTestId("litten-ripple__focus")
-      ).toBeInTheDocument();
+      ).toBeInTheDocument());
+
+      await expect(
+        primaryBtu
+      ).toContainElement(canvas.getByTestId("litten-ripple__focus"));
     });
 
-    await step('End button is focused', async () => {
-      await userEvent.click(canvas.getByText('End'));
+    await step('"Outlined" button is focused', async () => {
+      await userEvent.click(outlinedBtu);
 
       await expect(
+        outlinedBtu
+      ).toHaveFocus();
+
+      await waitFor(() => expect(
+        canvas.getByTestId("litten-ripple__focus")
+      ).toBeInTheDocument());
+
+      await expect(
+        outlinedBtu
+      ).toContainElement(canvas.getByTestId("litten-ripple__focus"));
+    });
+
+    await step('"End" button is focused', async () => {
+      await userEvent.click(endBtu);
+
+      await expect(
+        endBtu
+      ).toHaveFocus();
+
+      await waitFor(() => expect(
         canvas.queryByTestId("litten-ripple__focus")
-      ).not.toBeInTheDocument();
+      ).not.toBeInTheDocument());
     });
 
   }
 }
 
 const TestDisabled = () => {
-  const [disabled, setDisabled] = useState(true);
-  const [loading, setLoading] = useState(false);
+  const [disabled, setDisabled] = useState<boolean | undefined>(true);
+  const [loading, setLoading] = useState<boolean | undefined>(true);
 
-  function handleClick() {
-    if (disabled === true) {
-      setDisabled(false)
-    } else {
-      setDisabled(true);
-    }
+  function handleDisableCheckboxChange(event: LittenEvent<ChangeEvent<HTMLInputElement>>) {
+    const { checked } = event;
+    setDisabled(checked);
   }
 
-  function handleLoadingClick() {
-    if (loading === true) {
-      setLoading(false);
-    } else {
-      setLoading(true);
-    }
+  function handleLoadingCheckboxChange(event: LittenEvent<ChangeEvent<HTMLInputElement>>) {
+    const { checked } = event;
+    setLoading(checked);
   }
 
 
@@ -151,8 +204,12 @@ const TestDisabled = () => {
       <Button disabled={disabled} loading={loading}>Text</Button>
       <Button mode={Mode.primary} disabled={disabled} loading={loading} style={{ marginLeft: "16px" }} >Primary</Button>
       <Button mode={Mode.outlined} disabled={disabled} loading={loading} style={{ marginLeft: "16px" }}>Outlined</Button>
-      <button data-testid="change-disabled" onClick={handleClick} style={{ marginLeft: "16px" }}>disable: {disabled.toString()}</button>
-      <button data-testid="change-loading" onClick={handleLoadingClick} style={{ marginLeft: "16px" }}>loading: {loading.toString()}</button>
+      <FormLabel label='Disabled' labelPlacement={Placement.right}>
+        <Checkbox data-testid="disabled-checkbox" checked={disabled} onChange={handleDisableCheckboxChange} />
+      </FormLabel>
+      <FormLabel label='Loading' labelPlacement={Placement.right}>
+        <Checkbox data-testid="loading-checkbox" checked={loading} onChange={handleLoadingCheckboxChange} />
+      </FormLabel>
     </>
   )
 }
@@ -165,66 +222,72 @@ export const DisabledTest: Story = {
   play: async ({ canvasElement, step }) => {
     const canvas = within(canvasElement);
 
-    await step('Disable button', async () => {
-      await expect(
-        canvas.getByText('Text')
-      ).toBeDisabled;
+    const textBtu = canvas.getByText('Text');
+    const primaryBtu = canvas.getByText('Primary');
+    const outlinedBtu = canvas.getByText('Outlined');
+    const DisabledCheckbox = canvas.getByTestId('disabled-checkbox');
+    const LoadingCheckbox = canvas.getByTestId('loading-checkbox');
 
-      await expect(
-        canvas.getByText('Primary')
-      ).toBeDisabled;
+    await step('Buttons are disabled', async () => {
+      await waitFor(() => expect(
+        textBtu
+      ).toBeDisabled());
 
-      await expect(
-        canvas.getByText('Outlined')
-      ).toBeDisabled;
+      await waitFor(() => expect(
+        primaryBtu
+      ).toBeDisabled());
+
+      await waitFor(() => expect(
+        outlinedBtu
+      ).toBeDisabled());
     });
 
-    await step('Enable button', async () => {
-      await userEvent.click(canvas.getByTestId('change-disabled'));
+    await step('Unchecked "Loading" checkbox, then buttons are also disabled', async () => {
+      await userEvent.click(LoadingCheckbox);
 
-      await expect(
-        canvas.getByText('Text')
-      ).toBeEnabled;
-  
-      await expect(
-        canvas.getByText('Primary')
-      ).toBeEnabled;
-  
-      await expect(
-        canvas.getByText('Outlined')
-      ).toBeEnabled;
+      await waitFor(() => expect(
+        textBtu
+      ).toBeDisabled());
+
+      await waitFor(() => expect(
+        primaryBtu
+      ).toBeDisabled());
+
+      await waitFor(() => expect(
+        outlinedBtu
+      ).toBeDisabled());
     });
 
-    await step('Disable button with loading', async () => {
-      await userEvent.click(canvas.getByTestId('change-loading'));
+    await step('Unchecked "Disabled" checkbox, then buttons are enable', async () => {
+      await userEvent.click(DisabledCheckbox);
 
-      await expect(
-        canvas.getByText('Text')
-      ).toBeDisabled;
-  
-      await expect(
-        canvas.getByText('Primary')
-      ).toBeDisabled;
-  
-      await expect(
-        canvas.getByText('Outlined')
-      ).toBeDisabled;
+      await waitFor(() => expect(
+        textBtu
+      ).toBeEnabled());
+
+      await waitFor(() => expect(
+        primaryBtu
+      ).toBeEnabled());
+
+      await waitFor(() => expect(
+        outlinedBtu
+      ).toBeEnabled());
     });
 
-    await step('Enable button with loading', async () => {
-      await userEvent.click(canvas.getByTestId('change-loading'));
+    await step('Checked "Loading" checkbox, then buttons are disabled', async () => {
+      await userEvent.click(LoadingCheckbox);
 
-      await expect(
-        canvas.getByText('Text')
-      ).toBeEnabled;
-  
-      await expect(
-        canvas.getByText('Primary')
-      ).toBeEnabled;
-  
-      await expect(
-        canvas.getByText('Outlined')
-      ).toBeEnabled;
+      await waitFor(() => expect(
+        textBtu
+      ).toBeDisabled());
+
+      await waitFor(() => expect(
+        primaryBtu
+      ).toBeDisabled());
+
+      await waitFor(() => expect(
+        outlinedBtu
+      ).toBeDisabled());
     });
   }
 }
@@ -249,10 +312,10 @@ export const ClickTest: Story = {
     controls: { hideNoControlsWarning: true },
   },
   render: () => <TestClick />,
-  play: async ({ canvasElement, step  }) => {
+  play: async ({ canvasElement, step }) => {
     const canvas = within(canvasElement);
 
-    await step('Click Add button ,Count is 1',async ()=>{
+    await step('Click Add button ,Count is 1', async () => {
       await userEvent.click(canvas.getByRole('button'));
 
       await expect(
@@ -260,28 +323,6 @@ export const ClickTest: Story = {
       ).toBeInTheDocument();
     });
   }
-}
-
-const TestFocus = () => {
-  const [msg, setMsg] = useState('');
-
-  function handleFocus() {
-    setMsg('Start Button is focused');
-  }
-
-  function handleBlur() {
-    setMsg('Start Button is blur');
-  }
-
-  return (
-    <>
-      <Button mode={Mode.primary} onFocus={handleFocus} onBlur={handleBlur}>Start</Button>
-      <Button mode={Mode.primary} style={{ marginLeft: "15px" }}>End</Button>
-      <p>
-        {msg}
-      </p>
-    </>
-  )
 }
 
 export const ColorTest: Story = {
