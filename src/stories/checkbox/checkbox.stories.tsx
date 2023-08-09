@@ -8,6 +8,7 @@ import { ControlledTest } from './controlledTest';
 import { DisabledTest } from './disabledTest';
 import { SizeTest } from './sizeTest';
 import { IndeterminateTest } from './indeterminateTest';
+import { ColorTest } from './color';
 
 const meta: Meta<typeof Checkbox> = {
     title: 'Example/Checkbox',
@@ -68,6 +69,7 @@ export type CheckboxStory = StoryObj<typeof Checkbox>;
 export {
     Default,
     CheckedTest,
+    ColorTest,
     ControlledTest,
     DisabledTest,
     IndeterminateTest,

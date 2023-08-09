@@ -98,4 +98,5 @@ export interface VisualStates {
 export interface LittenEvent<E> {
     e?: E
     value: any;
+    checked?: boolean;
 }
