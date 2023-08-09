@@ -5,7 +5,6 @@
 ![GitHub Repo stars](https://img.shields.io/github/stars/liuxian496/litten)
 
 
-
 <p>Litten是一个React UI控件库，样式风格参考Google's Material Design，并做了适当取舍。</p>
 
 ## 使用
@@ -39,4 +38,3 @@ npm i litten
 ## Buy Me a Mixue Ice Cream & Tea
 <img src=".\\public\\wechat.jpg" height="360">
 <img src=".\\public\\alipay.jpg" height="360">
- 

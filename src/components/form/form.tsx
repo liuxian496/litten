@@ -1,52 +1,14 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useEffect, useState } from 'react';
 import './form.less';
 
 import classnames from 'classnames';
 
-
 import { FormProps, FormContextProps, FormRegisterProps, FormRef } from './form.types';
 
 import { getPrefixNs } from '../control/control';
-import { warn } from '../../global/util';
 
 import { ExceptionBoundary } from '../control/exceptionBoundary';
 
-
-function getValues(formRegister: any) {
-    const value: any = {};
-    Object.keys(formRegister).forEach(key => {
-        value[key] = formRegister[key].get();
-    });
-
-    return value;
-}
-
-function setValues(values: any, formRegister: any) {
-    Object.keys(formRegister).forEach(key => {
-        formRegister[key].set(values[key]);
-    });
-}
-
-function getValueByPath(path: string, formRegister: any) {
-    const current = formRegister[path];
-    let value;
-    if (current !== undefined) {
-        value = current.get();
-    } else {
-        value = undefined;
-    }
-
-    return value;
-}
-
-function setValueByPath(path: string, value: any, formRegister: any) {
-    const current = formRegister[path];
-    if (current !== undefined) {
-        current.set(value);
-    } else {
-        warn(`The valuePath "${path}" does not exist.`)
-    }
-}
 
 function getVisualStates(cls?: string) {
     const prefixCls = getPrefixNs('form', cls);
@@ -56,16 +18,6 @@ function getVisualStates(cls?: string) {
     );
 
     return visualStates;
-}
-
-export const useForm = () => {
-    const [form] = useState<FormRef>({
-        getValues: () => ({}),
-        setValues: () => { },
-        getValueByPath: () => (undefined),
-        setValueByPath: () => { }
-    });
-    return form;
 }
 
 export const FormContext = createContext<FormContextProps | undefined>(undefined);
@@ -101,21 +53,10 @@ export const Form = ({
         }
     }
 
-    formRef.getValues = () => {
-        return getValues(formRegister);
-    };
-
-    formRef.setValues = (values) => {
-        return setValues(values, formRegister);
-    }
-
-    formRef.getValueByPath = (path) => {
-        return getValueByPath(path, formRegister);
-    };
-
-    formRef.setValueByPath = (path, value) => {
-        setValueByPath(path, value, formRegister);
-    };
+    useEffect(() => {
+        formRef._setFormRegister?.(formRegister);
+        delete formRef['_setFormRegister'];
+    }, []);
 
     return (
         <ExceptionBoundary errorMsg={errorMsg}>

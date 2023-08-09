@@ -39,7 +39,7 @@ export enum Color {
     success = 'success',
     warning = 'warning',
     deep = 'deep',
-    note='note'
+    note = 'note'
 }
 
 /**
@@ -164,4 +164,30 @@ export enum ChangeEventState {
     UserInput = 'UserInput',
     //
     DevSet = 'DevSet'
+}
+
+/**
+ * 勾选状态
+ */
+export enum CheckState {
+    // 选中
+    checked = "checked",
+    // 未选中
+    unChecked = "unChecked",
+    // 不确定
+    indeterminate = "indeterminate"
+}
+
+/**
+ * 位置
+ */
+export enum Placement {
+    // 上边
+    top = "placementTop",
+    // 下边
+    bottom = "placementBottom",
+    // 左边
+    left = "placementLeft",
+    // 右边
+    right = "placementRight"
 }

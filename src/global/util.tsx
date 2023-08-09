@@ -1,11 +1,10 @@
 import React, { useEffect, useRef } from 'react';
 import { isString, isArray, forOwn } from 'lodash';
 
-import { UserControlType } from './enum';
-
 /**
  * 检测是否是空字符串
- * @param str 需要判断的值 {any}
+ * @param 需要判断的值 {any}
+ * @returns isString 是否是空字符串 {boolean}
  */
 export function isEmptyString(str: any) {
     return isString(str) && str.trim() === '';
@@ -13,8 +12,8 @@ export function isEmptyString(str: any) {
 
 /**
  * 保存前一个状态的值
- * @param 要保存的值
- * @requires value 前一个状态的值 {any}
+ * @param value 要保存的值
+ * @returns current 前一个状态的值 {any}
  */
 export function usePrevious(value: any) {
     const ref = useRef();
@@ -52,18 +51,6 @@ export function printArrayItem(list?: Object[]) {
     return log.toString();
 }
 
-export function getInitialValue(type: string) {
-    let value;
-
-    switch (type) {
-        case UserControlType.TextField:
-            value = '';
-            break;
-    }
-
-    return value;
-}
-
 /**
  * 输出控制台错误信息
  * @param msg 错误信息
@@ -78,7 +65,7 @@ export function error(msg?: string) {
 
 /**
  * 输出控制台警告信息
- * @param msg 
+ * @param msg 警告信息
  */
 export function warn(msg: string) {
     console.warn(`[litten warning]: ${msg}`);

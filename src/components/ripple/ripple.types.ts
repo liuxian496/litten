@@ -1,3 +1,4 @@
+import { ReactNode } from "react";
 import { ControlProps } from "../control/control.types";
 
 
@@ -13,6 +14,10 @@ export interface RippleProps extends ControlProps {
      * 设置波浪组件的颜色
      */
     color: RippleColor;
+    /**
+     * 设置按钮内容
+     */
+    children?: ReactNode;
     /**
      * 直径偏移量
      */

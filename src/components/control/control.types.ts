@@ -46,9 +46,24 @@ export interface ContentControlProps<T, V> extends UserControlProps<T> {
      */
     value?: V | undefined;
     /**
+     * 默认值
+     */
+    defaultValue?: V | undefined,
+    /**
      * 输入的值变化时触发。
      */
     onChange?: (e: LittenEvent<ChangeEvent<T>>) => void;
+}
+
+export interface CheckedControlProps<T> extends ContentControlProps<T, string | ReadonlyArray<string> | number | undefined> {
+    /**
+     * 设置一个值，该值表示chekbox是否勾选。true，代表勾选。
+     */
+    checked?: boolean,
+    /**
+     * 设置一个值，该值表示chekbox是否默认勾选，只在初始化后生效一次。true，表示默认勾选。
+     */
+    defaultChecked?: boolean
 }
 
 export interface ExceptionBoundaryProps extends ControlProps {
@@ -82,6 +97,6 @@ export interface VisualStates {
  */
 export interface LittenEvent<E> {
     e?: E
-    previousValue: any;
     value: any;
+    checked?: boolean;
 }

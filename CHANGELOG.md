@@ -1,4 +1,22 @@
-# 0.1.0 (2023-07-26)
+# [0.2.0](https://github.com/liuxian496/litten/compare/v0.1.0...v0.2.0) (2023-08-09)
+
+
+### Features
+
+* 控件FormControl支持defaultValue ([a249ac3](https://github.com/liuxian496/litten/commit/a249ac3518098caad1d404b3b48e474d939b5a75))
+* 控件TextFiled支持defaultValue ([ea80f54](https://github.com/liuxian496/litten/commit/ea80f54f9e6dcf513b3679d8a3e579a81d1c6635))
+* 添加接口CheckedControlProps，接口ContentControlProps添加defaultValue ([dad51e1](https://github.com/liuxian496/litten/commit/dad51e11deba5a873c4b08de7ee58340505c7275))
+* 添加checkbox控件 ([befe8a6](https://github.com/liuxian496/litten/commit/befe8a64c251dfba7b4f3066c609b0449085877f))
+* 添加CheckState和Placement枚举 ([98af78e](https://github.com/liuxian496/litten/commit/98af78e13f45258c7ac7d941af99979d0ee7edb3))
+* 添加ContentControl ([cbe7fa4](https://github.com/liuxian496/litten/commit/cbe7fa46a37c11e2089b68ac4cbb66cfa4c07b26))
+* 添加formLabel 在不可用（disabled）状态时的样式 ([84020c5](https://github.com/liuxian496/litten/commit/84020c5076d71018bfa36e7d322bbc7bfa0ab91b))
+* 添加formLabel控件 ([d7a7020](https://github.com/liuxian496/litten/commit/d7a7020afdeb58b9ee034284ba0e438ba2684ec1))
+* 完善useForm的生成和销毁逻辑 ([8663ec6](https://github.com/liuxian496/litten/commit/8663ec61e31b035fa1c6c58a5cfe8c9ca3f9643d))
+* ripple控件支持children ([63939c1](https://github.com/liuxian496/litten/commit/63939c11b037b8eb7a50e12dc74de95e2a707643))
+
+
+
+# [0.1.0](https://github.com/liuxian496/litten/compare/f951c3e86f8228ea579703e8b809be6e2107e5f7...v0.1.0) (2023-07-26)
 
 
 ### Features

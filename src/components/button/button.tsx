@@ -65,7 +65,6 @@ export const Button = ({
 
 
     function handleFocus(e: FocusEvent<HTMLButtonElement>) {
-        console.log('focus');
         setFocused(true);
         onFocus?.(e);
     }
