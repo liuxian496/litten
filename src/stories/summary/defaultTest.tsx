@@ -1,26 +1,9 @@
 import React from 'react';
 
-import { Meta, StoryObj } from '@storybook/react';
+import { SummaryStory } from './summary.stories';
 
-import { Summary } from '../components/summary/summary';
-import { Color } from '../global/enum';
-
-
-export default {
-    title: 'Example/Summary',
-    component: Summary,
-    argTypes: {
-        prefixCls: {
-            control: false,
-        },
-        color: {
-            control: false,
-        }
-    },
-
-} as Meta<typeof Summary>;
-
-type Story = StoryObj<typeof Summary>;
+import { Color } from '../../global/enum';
+import { Summary } from '../../components/summary/summary';
 
 const TestDefault = () => {
 
@@ -45,6 +28,6 @@ const TestDefault = () => {
     );
 }
 
-export const DefaultTest: Story = {
+export const Default: SummaryStory = {
     render: () => <TestDefault />
 };

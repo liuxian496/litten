@@ -13,6 +13,10 @@ export default {
 
 type Story = StoryObj;
 
+export const Test: Story = {
+    render: () => <></>
+}
+
 
 const useForm = () => {
     return {};
@@ -106,7 +110,7 @@ const TestForwardRef = () => {
     )
 }
 
-export const UsePreviousTest: Story = {
+const UsePreviousTest: Story = {
     render: () => <TestForwardRef />
 };
 
@@ -196,7 +200,7 @@ const TestForm = () => {
     )
 }
 
-export const FormTest: Story = {
+const FormTest: Story = {
     render: () => <TestForm />
 }
 
@@ -211,7 +215,7 @@ const CustomInput = (props: any) => {
 const TestInput = () => {
     const [value, setValue] = useState<string | number>(123);
 
-    function handleChange(e:any) {
+    function handleChange(e: any) {
         console.log('change');
         setValue(e.target.value);
     }
@@ -228,6 +232,6 @@ const TestInput = () => {
     )
 }
 
-export const InputTest: Story = {
+const InputTest: Story = {
     render: () => <TestInput />
 }
