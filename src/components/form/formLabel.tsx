@@ -20,13 +20,17 @@ function getVisualStates(props: FormLabelProps) {
     const {
         prefixCls: customizePrefixCls,
         labelPlacement,
+        disabled
     } = props;
 
     const prefixCls = getPrefixNs('formLabel', customizePrefixCls);
 
     const visualStates = classnames(
         prefixCls,
-        `${prefixCls}--${labelPlacement}`
+        `${prefixCls}--${labelPlacement}`,
+        {
+            [`${prefixCls}--disabled`]: disabled === true,
+        }
     );
 
     return visualStates;
