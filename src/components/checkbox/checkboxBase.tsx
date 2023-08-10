@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React from "react";
 
 import classnames from "classnames";
 import { getPrefixNs } from "../control/control";
@@ -35,7 +35,6 @@ export function getVisualStates(props: CheckboxProps, checkStatus: CheckState) {
         prefixCls: customizePrefixCls,
         color,
         disabled,
-        checked,
         size,
     } = props;
 
@@ -89,9 +88,3 @@ export function getCheckState(value?: boolean, indeterminate?: boolean) {
 
     return result;
 }
-
-// const [updateGroup]=useGroup(group)
-
-// export function useGroup(name){
-
-// }

@@ -1,4 +1,4 @@
-import React, { useState, FocusEvent, ChangeEvent, useEffect, MouseEventHandler } from 'react';
+import React, { useState, FocusEvent, ChangeEvent, useEffect } from 'react';
 import './checkbox.less';
 
 import { CheckboxProps } from './checkbox.types';
@@ -23,11 +23,12 @@ export const Checkbox = ({
     style,
     checked,
     defaultChecked = false,
-    value="on",
+    value = "on",
+    indeterminate = false,
     ...props
 }: CheckboxProps) => {
 
-    const { onChange, onFocus, onBlur, indeterminate } = props;
+    const { onChange, onFocus, onBlur } = props;
 
     const disabled = useDisabled<CheckboxProps>({ disabled: disabledProp, loading });
 
@@ -90,7 +91,7 @@ export const Checkbox = ({
         >
 
             {checkStatus === CheckState.checked && <CheckedIcon />}
-            {checkStatus == CheckState.unChecked && <UnCheckedIcon />}
+            {checkStatus === CheckState.unChecked && <UnCheckedIcon />}
             {checkStatus === CheckState.indeterminate && <IndeterminateIcon />}
 
             <Ripple focused={focused} color={rippleColor} diameterOffset={0} >
@@ -101,8 +102,8 @@ export const Checkbox = ({
                     disabled={disabled}
                     onFocus={handleFocus}
                     onBlur={handleBlur}
+                    value={value}
                     checked={currentChecked}
-                    defaultChecked={defaultChecked}
                     onChange={handleInputChange}
                 />
             </Ripple>

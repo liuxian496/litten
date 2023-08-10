@@ -39,6 +39,7 @@ const TestIndeterminate = () => {
                     onChange={handleAllChange}
                 />
             </FormLabel>
+            
             <div style={{ marginLeft: "10px" }}>
                 <FormLabel label='Apple' labelPlacement={Placement.right}>
                     <Checkbox
@@ -57,7 +58,6 @@ const TestIndeterminate = () => {
                     />
                 </FormLabel>
             </div>
-            {/* <div>{`Switch is ${checked}`}</div> */}
         </>
     );
 };
