@@ -1,3 +1,12 @@
+## [0.2.1](https://github.com/liuxian496/litten/compare/v0.2.0...v0.2.1) (2023-08-10)
+
+
+### Bug Fixes
+
+* 修改发包导出文件不正确的问题 ([0bd6de1](https://github.com/liuxian496/litten/commit/0bd6de1ffd912b0b74a1b9068f55041f752719c6))
+
+
+
 # [0.2.0](https://github.com/liuxian496/litten/compare/v0.1.0...v0.2.0) (2023-08-09)
 
 
