@@ -7,9 +7,14 @@
 //button
 export { Button } from './components/button/button';
 
+//button
+export { Checkbox } from './components/checkbox/checkbox';
+
 //form 
 export { Form } from './components/form/form';
 export { FormControl } from './components/form/formControl';
+export { FormLabel } from './components/form/formLabel';
+export { useForm } from './components/form/useForm';
 
 //icon 
 
