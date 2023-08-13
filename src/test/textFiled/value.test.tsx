@@ -1,19 +1,19 @@
-import React, { ChangeEvent, useState } from 'react';
+import React, { useState } from 'react';
 
-import {userEvent, within } from '@storybook/testing-library';
+import { userEvent, within } from '@storybook/testing-library';
 import { expect } from '@storybook/jest';
 
 import { TextFiledStory } from '../../stories/textField.stories';
 
 import { Mode } from '../../global/enum';
-import { LittenEvent } from '../../components/control/control.types';
+import { LittenTextChangeEvent } from '../../components/control/control.types';
 import { TextField } from '../../components/textField/textField';
 import { Button } from '../../components/button/button';
 
 const TestValue = () => {
     const [msg, setMsg] = useState<string | undefined>('');
 
-    function handleChange(event: LittenEvent<ChangeEvent<HTMLInputElement>>) {
+    function handleChange(event: LittenTextChangeEvent) {
         const { e } = event;
         setMsg(e?.target.value);
     }

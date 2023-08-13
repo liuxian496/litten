@@ -1,11 +1,11 @@
-import React, { ChangeEvent, useState } from 'react';
+import React, { useState } from 'react';
 
 import { expect } from '@storybook/jest';
 import { userEvent, within } from '@storybook/testing-library';
 
 import { FormStory } from '../../stories/form.stories';
 
-import { LittenEvent } from '../../components/control/control.types';
+import { LittenTextChangeEvent } from '../../components/control/control.types';
 import { useForm } from '../../components/form/useForm';
 import { Form } from '../../components/form/form';
 import { FormControl } from '../../components/form/formControl';
@@ -26,7 +26,7 @@ const TestMultiForm = () => {
 
     const [salary, setSalary] = useState(0);
 
-    function handleNameChange(event: LittenEvent<ChangeEvent<HTMLInputElement>>) {
+    function handleNameChange(event: LittenTextChangeEvent) {
         // console.log(`name change to ${event.value}`);
     }
 
@@ -46,8 +46,8 @@ const TestMultiForm = () => {
         })
     }
 
-    function handleSalaryChange(event: LittenEvent<ChangeEvent<HTMLInputElement>>) {
-        setSalary(parseInt(event.value));
+    function handleSalaryChange(event: LittenTextChangeEvent) {
+        setSalary(parseInt(event.value as string));
     }
 
     return (

@@ -1,11 +1,11 @@
-import React, { ChangeEvent } from 'react';
+import React from 'react';
 
 import { within, userEvent } from '@storybook/testing-library';
 import { expect } from '@storybook/jest';
 
 import { CheckboxStory } from '../../stories/checkbox.stories';
 
-import { LittenEvent } from '../../components/control/control.types';
+import { LittenCheckedChangeEvent } from '../../components/control/control.types';
 import { Placement } from '../../global/enum';
 import { FormLabel } from '../../components/form/formLabel';
 import { Checkbox } from '../../components/checkbox/checkbox';
@@ -13,17 +13,17 @@ import { Checkbox } from '../../components/checkbox/checkbox';
 const TestIndeterminate = () => {
     const [checks, setChecked] = React.useState<[boolean | undefined, boolean | undefined]>([true, false]);
 
-    function handleAllChange(event: LittenEvent<ChangeEvent<HTMLInputElement>>) {
+    function handleAllChange(event: LittenCheckedChangeEvent) {
         const { checked } = event;
         setChecked([checked, checked]);
     }
 
-    function handleAppleChange(event: LittenEvent<ChangeEvent<HTMLInputElement>>) {
+    function handleAppleChange(event: LittenCheckedChangeEvent) {
         const { checked } = event;
         setChecked([checked, checks[1]]);
     }
 
-    function handleBananaChange(event: LittenEvent<ChangeEvent<HTMLInputElement>>) {
+    function handleBananaChange(event: LittenCheckedChangeEvent) {
         const { checked } = event;
         setChecked([checks[0], checked]);
     }
@@ -39,7 +39,7 @@ const TestIndeterminate = () => {
                     onChange={handleAllChange}
                 />
             </FormLabel>
-            
+
             <div style={{ marginLeft: "10px" }}>
                 <FormLabel label='Apple' labelPlacement={Placement.right}>
                     <Checkbox

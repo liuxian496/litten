@@ -3,7 +3,7 @@ import './form.less';
 
 import classnames from 'classnames';
 
-import { FormProps, FormContextProps, FormRegisterProps, FormRef } from './form.types';
+import { FormProps, FormContextProps, FormRegisterProps } from './form.types';
 
 import { getPrefixNs } from '../control/control';
 

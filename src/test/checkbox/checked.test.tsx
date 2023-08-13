@@ -1,11 +1,11 @@
-import React, { ChangeEvent, useState } from 'react';
+import React, { useState } from 'react';
 
 import { within, userEvent } from '@storybook/testing-library';
 import { expect } from '@storybook/jest';
 
 import { CheckboxStory } from '../../stories/checkbox.stories';
 
-import { LittenEvent } from '../../components/control/control.types';
+import { LittenCheckedChangeEvent } from '../../components/control/control.types';
 import { Placement } from '../../global/enum';
 import { FormLabel } from '../../components/form/formLabel';
 import { Checkbox } from '../../components/checkbox/checkbox';
@@ -14,12 +14,12 @@ const TestChecked = () => {
     const [chicken, setChicken] = useState('红烧鸡翅');
     const [egg, setEgg] = useState('?');
 
-    function handleChickenChange(event: LittenEvent<ChangeEvent<HTMLInputElement>>) {
+    function handleChickenChange(event: LittenCheckedChangeEvent) {
         const { checked } = event;
         setChicken(checked === true ? '红烧鸡翅' : '?');
     }
 
-    function handleEggChange(event: LittenEvent<ChangeEvent<HTMLInputElement>>) {
+    function handleEggChange(event: LittenCheckedChangeEvent) {
         const { checked } = event;
         setEgg(checked === true ? '酱鸡蛋' : '?');
     }

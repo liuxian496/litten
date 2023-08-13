@@ -1,4 +1,5 @@
 import { CSSProperties, ChangeEvent, FocusEvent, ReactNode } from "react";
+import { TextFieldValue } from "../textField/textField.types";
 
 export interface ControlProps {
     /**
@@ -40,30 +41,36 @@ export interface UserControlProps<T> extends ControlProps {
 
 export interface LayoutControl extends ControlProps { }
 
-export interface ContentControlProps<T, V> extends UserControlProps<T> {
+export type LittenValue = string | ReadonlyArray<string> | number | undefined;
+
+export interface ContentControlProps<T = Element, V = LittenValue> extends UserControlProps<T> {
     /**
      * 输入的值
      */
-    value?: V | undefined;
+    value?: V;
     /**
      * 默认值
      */
-    defaultValue?: V | undefined,
+    defaultValue?: V;
     /**
      * 输入的值变化时触发。
      */
-    onChange?: (e: LittenEvent<ChangeEvent<T>>) => void;
+    onChange?: LittenContentChangeEventHandler<T, V>;
 }
 
-export interface CheckedControlProps<T> extends ContentControlProps<T, string | ReadonlyArray<string> | number | undefined> {
+export interface CheckedControlProps<T> extends ContentControlProps<T, string> {
     /**
      * 设置一个值，该值表示chekbox是否勾选。true，代表勾选。
      */
-    checked?: boolean,
+    checked?: boolean;
     /**
      * 设置一个值，该值表示chekbox是否默认勾选，只在初始化后生效一次。true，表示默认勾选。
      */
-    defaultChecked?: boolean
+    defaultChecked?: boolean;
+    /**
+     * 单选按钮组的名称。当按钮组中的任一单选按钮选中时，其他单选按钮会自动取消选中状态
+     */
+    name?: string;
 }
 
 export interface ExceptionBoundaryProps extends ControlProps {
@@ -95,8 +102,17 @@ export interface VisualStates {
 /**
  * 自定义事件参数
  */
-export interface LittenEvent<E> {
+export interface LittenEvent<E, V> {
     e?: E
-    value: any;
+    value?: V;
     checked?: boolean;
 }
+
+export type LittenContentChangeEvent = LittenEvent<ChangeEvent<Element>, LittenValue>;
+export type LittenContentChangeEventHandler<T, V> = (e: LittenEvent<ChangeEvent<T>, V>) => void;
+
+
+export type LittenTextChangeEvent = LittenEvent<ChangeEvent<HTMLInputElement>, TextFieldValue>;
+export type LittenCheckedChangeEvent = LittenEvent<ChangeEvent<HTMLInputElement>, string>;
+
+

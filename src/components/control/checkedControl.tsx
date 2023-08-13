@@ -1,22 +1,48 @@
-import { useState, useEffect, Dispatch, SetStateAction } from 'react';
+import { useState, useEffect, Dispatch, SetStateAction, ChangeEvent } from 'react';
 import { CheckedControlProps } from './control.types';
 import { getCurrentValue } from './contentControl';
+import { usePrevious } from '../../global/util';
 
 /**
- * value值不是undefined时，返回value值。否则返回defaultValue的值
- * @returns current 当前控件的默认值
+ * 控制控件的选中状态，并触发对应的change事件
+ * @param props 控件属性 CheckedControlProps
  */
 export function useCurrentChecked<T>(props: CheckedControlProps<T>) {
 
-    const { checked, defaultChecked } = props;
+    const { checked, defaultChecked, onChange, value } = props;
+
+    const prevChecked = usePrevious(checked);
 
     const [current, setCurrent] = useState<boolean | undefined>(getCurrentValue<boolean>(checked, defaultChecked));
+    const previous = usePrevious(current);
 
-    //defaultChecked值在初始化后，生效一次。
+    const [originalEvent, setOriginalEvent] = useState<ChangeEvent<T>>();
+
     useEffect(() => {
-        setCurrent(getCurrentValue<boolean>(checked, defaultChecked));
-    }, [checked]);
+        if (prevChecked !== checked) {
+            setOriginalEvent(undefined);
+            setCurrent(getCurrentValue<boolean>(checked, defaultChecked));
+        }
+    }, [prevChecked, checked, defaultChecked]);
 
+    useEffect(() => {
+        if (previous !== current) {
+            onChange?.({
+                e: originalEvent,
+                value,
+                checked: current
+            })
+        }
+    });
 
-    return [current, setCurrent] as [boolean | undefined, Dispatch<SetStateAction<boolean | undefined>>];
+    return [
+        current,
+        setCurrent,
+        setOriginalEvent
+    ] as [
+            boolean | undefined,
+            Dispatch<SetStateAction<boolean | undefined>>,
+            Dispatch<SetStateAction<ChangeEvent<T> | undefined>>
+        ];
 }
+

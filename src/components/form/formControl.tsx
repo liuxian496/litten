@@ -1,41 +1,21 @@
-import React, { ChangeEvent, useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './form.less';
 
 import { FormControlProps } from './form.types';
 import { FormContext } from './form';
 
-import { LittenEvent } from '../control/control.types';
-import { UserControlType } from '../../global/enum';
-import { getCurrentValue } from '../control/contentControl';
-import { TextFieldValue } from '../textField/textField.types';
-
-/**
- * 
- * @param type 组件类型
- * @returns value
- */
-// export function getInitialValue(type: string, defaultValue: any) {
-//     let value;
-
-//     switch (type) {
-//         case UserControlType.TextField:
-//             value = getCurrentValue<TextFieldValue>(value, defaultValue);
-//             break;
-//     }
-
-//     return value;
-// }
+import { ContentControlProps, LittenContentChangeEvent, LittenValue } from '../control/control.types';
 
 export const FormControl = (props: FormControlProps) => {
     const { children, valuePath } = props;
 
     const { type: Component, props: childrenProps } = children;
 
-    const { onChange, defaultValue = '' } = childrenProps;
+    const { onChange, defaultValue = '' } = childrenProps as ContentControlProps;
 
     // const { displayName } = Component;
 
-    const [value, setValue] = useState();
+    const [value, setValue] = useState<LittenValue>();
 
     const formContext = useContext(FormContext);
 
@@ -59,7 +39,7 @@ export const FormControl = (props: FormControlProps) => {
         return value;
     }
 
-    function handleChange(event: LittenEvent<ChangeEvent<HTMLInputElement>>) {
+    function handleChange(event: LittenContentChangeEvent) {
         const { value } = event;
         onChange?.(event);
         setValue(value);
