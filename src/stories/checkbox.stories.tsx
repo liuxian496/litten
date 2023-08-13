@@ -36,6 +36,11 @@ const meta: Meta<typeof Checkbox> = {
         rippleColor: {
             control: false,
         },
+        name: {
+            table: {
+                disable: true,
+            },
+        },
         style: {
             table: {
                 disable: true,
