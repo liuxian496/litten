@@ -21,11 +21,6 @@ export default {
 
 export type RippleStory = StoryObj<typeof Ripple>;
 
-const Test: RippleStory = {
-    render: () => <></>
-  }
-  
-
 export {
     Default,
     WaveTest,
