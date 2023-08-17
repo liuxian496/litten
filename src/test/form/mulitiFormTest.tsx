@@ -12,7 +12,7 @@ import { FormControl } from '../../components/form/formControl';
 import { TextField } from '../../components/textField/textField';
 import { Button } from '../../components/button/button';
 
-const TestMultiForm = () => {
+const Test = () => {
     type Name = {
         name: string,
     }
@@ -73,7 +73,7 @@ export const MultiFormTest: FormStory = {
     parameters: {
         controls: { hideNoControlsWarning: true },
     },
-    render: () => <TestMultiForm />,
+    render: () => <Test />,
     play: async ({ canvasElement, step }) => {
         const canvas = within(canvasElement);
 

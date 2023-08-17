@@ -8,7 +8,7 @@ import { RippleStory } from '../../stories/ripple.stories';
 import { Blue } from '../../global/enum';
 import { Wave } from '../../components/ripple/wave';
 
-const TestWave = () => {
+const Test = () => {
     const [isPressed, setIsPressed] = useState(false);
     const [state, setState] = useState('');
 
@@ -66,7 +66,7 @@ const TestWave = () => {
 }
 
 export const WaveTest: RippleStory = {
-    render: () => <TestWave />,
+    render: () => <Test />,
     play: async ({ canvasElement }) => {
         const canvas = within(canvasElement);
 

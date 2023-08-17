@@ -2,8 +2,8 @@ import { Meta, StoryObj } from '@storybook/react';
 
 import { Ripple } from '../components/ripple/ripple';
 
-import { Default } from '../test/ripple/default.test';
-import { WaveTest } from '../test/ripple/wave.test';
+import { DefaultTest } from '../test/ripple/rippleDefaultTest';
+import { WaveTest } from '../test/ripple/waveTest';
 
 export default {
     title: 'Example/Ripple',
@@ -21,7 +21,6 @@ export default {
 
 export type RippleStory = StoryObj<typeof Ripple>;
 
-export {
-    Default,
-    WaveTest,
-}
+export const Default = DefaultTest;
+
+export const Wave = WaveTest;

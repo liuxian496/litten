@@ -10,7 +10,7 @@ import { FormLabel } from '../../components/form/formLabel';
 import { Checkbox } from '../../components/checkbox/checkbox';
 import { Button } from '../../components/button/button';
 
-const TestDisabled = () => {
+const Test = () => {
     const [disabled, seDisabled] = useState(true);
 
     function handleChangeDisabledClick() {
@@ -34,7 +34,7 @@ export const DisabledTest: CheckboxStory = {
     parameters: {
         controls: { hideNoControlsWarning: true },
     },
-    render: () => <TestDisabled />,
+    render: () => <Test />,
     play: async ({ canvasElement, step }) => {
         const canvas = within(canvasElement);
 

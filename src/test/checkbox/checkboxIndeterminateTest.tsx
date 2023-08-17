@@ -10,7 +10,7 @@ import { Placement } from '../../global/enum';
 import { FormLabel } from '../../components/form/formLabel';
 import { Checkbox } from '../../components/checkbox/checkbox';
 
-const TestIndeterminate = () => {
+const Test = () => {
     const [checks, setChecked] = React.useState<[boolean | undefined, boolean | undefined]>([true, false]);
 
     function handleAllChange(event: LittenCheckedChangeEvent) {
@@ -66,7 +66,7 @@ export const IndeterminateTest: CheckboxStory = {
     parameters: {
         controls: { hideNoControlsWarning: true },
     },
-    render: () => <TestIndeterminate />,
+    render: () => <Test />,
     play: async ({ canvasElement, step }) => {
         const canvas = within(canvasElement);
 

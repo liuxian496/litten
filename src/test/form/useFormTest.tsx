@@ -4,7 +4,7 @@ import { FormStory } from '../../stories/form.stories';
 
 import { useForm } from '../../components/form/useForm';
 
-const TestUseForm = () => {
+const Test = () => {
     type Name = {
         name: string
     };
@@ -26,5 +26,5 @@ export const UseFormTest: FormStory = {
     parameters: {
         controls: { hideNoControlsWarning: true },
     },
-    render: () => <TestUseForm />,
+    render: () => <Test />,
 };

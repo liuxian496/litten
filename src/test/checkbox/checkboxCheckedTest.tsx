@@ -10,7 +10,7 @@ import { Placement } from '../../global/enum';
 import { FormLabel } from '../../components/form/formLabel';
 import { Checkbox } from '../../components/checkbox/checkbox';
 
-const TestChecked = () => {
+const Test = () => {
     const [chicken, setChicken] = useState('红烧鸡翅');
     const [egg, setEgg] = useState('?');
 
@@ -43,7 +43,7 @@ export const CheckedTest: CheckboxStory = {
             hideNoControlsWarning: true,
         },
     },
-    render: () => <TestChecked />,
+    render: () => <Test />,
     play: async ({ canvasElement, step }) => {
         const canvas = within(canvasElement);
 

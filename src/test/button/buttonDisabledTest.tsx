@@ -11,7 +11,7 @@ import { Button } from '../../components/button/button';
 import { FormLabel } from '../../components/form/formLabel';
 import { Checkbox } from '../../components/checkbox/checkbox';
 
-const TestDisabled = () => {
+const Test = () => {
     const [disabled, setDisabled] = useState<boolean | undefined>(true);
     const [loading, setLoading] = useState<boolean | undefined>(true);
 
@@ -44,7 +44,7 @@ export const DisabledTest: ButtonStory = {
     parameters: {
         controls: { hideNoControlsWarning: true },
     },
-    render: () => <TestDisabled />,
+    render: () => <Test />,
     play: async ({ canvasElement, step }) => {
         const canvas = within(canvasElement);
 

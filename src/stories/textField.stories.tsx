@@ -2,8 +2,9 @@ import { Meta, StoryObj } from '@storybook/react';
 
 import { TextField } from '../components/textField/textField';
 
-import { Default } from '../test/textFiled/default.test';
-import { ValueTest } from '../test/textFiled/value.test';
+import { DefaultTest } from '../test/textFiled/textFieldDefaultTest';
+import { ValueTest } from '../test/textFiled/textFieldValueTest';
+import { FocusTest } from '../test/textFiled/textFieldFocusTest';
 
 export default {
   title: 'Example/TextField',
@@ -21,7 +22,8 @@ export default {
 
 export type TextFiledStory = StoryObj<typeof TextField>;
 
-export {
-  Default,
-  ValueTest,
-}
+export const Default = DefaultTest;
+
+export const Value = ValueTest;
+
+export const Focus = FocusTest;

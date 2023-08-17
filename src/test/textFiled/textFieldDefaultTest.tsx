@@ -8,7 +8,7 @@ import { TextField } from '../../components/textField/textField';
 import { Button } from '../../components/button/button';
 import { TextFieldValue } from '../../components/textField/textField.types';
 
-const TestDefault = () => {
+const Test = () => {
     const [value, setValue] = useState<TextFieldValue>('');
     const [targetValue, setTargetValue] = useState<string | undefined>('');
 
@@ -37,10 +37,10 @@ const TestDefault = () => {
     );
 }
 
-export const Default: TextFiledStory = {
+export const DefaultTest: TextFiledStory = {
     parameters: {
         controls: { hideNoControlsWarning: true },
     },
     args: {},
-    render: () => <TestDefault />,
+    render: () => <Test />,
 };

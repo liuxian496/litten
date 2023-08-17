@@ -10,7 +10,7 @@ import { FormLabel } from '../../components/form/formLabel';
 import { Checkbox } from '../../components/checkbox/checkbox';
 import { Button } from '../../components/button/button';
 
-const TestControlled = () => {
+const Test = () => {
     const [checked, setChecked] = useState<boolean | undefined>(true);
 
     function handleSwitchChange(event: LittenCheckedChangeEvent) {
@@ -37,7 +37,7 @@ export const ControlledTest: CheckboxStory = {
     parameters: {
         controls: { hideNoControlsWarning: true },
     },
-    render: () => <TestControlled />,
+    render: () => <Test />,
     play: async ({ canvasElement, step }) => {
         const canvas = within(canvasElement);
 

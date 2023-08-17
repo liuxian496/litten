@@ -15,7 +15,7 @@ import { FormLabel } from '../../components/form/formLabel';
 import { TextField } from '../../components/textField/textField';
 import { Button } from '../../components/button/button';
 
-const TestDefault = () => {
+const Test = () => {
     type Data = {
         name: string,
         animation: string;
@@ -59,8 +59,8 @@ const TestDefault = () => {
     );
 }
 
-export const Default: FormStory = {
-    render: () => <TestDefault />,
+export const DefaultTest: FormStory = {
+    render: () => <Test />,
     play: async ({ canvasElement, step }) => {
         const canvas = within(canvasElement);
 

@@ -1,5 +1,5 @@
 import { Meta, StoryObj } from '@storybook/react';
-import { Default } from '../test/iconButton/default.test';
+import { Default } from '../test/iconButton/iconButtonDefaultTest';
 
 import { IconButton } from '../components/iconButton/iconButton';
 

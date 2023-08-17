@@ -3,10 +3,10 @@ import { Meta, StoryObj } from '@storybook/react';
 
 import { Form } from '../components/form/form';
 
-import { Default } from '../test/form/default.test';
-import { DuplicateValuePathTest } from '../test/form/duplicateValuePath.test';
-import { MultiFormTest } from '../test/form/multiForm.test';
-import { UseFormTest } from '../test/form/useForm.test';
+import { DefaultTest } from '../test/form/formDefaultTest';
+import { DuplicateValuePathTest } from '../test/form/formDuplicateValuePathTest';
+import { MultiFormTest } from '../test/form/mulitiFormTest';
+import { UseFormTest } from '../test/form/useFormTest';
 
 export default {
     title: 'Example/Form',
@@ -35,9 +35,16 @@ export default {
 
 export type FormStory = StoryObj<typeof Form>;
 
-export {
-    Default,
-    DuplicateValuePathTest,
-    MultiFormTest,
-    UseFormTest
+export const Default = DefaultTest;
+
+export const DuplicateValuePath = {
+    name:'Duplicate ValuePath',
+    ...DuplicateValuePathTest
+};
+
+export const MultiForm = MultiFormTest;
+
+export const UseForm = {
+    name:'useForm',
+    ...UseFormTest
 };
