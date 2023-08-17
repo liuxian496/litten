@@ -1,5 +1,6 @@
-import { CSSProperties, ChangeEvent, FocusEvent, ReactNode } from "react";
+import { CSSProperties, ChangeEvent, Dispatch, FocusEvent, LegacyRef, MutableRefObject, ReactNode, SetStateAction } from "react";
 import { TextFieldValue } from "../textField/textField.types";
+import { UserControlType } from "../../global/enum";
 
 export interface ControlProps {
     /**
@@ -26,7 +27,7 @@ export interface UserControlProps<T> extends ControlProps {
     /**
      * 设置元素是否可以聚焦
      */
-    tabindex?: number;
+    tabIndex?: number;
     /**
      * 
      * @returns void
@@ -53,9 +54,41 @@ export interface ContentControlProps<T = Element, V = LittenValue> extends UserC
      */
     defaultValue?: V;
     /**
+     * UserControl类型，代表在litten中的唯一标识
+     */
+    userControlType?: UserControlType;
+    /**
      * 输入的值变化时触发。
      */
     onChange?: LittenContentChangeEventHandler<T, V>;
+}
+
+export interface LittenCheckedGroups {
+    [name: string]: {
+        [uuid: string]: {
+            setChecked: Dispatch<SetStateAction<boolean | undefined>>
+            value?: string;
+        }
+    }
+}
+
+export interface CheckedControlGroup {
+    /**
+     * 组名称
+     */
+    name?: string;
+    /**
+     * 全局唯一id
+     */
+    uuid: string;
+    /**
+     * UserControl类型
+     */
+    userControlType?: UserControlType;
+    /**
+     * 选中时，对应的值
+     */
+    value?: string;
 }
 
 export interface CheckedControlProps<T> extends ContentControlProps<T, string> {
