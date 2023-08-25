@@ -1,4 +1,11 @@
-import { CSSProperties, ChangeEvent, Dispatch, FocusEvent, LegacyRef, MutableRefObject, ReactNode, SetStateAction } from "react";
+import {
+    CSSProperties,
+    ChangeEvent,
+    Dispatch,
+    FocusEvent,
+    ReactNode,
+    SetStateAction,
+} from "react";
 import { TextFieldValue } from "../textField/textField.types";
 import { UserControlType } from "../../global/enum";
 
@@ -21,7 +28,7 @@ export interface UserControlProps<T> extends ControlProps {
     disabled?: boolean;
     /**
      * 设置一个值，该值表示是否正在进行后台加载。默认值，false，表示没有进行后台加载。
-     * @default false 
+     * @default false
      */
     loading?: boolean;
     /**
@@ -29,22 +36,23 @@ export interface UserControlProps<T> extends ControlProps {
      */
     tabIndex?: number;
     /**
-     * 
+     *
      * @returns void
      */
     onFocus?: (e: FocusEvent<T>) => void;
     /**
-     * 
+     *
      * @returns void
      */
     onBlur?: (e: FocusEvent<T>) => void;
 }
 
-export interface LayoutControl extends ControlProps { }
+export interface LayoutControl extends ControlProps {}
 
 export type LittenValue = string | ReadonlyArray<string> | number | undefined;
 
-export interface ContentControlProps<T = Element, V = LittenValue> extends UserControlProps<T> {
+export interface ContentControlProps<T = Element, V = LittenValue>
+    extends UserControlProps<T> {
     /**
      * 输入的值
      */
@@ -66,10 +74,10 @@ export interface ContentControlProps<T = Element, V = LittenValue> extends UserC
 export interface LittenCheckedGroups {
     [name: string]: {
         [uuid: string]: {
-            setChecked: Dispatch<SetStateAction<boolean | undefined>>
+            setChecked: Dispatch<SetStateAction<boolean | undefined>>;
             value?: string;
-        }
-    }
+        };
+    };
 }
 
 export interface CheckedControlGroup {
@@ -127,7 +135,7 @@ export interface VisualStates {
     focused?: boolean;
     /**
      * 设置一个值，表示是否处于禁用状态。
-     * 
+     *
      */
     disabled?: boolean;
 }
@@ -136,16 +144,24 @@ export interface VisualStates {
  * 自定义事件参数
  */
 export interface LittenEvent<E, V> {
-    e?: E
+    e?: E;
     value?: V;
     checked?: boolean;
 }
 
-export type LittenContentChangeEvent = LittenEvent<ChangeEvent<Element>, LittenValue>;
-export type LittenContentChangeEventHandler<T, V> = (e: LittenEvent<ChangeEvent<T>, V>) => void;
+export type LittenContentChangeEvent = LittenEvent<
+    ChangeEvent<Element>,
+    LittenValue
+>;
+export type LittenContentChangeEventHandler<T, V> = (
+    e: LittenEvent<ChangeEvent<T>, V>
+) => void;
 
-
-export type LittenTextChangeEvent = LittenEvent<ChangeEvent<HTMLInputElement>, TextFieldValue>;
-export type LittenCheckedChangeEvent = LittenEvent<ChangeEvent<HTMLInputElement>, string>;
-
-
+export type LittenTextChangeEvent = LittenEvent<
+    ChangeEvent<HTMLInputElement>,
+    TextFieldValue
+>;
+export type LittenCheckedChangeEvent = LittenEvent<
+    ChangeEvent<HTMLInputElement>,
+    string
+>;
