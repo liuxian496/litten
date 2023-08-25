@@ -25,19 +25,19 @@ export const FormControl = (props: FormControlProps) => {
         return () => {
             formContext?.uninstall(valuePath);
         }
-    }, []);
+    }, [formContext, valuePath]);
 
     useEffect(() => {
         formContext?.register({
-            get: getValue,
+            get: () => { return value; },
             set: setValue,
             path: valuePath
         });
-    }, [value])
+    }, [formContext, value, valuePath]);
 
-    function getValue() {
-        return value;
-    }
+    // function getValue() {
+    //     return value;
+    // }
 
     function handleChange(event: LittenContentChangeEvent) {
         const { value } = event;
