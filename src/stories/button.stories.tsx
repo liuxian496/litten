@@ -8,7 +8,6 @@ import { DisabledTest } from '../test/button/buttonDisabledTest';
 import { ClickTest } from '../test/button/buttonClickTest';
 import { ColorTest } from '../test/button/buttonColorTest';
 import { IconTest } from '../test/button/buttonIconTest';
-import React from 'react';
 
 const meta: Meta<typeof Button> = {
   title: 'Example/Button',

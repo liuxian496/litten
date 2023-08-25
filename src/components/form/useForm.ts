@@ -4,7 +4,7 @@ import { warn } from "../../global/util";
 
 function getValues<T>(formRegister: any) {
     const value: any = {};
-    Object.keys(formRegister).forEach(key => {
+    Object.keys(formRegister).forEach((key) => {
         value[key] = formRegister[key].get();
     });
 
@@ -12,7 +12,7 @@ function getValues<T>(formRegister: any) {
 }
 
 function setValues(values: any, formRegister: any) {
-    Object.keys(formRegister).forEach(key => {
+    Object.keys(formRegister).forEach((key) => {
         formRegister[key].set(values[key]);
     });
 }
@@ -34,33 +34,30 @@ function setValueByPath(path: string, value: any, formRegister: any) {
     if (current !== undefined) {
         current.set(value);
     } else {
-        warn(`The valuePath "${path}" does not exist.`)
+        warn(`The valuePath "${path}" does not exist.`);
     }
 }
-
 
 export function useForm<T>() {
     const [formRegister, setFormRegister] = useState<any>();
 
     const [form, setForm] = useState<FormRef<T>>({
         getValues: () => ({} as T),
-        setValues: () => { },
-        clear: () => { },
-        getValueByPath: () => (undefined),
-        setValueByPath: () => { },
+        setValues: () => {},
+        clear: () => {},
+        getValueByPath: () => undefined,
+        setValueByPath: () => {},
         _setFormRegister: setFormRegister,
     });
-
 
     useEffect(() => {
         return () => {
             setFormRegister({});
-        }
+        };
     }, []);
 
     useEffect(() => {
-        if(formRegister !== undefined){
-            console.log('init');
+        if (formRegister !== undefined) {
             setForm({
                 getValues: () => {
                     return getValues<T>(formRegister);
@@ -68,7 +65,7 @@ export function useForm<T>() {
                 setValues: (values: T) => {
                     return setValues(values, formRegister);
                 },
-    
+
                 clear: () => {
                     setValues({}, formRegister);
                 },
@@ -80,7 +77,6 @@ export function useForm<T>() {
                 },
             });
         }
-
     }, [formRegister]);
 
     return form;

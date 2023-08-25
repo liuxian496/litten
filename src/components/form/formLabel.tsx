@@ -41,7 +41,7 @@ function renderLabel(props: FormLabelProps) {
 
     return (
         <>
-            {label}
+            <span>{label}</span>
         </>
     )
 }
