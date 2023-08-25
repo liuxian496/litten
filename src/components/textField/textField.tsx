@@ -56,6 +56,7 @@ export const TextField = forwardRef(function TextField({
                 })}
                 disabled={disabled}
                 {...props}
+                type='text'
                 ref={ref}
                 value={currentValue}
                 onChange={handleChange}
