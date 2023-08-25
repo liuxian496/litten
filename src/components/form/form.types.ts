@@ -47,7 +47,7 @@ export interface FormRegisterProps {
     set: any;
 }
 
-export interface FormRef<T> {
+export interface FormRef<T = any> {
     /**
      * 获取表单当前数据
      * @returns 表单当前数据

@@ -5,7 +5,7 @@ import { ButtonStory } from "../../stories/button.stories";
 import { Mode, Size } from '../../global/enum';
 import { Button } from '../../components/button/button';
 
-export const Default: ButtonStory = {
+export const DefaultTest: ButtonStory = {
     args: {
         mode: Mode.primary,
         size: Size.medium,

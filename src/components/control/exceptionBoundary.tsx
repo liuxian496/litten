@@ -31,7 +31,7 @@ function getExceptionVisualStates(props: ExceptionBoundaryProps) {
 }
 
 
-export function ExceptionBoundary<T>(props: ExceptionBoundaryProps) {
+export function ExceptionBoundary(props: ExceptionBoundaryProps) {
     const { children, errorMsg } = props;
 
     return (

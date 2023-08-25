@@ -2,7 +2,7 @@ import { Meta, StoryObj } from '@storybook/react';
 
 import { Summary } from '../components/summary/summary';
 
-import { Default } from '../test/summary/default.test';
+import { Default } from '../test/summary/summaryDefaultTest';
 
 
 export default {

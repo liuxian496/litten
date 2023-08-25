@@ -8,7 +8,7 @@ import { ButtonStory } from "../../stories/button.stories";
 import { Mode } from '../../global/enum';
 import { Button } from '../../components/button/button';
 
-const TestClick = () => {
+const Test = () => {
     const [count, setCount] = useState(0);
 
     function handleClick(e: any) {
@@ -24,10 +24,11 @@ const TestClick = () => {
 }
 
 export const ClickTest: ButtonStory = {
+    name: 'So simple!',
     parameters: {
         controls: { hideNoControlsWarning: true },
     },
-    render: () => <TestClick />,
+    render: () => <Test />,
     play: async ({ canvasElement, step }) => {
         const canvas = within(canvasElement);
 

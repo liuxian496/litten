@@ -1,0 +1,124 @@
+@import '../litten.less';
+
+@component-cls: ~'@{litten-prefix}-radio';
+
+.@{component-cls} {
+    display: inline-flex;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    outline: 0px;
+    border: 0px;
+    margin: 0px;
+    cursor: pointer;
+    border-radius: 50%;
+    user-select: none;
+    vertical-align: middle;
+    appearance: none;
+    text-decoration: none;
+
+    // default
+    &:is(&--defaultColor):not(&--unChecked):not(&--disabled) {
+        color: @blue-primary-main;
+    }
+
+    &:is(&--unChecked):not(&--disabled) {
+        color: @gray-deep;
+    }
+
+    &:hover:is(&--defaultColor):not(&--disabled) {
+        background-color: @blue-primary-alphaPoint04;
+    }
+
+    // end default
+
+    // danger
+    &:is(&--danger):not(&--unChecked):not(&--disabled) {
+        color: @red-error-dark;
+    }
+
+    &:hover:is(&--danger):not(&--disabled) {
+        background-color: @red-error-light;
+    }
+
+    // end danger
+
+    // success
+    &:is(&--success):not(&--unChecked):not(&--disabled) {
+        color: @green-success-dark;
+    }
+
+    &:hover:is(&--success):not(&--disabled) {
+        background-color: @green-success-light;
+    }
+
+    // end success
+
+    // warning
+    &:is(&--warning):not(&--unChecked):not(&--disabled) {
+        color: @orange-warning-dark;
+    }
+
+    &:hover:is(&--warning):not(&--disabled) {
+        background-color: @orange-warning-light;
+    }
+
+    // end warning
+
+
+    &--small {
+        width: 2.375rem;
+        height: 2.375rem;
+
+        svg {
+            font-size: 1.25rem;
+        }
+    }
+
+    &--medium {
+        width: 2.625rem;
+        height: 2.625rem;
+
+        svg {
+            font-size: 1.5rem;
+        }
+    }
+
+    &--large {
+        width: 2.875rem;
+        height: 2.875rem;
+
+        svg {
+            font-size: 1.75rem;
+        }
+    }
+
+    &--disabled {
+        color: @gray-dark;
+    }
+
+    // input part
+    &__input {
+        cursor: inherit;
+        position: absolute;
+        opacity: 0;
+        width: 100%;
+        height: 100%;
+        top: 0px;
+        left: 0px;
+        margin: 0px;
+        padding: 0px;
+        z-index: 0;
+    }
+
+    // iconContainer
+    &__iconContainer {
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+    }
+}

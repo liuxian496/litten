@@ -1,12 +1,12 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, ChangeEvent, Dispatch, SetStateAction } from 'react';
 import { ContentControlProps } from './control.types';
+import { usePrevious } from '../../global/util';
 
 /**
  * value值不是undefined时，返回value值。否则返回defaultValue的值
- * @param value 控件的值 {V}
- * @param defaultValue 控件的默认值 {V}
- * @param defaultValue 控件是否处于不确定状态 {boolean}
- * @returns 控件的值
+ * @param value 控件的值（外部传入） {V}
+ * @param defaultValue 控件的默认值（外部传入） {V}
+ * @returns 计算之后的控件的值
  */
 export function getCurrentValue<V>(value: V | undefined, defaultValue: V | undefined) {
     let current;
@@ -25,14 +25,39 @@ export function getCurrentValue<V>(value: V | undefined, defaultValue: V | undef
  */
 export function useCurrentValue<T, V>(props: ContentControlProps<T, V>) {
 
-    const { value, defaultValue } = props;
+    const { value, defaultValue, onChange } = props;
+    const prevValue = usePrevious(value);
 
     const [current, setCurrent] = useState<V | undefined>(getCurrentValue<V>(value, defaultValue));
+    const previous = usePrevious(current);
+
+    const [originalEvent, setOriginalEvent] = useState<ChangeEvent<T>>();
+
 
     useEffect(() => {
-        setCurrent(getCurrentValue<V>(value, defaultValue));
-    }, [value]);
+        if (prevValue !== value) {
+            setOriginalEvent(undefined);
+            setCurrent(getCurrentValue<V>(value, defaultValue));
+        }
+    }, [prevValue, value, defaultValue]);
+
+    useEffect(() => {
+        if (previous !== current) {
+            onChange?.({
+                e: originalEvent,
+                value: current
+            });
+        }
+    });
 
 
-    return current;
+    return [
+        current,
+        setCurrent,
+        setOriginalEvent
+    ] as [
+            V | undefined,
+            Dispatch<SetStateAction<V | undefined>>,
+            Dispatch<SetStateAction<ChangeEvent<T> | undefined>>
+        ];
 }

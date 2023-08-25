@@ -8,7 +8,7 @@ import { RippleStory } from '../../stories/ripple.stories';
 import { Blue } from '../../global/enum';
 import { Ripple } from '../../components/ripple/ripple';
 
-const TestDefault = () => {
+const Test = () => {
     const [focused, setFocused] = useState(false);
 
     function handleClick() {
@@ -35,7 +35,7 @@ const TestDefault = () => {
     );
 }
 
-export const Default: RippleStory = {
+export const DefaultTest: RippleStory = {
     args: {
         focused: false,
         color: {
@@ -43,7 +43,7 @@ export const Default: RippleStory = {
             waveColor: Blue.wave
         }
     },
-    render: () => <TestDefault />,
+    render: () => <Test />,
     play: async ({ canvasElement, step }) => {
         const canvas = within(canvasElement);
 

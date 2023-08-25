@@ -28,5 +28,6 @@
   "exclude": [
     "node_modules",
     "src/stories",
+    "src/test",
   ]
 }

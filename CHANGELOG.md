@@ -1,3 +1,17 @@
+# [0.3.0](https://github.com/liuxian496/litten/compare/v0.2.1...v0.3.0) (2023-08-25)
+
+
+### Bug Fixes
+
+* checkbox修改indeterminate属性赋值给input，导致浏览器控制台警告的问题。 ([b2ff252](https://github.com/liuxian496/litten/commit/b2ff2526fb51013bb890140d0ddbff0889a541ef))
+
+
+### Features
+
+* 添加radio和radioGroup控件 ([11f557b](https://github.com/liuxian496/litten/commit/11f557bcdbfda7e162b7a4e90ef531225cd10e08))
+
+
+
 ## [0.2.1](https://github.com/liuxian496/litten/compare/v0.2.0...v0.2.1) (2023-08-10)
 
 

@@ -3,7 +3,7 @@ import './form.less';
 
 import classnames from 'classnames';
 
-import { FormProps, FormContextProps, FormRegisterProps, FormRef } from './form.types';
+import { FormProps, FormContextProps, FormRegisterProps } from './form.types';
 
 import { getPrefixNs } from '../control/control';
 
@@ -22,7 +22,27 @@ function getVisualStates(cls?: string) {
 
 export const FormContext = createContext<FormContextProps | undefined>(undefined);
 
-const valuePathduplicate = (path: string) => `The valuePath "${path}" is used by other FormControl, Please check your form.`
+const valuePathduplicate = (path: string) => `The valuePath "${path}" is used by other FormControl, Please check your form.`;
+
+function initContext(formRegister: any, setErrorMsg: any) {
+    return {
+        register: (props: FormRegisterProps) => {
+            const { path, get, set } = props;
+            formRegister[path].get = get;
+            formRegister[path].set = set;
+        },
+        uninstall: (path: string) => {
+            delete formRegister[path];
+        },
+        checkValuePath: (path: string) => {
+            if (formRegister.hasOwnProperty(path) === false) {
+                formRegister[path] = {};
+            } else {
+                setErrorMsg(valuePathduplicate(path));
+            }
+        }
+    }
+}
 
 export const Form = ({
     children,
@@ -35,28 +55,16 @@ export const Form = ({
 
     const [errorMsg, setErrorMsg] = useState<undefined | string>();
 
-    const context: FormContextProps = {
-        register: (props: FormRegisterProps) => {
-            const { path, get, set } = props;
-            formRegister[path].get = get;
-            formRegister[path].set = set;
-        },
-        uninstall: (path: string) => {
-            delete formRegister[path];
-        },
-        checkValuePath: (path) => {
-            if (formRegister.hasOwnProperty(path) === false) {
-                formRegister[path] = {};
-            } else {
-                setErrorMsg(valuePathduplicate(path));
-            }
-        }
-    }
+    const [context, setContext] = useState(initContext(formRegister, setErrorMsg));
+
+    useEffect(()=>{
+        setContext(initContext(formRegister, setErrorMsg));
+    },[formRegister])
 
     useEffect(() => {
         formRef._setFormRegister?.(formRegister);
         delete formRef['_setFormRegister'];
-    }, []);
+    }, [formRef, formRegister]);
 
     return (
         <ExceptionBoundary errorMsg={errorMsg}>
@@ -69,6 +77,5 @@ export const Form = ({
                 </div>
             </FormContext.Provider>
         </ExceptionBoundary>
-
     )
 };

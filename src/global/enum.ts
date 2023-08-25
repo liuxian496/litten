@@ -151,7 +151,9 @@ export enum Orange {
  * UserControl类型
  */
 export enum UserControlType {
-    TextField = 'TextField'
+    TextField = 'TextField',
+    Checkbox = 'Checkbox',
+    Radio = 'Radio'
 }
 
 /**

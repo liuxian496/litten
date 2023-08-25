@@ -85,7 +85,6 @@ const MyInput = forwardRef(function MyInput(props: any, ref) {
 const TestForwardRef = () => {
     const ref: any = useRef(null);
     const panelRef: any = useRef();
-    const [name, setName] = useState('Tom')
 
     const form: any = useForm();
 

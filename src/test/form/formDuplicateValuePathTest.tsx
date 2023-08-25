@@ -10,7 +10,7 @@ import { Form } from '../../components/form/form';
 import { FormControl } from '../../components/form/formControl';
 import { TextField } from '../../components/textField/textField';
 
-const TestDuplicateValuePath = () => {
+const Test = () => {
     type Data = {
         name: string,
     }
@@ -39,7 +39,7 @@ export const DuplicateValuePathTest: FormStory = {
     parameters: {
         controls: { hideNoControlsWarning: true },
     },
-    render: () => <TestDuplicateValuePath />,
+    render: () => <Test />,
     play: async ({ canvasElement, step }) => {
 
         const canvas = within(canvasElement);

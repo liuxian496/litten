@@ -1,8 +1,6 @@
 import React, { FocusEvent, useState } from 'react';
 import './iconButton.less';
 
-import { isFunction } from 'lodash';
-
 import { Mode, Size, Color } from '../../global/enum';
 
 import { IconButtonProps } from './iconButton.types';

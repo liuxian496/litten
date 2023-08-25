@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useContext, useEffect, useState } from 'react';
+import React from 'react';
 import './formLabel.less';
 
 import { FormLabelProps } from './form.types';
@@ -41,7 +41,7 @@ function renderLabel(props: FormLabelProps) {
 
     return (
         <>
-            {label}
+            <span>{label}</span>
         </>
     )
 }

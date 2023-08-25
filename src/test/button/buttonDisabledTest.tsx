@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from 'react';
+import React, { useState } from 'react';
 
 import { userEvent, waitFor, within } from '@storybook/testing-library';
 import { expect } from '@storybook/jest';
@@ -6,21 +6,21 @@ import { expect } from '@storybook/jest';
 import { ButtonStory } from "../../stories/button.stories";
 
 import { Mode, Placement } from '../../global/enum';
-import { LittenEvent } from '../../components/control/control.types';
+import { LittenCheckedChangeEvent } from '../../components/control/control.types';
 import { Button } from '../../components/button/button';
 import { FormLabel } from '../../components/form/formLabel';
 import { Checkbox } from '../../components/checkbox/checkbox';
 
-const TestDisabled = () => {
+const Test = () => {
     const [disabled, setDisabled] = useState<boolean | undefined>(true);
     const [loading, setLoading] = useState<boolean | undefined>(true);
 
-    function handleDisableCheckboxChange(event: LittenEvent<ChangeEvent<HTMLInputElement>>) {
+    function handleDisableCheckboxChange(event: LittenCheckedChangeEvent) {
         const { checked } = event;
         setDisabled(checked);
     }
 
-    function handleLoadingCheckboxChange(event: LittenEvent<ChangeEvent<HTMLInputElement>>) {
+    function handleLoadingCheckboxChange(event: LittenCheckedChangeEvent) {
         const { checked } = event;
         setLoading(checked);
     }
@@ -44,7 +44,7 @@ export const DisabledTest: ButtonStory = {
     parameters: {
         controls: { hideNoControlsWarning: true },
     },
-    render: () => <TestDisabled />,
+    render: () => <Test />,
     play: async ({ canvasElement, step }) => {
         const canvas = within(canvasElement);
 

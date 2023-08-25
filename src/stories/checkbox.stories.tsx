@@ -2,13 +2,13 @@ import { Meta, StoryObj } from '@storybook/react';
 
 import { Checkbox } from '../components/checkbox/checkbox';
 
-import { Default } from '../test/checkbox/default.test';
-import { CheckedTest } from '../test/checkbox/checked.test';
-import { ControlledTest } from '../test/checkbox/controlled.test';
-import { DisabledTest } from '../test/checkbox/disabled.test';
-import { SizeTest } from '../test/checkbox/size.test';
-import { IndeterminateTest } from '../test/checkbox/indeterminate.test';
-import { ColorTest } from '../test/checkbox/color.test';
+import { DefaultTest } from '../test/checkbox/checkboxDefaultTest';
+import { CheckedTest } from '../test/checkbox/checkboxCheckedTest';
+import { ControlledTest } from '../test/checkbox/checkboxControlledTest';
+import { DisabledTest } from '../test/checkbox/checkboxDisabledTest';
+import { SizeTest } from '../test/checkbox/checkboxSizeTest';
+import { IndeterminateTest } from '../test/checkbox/checkboxIndeterminateTest';
+import { ColorTest } from '../test/checkbox/checkboxColorTest';
 
 const meta: Meta<typeof Checkbox> = {
     title: 'Example/Checkbox',
@@ -35,6 +35,11 @@ const meta: Meta<typeof Checkbox> = {
         },
         rippleColor: {
             control: false,
+        },
+        name: {
+            table: {
+                disable: true,
+            },
         },
         style: {
             table: {
@@ -66,12 +71,16 @@ const meta: Meta<typeof Checkbox> = {
 export default meta;
 export type CheckboxStory = StoryObj<typeof Checkbox>;
 
-export {
-    Default,
-    CheckedTest,
-    ColorTest,
-    ControlledTest,
-    DisabledTest,
-    IndeterminateTest,
-    SizeTest,
-};
+export const Default = DefaultTest;
+
+export const Checked =  CheckedTest;
+
+export const Color = ColorTest;
+
+export const Controlled = ControlledTest;
+
+export const Disabled = DisabledTest;
+
+export const Indeterminate =  IndeterminateTest;
+
+export const Size = SizeTest;
