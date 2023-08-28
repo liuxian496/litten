@@ -15,11 +15,6 @@ const meta: Meta<typeof Checkbox> = {
     title: "Example/Checkbox",
     component: Checkbox,
     argTypes: {
-        "aria-label": {
-            table: {
-                disable: true,
-            },
-        },
         defaultChecked: {
             control: false,
         },
@@ -37,12 +32,18 @@ const meta: Meta<typeof Checkbox> = {
         rippleColor: {
             control: false,
         },
-        name: {
+        style: {
+            control: false,
+        },
+        value: {
+            control: false,
+        },
+        "aria-label": {
             table: {
                 disable: true,
             },
         },
-        style: {
+        name: {
             table: {
                 disable: true,
             },
@@ -57,13 +58,8 @@ const meta: Meta<typeof Checkbox> = {
                 disable: true,
             },
         },
-        value: {
-            table: {
-                disable: true,
-            },
-        },
         onChange: {
-            action: "checked change",
+            control: false,
         },
     },
     parameters: {
