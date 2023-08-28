@@ -22,6 +22,7 @@ export const Radio = ({
     size = Size.medium,
     style,
     checked,
+    defaultValue,
     defaultChecked = false,
     value = "on",
     ...props

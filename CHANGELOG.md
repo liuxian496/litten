@@ -1,3 +1,12 @@
+## [0.3.1](https://github.com/liuxian496/litten/compare/v0.3.0...v0.3.1) (2023-08-28)
+
+
+### Features
+
+* 支持在form中使用checkbox ([3f3ce7a](https://github.com/liuxian496/litten/commit/3f3ce7a01c8ac43518b177d6c846d8bc81ef54ee))
+
+
+
 # [0.3.0](https://github.com/liuxian496/litten/compare/v0.2.1...v0.3.0) (2023-08-25)
 
 

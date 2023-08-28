@@ -1,10 +1,9 @@
-import React from 'react';
+import React from "react";
 
+import { CheckboxStory } from "../../stories/checkbox.stories";
 
-import { CheckboxStory } from '../../stories/checkbox.stories';
-
-import { Size } from '../../global/enum';
-import { Checkbox } from '../../components/checkbox/checkbox';
+import { Size } from "../../global/enum";
+import { Checkbox } from "../../components/checkbox/checkbox";
 
 export const DefaultTest: CheckboxStory = {
     args: {
@@ -15,10 +14,17 @@ export const DefaultTest: CheckboxStory = {
         loading: false,
     },
     render: (args) => {
+        const { checked, disabled, indeterminate, loading, size } = args;
         return (
             <>
-                <Checkbox {...args} />
+                <Checkbox
+                    checked={checked}
+                    disabled={disabled}
+                    indeterminate={indeterminate}
+                    loading={loading}
+                    size={size}
+                />
             </>
         );
-    }
+    },
 };

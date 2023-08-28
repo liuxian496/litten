@@ -38,7 +38,7 @@ const meta: Meta<typeof Radio> = {
                 disable: true,
             },
         },
-        tabindex: {
+        tabIndex: {
             table: {
                 disable: true,
             },

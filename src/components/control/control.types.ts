@@ -49,7 +49,12 @@ export interface UserControlProps<T> extends ControlProps {
 
 export interface LayoutControl extends ControlProps {}
 
-export type LittenValue = string | ReadonlyArray<string> | number | undefined;
+export type LittenValue =
+    | string
+    | ReadonlyArray<string>
+    | number
+    | boolean
+    | undefined;
 
 export interface ContentControlProps<T = Element, V = LittenValue>
     extends UserControlProps<T> {
@@ -146,6 +151,7 @@ export interface VisualStates {
 export interface LittenEvent<E, V> {
     e?: E;
     value?: V;
+    userControlType?: UserControlType;
     checked?: boolean;
 }
 

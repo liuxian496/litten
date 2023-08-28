@@ -1,19 +1,25 @@
-import React, { useContext, useEffect, useState } from 'react';
-import './form.less';
+import React, { useContext, useEffect, useState } from "react";
+import "./form.less";
 
-import { FormControlProps } from './form.types';
-import { FormContext } from './form';
+import { FormControlProps } from "./form.types";
+import { FormContext } from "./form";
 
-import { ContentControlProps, LittenContentChangeEvent, LittenValue } from '../control/control.types';
+import {
+    ContentControlProps,
+    LittenContentChangeEvent,
+    LittenValue,
+} from "../control/control.types";
+import { UserControlType } from "../../global/enum";
 
 export const FormControl = (props: FormControlProps) => {
     const { children, valuePath } = props;
 
     const { type: Component, props: childrenProps } = children;
 
-    const { onChange, defaultValue = '' } = childrenProps as ContentControlProps;
+    const { onChange, defaultValue = "" } =
+        childrenProps as ContentControlProps;
 
-    // const { displayName } = Component;
+    const { displayName } = Component;
 
     const [value, setValue] = useState<LittenValue>();
 
@@ -24,30 +30,57 @@ export const FormControl = (props: FormControlProps) => {
         formContext?.checkValuePath(valuePath);
         return () => {
             formContext?.uninstall(valuePath);
-        }
+        };
     }, [formContext, valuePath]);
 
     useEffect(() => {
         formContext?.register({
-            get: () => { return value; },
+            get: () => {
+                return value;
+            },
             set: setValue,
-            path: valuePath
+            path: valuePath,
         });
     }, [formContext, value, valuePath]);
 
-    // function getValue() {
-    //     return value;
-    // }
-
     function handleChange(event: LittenContentChangeEvent) {
-        const { value } = event;
+        const { value, checked, userControlType } = event;
+
         onChange?.(event);
-        setValue(value);
+        if (userControlType === UserControlType.Checkbox) {
+            setValue(checked);
+        } else {
+            setValue(value);
+        }
+    }
+
+    function renderCheckedControl(){
+        console.log('render checkbox')
+        return (
+            <Component
+                {...childrenProps}
+                checked={value}
+                onChange={handleChange}
+            />
+        );
+    }
+
+    function renderContentControl() {
+        return (
+            <Component
+                {...childrenProps}
+                value={value}
+                defaultValue={defaultValue}
+                onChange={handleChange}
+            />
+        );
     }
 
     return (
         <>
-            <Component {...childrenProps} value={value} defaultValue={defaultValue} onChange={handleChange} />
+            {displayName === UserControlType.Checkbox
+                ? renderCheckedControl()
+                : renderContentControl()}
         </>
     );
-}
+};
