@@ -9,7 +9,7 @@ import { setCheckedByGroupValue } from '../control/checkedControl';
 export const RadioGroup = (props: RadioGroupProps) => {
     const { name, value, defaultValue, children, onChange } = props;
 
-    const [currentValue, setCurrentValue, setOriginalEvent] = useCurrentValue<HTMLInputElement, string>({ value, defaultValue, userControlType: UserControlType.TextField, onChange });
+    const [currentValue, setCurrentValue, setOriginalEvent] = useCurrentValue<HTMLInputElement, string>({ value, defaultValue, userControlType: UserControlType.Radio, onChange });
 
     useEffect(() => {
         currentValue !== undefined && name !== undefined && setCheckedByGroupValue(name, UserControlType.Radio, currentValue);

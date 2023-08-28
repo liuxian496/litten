@@ -1,6 +1,12 @@
-import { useState, useEffect, ChangeEvent, Dispatch, SetStateAction } from 'react';
-import { ContentControlProps } from './control.types';
-import { usePrevious } from '../../global/util';
+import {
+    useState,
+    useEffect,
+    ChangeEvent,
+    Dispatch,
+    SetStateAction,
+} from "react";
+import { ContentControlProps } from "./control.types";
+import { usePrevious } from "../../global/util";
 
 /**
  * value值不是undefined时，返回value值。否则返回defaultValue的值
@@ -8,7 +14,10 @@ import { usePrevious } from '../../global/util';
  * @param defaultValue 控件的默认值（外部传入） {V}
  * @returns 计算之后的控件的值
  */
-export function getCurrentValue<V>(value: V | undefined, defaultValue: V | undefined) {
+export function getCurrentValue<V>(
+    value: V | undefined,
+    defaultValue: V | undefined
+) {
     let current;
     if (value !== undefined) {
         current = value;
@@ -24,15 +33,15 @@ export function getCurrentValue<V>(value: V | undefined, defaultValue: V | undef
  * @returns current 当前控件的默认值
  */
 export function useCurrentValue<T, V>(props: ContentControlProps<T, V>) {
-
-    const { value, defaultValue, onChange } = props;
+    const { value, defaultValue, userControlType, onChange } = props;
     const prevValue = usePrevious(value);
 
-    const [current, setCurrent] = useState<V | undefined>(getCurrentValue<V>(value, defaultValue));
+    const [current, setCurrent] = useState<V | undefined>(
+        getCurrentValue<V>(value, defaultValue)
+    );
     const previous = usePrevious(current);
 
     const [originalEvent, setOriginalEvent] = useState<ChangeEvent<T>>();
-
 
     useEffect(() => {
         if (prevValue !== value) {
@@ -45,19 +54,15 @@ export function useCurrentValue<T, V>(props: ContentControlProps<T, V>) {
         if (previous !== current) {
             onChange?.({
                 e: originalEvent,
-                value: current
+                userControlType,
+                value: current,
             });
         }
     });
 
-
-    return [
-        current,
-        setCurrent,
-        setOriginalEvent
-    ] as [
-            V | undefined,
-            Dispatch<SetStateAction<V | undefined>>,
-            Dispatch<SetStateAction<ChangeEvent<T> | undefined>>
-        ];
+    return [current, setCurrent, setOriginalEvent] as [
+        V | undefined,
+        Dispatch<SetStateAction<V | undefined>>,
+        Dispatch<SetStateAction<ChangeEvent<T> | undefined>>
+    ];
 }
