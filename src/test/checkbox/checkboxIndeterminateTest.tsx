@@ -1,21 +1,26 @@
-import React from 'react';
+import React from "react";
 
-import { within, userEvent } from '@storybook/testing-library';
-import { expect } from '@storybook/jest';
+import { within, userEvent } from "@storybook/testing-library";
+import { expect } from "@storybook/jest";
 
-import { CheckboxStory } from '../../stories/checkbox.stories';
+import { CheckboxStory } from "../../stories/checkbox.stories";
 
-import { LittenCheckedChangeEvent } from '../../components/control/control.types';
-import { Placement } from '../../global/enum';
-import { FormLabel } from '../../components/form/formLabel';
-import { Checkbox } from '../../components/checkbox/checkbox';
+import { LittenCheckedChangeEvent } from "../../components/control/control.types";
+import { Placement } from "../../global/enum";
+import { FormLabel } from "../../components/form/formLabel";
+import { Checkbox } from "../../components/checkbox/checkbox";
 
 const Test = () => {
-    const [checks, setChecked] = React.useState<[boolean | undefined, boolean | undefined]>([true, false]);
+    const [checks, setChecked] = React.useState<
+        [boolean | undefined, boolean | undefined]
+    >([true, false]);
 
     function handleAllChange(event: LittenCheckedChangeEvent) {
-        const { checked } = event;
-        setChecked([checked, checked]);
+        const { e } = event;
+        // 只有用户点击时，才重新设置Apple和Banana
+        if (e) {
+            setChecked([e.target.checked, e.target.checked]);
+        }
     }
 
     function handleAppleChange(event: LittenCheckedChangeEvent) {
@@ -30,7 +35,7 @@ const Test = () => {
 
     return (
         <>
-            <FormLabel label='All Fruit' labelPlacement={Placement.right}>
+            <FormLabel label="All Fruit" labelPlacement={Placement.right}>
                 <Checkbox
                     data-testid="all"
                     checked={checks[0] && checks[1]}
@@ -41,7 +46,7 @@ const Test = () => {
             </FormLabel>
 
             <div style={{ marginLeft: "10px" }}>
-                <FormLabel label='Apple' labelPlacement={Placement.right}>
+                <FormLabel label="Apple" labelPlacement={Placement.right}>
                     <Checkbox
                         data-testid="apple"
                         checked={checks[0]}
@@ -49,7 +54,7 @@ const Test = () => {
                         onChange={handleAppleChange}
                     />
                 </FormLabel>
-                <FormLabel label='Banana' labelPlacement={Placement.right}>
+                <FormLabel label="Banana" labelPlacement={Placement.right}>
                     <Checkbox
                         data-testid="banana"
                         checked={checks[1]}
@@ -70,65 +75,60 @@ export const IndeterminateTest: CheckboxStory = {
     play: async ({ canvasElement, step }) => {
         const canvas = within(canvasElement);
 
+        const allCheckbox = canvas.getByTestId("all");
+        const bananaCheckbox = canvas.getByTestId("banana");
+        const appleCheckbox = canvas.getByTestId("apple");
+
         await step("All Fruit is indeterminate", async () => {
-            await expect(
-                canvas.getByTestId('apple')
-            ).toBeChecked();
-            await expect(
-                canvas.getByTestId('banana')
-            ).not.toBeChecked();
-            await expect(
-                canvas.getByTestId('all')
-            ).not.toBeChecked();
+            await expect(appleCheckbox).toBeChecked();
+            await expect(bananaCheckbox).not.toBeChecked();
+            await expect(allCheckbox).not.toBeChecked();
         });
 
         await step("Checked Banana then All Fruit is Checked", async () => {
-            await userEvent.click(canvas.getByTestId('banana'));
+            await userEvent.click(canvas.getByTestId("banana"));
 
-            await expect(
-                canvas.getByTestId('banana')
-            ).toBeChecked();
+            await expect(bananaCheckbox).toBeChecked();
 
-            await expect(
-                canvas.getByTestId('apple')
-            ).toBeChecked();
+            await expect(appleCheckbox).toBeChecked();
 
-            await expect(
-                canvas.getByTestId('all')
-            ).toBeChecked();
+            await expect(allCheckbox).toBeChecked();
         });
 
-        await step("Unchecked All Fruit then Apple and Banana is unchecked", async () => {
-            await userEvent.click(canvas.getByTestId('all'));
+        await step("Unchecked Apple, then All Fruit is indeterminate", async () => {
+            await userEvent.click(appleCheckbox);
 
-            await expect(
-                canvas.getByTestId('all')
-            ).not.toBeChecked();
+            await expect(appleCheckbox).not.toBeChecked();
 
-            await expect(
-                canvas.getByTestId('apple')
-            ).not.toBeChecked();
+            await expect(bananaCheckbox).toBeChecked();
 
-            await expect(
-                canvas.getByTestId('banana')
-            ).not.toBeChecked();
+            await expect(allCheckbox).not.toBeChecked();
         });
 
-        await step("checked All Fruit then Apple and Banana is checked", async () => {
-            await userEvent.click(canvas.getByTestId('all'));
+        await step(
+            "Checked All Fruit, then Apple and Banana is checked",
+            async () => {
+                await userEvent.click(appleCheckbox);
 
-            await expect(
-                canvas.getByTestId('all')
-            ).toBeChecked();
+                await expect(appleCheckbox).toBeChecked();
 
-            await expect(
-                canvas.getByTestId('apple')
-            ).toBeChecked();
+                await expect(bananaCheckbox).toBeChecked();
 
-            await expect(
-                canvas.getByTestId('banana')
-            ).toBeChecked();
-        });
-    }
+                await expect(allCheckbox).toBeChecked();
+            }
+        );
+
+        await step(
+            "Unchecked All Fruit, then Apple and Banana is unchecked",
+            async () => {
+                await userEvent.click(allCheckbox);
+
+                await expect(allCheckbox).not.toBeChecked();
+
+                await expect(appleCheckbox).not.toBeChecked();
+
+                await expect(bananaCheckbox).not.toBeChecked();
+            }
+        );
+    },
 };
-
