@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 import { ControlProps } from "../control/control.types";
-
+import { MouseState, WaveMode } from "../../global/enum";
 
 /**
  * 波浪组件的参数
@@ -22,6 +22,10 @@ export interface RippleProps extends ControlProps {
      * 直径偏移量
      */
     diameterOffset?: number;
+    /**
+     * wave部件的计算的方式
+     */
+    waveMode?: WaveMode;
 }
 
 /**
@@ -31,7 +35,7 @@ export interface RippleColor {
     /**
      * 焦点部件颜色
      */
-    focusColor: string
+    focusColor: string;
     /**
      * 波纹部件颜色
      */
@@ -42,26 +46,37 @@ export interface RippleColor {
  * 波纹部件的参数
  */
 export interface WaveProps extends ControlProps {
-    isPressed: boolean,
-    index: number,
-    containerSpanWidth: number,
-    containerSpanHeight: number,
-    mouseClientX: number,
-    mouseClientY: number,
-    parentOffsetLeft: number,
-    parentOffsetTop: number,
-    color: RippleColor,
-    onWaveAnimationEnd?: (index: number) => void
+    isPressed: boolean;
+    index: number;
+    containerSpanWidth: number;
+    containerSpanHeight: number;
+    mouseClientX: number;
+    mouseClientY: number;
+    parentOffsetLeft: number;
+    parentOffsetTop: number;
+    color: RippleColor;
+    /**
+     * wave部件的计算的方式
+     */
+    waveMode?: WaveMode;
+    onWaveAnimationEnd?: (index: number) => void;
 }
 
 /**
  * 焦点部件的参数
  */
 export interface RippleFocusProps extends ControlProps {
-    isFocused: boolean,
-    containerSpanWidth: number,
-    containerSpanHeight: number,
-    color: RippleColor
+    isFocused: boolean;
+    containerSpanWidth: number;
+    containerSpanHeight: number;
+    color: RippleColor;
     //直径偏移量
-    diameterOffset?: number,
+    diameterOffset?: number;
+}
+
+/**
+ * RippleRef
+ */
+export interface RippleRef {
+    setMouseState: (state: MouseState) => void;
 }

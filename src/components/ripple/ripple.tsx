@@ -1,27 +1,43 @@
-import React, { useRef, useState, useEffect } from 'react';
-// import classnames from 'classnames';
+import React, {
+    useRef,
+    useState,
+    useEffect,
+    forwardRef,
+    useImperativeHandle,
+} from "react";
 
-import './ripple.less';
-import { AnimationState, MouseState } from '../../global/enum';
-import { getPrefixNs } from '../control/control';
+import "./ripple.less";
+import { AnimationState, MouseState, WaveMode } from "../../global/enum";
+import { getPrefixNs } from "../control/control";
 
-import { RippleProps } from './ripple.types';
-import { Wave } from './wave';
-import { RippleFocus } from './rippleFocus';
+import { RippleProps } from "./ripple.types";
+import { Wave } from "./wave";
+import { RippleFocus } from "./rippleFocus";
 
 function addWaveList(prevWaveList: any[]) {
-    return [...prevWaveList, { isPressed: true, animationState: AnimationState.none, index: prevWaveList.length }]
+    return [
+        ...prevWaveList,
+        {
+            isPressed: true,
+            animationState: AnimationState.none,
+            index: prevWaveList.length,
+        },
+    ];
 }
 
 function checkWaveList(prevWaveList: any[]) {
     for (let i = prevWaveList.length - 1; i >= 0; i--) {
         const item = prevWaveList[i];
-        if (item && item.isPressed === false && item.animationState === AnimationState.end) {
+        if (
+            item &&
+            item.isPressed === false &&
+            item.animationState === AnimationState.end
+        ) {
             prevWaveList[i] = undefined;
         }
     }
     // console.log(printArrayItem(prevWaveList));
-    return [...prevWaveList]
+    return [...prevWaveList];
 }
 
 function updateWaveListPressed(list: any[]) {
@@ -33,7 +49,10 @@ function updateWaveListPressed(list: any[]) {
     });
 }
 
-export const Ripple = (props: RippleProps) => {
+export const Ripple = forwardRef(function Ripple(
+    { waveMode = WaveMode.normal, ...props }: RippleProps,
+    ref
+) {
     const {
         prefixCls: customizePrefixCls,
         focused,
@@ -41,7 +60,7 @@ export const Ripple = (props: RippleProps) => {
         diameterOffset,
         children,
     } = props;
-    const prefixCls = getPrefixNs('ripple', customizePrefixCls);
+    const prefixCls = getPrefixNs("ripple", customizePrefixCls);
 
     const [waveList, setWaveList] = useState<any[]>([]);
 
@@ -64,14 +83,27 @@ export const Ripple = (props: RippleProps) => {
 
     useEffect(() => {
         const timer = setTimeout(() => {
-            containerSpan && containerSpan.current && setContainerRange(containerSpan.current);
-            containerSpan && containerSpan.current && containerSpan.current["offsetParent"] && setOffsetParentRange(containerSpan.current["offsetParent"])
-        }, 100)
+            containerSpan &&
+                containerSpan.current &&
+                setContainerRange(containerSpan.current);
+            containerSpan &&
+                containerSpan.current &&
+                containerSpan.current["offsetParent"] &&
+                setOffsetParentRange(containerSpan.current["offsetParent"]);
+        }, 100);
 
         return () => {
             clearTimeout(timer);
         };
     }, []);
+
+    useImperativeHandle(ref, () => {
+        return {
+            setMouseState: (state: MouseState) => {
+                setMouseState(state);
+            }
+        };
+    });
 
     useEffect(() => {
         if (focused === true) {
@@ -94,14 +126,20 @@ export const Ripple = (props: RippleProps) => {
     }, [isFocusChanged, mouseState]);
 
     useEffect(() => {
-        if (mouseState === MouseState.mouseout || mouseState === MouseState.mouseup) {
-            setIsFocused(false)
-        };
+        if (
+            mouseState === MouseState.mouseout ||
+            mouseState === MouseState.mouseup
+        ) {
+            setIsFocused(false);
+        }
 
         if (mouseState === MouseState.mousedown) {
             setIsPressed(true);
             setWaveList(addWaveList);
-        } else if (mouseState === MouseState.mouseup || mouseState === MouseState.mouseout) {
+        } else if (
+            mouseState === MouseState.mouseup ||
+            mouseState === MouseState.mouseout
+        ) {
             //鼠标抬起时，取消Pressed状态
             setIsPressed(false);
         }
@@ -109,9 +147,9 @@ export const Ripple = (props: RippleProps) => {
 
     useEffect(() => {
         if (isPressed === false) {
-            setWaveList(prevList => {
-                updateWaveListPressed(prevList)
-                return checkWaveList(prevList)
+            setWaveList((prevList) => {
+                updateWaveListPressed(prevList);
+                return checkWaveList(prevList);
             });
         }
     }, [isPressed]);
@@ -126,7 +164,10 @@ export const Ripple = (props: RippleProps) => {
         setParentOffsetTop(current["offsetTop"]);
     }
 
-    function setWaveAnimationStateByIndex(animationState: AnimationState, index: number) {
+    function setWaveAnimationStateByIndex(
+        animationState: AnimationState,
+        index: number
+    ) {
         const item = waveList[index];
 
         item && (item.animationState = animationState);
@@ -168,22 +209,32 @@ export const Ripple = (props: RippleProps) => {
         >
             {
                 <>
-                    {waveList && waveList.map((item, index) => {
-                        return item && <Wave
-                            key={index}
-                            index={index}
-                            isPressed={isPressed}
-                            prefixCls={prefixCls}
-                            containerSpanWidth={containerSpanWidth}
-                            containerSpanHeight={containerSpanHeight}
-                            mouseClientX={mouseClientX}
-                            mouseClientY={mouseClientY}
-                            parentOffsetLeft={parentOffsetLeft}
-                            parentOffsetTop={parentOffsetTop}
-                            color={color}
-                            onWaveAnimationEnd={handleWaveAnimationEnd}
-                        />
-                    })}
+                    {waveList &&
+                        waveList.map((item, index) => {
+                            return (
+                                item && (
+                                    <Wave
+                                        key={index}
+                                        index={index}
+                                        isPressed={isPressed}
+                                        prefixCls={prefixCls}
+                                        containerSpanWidth={containerSpanWidth}
+                                        containerSpanHeight={
+                                            containerSpanHeight
+                                        }
+                                        mouseClientX={mouseClientX}
+                                        mouseClientY={mouseClientY}
+                                        parentOffsetLeft={parentOffsetLeft}
+                                        parentOffsetTop={parentOffsetTop}
+                                        color={color}
+                                        waveMode={waveMode}
+                                        onWaveAnimationEnd={
+                                            handleWaveAnimationEnd
+                                        }
+                                    />
+                                )
+                            );
+                        })}
                 </>
             }
             <RippleFocus
@@ -197,4 +248,4 @@ export const Ripple = (props: RippleProps) => {
             {children}
         </span>
     );
-}
+});
