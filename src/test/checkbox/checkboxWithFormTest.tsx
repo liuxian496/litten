@@ -6,7 +6,6 @@ import { userEvent, within } from "@storybook/testing-library";
 import { expect } from "@storybook/jest";
 
 import { FormRef } from "../../components/form/form.types";
-import { Placement } from "../../global/enum";
 
 import { useForm } from "../../components/form/useForm";
 import { Button } from "../../components/button/button";

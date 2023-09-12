@@ -6,6 +6,8 @@ import { DefaultTest } from '../test/radio/radioDefaultTest';
 import { StandaloneRadioTest } from '../test/radio/standaloneRadioTest';
 import { RadioGroupTest } from '../test/radio/radioGroupTest';
 import { RadioWithFormTest } from '../test/radio/radioWithFormTest';
+import { ColorTest } from '../test/radio/radioColorTest';
+import { SizeTest } from '../test/radio/radioSizeTest';
 
 const meta: Meta<typeof Radio> = {
     title: 'Example/Radio',
@@ -68,6 +70,8 @@ export default meta;
 export type RadioStory = StoryObj<typeof Radio>;
 
 export const Default = DefaultTest;
+export const Color = ColorTest;
+export const Size = SizeTest;
 export const StandaloneRadio = StandaloneRadioTest;
 export const RadioGroup = RadioGroupTest;
 export const WithForm = RadioWithFormTest;

@@ -13,26 +13,26 @@ export const ColorTest: CheckboxStory = {
         return (
             <>
                 <div style={{ color: Red.dark }}>Danger</div>
-                <Checkbox color={Color.danger}></Checkbox>
-                <Checkbox color={Color.danger} checked></Checkbox>
-                <Checkbox color={Color.danger} indeterminate></Checkbox>
-                <Checkbox color={Color.danger} disabled></Checkbox>
-                <Checkbox color={Color.danger} disabled checked></Checkbox>
-                <Checkbox color={Color.danger} disabled indeterminate></Checkbox>
-                <div style={{ color: Green.dark }}>Danger</div>
-                <Checkbox color={Color.success}></Checkbox>
-                <Checkbox color={Color.success} checked></Checkbox>
-                <Checkbox color={Color.success} indeterminate></Checkbox>
-                <Checkbox color={Color.success} disabled></Checkbox>
-                <Checkbox color={Color.success} disabled checked></Checkbox>
-                <Checkbox color={Color.success} disabled indeterminate></Checkbox>
-                <div style={{ color: Orange.dark }}>Danger</div>
-                <Checkbox color={Color.warning}></Checkbox>
-                <Checkbox color={Color.warning} checked></Checkbox>
-                <Checkbox color={Color.warning} indeterminate></Checkbox>
-                <Checkbox color={Color.warning} disabled></Checkbox>
-                <Checkbox color={Color.warning} disabled checked></Checkbox>
-                <Checkbox color={Color.warning} disabled indeterminate></Checkbox>
+                <Checkbox color={Color.danger} />
+                <Checkbox color={Color.danger} checked />
+                <Checkbox color={Color.danger} indeterminate />
+                <Checkbox color={Color.danger} disabled />
+                <Checkbox color={Color.danger} disabled checked />
+                <Checkbox color={Color.danger} disabled indeterminate />
+                <div style={{ color: Green.dark }}>Success</div>
+                <Checkbox color={Color.success} />
+                <Checkbox color={Color.success} checked />
+                <Checkbox color={Color.success} indeterminate />
+                <Checkbox color={Color.success} disabled />
+                <Checkbox color={Color.success} disabled checked />
+                <Checkbox color={Color.success} disabled indeterminate />
+                <div style={{ color: Orange.dark }}>Warning</div>
+                <Checkbox color={Color.warning} />
+                <Checkbox color={Color.warning} checked />
+                <Checkbox color={Color.warning} indeterminate />
+                <Checkbox color={Color.warning} disabled />
+                <Checkbox color={Color.warning} disabled checked />
+                <Checkbox color={Color.warning} disabled indeterminate />
             </>
         )
     }
