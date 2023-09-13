@@ -43,24 +43,26 @@ export const FormControl = (props: FormControlProps) => {
         });
     }, [formContext, value, valuePath]);
 
-    function handleChange(event: LittenContentChangeEvent) {
-        const { value, checked, userControlType } = event;
+    function handleValueChange(event: LittenContentChangeEvent) {
+        const { value } = event;
 
         onChange?.(event);
-        if (userControlType === UserControlType.Checkbox) {
-            setValue(checked);
-        } else {
-            setValue(value);
-        }
+        setValue(value);
     }
 
-    function renderCheckedControl(){
-        console.log('render checkbox')
+    function handleCheckedChange(event: LittenContentChangeEvent) {
+        const { checked } = event;
+
+        onChange?.(event);
+        setValue(checked);
+    }
+
+    function renderCheckedControl() {
         return (
             <Component
                 {...childrenProps}
                 checked={value}
-                onChange={handleChange}
+                onChange={handleCheckedChange}
             />
         );
     }
@@ -71,14 +73,15 @@ export const FormControl = (props: FormControlProps) => {
                 {...childrenProps}
                 value={value}
                 defaultValue={defaultValue}
-                onChange={handleChange}
+                onChange={handleValueChange}
             />
         );
     }
 
     return (
         <>
-            {displayName === UserControlType.Checkbox
+            {displayName === UserControlType.Checkbox ||
+            displayName === UserControlType.Switch
                 ? renderCheckedControl()
                 : renderContentControl()}
         </>
