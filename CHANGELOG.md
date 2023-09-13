@@ -1,3 +1,13 @@
+# [0.4.0](https://github.com/liuxian496/litten/compare/v0.3.1...v0.4.0) (2023-09-13)
+
+
+### Features
+
+* 添加switch控件 ([1ac6f2d](https://github.com/liuxian496/litten/commit/1ac6f2d6d1c925678b87323c41cccd9061533989))
+* ripple控件支持用ref的方式使用；wave部件添加waveMode，添加作为容器内切（椭）圆的显示方式 ([f1fedbd](https://github.com/liuxian496/litten/commit/f1fedbd41356efbf5732f5a7b91b6d1bd4ee0f2d))
+
+
+
 ## [0.3.1](https://github.com/liuxian496/litten/compare/v0.3.0...v0.3.1) (2023-08-28)
 
 

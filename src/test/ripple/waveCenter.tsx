@@ -32,8 +32,8 @@ const Test = () => {
                     index={0}
                     prefixCls='litten-ripple'
                     isPressed={isPressed}
-                    containerSpanWidth={76}
-                    containerSpanHeight={37}
+                    containerSpanWidth={300}
+                    containerSpanHeight={300}
                     mouseClientX={19}
                     mouseClientY={39}
                     parentOffsetLeft={16}
@@ -42,24 +42,8 @@ const Test = () => {
                         focusColor: Blue.primary,
                         waveColor: Blue.wave
                     }}
-                    waveMode={WaveMode.normal}
+                    waveMode={WaveMode.center}
                     onWaveAnimationEnd={handleWaveAnimationEnd}
-                />
-                <Wave
-                    index={1}
-                    prefixCls='litten-ripple'
-                    isPressed={isPressed}
-                    containerSpanWidth={84}
-                    containerSpanHeight={37}
-                    mouseClientX={238}
-                    mouseClientY={21}
-                    parentOffsetLeft={192}
-                    parentOffsetTop={16}
-                    waveMode={WaveMode.normal}
-                    color={{
-                        focusColor: Blue.primary,
-                        waveColor: Blue.wave
-                    }}
                 />
                 <p>State:{state}</p>
             </div>
@@ -67,7 +51,7 @@ const Test = () => {
     )
 }
 
-export const WaveTest: RippleStory = {
+export const WaveCenterTest: RippleStory = {
     render: () => <Test />,
     play: async ({ canvasElement }) => {
         const canvas = within(canvasElement);
