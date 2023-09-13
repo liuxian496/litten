@@ -6,7 +6,7 @@ export type {
     LittenEvent,
     LittenContentChangeEvent,
     LittenTextChangeEvent,
-    LittenCheckedChangeEvent
+    LittenCheckedChangeEvent,
 } from "./components/control/control.types";
 
 // button
@@ -32,6 +32,9 @@ export { RadioGroup } from "./components/radio/radioGroup";
 
 // summary
 export { Summary } from "./components/summary/summary";
+
+// Switch
+export { Switch } from "./components/switch/switch";
 
 // textField
 export { TextField } from "./components/textField/textField";
