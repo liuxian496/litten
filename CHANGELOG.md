@@ -1,3 +1,12 @@
+## [0.4.1](https://github.com/liuxian496/litten/compare/v0.4.0...v0.4.1) (2023-09-14)
+
+
+### Bug Fixes
+
+* 修改打包后displayName获取失败的问题 ([7872a5b](https://github.com/liuxian496/litten/commit/7872a5be896d613e2694aeea0bb89006c2ca25ca))
+
+
+
 # [0.4.0](https://github.com/liuxian496/litten/compare/v0.3.1...v0.4.0) (2023-09-13)
 
 
