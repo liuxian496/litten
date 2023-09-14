@@ -118,3 +118,5 @@ export const Checkbox = ({
         </span>
     );
 };
+
+Checkbox.displayName = UserControlType.Checkbox;

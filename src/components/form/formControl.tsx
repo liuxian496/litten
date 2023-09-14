@@ -87,3 +87,5 @@ export const FormControl = (props: FormControlProps) => {
         </>
     );
 };
+
+FormControl.displayName = UserControlType.FormControl;
