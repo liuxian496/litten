@@ -1,62 +1,49 @@
-import React from 'react';
-import './summary.less';
+import React from "react";
+import "./summary.less";
 
-import classnames from 'classnames';
+import classnames from "classnames";
 
-import { SummaryProps } from './summary.types';
-import { getPrefixNs } from '../control/control';
-import { Color } from '../../global/enum';
-import { getI18NConfig } from '../../global/local';
-import { NoteIcon, WarningIcon, DeepIcon } from '../icon/icon';
+import { SummaryProps } from "./summary.types";
+import { getPrefixNs } from "../control/control";
+import { Color, UserControlType } from "../../global/enum";
+import { getI18NConfig } from "../../global/local";
+import { NoteIcon, WarningIcon, DeepIcon } from "../icon/icon";
 
 function getVisualStates(props: SummaryProps) {
-    const {
-        prefixCls: customizePrefixCls,
-        color,
-    } = props;
-    const prefixCls = getPrefixNs('summary', customizePrefixCls);
+    const { prefixCls: customizePrefixCls, color } = props;
+    const prefixCls = getPrefixNs("summary", customizePrefixCls);
 
-    const visualStates = classnames(
-        prefixCls,
-        `${prefixCls}--${color}`,
-    );
+    const visualStates = classnames(prefixCls, `${prefixCls}--${color}`);
 
     return visualStates;
 }
 
 function getTitleVisualStates(props: SummaryProps) {
-    const {
-        prefixCls: customizePrefixCls,
-        color,
-    } = props;
+    const { prefixCls: customizePrefixCls, color } = props;
 
-    const prefixCls = getPrefixNs('summary', customizePrefixCls);
+    const prefixCls = getPrefixNs("summary", customizePrefixCls);
 
     const visualStates = classnames(
         `${prefixCls}__title`,
-        `${prefixCls}__title--${color}`,
+        `${prefixCls}__title--${color}`
     );
 
     return visualStates;
 }
 
 function getContentVisualStates(props: SummaryProps) {
-    const {
-        prefixCls: customizePrefixCls,
-    } = props;
+    const { prefixCls: customizePrefixCls } = props;
 
-    const prefixCls = getPrefixNs('summary', customizePrefixCls);
+    const prefixCls = getPrefixNs("summary", customizePrefixCls);
 
-    const visualStates = classnames(
-        `${prefixCls}__content`,
-    );
+    const visualStates = classnames(`${prefixCls}__content`);
 
     return visualStates;
 }
 
 function getTitle(color?: Color) {
     const config = getI18NConfig();
-    let title = ''
+    let title = "";
     switch (color) {
         case Color.note:
             title = config.note;
@@ -82,7 +69,7 @@ function getTitleIcon(props: SummaryProps) {
             icon = <WarningIcon />;
             break;
         case Color.deep:
-            icon = <DeepIcon />
+            icon = <DeepIcon />;
             break;
     }
     return icon;
@@ -96,9 +83,9 @@ export const Summary = (props: SummaryProps) => {
                 {getTitleIcon(props)}
                 {getTitle(color)}
             </div>
-            <div className={getContentVisualStates(props)}>
-                {children}
-            </div>
+            <div className={getContentVisualStates(props)}>{children}</div>
         </div>
-    )
-}
+    );
+};
+
+Summary.displayName = UserControlType.Summary;

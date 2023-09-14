@@ -1,13 +1,17 @@
-import React, { FocusEvent, useState } from 'react';
-import './iconButton.less';
+import React, { FocusEvent, useState } from "react";
+import "./iconButton.less";
 
-import { Mode, Size, Color } from '../../global/enum';
+import { Mode, Size, Color, UserControlType } from "../../global/enum";
 
-import { IconButtonProps } from './iconButton.types';
-import { useDisabled } from '../control/userControl';
-import { getVisualStates, getFocusColor, getWaveColor } from '../button/buttonBase';
+import { IconButtonProps } from "./iconButton.types";
+import { useDisabled } from "../control/userControl";
+import {
+    getVisualStates,
+    getFocusColor,
+    getWaveColor,
+} from "../button/buttonBase";
 
-import { Ripple } from '../ripple/ripple';
+import { Ripple } from "../ripple/ripple";
 
 export const IconButton = ({
     color = Color.default,
@@ -17,7 +21,7 @@ export const IconButton = ({
     loading = false,
     rippleColor = {
         focusColor: getFocusColor({ mode, color }),
-        waveColor: getWaveColor({ mode, color })
+        waveColor: getWaveColor({ mode, color }),
     },
     ...props
 }: IconButtonProps) => {
@@ -39,19 +43,30 @@ export const IconButton = ({
 
     return (
         <button
-            className={getVisualStates({
-                color,
-                mode,
-                size,
-                disabled,
-                ...props,
-            }, 'iconButton')}
+            className={getVisualStates(
+                {
+                    color,
+                    mode,
+                    size,
+                    disabled,
+                    ...props,
+                },
+                "iconButton"
+            )}
             {...props}
             onFocus={handleFocus}
             onBlur={handleBlur}
         >
             {children}
-            {disabled !== true && <Ripple focused={focused} color={rippleColor} diameterOffset={0} />}
+            {disabled !== true && (
+                <Ripple
+                    focused={focused}
+                    color={rippleColor}
+                    diameterOffset={0}
+                />
+            )}
         </button>
-    )
-}
+    );
+};
+
+IconButton.displayName = UserControlType.IconButton;

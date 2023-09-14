@@ -7,7 +7,12 @@ import React, {
 } from "react";
 
 import "./ripple.less";
-import { AnimationState, MouseState, WaveMode } from "../../global/enum";
+import {
+    AnimationState,
+    MouseState,
+    UserControlType,
+    WaveMode,
+} from "../../global/enum";
 import { getPrefixNs } from "../control/control";
 
 import { RippleProps } from "./ripple.types";
@@ -101,7 +106,7 @@ export const Ripple = forwardRef(function Ripple(
         return {
             setMouseState: (state: MouseState) => {
                 setMouseState(state);
-            }
+            },
         };
     });
 
@@ -249,3 +254,5 @@ export const Ripple = forwardRef(function Ripple(
         </span>
     );
 });
+
+Ripple.displayName = UserControlType.Ripple;

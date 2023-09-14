@@ -148,3 +148,5 @@ export const Switch = ({
         </span>
     );
 };
+
+Switch.displayName = UserControlType.Switch;

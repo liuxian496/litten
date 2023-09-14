@@ -150,10 +150,20 @@ export enum Orange {
  * UserControl类型
  */
 export enum UserControlType {
-    TextField = "TextField",
+    Button = "Button",
     Checkbox = "Checkbox",
+    Form = "Form",
+    FormControl = "FormControl",
+    FormLabel = "FormLabel",
+    IconButton = "IconButton",
     Radio = "Radio",
+    Ripple = "Ripple",
+    RippleFocus = "RippleFocus",
+    RadioGroup = "RadioGroup",
+    Summary = "Summary",
     Switch = "Switch",
+    TextField = "TextField",
+    Wave = "Wave",
 }
 
 /**
@@ -199,7 +209,7 @@ export enum Placement {
  */
 export enum WaveMode {
     // 用一个足够大的圆全覆盖父定位容器
-    normal="normal",
+    normal = "normal",
     // wave的圆心是容器的中心
-    center="center"
+    center = "center",
 }

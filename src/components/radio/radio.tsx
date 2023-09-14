@@ -1,15 +1,28 @@
-import React, { useState, FocusEvent, ChangeEvent, useEffect } from 'react';
-import './radio.less';
+import React, { useState, FocusEvent, ChangeEvent, useEffect } from "react";
+import "./radio.less";
 
-import { RadioProps } from './radio.types';
-import { useDisabled } from '../control/userControl';
-import { CheckState, Color, Mode, MouseState, Size, UserControlType } from '../../global/enum';
-import { Ripple } from '../ripple/ripple';
-import { getFocusColor, getWaveColor } from '../button/buttonBase';
-import { CheckedIcon, UnCheckedIcon, getCheckState, getIconContainerVisualStates, getInputVisualStates, getVisualStates } from './radioBase';
-import { useCurrentChecked } from '../control/checkedControl';
-import { littenLabeMouseState, setLabeMouseState } from '../form/formLabel';
-
+import { RadioProps } from "./radio.types";
+import { useDisabled } from "../control/userControl";
+import {
+    CheckState,
+    Color,
+    Mode,
+    MouseState,
+    Size,
+    UserControlType,
+} from "../../global/enum";
+import { Ripple } from "../ripple/ripple";
+import { getFocusColor, getWaveColor } from "../button/buttonBase";
+import {
+    CheckedIcon,
+    UnCheckedIcon,
+    getCheckState,
+    getIconContainerVisualStates,
+    getInputVisualStates,
+    getVisualStates,
+} from "./radioBase";
+import { useCurrentChecked } from "../control/checkedControl";
+import { littenLabeMouseState, setLabeMouseState } from "../form/formLabel";
 
 export const Radio = ({
     disabled: disabledProp = false,
@@ -17,7 +30,7 @@ export const Radio = ({
     color = Color.default,
     rippleColor = {
         focusColor: getFocusColor({ mode: Mode.text, color }),
-        waveColor: getWaveColor({ mode: Mode.text, color })
+        waveColor: getWaveColor({ mode: Mode.text, color }),
     },
     size = Size.medium,
     style,
@@ -29,13 +42,26 @@ export const Radio = ({
 }: RadioProps) => {
     const { onChange, onFocus, onBlur, name } = props;
 
-    const disabled = useDisabled<HTMLInputElement>({ disabled: disabledProp, loading });
+    const disabled = useDisabled<HTMLInputElement>({
+        disabled: disabledProp,
+        loading,
+    });
 
-    const [currentChecked, setCurrentChecked, setOriginalEvent] = useCurrentChecked<HTMLInputElement>({ checked, defaultChecked, value, name, userControlType: UserControlType.Radio, onChange });
+    const [currentChecked, setCurrentChecked, setOriginalEvent] =
+        useCurrentChecked<HTMLInputElement>({
+            checked,
+            defaultChecked,
+            value,
+            name,
+            userControlType: UserControlType.Radio,
+            onChange,
+        });
 
     const [focused, setFocused] = useState(false);
 
-    const [checkStatus, setCheckStatus] = useState(getCheckState(currentChecked));
+    const [checkStatus, setCheckStatus] = useState(
+        getCheckState(currentChecked)
+    );
 
     useEffect(() => {
         setCheckStatus(getCheckState(currentChecked));
@@ -62,22 +88,25 @@ export const Radio = ({
 
     return (
         <span
-            className={getVisualStates({
-                color,
-                size,
-                disabled,
-                ...props
-            }, checkStatus)}
+            className={getVisualStates(
+                {
+                    color,
+                    size,
+                    disabled,
+                    ...props,
+                },
+                checkStatus
+            )}
         >
             <span className={getIconContainerVisualStates(props)}>
                 {checkStatus === CheckState.checked && <CheckedIcon />}
                 <UnCheckedIcon />
             </span>
 
-            <Ripple focused={focused} color={rippleColor} diameterOffset={0} >
+            <Ripple focused={focused} color={rippleColor} diameterOffset={0}>
                 <input
                     {...props}
-                    type='radio'
+                    type="radio"
                     className={getInputVisualStates(props)}
                     disabled={disabled}
                     onFocus={handleFocus}
@@ -88,5 +117,7 @@ export const Radio = ({
                 />
             </Ripple>
         </span>
-    )
+    );
 };
+
+Radio.displayName = UserControlType.Radio;

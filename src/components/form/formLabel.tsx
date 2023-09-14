@@ -1,10 +1,10 @@
-import React from 'react';
-import './formLabel.less';
+import React from "react";
+import "./formLabel.less";
 
-import { FormLabelProps } from './form.types';
-import { getPrefixNs } from '../control/control';
-import classnames from 'classnames';
-import { MouseState, Placement } from '../../global/enum';
+import { FormLabelProps } from "./form.types";
+import { getPrefixNs } from "../control/control";
+import classnames from "classnames";
+import { MouseState, Placement, UserControlType } from "../../global/enum";
 
 export let littenLabeMouseState = MouseState.none;
 
@@ -17,13 +17,9 @@ export function setLabeMouseState(state: MouseState) {
 }
 
 function getVisualStates(props: FormLabelProps) {
-    const {
-        prefixCls: customizePrefixCls,
-        labelPlacement,
-        disabled
-    } = props;
+    const { prefixCls: customizePrefixCls, labelPlacement, disabled } = props;
 
-    const prefixCls = getPrefixNs('formLabel', customizePrefixCls);
+    const prefixCls = getPrefixNs("formLabel", customizePrefixCls);
 
     const visualStates = classnames(
         prefixCls,
@@ -43,7 +39,7 @@ function renderLabel(props: FormLabelProps) {
         <>
             <span>{label}</span>
         </>
-    )
+    );
 }
 
 export const FormLabel = ({
@@ -61,9 +57,15 @@ export const FormLabel = ({
             className={getVisualStates({ labelPlacement, ...props })}
             onMouseUp={handleLabelMouseUp}
         >
-            {(labelPlacement === Placement.top || labelPlacement === Placement.left) && renderLabel(props)}
+            {(labelPlacement === Placement.top ||
+                labelPlacement === Placement.left) &&
+                renderLabel(props)}
             {children}
-            {(labelPlacement === Placement.bottom || labelPlacement === Placement.right) && renderLabel(props)}
+            {(labelPlacement === Placement.bottom ||
+                labelPlacement === Placement.right) &&
+                renderLabel(props)}
         </label>
     );
-}
+};
+
+FormLabel.displayName = UserControlType.FormLabel;
