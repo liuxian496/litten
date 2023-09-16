@@ -133,6 +133,7 @@ export const Switch = ({
             <input
                 {...props}
                 type="checkbox"
+                role="switch"
                 className={getInputVisualStates(props)}
                 disabled={disabled}
                 onFocus={handleFocus}
