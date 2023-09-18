@@ -7,7 +7,7 @@ import React, {
 } from "react";
 import "./textField.less";
 
-import { UserControlType } from "../../global/enum";
+import { TextFieldType, UserControlType } from "../../global/enum";
 import { useDisabled } from "../control/userControl";
 import { useCurrentValue } from "../control/contentControl";
 
@@ -21,6 +21,7 @@ export const TextField = forwardRef(function TextField(
         value,
         defaultValue,
         style,
+        type = TextFieldType.text,
         userControlType,
         ...props
     }: TextFieldProps,
@@ -75,7 +76,7 @@ export const TextField = forwardRef(function TextField(
                 })}
                 disabled={disabled}
                 {...props}
-                type="text"
+                type={type}
                 ref={ref}
                 value={currentValue}
                 onChange={handleChange}

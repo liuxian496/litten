@@ -8,6 +8,7 @@ import { FocusTest } from '../test/textFiled/textFieldFocusTest';
 import { DisabledTest } from '../test/textFiled/textFieldDisabledTest';
 import { UnControlledTest } from '../test/textFiled/textFieldUnControlledTest';
 import { WithFormTest } from '../test/textFiled/textFieldWithFormTest';
+import { PasswordTest } from '../test/textFiled/textFieldPassword';
 
 export default {
   title: 'Example/TextField',
@@ -43,7 +44,12 @@ export default {
       },
     },
   },
-
+  parameters: {
+    controls: {
+        expanded: true,
+        sort: "requiredFirst",
+    },
+},
 } as Meta<typeof TextField>;
 
 export type TextFiledStory = StoryObj<typeof TextField>;
@@ -54,6 +60,10 @@ export const Disabled = DisabledTest;
 
 export const Controlled = ControlledTest;
 
+export const Focus = FocusTest;
+
+export const Password = PasswordTest;
+
 export const UnControlled = {
   name:'Uncontrolled',
   ...UnControlledTest
@@ -61,4 +71,4 @@ export const UnControlled = {
 
 export const WithForm = WithFormTest;
 
-export const Focus = FocusTest;
+

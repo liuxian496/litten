@@ -205,6 +205,14 @@ export enum Placement {
 }
 
 /**
+ * TextField类型
+ */
+export enum TextFieldType {
+    text = "text",
+    password = "password",
+}
+
+/**
  * wave部件的计算的方式
  */
 export enum WaveMode {
