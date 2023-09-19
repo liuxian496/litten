@@ -1,12 +1,9 @@
-import React, {
-    useState,
-    FocusEvent,
-    ChangeEvent,
-    useEffect,
-    useRef,
-} from "react";
+import React, { useState, ChangeEvent, useEffect, useRef } from "react";
 import "./switch.less";
 
+import { useDisabled } from "../control/disabledControl";
+import { useFocusd } from "../control/userControl";
+import { useCurrentChecked } from "../control/checkedControl";
 import {
     Color,
     MouseState,
@@ -14,13 +11,10 @@ import {
     UserControlType,
     WaveMode,
 } from "../../global/enum";
-import { useDisabled } from "../control/userControl";
-import { useCurrentChecked } from "../control/checkedControl";
 
 import { SwitchProps } from "./switch.types";
 import { RippleRef } from "../ripple/ripple.types";
 import { Ripple } from "../ripple/ripple";
-import { littenLabeMouseState, setLabeMouseState } from "../form/formLabel";
 import {
     getCheckState,
     getTrackVisualStates,
@@ -43,14 +37,11 @@ export const Switch = ({
     value = "on",
     ...props
 }: SwitchProps) => {
-    const { onChange, onFocus, onBlur, name } = props;
+    const { onChange, name } = props;
 
     const rippleRef = useRef<RippleRef | null>(null);
 
-    const disabled = useDisabled<HTMLInputElement>({
-        disabled: disabledProp,
-        loading,
-    });
+    const disabled = useDisabled({ disabled: disabledProp, loading });
 
     const [currentChecked, setCurrentChecked, setOriginalEvent] =
         useCurrentChecked<HTMLInputElement>({
@@ -62,7 +53,7 @@ export const Switch = ({
             onChange,
         });
 
-    const [focused, setFocused] = useState(false);
+    const [focused, handleFocus, handleBlur] = useFocusd(props);
 
     const [checkStatus, setCheckStatus] = useState(
         getCheckState(currentChecked)
@@ -75,20 +66,6 @@ export const Switch = ({
     function handleInputChange(e: ChangeEvent<HTMLInputElement>) {
         setOriginalEvent(e);
         setCurrentChecked(e.target.checked);
-    }
-
-    function handleFocus(e: FocusEvent<HTMLInputElement>) {
-        if (littenLabeMouseState === MouseState.none) {
-            setFocused(true);
-        } else {
-            setLabeMouseState(MouseState.none);
-        }
-        onFocus?.(e);
-    }
-
-    function handleBlur(e: FocusEvent<HTMLInputElement>) {
-        setFocused(false);
-        onBlur?.(e);
     }
 
     function handleInputMouseOver() {

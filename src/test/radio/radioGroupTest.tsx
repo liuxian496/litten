@@ -7,7 +7,7 @@ import { LittenCheckedChangeEvent } from '../../components/control/control.types
 import { Button } from '../../components/button/button';
 import { Radio } from '../../components/radio/radio';
 import { RadioGroup } from '../../components/radio/radioGroup';
-import { FormLabel } from '../../components/form/formLabel';
+import { FormLabel } from '../../components/formLabel/formLabel';
 import { Placement } from '../../global/enum';
 
 import { RadioStory } from '../../stories/radio.stories';

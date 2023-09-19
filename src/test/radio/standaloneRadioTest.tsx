@@ -5,7 +5,7 @@ import { expect } from '@storybook/jest';
 
 import { LittenCheckedChangeEvent } from '../../components/control/control.types';
 import { Radio } from '../../components/radio/radio';
-import { FormLabel } from '../../components/form/formLabel';
+import { FormLabel } from '../../components/formLabel/formLabel';
 import { Placement } from '../../global/enum';
 
 import { RadioStory } from '../../stories/radio.stories';

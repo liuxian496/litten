@@ -7,7 +7,7 @@ import { CheckboxStory } from '../../stories/checkbox.stories';
 
 import { LittenCheckedChangeEvent } from '../../components/control/control.types';
 import { Placement } from '../../global/enum';
-import { FormLabel } from '../../components/form/formLabel';
+import { FormLabel } from '../../components/formLabel/formLabel';
 import { Checkbox } from '../../components/checkbox/checkbox';
 
 const Test = () => {

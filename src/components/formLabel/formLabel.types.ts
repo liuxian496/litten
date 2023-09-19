@@ -24,6 +24,18 @@ export interface FormControlProps extends ControlProps {
     children: JSX.Element;
 }
 
+export interface FormLabelProps extends LayoutControl {
+    /**
+     * 子组件
+     */
+    children?: ReactNode;
+    htmlFor?: string;
+    label: string;
+    labelPlacement?: Placement;
+    disabled?: boolean;
+    loading?: boolean;
+}
+
 export interface FormContextProps {
     register: (props: FormRegisterProps) => void;
     checkValuePath: (path: string) => void;
@@ -66,5 +78,5 @@ export interface FormRef<T = any> {
     /**
      * 注册formRegister
      */
-    _setFormRegister?: React.Dispatch<any>,
+    _setFormRegister?: React.Dispatch<any>;
 }

@@ -11,7 +11,7 @@ import { useForm } from '../../components/form/useForm';
 import { FormRef } from '../../components/form/form.types';
 import { Form } from '../../components/form/form';
 import { FormControl } from '../../components/form/formControl';
-import { FormLabel } from '../../components/form/formLabel';
+import { FormLabel } from '../../components/formLabel/formLabel';
 import { TextField } from '../../components/textField/textField';
 import { Button } from '../../components/button/button';
 

@@ -1,15 +1,10 @@
-import React, {
-    useState,
-    FocusEvent,
-    ChangeEvent,
-    forwardRef,
-    LegacyRef,
-} from "react";
+import React, { ChangeEvent, forwardRef, LegacyRef } from "react";
 import "./textField.less";
 
-import { TextFieldType, UserControlType } from "../../global/enum";
-import { useDisabled } from "../control/userControl";
+import { useDisabled } from "../control/disabledControl";
+import { useFocusd } from "../control/userControl";
 import { useCurrentValue } from "../control/contentControl";
+import { TextFieldType, UserControlType } from "../../global/enum";
 
 import { TextFieldProps, TextFieldValue } from "./textField.types";
 import { getVisualStates, getInputVisualStates } from "./textFiledBase";
@@ -27,7 +22,7 @@ export const TextField = forwardRef(function TextField(
     }: TextFieldProps,
     ref?: LegacyRef<HTMLInputElement>
 ) {
-    const { onChange, onFocus, onBlur } = props;
+    const { onChange } = props;
 
     const disabled = useDisabled({ disabled: disabledProp, loading });
 
@@ -41,21 +36,11 @@ export const TextField = forwardRef(function TextField(
         onChange,
     });
 
-    const [focused, setFocused] = useState(false);
+    const [focused, handleFocus, handleBlur] = useFocusd(props);
 
     function handleChange(e: ChangeEvent<HTMLInputElement>) {
         setOriginalEvent(e);
         setCurrentValue(e.target.value);
-    }
-
-    function handleFocus(e: FocusEvent<HTMLInputElement>) {
-        setFocused(true);
-        onFocus?.(e);
-    }
-
-    function handleBlur(e: FocusEvent<HTMLInputElement>) {
-        setFocused(false);
-        onBlur?.(e);
     }
 
     return (

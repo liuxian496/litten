@@ -6,7 +6,7 @@ import { expect } from "@storybook/jest";
 import { CheckboxStory } from "../../stories/checkbox.stories";
 
 import { LittenCheckedChangeEvent } from "../../components/control/control.types";
-import { FormLabel } from "../../components/form/formLabel";
+import { FormLabel } from "../../components/formLabel/formLabel";
 import { Switch } from "../../components/switch/switch";
 import { Button } from "../../components/button/button";
 

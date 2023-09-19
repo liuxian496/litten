@@ -7,7 +7,7 @@ import { TextFiledStory } from '../../stories/textField.stories';
 
 import { Placement } from '../../global/enum';
 import { LittenCheckedChangeEvent } from '../../components/control/control.types';
-import { FormLabel } from '../../components/form/formLabel';
+import { FormLabel } from '../../components/formLabel/formLabel';
 import { Checkbox } from '../../components/checkbox/checkbox';
 import { TextField } from '../../components/textField/textField';
 

@@ -1,19 +1,35 @@
-import { useState, useEffect } from 'react';
-import { UserControlProps } from './control.types';
+import { useState, FocusEvent } from "react";
+import { UserControlProps } from "./control.types";
+import { MouseState } from "../../global/enum";
+import { gettLabeMouseState, setLabeMouseState } from "../formLabel/formLabel";
 
 /**
- * 获取disabled
- * @returns value 当前控件的disabled值 {boolean}
+ * 获取用户控件的focused属性对应的值
+ * @param props 用户控件属性
  */
-export function useDisabled<T>(props: UserControlProps<T>) {
-    const { disabled, loading } = props;
+export function useFocusd<T>(props: UserControlProps<T>) {
+    const { onFocus, onBlur } = props;
 
-    const [value, setValue] = useState<boolean | undefined>(false);
+    const [focused, setFocused] = useState(false);
 
-    useEffect(() => {
-        setValue(disabled || loading);
-    }, [disabled, loading]);
+    function handleFocus(e: FocusEvent<T>) {
+        if (gettLabeMouseState() === MouseState.none) {
+            setFocused(true);
+        } else {
+            setLabeMouseState(MouseState.none);
+        }
 
+        onFocus?.(e);
+    }
 
-    return value;
+    function handleBlur(e: FocusEvent<T>) {
+        setFocused(false);
+        onBlur?.(e);
+    }
+
+    return [focused, handleFocus, handleBlur] as [
+        boolean,
+        (e: FocusEvent<T>) => void,
+        (e: FocusEvent<T>) => void
+    ];
 }

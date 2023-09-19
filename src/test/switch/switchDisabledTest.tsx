@@ -11,7 +11,7 @@ import { expect } from "@storybook/jest";
 import { CheckboxStory } from "../../stories/checkbox.stories";
 
 import { Mode } from "../../global/enum";
-import { FormLabel } from "../../components/form/formLabel";
+import { FormLabel } from "../../components/formLabel/formLabel";
 import { Switch } from "../../components/switch/switch";
 import { Button } from "../../components/button/button";
 

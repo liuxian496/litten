@@ -10,7 +10,7 @@ import { Mode } from '../../global/enum';
 import { TextField } from '../../components/textField/textField';
 import { Button } from '../../components/button/button';
 import { TextFieldValue } from '../../components/textField/textField.types';
-import { FormLabel } from '../../components/form/formLabel';
+import { FormLabel } from '../../components/formLabel/formLabel';
 
 const Test = () => {
     const [role, setRole] = useState<TextFieldValue>();
