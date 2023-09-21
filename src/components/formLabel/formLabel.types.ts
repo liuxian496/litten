@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { ControlProps, LayoutControl } from "../control/control.types";
+import { ControlProps, LayoutControlProps } from "../control/control.types";
 import { Placement } from "../../global/enum";
 
 export interface FormProps extends ControlProps {
@@ -24,11 +24,7 @@ export interface FormControlProps extends ControlProps {
     children: JSX.Element;
 }
 
-export interface FormLabelProps extends LayoutControl {
-    /**
-     * 子组件
-     */
-    children?: ReactNode;
+export interface FormLabelProps extends LayoutControlProps {
     htmlFor?: string;
     label: string;
     labelPlacement?: Placement;

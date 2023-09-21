@@ -50,7 +50,16 @@ export interface UserControlProps<T> extends DisabledControlProps {
     onBlur?: (e: FocusEvent<T>) => void;
 }
 
-export interface LayoutControl extends ControlProps {}
+export interface LayoutControlProps extends ControlProps {
+    /**
+     * 子组件
+     */
+    children?: ReactNode;
+}
+
+export type StyleValue<T> = T;
+
+export type ResponsiveStyleValue<T> = T | { [key: string]: T | null };
 
 export type LittenValue =
     | string

@@ -4,7 +4,7 @@ import { MouseState } from "../../global/enum";
 import { gettLabeMouseState, setLabeMouseState } from "../formLabel/formLabel";
 
 /**
- * 获取用户控件的focused属性对应的值
+ * 获取用户控件的focused属性对应的值，以及onFocus和onBlur的事件处理函数
  * @param props 用户控件属性
  */
 export function useFocusd<T>(props: UserControlProps<T>) {

@@ -1,6 +1,5 @@
 import { ReactNode } from "react";
-import { ControlProps, LayoutControl } from "../control/control.types";
-import { Placement } from "../../global/enum";
+import { ControlProps, LayoutControlProps } from "../control/control.types";
 
 export interface FormProps extends ControlProps {
     /**
