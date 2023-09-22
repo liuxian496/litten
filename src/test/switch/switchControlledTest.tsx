@@ -9,6 +9,7 @@ import { LittenCheckedChangeEvent } from "../../components/control/control.types
 import { FormLabel } from "../../components/formLabel/formLabel";
 import { Switch } from "../../components/switch/switch";
 import { Button } from "../../components/button/button";
+import { StackPanel } from "../../components/stackPanel/stackPanel";
 
 const Test = () => {
     const [checked, setChecked] = useState<boolean | undefined>(true);
@@ -23,7 +24,7 @@ const Test = () => {
     }
 
     return (
-        <>
+        <StackPanel direction="column" alignItems="flex-start">
             <FormLabel label="飞行模式">
                 <Switch
                     data-testid="fly"
@@ -34,7 +35,7 @@ const Test = () => {
             </FormLabel>
             <Button onClick={handleChangeBtuClick}>Change Checked</Button>
             <div>{`飞行模式  ${checked === true ? "打开" : "关闭"}`}</div>
-        </>
+        </StackPanel>
     );
 };
 

@@ -9,6 +9,7 @@ import { LittenCheckedChangeEvent } from "../../components/control/control.types
 import { Placement } from "../../global/enum";
 import { FormLabel } from "../../components/formLabel/formLabel";
 import { Checkbox } from "../../components/checkbox/checkbox";
+import { StackPanel } from "../../components/stackPanel/stackPanel";
 
 const Test = () => {
     const [checks, setChecked] = React.useState<
@@ -45,7 +46,7 @@ const Test = () => {
                 />
             </FormLabel>
 
-            <div style={{ marginLeft: "10px" }}>
+            <StackPanel style={{ marginLeft: "10px" }} direction="column" alignItems="flex-start">
                 <FormLabel label="Apple" labelPlacement={Placement.right}>
                     <Checkbox
                         data-testid="apple"
@@ -62,7 +63,7 @@ const Test = () => {
                         onChange={handleBananaChange}
                     />
                 </FormLabel>
-            </div>
+            </StackPanel>
         </>
     );
 };

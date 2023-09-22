@@ -10,6 +10,7 @@ import { LittenCheckedChangeEvent } from '../../components/control/control.types
 import { FormLabel } from '../../components/formLabel/formLabel';
 import { Checkbox } from '../../components/checkbox/checkbox';
 import { TextField } from '../../components/textField/textField';
+import { StackPanel } from '../../components/stackPanel/stackPanel';
 
 const Test = () => {
     const [disabled, setDisabled] = useState<boolean | undefined>(true);
@@ -26,7 +27,7 @@ const Test = () => {
     }
 
     return (
-        <>
+        <StackPanel direction="column" alignItems="flex-start">
             <FormLabel label='Name: '>
                 <TextField data-testid="nameTextField" disabled={disabled} loading={loading} />
             </FormLabel>
@@ -36,7 +37,7 @@ const Test = () => {
             <FormLabel label='Loading' labelPlacement={Placement.right}>
                 <Checkbox data-testid="loading-checkbox" checked={loading} onChange={handleLoadingCheckboxChange} />
             </FormLabel>
-        </>
+        </StackPanel>
     )
 }
 

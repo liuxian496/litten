@@ -10,7 +10,7 @@ import { Placement } from "../../global/enum";
 export const DefaultTest: StackPanelStory = {
     args: {},
     render: (args) => {
-        const { direction } = args;
+        const { direction="row" } = args;
         return (
             <>
                 <div>{`${direction}:`}</div>

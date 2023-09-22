@@ -9,6 +9,7 @@ import { LittenCheckedChangeEvent } from "../../components/control/control.types
 import { Placement } from "../../global/enum";
 import { FormLabel } from "../../components/formLabel/formLabel";
 import { Switch } from "../../components/switch/switch";
+import { StackPanel } from "../../components/stackPanel/stackPanel";
 
 const Test = () => {
     const [pork, setPork] = useState("锅包肉");
@@ -25,7 +26,7 @@ const Test = () => {
     }
 
     return (
-        <>
+        <StackPanel direction="column" alignItems="flex-start">
             <FormLabel label="锅包肉" labelPlacement={Placement.right}>
                 <Switch
                     data-testid="pork"
@@ -41,7 +42,7 @@ const Test = () => {
                 <Switch onChange={handleEggChange} defaultChecked={false} />
             </FormLabel>
             <div>{`Today's lunch is ${pork} and ${greenBean}`}</div>
-        </>
+        </StackPanel>
     );
 };
 

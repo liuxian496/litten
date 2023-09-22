@@ -11,6 +11,7 @@ import { TextField } from '../../components/textField/textField';
 import { Button } from '../../components/button/button';
 import { TextFieldValue } from '../../components/textField/textField.types';
 import { FormLabel } from '../../components/formLabel/formLabel';
+import { StackPanel } from '../../components/stackPanel/stackPanel';
 
 const Test = () => {
     const [role, setRole] = useState<TextFieldValue>();
@@ -21,7 +22,7 @@ const Test = () => {
     }
 
     return (
-        <>
+        <StackPanel direction="column" alignItems="flex-start">
             <FormLabel label='Role: '>
                 <TextField data-testid="text" ref={ref} defaultValue="Tom" />
             </FormLabel>
@@ -29,7 +30,7 @@ const Test = () => {
             <p>
                 role is {role}
             </p>
-        </>
+        </StackPanel>
     )
 }
 

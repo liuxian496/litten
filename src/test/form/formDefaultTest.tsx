@@ -1,29 +1,29 @@
+import React, { useState } from "react";
 
-import React, { useState } from 'react';
+import { expect } from "@storybook/jest";
+import { userEvent, within } from "@storybook/testing-library";
 
-import { expect } from '@storybook/jest';
-import { userEvent, within } from '@storybook/testing-library';
+import { FormStory } from "../../stories/form.stories";
 
-import { FormStory } from '../../stories/form.stories';
-
-import { Mode } from '../../global/enum';
-import { useForm } from '../../components/form/useForm';
-import { FormRef } from '../../components/form/form.types';
-import { Form } from '../../components/form/form';
-import { FormControl } from '../../components/form/formControl';
-import { FormLabel } from '../../components/formLabel/formLabel';
-import { TextField } from '../../components/textField/textField';
-import { Button } from '../../components/button/button';
+import { Mode } from "../../global/enum";
+import { useForm } from "../../components/form/useForm";
+import { FormRef } from "../../components/form/form.types";
+import { Form } from "../../components/form/form";
+import { FormControl } from "../../components/form/formControl";
+import { FormLabel } from "../../components/formLabel/formLabel";
+import { TextField } from "../../components/textField/textField";
+import { Button } from "../../components/button/button";
+import { StackPanel } from "../../components/stackPanel/stackPanel";
 
 const Test = () => {
     type Data = {
-        name: string,
+        name: string;
         animation: string;
-    }
+    };
 
     const myForm: FormRef<Data> = useForm();
 
-    const [msg, setMsg] = useState('');
+    const [msg, setMsg] = useState("");
 
     function handleShowValueClick() {
         const { name, animation } = myForm.getValues();
@@ -39,82 +39,81 @@ const Test = () => {
         <>
             <Form formRef={myForm}>
                 <span>今天天气不错，挺风和日丽的</span>
-                <FormLabel label='Name:'>
-                    <FormControl valuePath='name'>
-                        <TextField data-testid="nameTextField" />
-                    </FormControl>
-                </FormLabel>
-                <FormLabel label='Animation:'>
-                    <FormControl valuePath='animation'>
-                        <TextField data-testid="animationTextField" defaultValue="Tom & Jerry" />
-                    </FormControl>
-                </FormLabel>
+                <StackPanel direction="column" justifyContent="space-evenly" alignItems="flex-start">
+                    <FormLabel label="Name:">
+                        <FormControl valuePath="name">
+                            <TextField data-testid="nameTextField" />
+                        </FormControl>
+                    </FormLabel>
+                    <FormLabel label="Animation:">
+                        <FormControl valuePath="animation">
+                            <TextField
+                                data-testid="animationTextField"
+                                defaultValue="Tom & Jerry"
+                            />
+                        </FormControl>
+                    </FormLabel>
+                </StackPanel>
             </Form>
-            <Button mode={Mode.primary} onClick={handleShowValueClick}>Show Value</Button>
+            <Button mode={Mode.primary} onClick={handleShowValueClick}>
+                Show Value
+            </Button>
             <Button onClick={handleClearClick}>Clear</Button>
-            <div style={{ marginTop: '10px' }}>
-                {msg}
-            </div>
+            <div style={{ marginTop: "10px" }}>{msg}</div>
         </>
     );
-}
+};
 
 export const DefaultTest: FormStory = {
     render: () => <Test />,
     play: async ({ canvasElement, step }) => {
         const canvas = within(canvasElement);
 
-        const nameTextField = canvas.getByTestId('nameTextField');
-        const animationTextField = canvas.getByTestId('animationTextField');
+        const nameTextField = canvas.getByTestId("nameTextField");
+        const animationTextField = canvas.getByTestId("animationTextField");
 
-        const showValueBtu = canvas.getByText('Show Value');
-        const clearBtu = canvas.getByText('Clear');
+        const showValueBtu = canvas.getByText("Show Value");
+        const clearBtu = canvas.getByText("Clear");
 
-        await step('Default "Name" is "", defualt "Animation" is Tom & Jerry', async () => {
-            await expect(
-                nameTextField
-            ).toHaveValue('');
+        await step(
+            'Default "Name" is "", defualt "Animation" is Tom & Jerry',
+            async () => {
+                await expect(nameTextField).toHaveValue("");
 
-            await expect(
-                animationTextField
-            ).toHaveValue('Tom & Jerry');
-        });
+                await expect(animationTextField).toHaveValue("Tom & Jerry");
+            }
+        );
 
         await step('Type "Name" Tom, "Age" 6, "Animation" 2', async () => {
-            await userEvent.type(nameTextField, 'Tom');
-            await userEvent.type(animationTextField, '2');
+            await userEvent.type(nameTextField, "Tom");
+            await userEvent.type(animationTextField, "2");
 
-            await expect(
-                nameTextField
-            ).toHaveValue('Tom');
+            await expect(nameTextField).toHaveValue("Tom");
 
-            await expect(
-                animationTextField
-            ).toHaveValue('Tom & Jerry2');
+            await expect(animationTextField).toHaveValue("Tom & Jerry2");
 
             await userEvent.click(showValueBtu);
 
             await expect(
-                canvas.getByText('Name: Tom, Animation: Tom & Jerry2')
+                canvas.getByText("Name: Tom, Animation: Tom & Jerry2")
             ).toBeInTheDocument();
         });
 
-        await step('Clear Form, then default "Name" is "", defualt "Animation" is Tom & Jerry', async () => {
-            await userEvent.click(clearBtu);
+        await step(
+            'Clear Form, then default "Name" is "", defualt "Animation" is Tom & Jerry',
+            async () => {
+                await userEvent.click(clearBtu);
 
-            await expect(
-                nameTextField
-            ).toHaveValue('');
+                await expect(nameTextField).toHaveValue("");
 
-            await expect(
-                animationTextField
-            ).toHaveValue('Tom & Jerry');
+                await expect(animationTextField).toHaveValue("Tom & Jerry");
 
-            await userEvent.click(showValueBtu);
+                await userEvent.click(showValueBtu);
 
-            await expect(
-                canvas.getByText('Name: , Animation: Tom & Jerry')
-            ).toBeInTheDocument();
-        });
-    }
+                await expect(
+                    canvas.getByText("Name: , Animation: Tom & Jerry")
+                ).toBeInTheDocument();
+            }
+        );
+    },
 };
