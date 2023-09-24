@@ -14,21 +14,11 @@ jobs:
         # Job steps
         steps:
             - name: Checkout repository
-              uses: actions/checkout@v3
-              with:
-                  fetch-depth: 0 # 👈 Required to retrieve git history
-
-            - name: Use Node.js 16.x
-              uses: actions/setup-node@v3
-              with:
-                  node-version: 16.x
+              uses: actions/checkout@v1
 
             - name: Install dependencies
               # 👇 Install dependencies with the same package manager used in the project (replace it as needed), e.g. yarn, npm, pnpm
-              run: yarn
-
-            - name: Build Storybook
-              run: yarn build-storybook   
+              run: yarn  
 
               # 👇 Adds Chromatic as a step in the workflow
             - name: Publish to Chromatic
