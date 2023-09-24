@@ -1,7 +1,5 @@
 import { Meta, StoryObj } from "@storybook/react";
 
-import { Switch } from "../components/switch/switch";
-
 import { DefaultTest } from "../test/stackPanel/stackPanelDefaultTest";
 import { StackPanel } from "../components/stackPanel/stackPanel";
 

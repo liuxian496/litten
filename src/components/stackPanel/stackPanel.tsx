@@ -1,5 +1,3 @@
-import { CSSProperties } from "react";
-
 import { StackPanelProps } from "./stackPanel.types";
 import "./stackPanel.less";
 
