@@ -18,9 +18,17 @@ jobs:
               with:
                   fetch-depth: 0 # 👈 Required to retrieve git history
 
+            - name: Use Node.js 16.x
+              uses: actions/setup-node@v3
+              with:
+                  node-version: 16.x
+
             - name: Install dependencies
               # 👇 Install dependencies with the same package manager used in the project (replace it as needed), e.g. yarn, npm, pnpm
               run: yarn
+
+            - name: Build Storybook
+              run: yarn build-storybook   
 
               # 👇 Adds Chromatic as a step in the workflow
             - name: Publish to Chromatic
