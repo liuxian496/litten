@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
 import { ControlProps, LayoutControlProps } from "../control/control.types";
+import { Placement } from "../../global/enum";
 
 export interface FormProps extends ControlProps {
     /**
@@ -21,6 +22,14 @@ export interface FormControlProps extends ControlProps {
      * 子组件
      */
     children: JSX.Element;
+}
+
+export interface FormLabelProps extends LayoutControlProps {
+    htmlFor?: string;
+    label: string;
+    labelPlacement?: Placement;
+    disabled?: boolean;
+    loading?: boolean;
 }
 
 export interface FormContextProps {
@@ -65,5 +74,5 @@ export interface FormRef<T = any> {
     /**
      * 注册formRegister
      */
-    _setFormRegister?: React.Dispatch<any>,
+    _setFormRegister?: React.Dispatch<any>;
 }

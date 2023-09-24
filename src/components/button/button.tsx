@@ -1,11 +1,12 @@
-import React, { useState, FocusEvent } from "react";
+import React from "react";
 import "./button.less";
 
 import classnames from "classnames";
 
 import { Mode, Size, Color, UserControlType } from "../../global/enum";
 import { getPrefixNs } from "../control/control";
-import { useDisabled } from "../control/userControl";
+import { useFocusd } from "../control/userControl";
+import { useDisabled } from "../control/disabledControl";
 
 import { getVisualStates, getFocusColor, getWaveColor } from "./buttonBase";
 import { ButtonProps } from "./button.types";
@@ -51,21 +52,11 @@ export const Button = ({
     },
     ...props
 }: ButtonProps) => {
-    const { children, onFocus, onBlur } = props;
+    const { children } = props;
 
-    const [focused, setFocused] = useState(false);
+    const [focused, handleFocus, handleBlur] = useFocusd(props);
 
     const disabled = useDisabled({ disabled: disabledProp, loading });
-
-    function handleFocus(e: FocusEvent<HTMLButtonElement>) {
-        setFocused(true);
-        onFocus?.(e);
-    }
-
-    function handleBlur(e: FocusEvent<HTMLButtonElement>) {
-        setFocused(false);
-        onBlur?.(e);
-    }
 
     return (
         <button

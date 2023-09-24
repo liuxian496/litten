@@ -18,7 +18,7 @@ export { Checkbox } from "./components/checkbox/checkbox";
 // form
 export { Form } from "./components/form/form";
 export { FormControl } from "./components/form/formControl";
-export { FormLabel } from "./components/form/formLabel";
+export { FormLabel } from "./components/formLabel/formLabel";
 export { useForm } from "./components/form/useForm";
 
 // icon
@@ -29,6 +29,9 @@ export { IconButton } from "./components/iconButton/iconButton";
 // radio
 export { Radio } from "./components/radio/radio";
 export { RadioGroup } from "./components/radio/radioGroup";
+
+// StackPanel
+export { StackPanel } from "./components/stackPanel/stackPanel";
 
 // summary
 export { Summary } from "./components/summary/summary";

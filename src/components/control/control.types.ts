@@ -20,7 +20,7 @@ export interface ControlProps {
     style?: CSSProperties;
 }
 
-export interface UserControlProps<T> extends ControlProps {
+export interface DisabledControlProps extends ControlProps {
     /**
      * 设置一个值，表示是否禁用按钮。默认值false，表示控件可用。
      * @default false 表示按钮可以使用。
@@ -31,6 +31,9 @@ export interface UserControlProps<T> extends ControlProps {
      * @default false
      */
     loading?: boolean;
+}
+
+export interface UserControlProps<T> extends DisabledControlProps {
     /**
      * 设置元素是否可以聚焦
      */
@@ -47,7 +50,16 @@ export interface UserControlProps<T> extends ControlProps {
     onBlur?: (e: FocusEvent<T>) => void;
 }
 
-export interface LayoutControl extends ControlProps {}
+export interface LayoutControlProps extends ControlProps {
+    /**
+     * 子组件
+     */
+    children?: ReactNode;
+}
+
+export type StyleValue<T> = T;
+
+export type ResponsiveStyleValue<T> = T | { [key: string]: T | null };
 
 export type LittenValue =
     | string

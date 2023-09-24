@@ -1,12 +1,18 @@
-import React from "react";
 import "./formLabel.less";
 
-import { FormLabelProps } from "./form.types";
-import { getPrefixNs } from "../control/control";
 import classnames from "classnames";
-import { MouseState, Placement, UserControlType } from "../../global/enum";
 
-export let littenLabeMouseState = MouseState.none;
+import { MouseState, Placement, UserControlType } from "../../global/enum";
+import { getPrefixNs } from "../control/control";
+
+import { FormLabelProps } from "../formLabel/formLabel.types";
+import { useDisabled } from "../control/disabledControl";
+
+let littenLabeMouseState = MouseState.none;
+
+export function gettLabeMouseState() {
+    return littenLabeMouseState;
+}
 
 /**
  * 设置labeMouseState
@@ -32,29 +38,48 @@ function getVisualStates(props: FormLabelProps) {
     return visualStates;
 }
 
+function getLabelVisualStates(props: FormLabelProps) {
+    const { prefixCls: customizePrefixCls } = props;
+
+    const prefixCls = getPrefixNs("formLabel", customizePrefixCls);
+
+    const visualStates = classnames(`${prefixCls}__label`);
+
+    return visualStates;
+}
+
 function renderLabel(props: FormLabelProps) {
     const { label } = props;
 
     return (
         <>
-            <span>{label}</span>
+            <span className={getLabelVisualStates(props)}>{label}</span>
         </>
     );
 }
 
 export const FormLabel = ({
     labelPlacement = Placement.left,
+    disabled: disabledProp = false,
+    loading = false,
     ...props
 }: FormLabelProps) => {
     const { children } = props;
 
-    function handleLabelMouseUp() {
-        littenLabeMouseState = MouseState.mousedown;
+    const disabled = useDisabled({ disabled: disabledProp, loading });
+
+    function handleLabelMouseUp(e: React.MouseEvent<HTMLLabelElement>) {
+        const target = e.target as HTMLElement;
+
+        if (target.className === getLabelVisualStates(props)) {
+            littenLabeMouseState = MouseState.mouseup;
+        }
     }
+
     return (
         <label
             {...props}
-            className={getVisualStates({ labelPlacement, ...props })}
+            className={getVisualStates({ labelPlacement, disabled, ...props })}
             onMouseUp={handleLabelMouseUp}
         >
             {(labelPlacement === Placement.top ||

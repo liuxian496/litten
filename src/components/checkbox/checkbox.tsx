@@ -1,19 +1,20 @@
-import React, { useState, FocusEvent, ChangeEvent, useEffect } from "react";
+import React, { useState, ChangeEvent, useEffect } from "react";
 import "./checkbox.less";
 
-import { CheckboxProps } from "./checkbox.types";
-import { useDisabled } from "../control/userControl";
+import { useFocusd } from "../control/userControl";
+import { useCurrentChecked } from "../control/checkedControl";
+import { useDisabled } from "../control/disabledControl";
 import {
     CheckState,
     Color,
     Mode,
-    MouseState,
     Size,
     UserControlType,
 } from "../../global/enum";
 
 import { Ripple } from "../ripple/ripple";
 import { getFocusColor, getWaveColor } from "../button/buttonBase";
+import { CheckboxProps } from "./checkbox.types";
 import {
     CheckedIcon,
     IndeterminateIcon,
@@ -22,8 +23,6 @@ import {
     getInputVisualStates,
     getVisualStates,
 } from "./checkboxBase";
-import { useCurrentChecked } from "../control/checkedControl";
-import { littenLabeMouseState, setLabeMouseState } from "../form/formLabel";
 
 export const Checkbox = ({
     disabled: disabledProp = false,
@@ -42,22 +41,19 @@ export const Checkbox = ({
     indeterminate = false,
     ...props
 }: CheckboxProps) => {
-    const { onChange, onFocus, onBlur } = props;
+    const { onChange } = props;
 
-    const disabled = useDisabled<HTMLInputElement>({
-        disabled: disabledProp,
-        loading,
-    });
+    const disabled = useDisabled({ disabled: disabledProp, loading });
 
     const [currentChecked, setCurrentChecked, setOriginalEvent] =
-        useCurrentChecked<HTMLInputElement>({
+        useCurrentChecked({
             checked,
             defaultChecked,
             onChange,
             userControlType: UserControlType.Checkbox,
-        });
+        } as CheckboxProps);
 
-    const [focused, setFocused] = useState(false);
+    const [focused, handleFocus, handleBlur] = useFocusd(props);
 
     const [checkStatus, setCheckStatus] = useState(
         getCheckState(currentChecked, indeterminate)
@@ -70,20 +66,6 @@ export const Checkbox = ({
     function handleInputChange(e: ChangeEvent<HTMLInputElement>) {
         setOriginalEvent(e);
         setCurrentChecked(e.target.checked);
-    }
-
-    function handleFocus(e: FocusEvent<HTMLInputElement>) {
-        if (littenLabeMouseState === MouseState.none) {
-            setFocused(true);
-        } else {
-            setLabeMouseState(MouseState.none);
-        }
-        onFocus?.(e);
-    }
-
-    function handleBlur(e: FocusEvent<HTMLInputElement>) {
-        setFocused(false);
-        onBlur?.(e);
     }
 
     return (

@@ -11,9 +11,10 @@ import { expect } from "@storybook/jest";
 import { CheckboxStory } from "../../stories/checkbox.stories";
 
 import { Mode } from "../../global/enum";
-import { FormLabel } from "../../components/form/formLabel";
+import { FormLabel } from "../../components/formLabel/formLabel";
 import { Switch } from "../../components/switch/switch";
 import { Button } from "../../components/button/button";
+import { StackPanel } from "../../components/stackPanel/stackPanel";
 
 const Test = () => {
     const [disabled, seDisabled] = useState(true);
@@ -23,7 +24,7 @@ const Test = () => {
     }
 
     return (
-        <>
+        <StackPanel direction="column" alignItems="flex-start">
             <FormLabel
                 data-testid="switchLabel"
                 label="Switch"
@@ -41,7 +42,7 @@ const Test = () => {
             <Button mode={Mode.outlined} onClick={handleChangeDisabledClick}>
                 Change Disabled
             </Button>
-        </>
+        </StackPanel>
     );
 };
 
