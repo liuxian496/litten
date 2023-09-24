@@ -1,3 +1,19 @@
+# [0.5.0](https://github.com/liuxian496/litten/compare/v0.4.1...v0.5.0) (2023-09-24)
+
+
+### Bug Fixes
+
+* 将FormLabel的布局修改成inline-flex ([278a487](https://github.com/liuxian496/litten/commit/278a48713129562391565481e9c94b8d60f7e454))
+
+
+### Features
+
+* 添加StackPanel ([489f4ee](https://github.com/liuxian496/litten/commit/489f4eef6aa096240df7fbb0770fffcc20fde95c))
+* 完善StackPanel，支持控制子元素在主轴或副轴中的位置 ([224f27f](https://github.com/liuxian496/litten/commit/224f27fd415be05d80241e09c11b46f21edcaef7))
+* textField支持password类型，支持placeholder ([5ae2ded](https://github.com/liuxian496/litten/commit/5ae2ded1094340b4ce64680e14fb8442b258bf1f))
+
+
+
 ## [0.4.1](https://github.com/liuxian496/litten/compare/v0.4.0...v0.4.1) (2023-09-14)
 
 
