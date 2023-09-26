@@ -162,6 +162,7 @@ export enum UserControlType {
     RadioGroup = "RadioGroup",
     Summary = "Summary",
     Switch = "Switch",
+    StackPanel="StackPanel",
     TextField = "TextField",
     Wave = "Wave",
 }
