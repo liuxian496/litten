@@ -158,6 +158,36 @@ export interface VisualStates {
 }
 
 /**
+ * 相对于目标DOM节点的位置
+ */
+export type RelativeRect = {
+    /**
+     * 鼠标位置与目标DOM的相对位置的左坐标
+     */
+    readonly left: number;
+    /**
+     * 鼠标位置与目标DOM的相对位置的右坐标
+     */
+    readonly right: number;
+    /**
+     * 鼠标位置与目标DOM的相对位置的上坐标
+     */
+    readonly top: number;
+    /**
+     * 鼠标位置与目标DOM的相对位置的下坐标
+     */
+    readonly bottom: number;
+    /**
+     * 目标节点的宽度
+     */
+    readonly targetWidth: number;
+    /**
+     * 目标节点的高度
+     */
+    readonly targetHeight: number;
+};
+
+/**
  * 自定义事件参数
  */
 export interface LittenEvent<E, V> {
