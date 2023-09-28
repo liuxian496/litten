@@ -1,6 +1,6 @@
 {
   "name": "litten",
-  "version": "0.5.7",
+  "version": "0.5.8",
   "private": false,
   "main": "build/index.js",
   "module": "build/index.esm.js",
