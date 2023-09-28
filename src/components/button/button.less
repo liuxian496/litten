@@ -4,7 +4,10 @@
 
 .@{component-cls} {
     position: relative;
-    display: inline-block;
+    display: inline-flex;
+    box-sizing: border-box;
+    align-items: center;
+    justify-content: center;
     min-width: 64px;
     font-size: 0.875rem;
     font-weight: @fontWeight-500;
@@ -14,6 +17,8 @@
     cursor: pointer;
     padding: 6px 16px;
     outline: none;
+    user-select: none;
+    vertical-align: middle;
     text-decoration: none;
 
     transition:
@@ -166,7 +171,6 @@
 
     &__icon--start>:nth-of-type(1) {
         position: relative;
-        top: 3px;
         margin-right: 12px;
     }
 
@@ -176,7 +180,6 @@
 
     &__icon--end>:nth-of-type(1) {
         position: relative;
-        top: 3px;
         margin-left: 12px;
     }
 

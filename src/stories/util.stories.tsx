@@ -4,6 +4,7 @@ import { GetPrefixNsTest } from '../test/util/getPrefixNsTest';
 import { PrintArrayItemTest } from '../test/util/printArrayItemTest';
 import { StopPropagationTest } from '../test/util/stopPropagationTest';
 import { UsePreviousTest } from '../test/util/usePreviousTest';
+import {UseRelativePositionTest} from '../test/util/useRelativePositionTest';
 
 
 export default {
@@ -31,3 +32,8 @@ export const UsePrevious = {
     name: 'usePrevious',
     ...UsePreviousTest
 };
+
+export const UseRelativePosition= {
+    name:'useRelativePosition',
+    ...UseRelativePositionTest
+}
