@@ -1,3 +1,17 @@
+## [0.5.8](https://github.com/liuxian496/litten/compare/v0.5.7...v0.5.8) (2023-09-28)
+
+
+### Bug Fixes
+
+* 修改button设置icon时，不居中的问题。 ([5cb468c](https://github.com/liuxian496/litten/commit/5cb468cd0207917749f9fd7a9c00d3f9d87cae1e))
+
+
+### Features
+
+* 添加useRelativePosition ([5d80908](https://github.com/liuxian496/litten/commit/5d809086e365529ab1cb509c8ffb59513e98def0))
+
+
+
 ## [0.5.7](https://github.com/liuxian496/litten/compare/v0.5.6...v0.5.7) (2023-09-25)
 
 
