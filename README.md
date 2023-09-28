@@ -7,6 +7,11 @@
 
 <p>Litten是一个React UI控件库，样式风格参考Google's Material Design，并做了适当取舍。键盘操作、读屏等可访问性，依据W3C「ARIA Authoring Practices Guide（APG）」进行开发。</p>
 
+## 主页
+[github.io主页](https://liuxian496.github.io/litten/)
+
+[chromatic主页](https://main--650fa3c0e5326b2081708310.chromatic.com/)
+
 ## 使用
 
 ### 1. 安装litten
@@ -33,7 +38,6 @@ npm i litten
 ### 3. 测试覆盖率
 调式工程启动后，打开另一个终端，
 运行：yarn test-storybook --coverage 
-再运行 yarn test-storybook
 
 ### 4. 生成 lcov report
 1. 运行：npx nyc report --reporter=lcov -t coverage/storybook --report-dir coverage/storybook
