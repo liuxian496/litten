@@ -50,7 +50,24 @@ export enum MouseState {
     mouseover = "mouseover",
     mouseout = "mouseout",
     mousedown = "mousedown",
+    mousemove = "mousemove",
     none = "mousenone",
+}
+
+/**
+ * 焦点状态
+ */
+export enum FocusState {
+    focus = "focus",
+    blur = "blur",
+}
+
+/**
+ * 可用状态
+ */
+export enum EnableState {
+    disabled = "disabled",
+    enabled = "enabled",
 }
 
 /**
@@ -162,7 +179,8 @@ export enum UserControlType {
     RadioGroup = "RadioGroup",
     Summary = "Summary",
     Switch = "Switch",
-    StackPanel="StackPanel",
+    StackPanel = "StackPanel",
+    Slider = "Slider",
     TextField = "TextField",
     Wave = "Wave",
 }
@@ -221,4 +239,14 @@ export enum WaveMode {
     normal = "normal",
     // wave的圆心是容器的中心
     center = "center",
+}
+
+/**
+ * 定义控件或布局可以具有的不同方向。
+ */
+export enum Orientation {
+    //垂直
+    vertical = "vertical",
+    // 水平
+    horizontal = "horizontal",
 }

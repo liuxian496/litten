@@ -7,7 +7,12 @@ import {
     SetStateAction,
 } from "react";
 import { TextFieldValue } from "../textField/textField.types";
-import { UserControlType } from "../../global/enum";
+import {
+    EnableState,
+    FocusState,
+    MouseState,
+    UserControlType,
+} from "../../global/enum";
 
 export interface ControlProps {
     /**
@@ -118,11 +123,11 @@ export interface CheckedControlGroup {
 
 export interface CheckedControlProps<T> extends ContentControlProps<T, string> {
     /**
-     * 设置一个值，该值表示chekbox是否勾选。true，代表勾选。
+     * 设置一个值，该值表示是否勾选。true，代表勾选。
      */
     checked?: boolean;
     /**
-     * 设置一个值，该值表示chekbox是否默认勾选，只在初始化后生效一次。true，表示默认勾选。
+     * 设置一个值，该值表示是否默认勾选，只在初始化后生效一次。true，表示默认勾选。
      */
     defaultChecked?: boolean;
     /**
@@ -143,18 +148,29 @@ export interface ExceptionBoundaryProps extends ControlProps {
 }
 
 /**
+ * 极值
+ */
+export type Extremum = {
+    readonly min: number;
+    readonly max: number;
+};
+
+/**
  * 视觉状态组
  */
 export interface VisualStates {
     /**
-     * 设置一个值，该值表示控件是否处于焦点状态
+     * 设置一个值，该值表示控件的焦点状态。
      */
-    focused?: boolean;
+    focusState?: FocusState;
     /**
-     * 设置一个值，表示是否处于禁用状态。
-     *
+     * 设置一个值，表示是控件的可用状态。
      */
-    disabled?: boolean;
+    enableState?: EnableState;
+    /**
+     * 设置一个值，该值表示控件的鼠标状态。
+     */
+    mouseState?: MouseState;
 }
 
 /**
