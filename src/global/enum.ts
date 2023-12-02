@@ -112,11 +112,10 @@ export enum LocalType {
  * 蓝色
  */
 export enum Blue {
-    primary = "#1976d2",
     main = "#1976d2",
+    deepLight = "rgba(25,118,210,0.16)",
     dark = "1565c0",
-    focus = "#C2D6EF",
-    wave = "#9ab9e5",
+    focus = "rgba(25,118,210,0.3)",
 }
 
 /**
@@ -124,6 +123,7 @@ export enum Blue {
  */
 export enum White {
     primary = "#ffffff",
+    focus = "rgba(255,255,255,0.3)",
 }
 
 /**
@@ -137,30 +137,30 @@ export enum Gray {
  * 红色
  */
 export enum Red {
-    main = "#d32f2f",
+    main = "rgba(211,47,47)",
     dark = "#c62828",
-    focus = "#d32f2f",
-    wave = "#d32f2f80",
+    focus = "rgba(211,47,47,0.3)",
+    deepLight = "rgba(211,47,47,0.16)",
 }
 
 /**
  * 绿色
  */
 export enum Green {
-    main = "#2e7d32",
+    main = "rgba(46, 125, 50)",
     dark = "#1b5e20",
-    focus = "#11cb5f",
-    wave = "#c1f0ca",
+    focus = "rgba(46, 125, 50, 0.30)",
+    deepLight = "rgba(46, 125, 50, 0.16)",
 }
 
 /**
  * 橙色
  */
 export enum Orange {
-    main = "#ed6c02",
+    main = "rgba(237,108,2)",
     dark = "#e65100",
-    focus = "#ff9800",
-    wave = "#ffb74d",
+    focus = "rgba(237,108,2,0.30)",
+    deepLight = "rgba(237,108,2,0.16)",
 }
 
 /**

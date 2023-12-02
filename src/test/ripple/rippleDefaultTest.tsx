@@ -25,8 +25,8 @@ const Test = () => {
                 <Ripple
                     focused={focused}
                     color={{
-                        focusColor: Blue.primary,
-                        waveColor: Blue.wave
+                        focusColor: Blue.focus,
+                        waveColor: Blue.deepLight
                     }}
                 />
             </div >
@@ -39,8 +39,8 @@ export const DefaultTest: RippleStory = {
     args: {
         focused: false,
         color: {
-            focusColor: Blue.primary,
-            waveColor: Blue.wave
+            focusColor: Blue.focus,
+            waveColor: Blue.deepLight
         }
     },
     render: () => <Test />,
