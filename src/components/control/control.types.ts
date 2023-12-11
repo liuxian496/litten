@@ -229,3 +229,7 @@ export type LittenCheckedChangeEvent = LittenEvent<
     ChangeEvent<HTMLInputElement>,
     string
 >;
+export type LittenNumberChangeEvent = LittenEvent<
+    ChangeEvent<HTMLInputElement>,
+    number
+>;

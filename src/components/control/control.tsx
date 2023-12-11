@@ -1,6 +1,6 @@
-import { MutableRefObject, useState } from "react";
+import { MutableRefObject, useEffect, useState } from "react";
 import { isString } from "lodash";
-import { isEmptyString } from "../../global/util";
+import { isEmptyString, usePrevious } from "../../global/util";
 import { RelativeRect } from "./control.types";
 
 /**
@@ -22,7 +22,10 @@ export function getPrefixNs(
  * 鼠标按下时，获取鼠标相对于指定的DOM节点的相对位置
  * @param ref DOM节点的ref
  */
-export function useRelativePosition(ref: MutableRefObject<HTMLElement | null>) {
+export function useRelativePosition(
+    ref: MutableRefObject<HTMLElement | null>,
+    onReactChange?: (rect: RelativeRect) => void
+) {
     const [rect, setRect] = useState<RelativeRect>({
         left: 0,
         right: 0,
@@ -32,7 +35,17 @@ export function useRelativePosition(ref: MutableRefObject<HTMLElement | null>) {
         targetHeight: 0,
     });
 
+    const previousRect = usePrevious(rect);
+
+    useEffect(() => {
+        if (previousRect !== rect) {
+            // rect.targetWidth等于0时，鼠标没有移动
+            rect.targetWidth > 0 && onReactChange && onReactChange(rect);
+        }
+    });
+
     function startMeasure() {
+        document.addEventListener("mousedown", handleDocumentMouseMove);
         document.addEventListener("mousemove", handleDocumentMouseMove);
         document.addEventListener("mouseup", handleDocumentMouseUp);
     }
@@ -40,23 +53,25 @@ export function useRelativePosition(ref: MutableRefObject<HTMLElement | null>) {
     function handleDocumentMouseMove(e: MouseEvent) {
         let targetRect;
 
+        // 获得的边界矩形与当前的滚动位置无关。
         ref.current && (targetRect = ref.current.getBoundingClientRect());
 
         targetRect &&
             setRect({
-                left: e.pageX - targetRect.left,
-                right: e.pageX - targetRect.right,
-                top: e.pageY - targetRect.top,
-                bottom: e.pageY - targetRect.bottom,
+                left: e.clientX - targetRect.left,
+                right: e.clientX - targetRect.right,
+                top: e.clientY - targetRect.top,
+                bottom: e.clientY - targetRect.bottom,
                 targetWidth: targetRect.width,
                 targetHeight: targetRect.height,
             });
     }
 
     function handleDocumentMouseUp() {
+        document.removeEventListener("mousedown", handleDocumentMouseMove);
         document.removeEventListener("mousemove", handleDocumentMouseMove);
         document.removeEventListener("mouseup", handleDocumentMouseUp);
     }
 
-    return [rect, startMeasure] as [RelativeRect, () => void];
+    return [startMeasure] as [() => void];
 }
