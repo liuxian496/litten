@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { ControlProps, LayoutControlProps } from "../control/control.types";
+import { ControlProps } from "../control/control.types";
 
 export interface FormProps extends ControlProps {
     /**

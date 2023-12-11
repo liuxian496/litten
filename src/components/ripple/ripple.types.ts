@@ -75,8 +75,8 @@ export interface RippleFocusProps extends ControlProps {
 }
 
 /**
- * RippleRef
+ * LittenRipple
  */
-export interface RippleRef {
+export interface LittenRipple {
     setMouseState: (state: MouseState) => void;
 }

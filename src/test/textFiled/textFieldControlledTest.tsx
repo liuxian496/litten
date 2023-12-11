@@ -13,7 +13,7 @@ import { TextFieldValue } from '../../components/textField/textField.types';
 import { FormLabel } from '../../components/formLabel/formLabel';
 
 const Test = () => {
-    const [role, setRole] = useState<TextFieldValue>();
+    const [role, setRole] = useState<TextFieldValue>("");
 
     function handleTextFieldChange(event: LittenTextChangeEvent) {
         const { value } = event;

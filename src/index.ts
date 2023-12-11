@@ -30,6 +30,9 @@ export { IconButton } from "./components/iconButton/iconButton";
 export { Radio } from "./components/radio/radio";
 export { RadioGroup } from "./components/radio/radioGroup";
 
+// Slider
+export { Slider } from "./components/slider/slider";
+
 // StackPanel
 export { StackPanel } from "./components/stackPanel/stackPanel";
 

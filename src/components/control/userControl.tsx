@@ -1,6 +1,6 @@
 import { useState, FocusEvent } from "react";
 import { UserControlProps } from "./control.types";
-import { MouseState } from "../../global/enum";
+import { FocusState, MouseState } from "../../global/enum";
 import { gettLabeMouseState, setLabeMouseState } from "../formLabel/formLabel";
 
 /**
@@ -32,4 +32,13 @@ export function useFocusd<T>(props: UserControlProps<T>) {
         (e: FocusEvent<T>) => void,
         (e: FocusEvent<T>) => void
     ];
+}
+
+/**
+ * 通过focused的值，获取焦点状态
+ * @param focused 控件是否获得焦点
+ * @returns 焦点状态
+ */
+export function getStateByFocused(focused: boolean) {
+    return focused === true ? FocusState.focus : FocusState.blur;
 }

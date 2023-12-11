@@ -13,7 +13,7 @@ import {
 } from "../../global/enum";
 
 import { SwitchProps } from "./switch.types";
-import { RippleRef } from "../ripple/ripple.types";
+import { LittenRipple } from "../ripple/ripple.types";
 import { Ripple } from "../ripple/ripple";
 import {
     getCheckState,
@@ -39,7 +39,7 @@ export const Switch = ({
 }: SwitchProps) => {
     const { onChange, name } = props;
 
-    const rippleRef = useRef<RippleRef | null>(null);
+    const rippleRef = useRef<LittenRipple | null>(null);
 
     const disabled = useDisabled({ disabled: disabledProp, loading });
 

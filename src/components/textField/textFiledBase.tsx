@@ -12,14 +12,14 @@ export function getVisualStates(props: TextFieldProps, states: VisualStates) {
         disabled,
     } = props;
 
-    const { focused } = states;
+    const { focusState } = states;
     const prefixCls = getPrefixNs('textField', customizePrefixCls);
 
     const visualStates = classnames(
         prefixCls,
+        `${prefixCls}--${focusState}`,
         {
             [`${prefixCls}--disabled`]: disabled === true,
-            [`${prefixCls}--focused`]: focused === true,
         });
 
     return visualStates;

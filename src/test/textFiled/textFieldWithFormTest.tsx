@@ -19,7 +19,7 @@ import { Form } from '../../components/form/form';
 import { FormControl } from '../../components/form/formControl';
 
 type Data = {
-    name: string
+    role: string
 }
 
 const Test = () => {

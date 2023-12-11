@@ -1,25 +1,29 @@
 import React, { useContext, useEffect, useState } from "react";
 import "./form.less";
 
-import { FormControlProps } from "./form.types";
-import { FormContext } from "./form";
-
 import {
     ContentControlProps,
     LittenContentChangeEvent,
     LittenValue,
 } from "../control/control.types";
 import { UserControlType } from "../../global/enum";
+import { getDefaultValueByDisplayName } from "../control/contentControl";
+
+import { FormControlProps } from "./form.types";
+import { FormContext } from "./form";
+
 
 export const FormControl = (props: FormControlProps) => {
     const { children, valuePath } = props;
 
     const { type: Component, props: childrenProps } = children;
 
-    const { onChange, defaultValue = "" } =
-        childrenProps as ContentControlProps;
-
     const { displayName } = Component;
+
+    const {
+        onChange,
+        defaultValue = getDefaultValueByDisplayName(displayName),
+    } = childrenProps as ContentControlProps;
 
     const [value, setValue] = useState<LittenValue>();
 

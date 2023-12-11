@@ -1,16 +1,22 @@
-import React, { useEffect, useRef } from "react";
+import React, { useRef, useState } from "react";
 
 import { UtilStory } from "../../stories/util.stories";
 
 import { useRelativePosition } from "../../components/control/control";
-import { fireEvent, userEvent, within } from "@storybook/testing-library";
-import { Button } from "../../components/button/button";
+import { fireEvent, within } from "@storybook/testing-library";
 import { StackPanel } from "../../components/stackPanel/stackPanel";
+import { RelativeRect } from "../../components/control/control.types";
 
 const Test = () => {
     const divRef = useRef<HTMLDivElement>(null);
 
-    const [rect, startMeasure] = useRelativePosition(divRef);
+    const [rect, setRect] = useState<RelativeRect | undefined>();
+
+    const [startMeasure] = useRelativePosition(divRef, handleRectChange);
+
+    function handleRectChange(rect: RelativeRect) {
+        setRect(rect);
+    }
 
     function handleDivMouseDown() {
         startMeasure();
@@ -31,12 +37,12 @@ const Test = () => {
                     onMouseDown={handleDivMouseDown}
                 ></div>
             </StackPanel>
-            <div>{`left: ${rect.left}`}</div>
-            <div>{`right: ${rect.right}`}</div>
-            <div>{`top: ${rect.top}`}</div>
-            <div>{`bottom: ${rect.bottom}`}</div>
-            <div>{`targetWidth: ${rect.targetWidth}`}</div>
-            <div>{`targetHeight: ${rect.targetHeight}`}</div>
+            <div>{`left: ${rect?.left}`}</div>
+            <div>{`right: ${rect?.right}`}</div>
+            <div>{`top: ${rect?.top}`}</div>
+            <div>{`bottom: ${rect?.bottom}`}</div>
+            <div>{`targetWidth: ${rect?.targetWidth}`}</div>
+            <div>{`targetHeight: ${rect?.targetHeight}`}</div>
         </>
     );
 };

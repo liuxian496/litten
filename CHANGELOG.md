@@ -1,3 +1,18 @@
+# [0.6.0](https://github.com/liuxian496/litten/compare/v0.5.8...v0.6.0) (2023-12-11)
+
+
+### Bug Fixes
+
+* 添加getDefaultValueByDisplayName，修改form获取defaultValue不正确的问题 ([ca67acf](https://github.com/liuxian496/litten/commit/ca67acf28e552e493932166d035cebfaacd15748))
+* 修改TextField 受控Story，控制台出现warning的问题。 ([72529f1](https://github.com/liuxian496/litten/commit/72529f1dbe5761b6786f39397e0520bbb50ed02c))
+
+
+### Features
+
+* 添加Slider控件 ([ece5c2e](https://github.com/liuxian496/litten/commit/ece5c2e0673082dc1a9f7de547c7b4ac80b3e8cf))
+
+
+
 ## [0.5.8](https://github.com/liuxian496/litten/compare/v0.5.7...v0.5.8) (2023-09-28)
 
 

@@ -2,7 +2,7 @@ import React, { ChangeEvent, forwardRef, LegacyRef } from "react";
 import "./textField.less";
 
 import { useDisabled } from "../control/disabledControl";
-import { useFocusd } from "../control/userControl";
+import { getStateByFocused, useFocusd } from "../control/userControl";
 import { useCurrentValue } from "../control/contentControl";
 import { TextFieldType, UserControlType } from "../../global/enum";
 
@@ -50,7 +50,9 @@ export const TextField = forwardRef(function TextField(
                     disabled,
                     ...props,
                 },
-                { focused }
+                {
+                    focusState: getStateByFocused(focused),
+                }
             )}
             style={style}
         >
