@@ -47,9 +47,9 @@ export enum Color {
  */
 export enum MouseState {
     mouseup = "mouseup",
+    mousedown = "mousedown",
     mouseover = "mouseover",
     mouseout = "mouseout",
-    mousedown = "mousedown",
     mousemove = "mousemove",
     none = "mousenone",
 }

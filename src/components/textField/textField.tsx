@@ -4,7 +4,7 @@ import "./textField.less";
 import { useDisabled } from "../control/disabledControl";
 import { getStateByFocused, useFocusd } from "../control/userControl";
 import { useCurrentValue } from "../control/contentControl";
-import { FocusState, TextFieldType, UserControlType } from "../../global/enum";
+import { TextFieldType, UserControlType } from "../../global/enum";
 
 import { TextFieldProps, TextFieldValue } from "./textField.types";
 import { getVisualStates, getInputVisualStates } from "./textFiledBase";
