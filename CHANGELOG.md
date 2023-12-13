@@ -1,3 +1,12 @@
+## [0.6.1](https://github.com/liuxian496/litten/compare/v0.6.0...v0.6.1) (2023-12-13)
+
+
+### Features
+
+* 添加labelStyle，FormLabel控件支持对Labe部分进行样式调整。 ([2b44895](https://github.com/liuxian496/litten/commit/2b44895d7ef76858c0f10eb80233184c00460aa4))
+
+
+
 # [0.6.0](https://github.com/liuxian496/litten/compare/v0.5.8...v0.6.0) (2023-12-11)
 
 
