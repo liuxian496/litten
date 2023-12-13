@@ -17,11 +17,12 @@
 ### 1. 安装litten
 npm i litten
 
-### 2. Litten的依赖
-使用Litten，需要引入下列两个库。
-1. <p>classnames</p><code>npm i classnames --save</code>
-2. <p>lodash</p><code>npm i lodash --save</code>
-3. <p>number-precision</p><code>npm install number-precision --save</code>
+### 2. litten依赖的库
+litten，依赖下面的库。
+1. [react](https://github.com/facebook/react)
+1. [classnames](https://github.com/JedWatson/classnames)
+2. [lodash](https://github.com/lodash/lodash)
+3. [number-precision](https://github.com/nefe/number-precision)
 
 ### 3. 引入litten样式
 <p>在项目的入口文件，例如：App.js或App.tsx中引入litten样式</p>
