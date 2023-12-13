@@ -49,11 +49,13 @@ function getLabelVisualStates(props: FormLabelProps) {
 }
 
 function renderLabel(props: FormLabelProps) {
-    const { label } = props;
+    const { label, labelStyle } = props;
 
     return (
         <>
-            <span className={getLabelVisualStates(props)}>{label}</span>
+            <span style={labelStyle} className={getLabelVisualStates(props)}>
+                {label}
+            </span>
         </>
     );
 }
@@ -62,6 +64,7 @@ export const FormLabel = ({
     labelPlacement = Placement.left,
     disabled: disabledProp = false,
     loading = false,
+    labelStyle,
     ...props
 }: FormLabelProps) => {
     const { children } = props;
@@ -84,11 +87,11 @@ export const FormLabel = ({
         >
             {(labelPlacement === Placement.top ||
                 labelPlacement === Placement.left) &&
-                renderLabel(props)}
+                renderLabel({ ...props, labelStyle })}
             {children}
             {(labelPlacement === Placement.bottom ||
                 labelPlacement === Placement.right) &&
-                renderLabel(props)}
+                renderLabel({ ...props, labelStyle })}
         </label>
     );
 };

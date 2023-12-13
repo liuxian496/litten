@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { CSSProperties, ReactNode } from "react";
 import { ControlProps, LayoutControlProps } from "../control/control.types";
 import { Placement } from "../../global/enum";
 
@@ -25,10 +25,11 @@ export interface FormControlProps extends ControlProps {
 }
 
 export interface FormLabelProps extends LayoutControlProps {
+    disabled?: boolean;
     htmlFor?: string;
     label: string;
     labelPlacement?: Placement;
-    disabled?: boolean;
+    labelStyle?: CSSProperties;
     loading?: boolean;
 }
 
