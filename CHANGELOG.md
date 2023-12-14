@@ -1,3 +1,12 @@
+## [0.6.2](https://github.com/liuxian496/litten/compare/v0.6.1...v0.6.2) (2023-12-14)
+
+
+### Bug Fixes
+
+* 将storybook/addon-coverage降级到0.0.9，解决DevTools不能加载source map的问题 ([1ca03d9](https://github.com/liuxian496/litten/commit/1ca03d9c6e88b33e4f24aed092398d49f9491234))
+
+
+
 ## [0.6.1](https://github.com/liuxian496/litten/compare/v0.6.0...v0.6.1) (2023-12-13)
 
 
