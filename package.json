@@ -73,7 +73,7 @@
     "@rollup/plugin-commonjs": "^25.0.3",
     "@rollup/plugin-json": "^6.0.0",
     "@rollup/plugin-node-resolve": "^15.1.0",
-    "@storybook/addon-coverage": "^1.0.0",
+    "@storybook/addon-coverage": "0.0.9",
     "@storybook/addon-essentials": "7.6.4",
     "@storybook/addon-interactions": "7.6.4",
     "@storybook/addon-links": "7.6.4",
