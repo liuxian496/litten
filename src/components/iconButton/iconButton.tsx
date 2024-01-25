@@ -3,7 +3,7 @@ import "./iconButton.less";
 
 import { useDisabled } from "../control/disabledControl";
 import { useFocusd } from "../control/userControl";
-import { Mode, Size, Color, UserControlType } from "../../global/enum";
+import { Mode, Size, Color, ControlType } from "../../global/enum";
 
 import { IconButtonProps } from "./iconButton.types";
 import {
@@ -24,13 +24,19 @@ export const IconButton = ({
         focusColor: getFocusColor({ mode, color }),
         waveColor: getWaveColor({ mode, color }),
     },
+    onDisabledChange,
     ...props
 }: IconButtonProps) => {
     const { children } = props;
 
     const [focused, handleFocus, handleBlur] = useFocusd(props);
 
-    const disabled = useDisabled({ disabled: disabledProp, loading });
+    const disabled = useDisabled({
+        disabled: disabledProp,
+        loading,
+        controlType: ControlType.IconButton,
+        onDisabledChange,
+    });
 
     return (
         <button
@@ -60,4 +66,4 @@ export const IconButton = ({
     );
 };
 
-IconButton.displayName = UserControlType.IconButton;
+IconButton.displayName = ControlType.IconButton;

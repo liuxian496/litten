@@ -3,7 +3,7 @@ import "./radio.less";
 
 import { RadioGroupProps } from "./radio.types";
 import { useCurrentValue } from "../control/contentControl";
-import { UserControlType } from "../../global/enum";
+import { ControlType } from "../../global/enum";
 import { setCheckedByGroupValue } from "../control/checkedControl";
 
 export const RadioGroup = (props: RadioGroupProps) => {
@@ -15,14 +15,14 @@ export const RadioGroup = (props: RadioGroupProps) => {
     >({
         value,
         defaultValue,
-        userControlType: UserControlType.Radio,
+        controlType: ControlType.Radio,
         onChange,
     });
 
     useEffect(() => {
         currentValue !== undefined &&
             name !== undefined &&
-            setCheckedByGroupValue(name, UserControlType.Radio, currentValue);
+            setCheckedByGroupValue(name, ControlType.Radio, currentValue);
     }, [currentValue, name]);
 
     function handleRadioChange(e: ChangeEvent<HTMLInputElement>) {
@@ -33,4 +33,4 @@ export const RadioGroup = (props: RadioGroupProps) => {
     return <span onChange={handleRadioChange}>{children}</span>;
 };
 
-RadioGroup.displayName = UserControlType.RadioGroup;
+RadioGroup.displayName = ControlType.RadioGroup;

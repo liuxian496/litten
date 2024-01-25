@@ -6,7 +6,7 @@ import {
     LittenContentChangeEvent,
     LittenValue,
 } from "../control/control.types";
-import { UserControlType } from "../../global/enum";
+import { ControlType } from "../../global/enum";
 import { getDefaultValueByDisplayName } from "../control/contentControl";
 
 import { FormControlProps } from "./form.types";
@@ -84,12 +84,12 @@ export const FormControl = (props: FormControlProps) => {
 
     return (
         <>
-            {displayName === UserControlType.Checkbox ||
-            displayName === UserControlType.Switch
+            {displayName === ControlType.Checkbox ||
+            displayName === ControlType.Switch
                 ? renderCheckedControl()
                 : renderContentControl()}
         </>
     );
 };
 
-FormControl.displayName = UserControlType.FormControl;
+FormControl.displayName = ControlType.FormControl;

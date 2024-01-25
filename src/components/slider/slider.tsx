@@ -15,7 +15,7 @@ import {
     MouseState,
     Orientation,
     Size,
-    UserControlType,
+    ControlType,
 } from "../../global/enum";
 
 import { useDisabled } from "../control/disabledControl";
@@ -52,6 +52,7 @@ export const Slider = forwardRef(function Slider(
         orientation = Orientation.horizontal,
         value,
         onChange,
+        onDisabledChange,
         ...props
     }: SliderProps,
     ref
@@ -62,7 +63,12 @@ export const Slider = forwardRef(function Slider(
 
     const [startMeasure] = useRelativePosition(sliderRef, handleRectChange);
 
-    const disabled = useDisabled({ disabled: disabledProp, loading });
+    const disabled = useDisabled({
+        disabled: disabledProp,
+        loading,
+        controlType: ControlType.Slider,
+        onDisabledChange,
+    });
 
     const [thumbMouseState, setThumbMouseState] = useState(MouseState.none);
     const [thumbFocusState, setThumbFocusState] = useState(FocusState.blur);
@@ -74,7 +80,7 @@ export const Slider = forwardRef(function Slider(
         // value: checkExtremum(value, { min, max }),
         value,
         defaultValue,
-        userControlType: UserControlType.Slider,
+        controlType: ControlType.Slider,
         onChange,
     });
 
@@ -234,4 +240,4 @@ export const Slider = forwardRef(function Slider(
     );
 });
 
-Slider.displayName = UserControlType.Slider;
+Slider.displayName = ControlType.Slider;

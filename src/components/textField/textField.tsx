@@ -4,7 +4,7 @@ import "./textField.less";
 import { useDisabled } from "../control/disabledControl";
 import { getStateByFocused, useFocusd } from "../control/userControl";
 import { useCurrentValue } from "../control/contentControl";
-import { TextFieldType, UserControlType } from "../../global/enum";
+import { TextFieldType, ControlType } from "../../global/enum";
 
 import { TextFieldProps, TextFieldValue } from "./textField.types";
 import { getVisualStates, getInputVisualStates } from "./textFiledBase";
@@ -17,14 +17,20 @@ export const TextField = forwardRef(function TextField(
         defaultValue,
         style,
         type = TextFieldType.text,
-        userControlType,
+        controlType,
+        onDisabledChange,
         ...props
     }: TextFieldProps,
     ref?: LegacyRef<HTMLInputElement>
 ) {
     const { onChange } = props;
 
-    const disabled = useDisabled({ disabled: disabledProp, loading });
+    const disabled = useDisabled({
+        disabled: disabledProp,
+        loading,
+        controlType: ControlType.TextField,
+        onDisabledChange,
+    });
 
     const [currentValue, setCurrentValue, setOriginalEvent] = useCurrentValue<
         HTMLInputElement,
@@ -32,7 +38,7 @@ export const TextField = forwardRef(function TextField(
     >({
         value,
         defaultValue,
-        userControlType: UserControlType.TextField,
+        controlType: ControlType.TextField,
         onChange,
     });
 
@@ -74,4 +80,4 @@ export const TextField = forwardRef(function TextField(
     );
 });
 
-TextField.displayName = UserControlType.TextField;
+TextField.displayName = ControlType.TextField;

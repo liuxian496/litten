@@ -10,7 +10,7 @@ import "./ripple.less";
 import {
     AnimationState,
     MouseState,
-    UserControlType,
+    ControlType,
     WaveMode,
 } from "../../global/enum";
 import { getPrefixNs } from "../control/control";
@@ -255,4 +255,4 @@ export const Ripple = forwardRef(function Ripple(
     );
 });
 
-Ripple.displayName = UserControlType.Ripple;
+Ripple.displayName = ControlType.Ripple;

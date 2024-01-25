@@ -53,7 +53,7 @@ const meta: Meta<typeof Checkbox> = {
                 disable: true,
             },
         },
-        userControlType: {
+        controlType: {
             table: {
                 disable: true,
             },

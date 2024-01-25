@@ -5,7 +5,7 @@ import classnames from "classnames";
 
 import { SummaryProps } from "./summary.types";
 import { getPrefixNs } from "../control/control";
-import { Color, UserControlType } from "../../global/enum";
+import { Color, ControlType } from "../../global/enum";
 import { getI18NConfig } from "../../global/local";
 import { NoteIcon, WarningIcon, DeepIcon } from "../icon/icon";
 
@@ -88,4 +88,4 @@ export const Summary = (props: SummaryProps) => {
     );
 };
 
-Summary.displayName = UserControlType.Summary;
+Summary.displayName = ControlType.Summary;

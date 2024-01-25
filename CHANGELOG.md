@@ -1,3 +1,12 @@
+# [0.7.0](https://github.com/liuxian496/litten/compare/v0.6.2...v0.7.0) (2024-01-25)
+
+
+### Features
+
+* 支持onDisabledChange事件 ([606a4a8](https://github.com/liuxian496/litten/commit/606a4a8d37591939bbaa755bfee669ee3098f999))
+
+
+
 ## [0.6.2](https://github.com/liuxian496/litten/compare/v0.6.1...v0.6.2) (2023-12-14)
 
 

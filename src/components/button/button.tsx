@@ -3,7 +3,7 @@ import "./button.less";
 
 import classnames from "classnames";
 
-import { Mode, Size, Color, UserControlType } from "../../global/enum";
+import { Mode, Size, Color, ControlType } from "../../global/enum";
 import { getPrefixNs } from "../control/control";
 import { useFocusd } from "../control/userControl";
 import { useDisabled } from "../control/disabledControl";
@@ -50,13 +50,19 @@ export const Button = ({
         focusColor: getFocusColor({ mode, color }),
         waveColor: getWaveColor({ mode, color }),
     },
+    onDisabledChange,
     ...props
 }: ButtonProps) => {
     const { children } = props;
 
     const [focused, handleFocus, handleBlur] = useFocusd(props);
 
-    const disabled = useDisabled({ disabled: disabledProp, loading });
+    const disabled = useDisabled({
+        disabled: disabledProp,
+        loading,
+        controlType: ControlType.Button,
+        onDisabledChange,
+    });
 
     return (
         <button
@@ -93,4 +99,4 @@ export const Button = ({
     );
 };
 
-Button.displayName = UserControlType.Button;
+Button.displayName = ControlType.Button;

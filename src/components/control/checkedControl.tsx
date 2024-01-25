@@ -15,19 +15,19 @@ import {
 } from "./control.types";
 import { getCurrentValue } from "./contentControl";
 import { usePrevious } from "../../global/util";
-import { UserControlType } from "../../global/enum";
+import { ControlType } from "../../global/enum";
 
 // const LittenCheckboxGroups = {} as LittenCheckedGroups;
 const LittenRadioGroups = {} as LittenCheckedGroups;
 
-function getGroupsByUserControlType(type?: UserControlType) {
+function getGroupsByUserControlType(type?: ControlType) {
     let groups = {} as LittenCheckedGroups;
 
     switch (type) {
-        // case UserControlType.Checkbox:
+        // case ControlType.Checkbox:
         //     group = LittenCheckboxGroups;
         //     break;
-        case UserControlType.Radio:
+        case ControlType.Radio:
             groups = LittenRadioGroups;
             break;
     }
@@ -39,10 +39,10 @@ function addCheckedGroup(
     props: CheckedControlGroup,
     setChecked: Dispatch<SetStateAction<boolean | undefined>>
 ) {
-    const { name, value, uuid, userControlType } = props;
+    const { name, value, uuid, controlType } = props;
 
     if (name !== undefined) {
-        const groups = getGroupsByUserControlType(userControlType);
+        const groups = getGroupsByUserControlType(controlType);
 
         groups[name] === undefined && (groups[name] = {});
 
@@ -54,19 +54,19 @@ function addCheckedGroup(
 }
 
 function removeCheckedGroup(props: CheckedControlGroup) {
-    const { name, uuid, userControlType } = props;
+    const { name, uuid, controlType } = props;
 
     if (name !== undefined) {
-        const groups = getGroupsByUserControlType(userControlType);
+        const groups = getGroupsByUserControlType(controlType);
         delete groups[name][uuid];
     }
 }
 
 function updateCheckedGroup(props: CheckedControlGroup) {
-    const { name, uuid, userControlType } = props;
+    const { name, uuid, controlType } = props;
 
     if (name !== undefined) {
-        const groups = getGroupsByUserControlType(userControlType);
+        const groups = getGroupsByUserControlType(controlType);
         const group = groups[name];
 
         // 更新组内的其他控件
@@ -81,15 +81,15 @@ function updateCheckedGroup(props: CheckedControlGroup) {
 /**
  * 通过单选按钮组的值，设置选中的单选按钮
  * @param name 组名称
- * @param userControlType UserControl类型
+ * @param controlType UserControl类型
  * @param value 单选按钮组的值
  */
 export function setCheckedByGroupValue(
     name: string,
-    userControlType: UserControlType,
+    controlType: ControlType,
     value: string
 ) {
-    const groups = getGroupsByUserControlType(userControlType);
+    const groups = getGroupsByUserControlType(controlType);
     const group = groups[name];
 
     Object.keys(group).forEach((key) => {
@@ -105,7 +105,7 @@ export function setCheckedByGroupValue(
  * @param props 控件属性 CheckedControlProps
  */
 export function useCurrentChecked<T>(props: CheckedControlProps<T>) {
-    const { checked, defaultChecked, userControlType, onChange, value } = props;
+    const { checked, defaultChecked, controlType, onChange, value } = props;
 
     const prevChecked = usePrevious(checked);
 
@@ -130,7 +130,7 @@ export function useCurrentChecked<T>(props: CheckedControlProps<T>) {
             onChange?.({
                 e: originalEvent,
                 value,
-                userControlType,
+                controlType,
                 checked: current,
             });
 
@@ -149,20 +149,20 @@ function useCheckedGroup<T>(
     props: CheckedControlProps<T>,
     setChecked: Dispatch<SetStateAction<boolean | undefined>>
 ) {
-    const { name, userControlType, value } = props;
+    const { name, controlType, value } = props;
 
     const uuid = useId() + "-litten";
 
     useEffect(() => {
-        addCheckedGroup({ name, value, uuid, userControlType }, setChecked);
+        addCheckedGroup({ name, value, uuid, controlType }, setChecked);
         return () => {
-            removeCheckedGroup({ name, uuid, userControlType });
+            removeCheckedGroup({ name, uuid, controlType });
         };
-    }, [name, value, uuid, userControlType, setChecked]);
+    }, [name, value, uuid, controlType, setChecked]);
 
     const updateGroup = useCallback(() => {
-        updateCheckedGroup({ name, uuid, userControlType });
-    }, [name, uuid, userControlType]);
+        updateCheckedGroup({ name, uuid, controlType });
+    }, [name, uuid, controlType]);
 
     return [updateGroup];
 }

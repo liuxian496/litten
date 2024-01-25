@@ -1,20 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
-import { userEvent, waitFor, within } from '@storybook/testing-library';
-import { expect } from '@storybook/jest';
+import { userEvent, waitFor, within } from "@storybook/testing-library";
+import { expect } from "@storybook/jest";
 
-import { TextFiledStory } from '../../stories/textField.stories';
+import { TextFiledStory } from "../../stories/textField.stories";
 
-import { Placement } from '../../global/enum';
-import { LittenCheckedChangeEvent } from '../../components/control/control.types';
-import { FormLabel } from '../../components/formLabel/formLabel';
-import { Checkbox } from '../../components/checkbox/checkbox';
-import { TextField } from '../../components/textField/textField';
-import { StackPanel } from '../../components/stackPanel/stackPanel';
+import { Placement } from "../../global/enum";
+import {
+    LittenCheckedChangeEvent,
+    LittenDisabledChangeEvent,
+} from "../../components/control/control.types";
+import { FormLabel } from "../../components/formLabel/formLabel";
+import { Checkbox } from "../../components/checkbox/checkbox";
+import { TextField } from "../../components/textField/textField";
+import { StackPanel } from "../../components/stackPanel/stackPanel";
 
 const Test = () => {
     const [disabled, setDisabled] = useState<boolean | undefined>(true);
     const [loading, setLoading] = useState<boolean | undefined>(true);
+    const [msg, setMsg] = useState("");
 
     function handleDisableCheckboxChange(event: LittenCheckedChangeEvent) {
         const { checked } = event;
@@ -26,20 +30,39 @@ const Test = () => {
         setLoading(checked);
     }
 
+    function handleTextFieldDisabledChanged(event: LittenDisabledChangeEvent) {
+        const { disabled, controlType } = event;
+        setMsg(`${controlType}'s disabled is changed to ${disabled}`);
+    }
+
     return (
         <StackPanel direction="column" alignItems="flex-start">
-            <FormLabel label='Name: '>
-                <TextField data-testid="nameTextField" disabled={disabled} loading={loading} />
+            <FormLabel label="Name: ">
+                <TextField
+                    data-testid="nameTextField"
+                    disabled={disabled}
+                    loading={loading}
+                    onDisabledChange={handleTextFieldDisabledChanged}
+                />
             </FormLabel>
-            <FormLabel label='Disabled' labelPlacement={Placement.right}>
-                <Checkbox data-testid="disabled-checkbox" checked={disabled} onChange={handleDisableCheckboxChange} />
+            <FormLabel label="Disabled" labelPlacement={Placement.right}>
+                <Checkbox
+                    data-testid="disabled-checkbox"
+                    checked={disabled}
+                    onChange={handleDisableCheckboxChange}
+                />
             </FormLabel>
-            <FormLabel label='Loading' labelPlacement={Placement.right}>
-                <Checkbox data-testid="loading-checkbox" checked={loading} onChange={handleLoadingCheckboxChange} />
+            <FormLabel label="Loading" labelPlacement={Placement.right}>
+                <Checkbox
+                    data-testid="loading-checkbox"
+                    checked={loading}
+                    onChange={handleLoadingCheckboxChange}
+                />
             </FormLabel>
+            <div>{msg}</div>
         </StackPanel>
-    )
-}
+    );
+};
 
 export const DisabledTest: TextFiledStory = {
     parameters: {
@@ -49,38 +72,69 @@ export const DisabledTest: TextFiledStory = {
     play: async ({ canvasElement, step }) => {
         const canvas = within(canvasElement);
 
-        const nameTextField = canvas.getByTestId('nameTextField');
-        const DisabledCheckbox = canvas.getByTestId('disabled-checkbox');
-        const LoadingCheckbox = canvas.getByTestId('loading-checkbox');
+        const nameTextField = canvas.getByTestId("nameTextField");
+        const DisabledCheckbox = canvas.getByTestId("disabled-checkbox");
+        const LoadingCheckbox = canvas.getByTestId("loading-checkbox");
 
         await step('"Name" textField is disabled', async () => {
-            await waitFor(() => expect(
-                nameTextField
-            ).toBeDisabled());
+            await waitFor(() => expect(nameTextField).toBeDisabled());
+
+            await waitFor(() =>
+                expect(
+                    canvas.getByText("TextField's disabled is changed to true")
+                ).toBeInTheDocument()
+            );
         });
 
-        await step('Unchecked "Loading" checkbox, "Name" textField is also disabled', async () => {
-            await userEvent.click(LoadingCheckbox);
+        await step(
+            'Unchecked "Loading" checkbox, "Name" textField is also disabled',
+            async () => {
+                await userEvent.click(LoadingCheckbox);
 
-            await waitFor(() => expect(
-                nameTextField
-            ).toBeDisabled());
-        });
+                await waitFor(() => expect(nameTextField).toBeDisabled());
 
-        await step('Unchecked "Disabled" checkbox, "Name" textField is enable', async () => {
-            await userEvent.click(DisabledCheckbox);
+                await waitFor(() =>
+                    expect(
+                        canvas.getByText(
+                            "TextField's disabled is changed to true"
+                        )
+                    ).toBeInTheDocument()
+                );
+            }
+        );
 
-            await waitFor(() => expect(
-                nameTextField
-            ).toBeEnabled());
-        });
+        await step(
+            'Unchecked "Disabled" checkbox, "Name" textField is enable',
+            async () => {
+                await userEvent.click(DisabledCheckbox);
 
-        await step('Checked "Loading" checkbox, "Name" textField is disabled', async () => {
-            await userEvent.click(LoadingCheckbox);
+                await waitFor(() => expect(nameTextField).toBeEnabled());
 
-            await waitFor(() => expect(
-                nameTextField
-            ).toBeDisabled());
-        });
-    }
-}
+                await waitFor(() =>
+                    expect(
+                        canvas.getByText(
+                            "TextField's disabled is changed to false"
+                        )
+                    ).toBeInTheDocument()
+                );
+            }
+        );
+
+        await step(
+            'Checked "Loading" checkbox, "Name" textField is disabled',
+            async () => {
+                await userEvent.click(LoadingCheckbox);
+
+                await waitFor(() => expect(nameTextField).toBeDisabled());
+
+                await waitFor(() =>
+                    expect(
+                        canvas.getByText(
+                            "TextField's disabled is changed to true"
+                        )
+                    ).toBeInTheDocument()
+                );
+            }
+        );
+    },
+};
