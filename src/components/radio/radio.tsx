@@ -5,13 +5,7 @@ import { useDisabled } from "../control/disabledControl";
 import { RadioProps } from "./radio.types";
 import { useFocusd } from "../control/userControl";
 import { useCurrentChecked } from "../control/checkedControl";
-import {
-    CheckState,
-    Color,
-    Mode,
-    Size,
-    UserControlType,
-} from "../../global/enum";
+import { CheckState, Color, Mode, Size, ControlType } from "../../global/enum";
 
 import { Ripple } from "../ripple/ripple";
 import { getFocusColor, getWaveColor } from "../button/buttonBase";
@@ -38,11 +32,17 @@ export const Radio = ({
     defaultValue,
     defaultChecked = false,
     value = "on",
+    onDisabledChange,
     ...props
 }: RadioProps) => {
     const { onChange, name } = props;
 
-    const disabled = useDisabled({ disabled: disabledProp, loading });
+    const disabled = useDisabled({
+        disabled: disabledProp,
+        loading,
+        controlType: ControlType.Radio,
+        onDisabledChange,
+    });
 
     const [currentChecked, setCurrentChecked, setOriginalEvent] =
         useCurrentChecked<HTMLInputElement>({
@@ -50,7 +50,7 @@ export const Radio = ({
             defaultChecked,
             value,
             name,
-            userControlType: UserControlType.Radio,
+            controlType: ControlType.Radio,
             onChange,
         });
 
@@ -103,4 +103,4 @@ export const Radio = ({
     );
 };
 
-Radio.displayName = UserControlType.Radio;
+Radio.displayName = ControlType.Radio;

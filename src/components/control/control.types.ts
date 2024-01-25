@@ -11,7 +11,7 @@ import {
     EnableState,
     FocusState,
     MouseState,
-    UserControlType,
+    ControlType,
 } from "../../global/enum";
 
 export interface ControlProps {
@@ -23,6 +23,10 @@ export interface ControlProps {
      * 设置内联样式
      */
     style?: CSSProperties;
+    /**
+     * UserControl类型，代表在litten中的唯一标识
+     */
+    controlType?: ControlType;
 }
 
 export interface DisabledControlProps extends ControlProps {
@@ -36,6 +40,10 @@ export interface DisabledControlProps extends ControlProps {
      * @default false
      */
     loading?: boolean;
+    /**
+     * 在此元素的 disabled 属性值更改时发生。
+     */
+    onDisabledChange?: LittenDisabledChangeEventHandler;
 }
 
 export interface UserControlProps<T> extends DisabledControlProps {
@@ -84,10 +92,6 @@ export interface ContentControlProps<T = Element, V = LittenValue>
      */
     defaultValue?: V;
     /**
-     * UserControl类型，代表在litten中的唯一标识
-     */
-    userControlType?: UserControlType;
-    /**
      * 输入的值变化时触发。
      */
     onChange?: LittenContentChangeEventHandler<T, V>;
@@ -114,7 +118,7 @@ export interface CheckedControlGroup {
     /**
      * UserControl类型
      */
-    userControlType?: UserControlType;
+    controlType?: ControlType;
     /**
      * 选中时，对应的值
      */
@@ -209,8 +213,9 @@ export type RelativeRect = {
 export interface LittenEvent<E, V> {
     e?: E;
     value?: V;
-    userControlType?: UserControlType;
+    controlType?: ControlType;
     checked?: boolean;
+    disabled?: boolean;
 }
 
 export type LittenContentChangeEvent = LittenEvent<
@@ -225,11 +230,22 @@ export type LittenTextChangeEvent = LittenEvent<
     ChangeEvent<HTMLInputElement>,
     TextFieldValue
 >;
+
 export type LittenCheckedChangeEvent = LittenEvent<
     ChangeEvent<HTMLInputElement>,
     string
 >;
+
 export type LittenNumberChangeEvent = LittenEvent<
     ChangeEvent<HTMLInputElement>,
     number
 >;
+
+export type LittenDisabledChangeEvent = LittenEvent<
+    ChangeEvent<Element>,
+    undefined
+>;
+
+export type LittenDisabledChangeEventHandler = (
+    e: LittenEvent<ChangeEvent<Element>, undefined>
+) => void;

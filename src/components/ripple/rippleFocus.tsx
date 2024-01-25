@@ -2,7 +2,7 @@ import React from "react";
 import { max } from "lodash";
 
 import { RippleFocusProps } from "./ripple.types";
-import { UserControlType } from "../../global/enum";
+import { ControlType } from "../../global/enum";
 
 //直径需要减少的值
 const offset = 16;
@@ -52,4 +52,4 @@ export const RippleFocus = (props: RippleFocusProps) => {
     );
 };
 
-RippleFocus.displayName = UserControlType.RippleFocus;
+RippleFocus.displayName = ControlType.RippleFocus;

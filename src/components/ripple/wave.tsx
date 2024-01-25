@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { isFunction } from "lodash";
-import { AnimationState, UserControlType, WaveMode } from "../../global/enum";
+import { AnimationState, ControlType, WaveMode } from "../../global/enum";
 import { WaveProps } from "./ripple.types";
 
 // 用一个足够大的圆全覆盖父定位容器
@@ -99,4 +99,4 @@ export const Wave = (props: WaveProps) => {
     );
 };
 
-Wave.displayName = UserControlType.Wave;
+Wave.displayName = ControlType.Wave;

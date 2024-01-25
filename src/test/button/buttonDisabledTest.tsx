@@ -6,7 +6,10 @@ import { expect } from "@storybook/jest";
 import { ButtonStory } from "../../stories/button.stories";
 
 import { Mode, Placement } from "../../global/enum";
-import { LittenCheckedChangeEvent } from "../../components/control/control.types";
+import {
+    LittenCheckedChangeEvent,
+    LittenDisabledChangeEvent,
+} from "../../components/control/control.types";
 import { Button } from "../../components/button/button";
 import { FormLabel } from "../../components/formLabel/formLabel";
 import { Checkbox } from "../../components/checkbox/checkbox";
@@ -15,6 +18,7 @@ import { StackPanel } from "../../components/stackPanel/stackPanel";
 const Test = () => {
     const [disabled, setDisabled] = useState<boolean | undefined>(true);
     const [loading, setLoading] = useState<boolean | undefined>(true);
+    const [msg, setMsg] = useState("");
 
     function handleDisableCheckboxChange(event: LittenCheckedChangeEvent) {
         const { checked } = event;
@@ -24,6 +28,11 @@ const Test = () => {
     function handleLoadingCheckboxChange(event: LittenCheckedChangeEvent) {
         const { checked } = event;
         setLoading(checked);
+    }
+
+    function handlePrimaryBtuDisabledChanged(event: LittenDisabledChangeEvent) {
+        const { disabled, controlType } = event;
+        setMsg(`Primary ${controlType}'s disabled is changed to ${disabled}`);
     }
 
     return (
@@ -36,6 +45,7 @@ const Test = () => {
                 disabled={disabled}
                 loading={loading}
                 style={{ marginLeft: "16px" }}
+                onDisabledChange={handlePrimaryBtuDisabledChanged}
             >
                 Primary
             </Button>
@@ -62,6 +72,7 @@ const Test = () => {
                         onChange={handleLoadingCheckboxChange}
                     />
                 </FormLabel>
+                <div>{msg}</div>
             </StackPanel>
         </>
     );
@@ -87,6 +98,12 @@ export const DisabledTest: ButtonStory = {
             await waitFor(() => expect(primaryBtu).toBeDisabled());
 
             await waitFor(() => expect(outlinedBtu).toBeDisabled());
+
+            await waitFor(() =>
+                expect(
+                    canvas.getByText("Primary Button's disabled is changed to true")
+                ).toBeInTheDocument()
+            );
         });
 
         await step(
@@ -99,6 +116,12 @@ export const DisabledTest: ButtonStory = {
                 await waitFor(() => expect(primaryBtu).toBeDisabled());
 
                 await waitFor(() => expect(outlinedBtu).toBeDisabled());
+
+                await waitFor(() =>
+                    expect(
+                        canvas.getByText("Primary Button's disabled is changed to true")
+                    ).toBeInTheDocument()
+                );
             }
         );
 
@@ -112,6 +135,12 @@ export const DisabledTest: ButtonStory = {
                 await waitFor(() => expect(primaryBtu).toBeEnabled());
 
                 await waitFor(() => expect(outlinedBtu).toBeEnabled());
+
+                await waitFor(() =>
+                    expect(
+                        canvas.getByText("Primary Button's disabled is changed to false")
+                    ).toBeInTheDocument()
+                );
             }
         );
 
@@ -125,6 +154,12 @@ export const DisabledTest: ButtonStory = {
                 await waitFor(() => expect(primaryBtu).toBeDisabled());
 
                 await waitFor(() => expect(outlinedBtu).toBeDisabled());
+
+                await waitFor(() =>
+                    expect(
+                        canvas.getByText("Primary Button's disabled is changed to true")
+                    ).toBeInTheDocument()
+                );
             }
         );
     },

@@ -166,7 +166,7 @@ export enum Orange {
 /**
  * UserControl类型
  */
-export enum UserControlType {
+export enum ControlType {
     Button = "Button",
     Checkbox = "Checkbox",
     Form = "Form",

@@ -1,10 +1,14 @@
-import { ChangeEvent, ReactNode } from "react";
+import { ReactNode } from "react";
 import { Color, Size } from "../../global/enum";
-import { CheckedControlProps, ControlProps, LittenContentChangeEventHandler } from "../control/control.types";
+import {
+    CheckedControlProps,
+    ControlProps,
+    LittenContentChangeEventHandler,
+} from "../control/control.types";
 import { RippleColor } from "../ripple/ripple.types";
 
 export interface RadioProps extends CheckedControlProps<HTMLInputElement> {
-    'aria-label'?: string,
+    "aria-label"?: string;
     /**
      * 设置一个值，该值表示控件的使用风格
      */
@@ -21,7 +25,7 @@ export interface RadioProps extends CheckedControlProps<HTMLInputElement> {
      * 设置一个值，该值表示checkbox大小
      */
     size?: Size;
-};
+}
 
 export interface RadioGroupProps extends ControlProps {
     /**

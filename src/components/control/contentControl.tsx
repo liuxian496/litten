@@ -7,7 +7,7 @@ import {
 } from "react";
 import { ContentControlProps } from "./control.types";
 import { usePrevious } from "../../global/util";
-import { UserControlType } from "../../global/enum";
+import { ControlType } from "../../global/enum";
 
 /**
  * 检测一个数是否在给定的极值范围之内，并返回检测后的数值。如果小于最小值返回最小值，如果大于最大值返回最大值
@@ -58,7 +58,7 @@ export function getDefaultValueByDisplayName(displayName: string) {
     let defaultValue;
 
     switch (displayName) {
-        case UserControlType.Slider:
+        case ControlType.Slider:
             defaultValue = 50;
             break;
         default:
@@ -74,7 +74,7 @@ export function getDefaultValueByDisplayName(displayName: string) {
  * @returns current 当前控件的默认值
  */
 export function useCurrentValue<T, V>(props: ContentControlProps<T, V>) {
-    const { value, defaultValue, userControlType, onChange } = props;
+    const { value, defaultValue, controlType, onChange } = props;
     const prevValue = usePrevious(value);
 
     const [current, setCurrent] = useState<V | undefined>(
@@ -95,7 +95,7 @@ export function useCurrentValue<T, V>(props: ContentControlProps<T, V>) {
         if (previous !== current) {
             onChange?.({
                 e: originalEvent,
-                userControlType,
+                controlType,
                 value: current,
             });
         }

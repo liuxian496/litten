@@ -8,7 +8,7 @@ import {
     Color,
     MouseState,
     Size,
-    UserControlType,
+    ControlType,
     WaveMode,
 } from "../../global/enum";
 
@@ -35,13 +35,19 @@ export const Switch = ({
     defaultValue,
     defaultChecked = false,
     value = "on",
+    onDisabledChange,
     ...props
 }: SwitchProps) => {
     const { onChange, name } = props;
 
     const rippleRef = useRef<LittenRipple | null>(null);
 
-    const disabled = useDisabled({ disabled: disabledProp, loading });
+    const disabled = useDisabled({
+        disabled: disabledProp,
+        loading,
+        controlType: ControlType.Switch,
+        onDisabledChange,
+    });
 
     const [currentChecked, setCurrentChecked, setOriginalEvent] =
         useCurrentChecked<HTMLInputElement>({
@@ -49,7 +55,7 @@ export const Switch = ({
             defaultChecked,
             value,
             name,
-            userControlType: UserControlType.Switch,
+            controlType: ControlType.Switch,
             onChange,
         });
 
@@ -127,4 +133,4 @@ export const Switch = ({
     );
 };
 
-Switch.displayName = UserControlType.Switch;
+Switch.displayName = ControlType.Switch;

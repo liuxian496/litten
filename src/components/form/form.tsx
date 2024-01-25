@@ -8,7 +8,7 @@ import { FormProps, FormContextProps, FormRegisterProps } from './form.types';
 import { getPrefixNs } from '../control/control';
 
 import { ExceptionBoundary } from '../control/exceptionBoundary';
-import { UserControlType } from '../../global/enum';
+import { ControlType } from '../../global/enum';
 
 
 function getVisualStates(cls?: string) {
@@ -81,4 +81,4 @@ export const Form = ({
     )
 };
 
-Form.displayName = UserControlType.Form;
+Form.displayName = ControlType.Form;

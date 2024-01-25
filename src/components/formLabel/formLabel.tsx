@@ -2,7 +2,7 @@ import "./formLabel.less";
 
 import classnames from "classnames";
 
-import { MouseState, Placement, UserControlType } from "../../global/enum";
+import { MouseState, Placement, ControlType } from "../../global/enum";
 import { getPrefixNs } from "../control/control";
 
 import { FormLabelProps } from "../formLabel/formLabel.types";
@@ -96,4 +96,4 @@ export const FormLabel = ({
     );
 };
 
-FormLabel.displayName = UserControlType.FormLabel;
+FormLabel.displayName = ControlType.FormLabel;

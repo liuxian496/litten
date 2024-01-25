@@ -11,6 +11,7 @@ import { expect } from "@storybook/jest";
 import { CheckboxStory } from "../../stories/checkbox.stories";
 
 import { Mode } from "../../global/enum";
+import { LittenDisabledChangeEvent } from "../../components/control/control.types";
 import { FormLabel } from "../../components/formLabel/formLabel";
 import { Checkbox } from "../../components/checkbox/checkbox";
 import { Button } from "../../components/button/button";
@@ -18,9 +19,17 @@ import { StackPanel } from "../../components/stackPanel/stackPanel";
 
 const Test = () => {
     const [disabled, seDisabled] = useState(true);
+    const [msg, setMsg] = useState("");
 
     function handleChangeDisabledClick() {
         seDisabled(!disabled);
+    }
+
+    function handleSwitchCheckboxDisabledChanged(
+        event: LittenDisabledChangeEvent
+    ) {
+        const { disabled, controlType } = event;
+        setMsg(`Switch ${controlType}'s disabled is changed to ${disabled}`);
     }
 
     return (
@@ -34,6 +43,7 @@ const Test = () => {
                     data-testid="switch"
                     defaultChecked={true}
                     disabled={disabled}
+                    onDisabledChange={handleSwitchCheckboxDisabledChanged}
                 />
             </FormLabel>
             <FormLabel label="Xbox" disabled={disabled}>
@@ -42,6 +52,7 @@ const Test = () => {
             <Button mode={Mode.outlined} onClick={handleChangeDisabledClick}>
                 Change Disabled
             </Button>
+            <div>{msg}</div>
         </StackPanel>
     );
 };
@@ -67,6 +78,12 @@ export const DisabledTest: CheckboxStory = {
 
                 await waitFor(() =>
                     expect(canvas.getByTestId("xbox")).toBeDisabled()
+                );
+
+                await waitFor(() =>
+                    expect(
+                        canvas.getByText("Switch Checkbox's disabled is changed to true")
+                    ).toBeInTheDocument()
                 );
             }
         );
@@ -97,6 +114,12 @@ export const DisabledTest: CheckboxStory = {
                 await waitFor(() =>
                     expect(canvas.getByTestId("xbox")).toBeEnabled()
                 );
+
+                await waitFor(() =>
+                    expect(
+                        canvas.getByText("Switch Checkbox's disabled is changed to false")
+                    ).toBeInTheDocument()
+                );
             }
         );
 
@@ -123,6 +146,12 @@ export const DisabledTest: CheckboxStory = {
 
                 await waitFor(() =>
                     expect(canvas.getByTestId("xbox")).toBeDisabled()
+                );
+
+                await waitFor(() =>
+                    expect(
+                        canvas.getByText("Switch Checkbox's disabled is changed to true")
+                    ).toBeInTheDocument()
                 );
             }
         );

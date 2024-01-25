@@ -4,7 +4,7 @@ import "./stackPanel.less";
 import classnames from "classnames";
 
 import { getPrefixNs } from "../control/control";
-import { UserControlType } from "../../global/enum";
+import { ControlType } from "../../global/enum";
 
 function getVisualStates(props: StackPanelProps) {
     const {
@@ -48,4 +48,4 @@ export const StackPanel = ({
     );
 };
 
-StackPanel.displayName = UserControlType.StackPanel;
+StackPanel.displayName = ControlType.StackPanel;

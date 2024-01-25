@@ -57,7 +57,7 @@ export default {
                 disable: true,
             },
         },
-        userControlType: {
+        controlType: {
             table: {
                 disable: true,
             },

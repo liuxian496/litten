@@ -11,6 +11,7 @@ import { expect } from "@storybook/jest";
 import { CheckboxStory } from "../../stories/checkbox.stories";
 
 import { Mode } from "../../global/enum";
+import { LittenDisabledChangeEvent } from "../../components/control/control.types";
 import { FormLabel } from "../../components/formLabel/formLabel";
 import { Switch } from "../../components/switch/switch";
 import { Button } from "../../components/button/button";
@@ -19,8 +20,15 @@ import { StackPanel } from "../../components/stackPanel/stackPanel";
 const Test = () => {
     const [disabled, seDisabled] = useState(true);
 
+    const [msg, setMsg] = useState("");
+
     function handleChangeDisabledClick() {
         seDisabled(!disabled);
+    }
+
+    function handleXboxSwitchDisabledChanged(event: LittenDisabledChangeEvent) {
+        const { disabled, controlType } = event;
+        setMsg(`The xbox ${controlType}'s disabled is changed to ${disabled}`);
     }
 
     return (
@@ -37,11 +45,16 @@ const Test = () => {
                 />
             </FormLabel>
             <FormLabel label="Xbox" disabled={disabled}>
-                <Switch data-testid="xbox" disabled={disabled} />
+                <Switch
+                    data-testid="xbox"
+                    disabled={disabled}
+                    onDisabledChange={handleXboxSwitchDisabledChanged}
+                />
             </FormLabel>
             <Button mode={Mode.outlined} onClick={handleChangeDisabledClick}>
                 Change Disabled
             </Button>
+            <div>{msg}</div>
         </StackPanel>
     );
 };
@@ -70,6 +83,14 @@ export const DisabledTest: CheckboxStory = {
                     expect(switchControl).toBeDisabled();
                     expect(xbox).toBeDisabled();
                 });
+
+                await waitFor(() =>
+                    expect(
+                        canvas.getByText(
+                            "The xbox Switch's disabled is changed to true"
+                        )
+                    ).toBeInTheDocument()
+                );
             }
         );
 
@@ -78,7 +99,7 @@ export const DisabledTest: CheckboxStory = {
             async () => {
                 await fireEvent.click(switchLabel);
 
-                await expect(switchControl).toBeChecked()
+                await expect(switchControl).toBeChecked();
             }
         );
 
@@ -93,8 +114,16 @@ export const DisabledTest: CheckboxStory = {
             async () => {
                 await userEvent.click(changeBtu);
 
-                expect(switchControl).toBeEnabled();
-                expect(xbox).toBeEnabled();
+                await expect(switchControl).toBeEnabled();
+                await expect(xbox).toBeEnabled();
+
+                await waitFor(() =>
+                    expect(
+                        canvas.getByText(
+                            "The xbox Switch's disabled is changed to false"
+                        )
+                    ).toBeInTheDocument()
+                );
             }
         );
 
@@ -118,6 +147,14 @@ export const DisabledTest: CheckboxStory = {
                 await expect(switchControl).toBeDisabled();
 
                 await expect(xbox).toBeDisabled();
+
+                await waitFor(() =>
+                expect(
+                    canvas.getByText(
+                        "The xbox Switch's disabled is changed to true"
+                    )
+                ).toBeInTheDocument()
+            );
             }
         );
     },

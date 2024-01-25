@@ -4,13 +4,7 @@ import "./checkbox.less";
 import { useFocusd } from "../control/userControl";
 import { useCurrentChecked } from "../control/checkedControl";
 import { useDisabled } from "../control/disabledControl";
-import {
-    CheckState,
-    Color,
-    Mode,
-    Size,
-    UserControlType,
-} from "../../global/enum";
+import { CheckState, Color, Mode, Size, ControlType } from "../../global/enum";
 
 import { Ripple } from "../ripple/ripple";
 import { getFocusColor, getWaveColor } from "../button/buttonBase";
@@ -39,19 +33,25 @@ export const Checkbox = ({
     defaultValue,
     value = "on",
     indeterminate = false,
+    onDisabledChange,
     ...props
 }: CheckboxProps) => {
     const { onChange } = props;
 
-    const disabled = useDisabled({ disabled: disabledProp, loading });
+    const disabled = useDisabled({
+        disabled: disabledProp,
+        loading,
+        controlType: ControlType.Checkbox,
+        onDisabledChange,
+    });
 
     const [currentChecked, setCurrentChecked, setOriginalEvent] =
         useCurrentChecked({
             checked,
             defaultChecked,
+            controlType: ControlType.Checkbox,
             onChange,
-            userControlType: UserControlType.Checkbox,
-        } as CheckboxProps);
+        });
 
     const [focused, handleFocus, handleBlur] = useFocusd(props);
 
@@ -101,4 +101,4 @@ export const Checkbox = ({
     );
 };
 
-Checkbox.displayName = UserControlType.Checkbox;
+Checkbox.displayName = ControlType.Checkbox;
