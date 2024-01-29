@@ -2,13 +2,14 @@ import { Meta, StoryObj } from "@storybook/react";
 
 import { Switch } from "../components/switch/switch";
 
-import { DefaultTest } from "../test/switch/switchDefaultTest";
 import { CheckedTest } from "../test/switch/switchCheckedTest";
 import { ColorTest } from "../test/switch/switchColorTest";
-import { SizeTest } from "../test/switch/switchSizeTest";
 import { ControlledTest } from "../test/switch/switchControlledTest";
-import { WithFormTest } from "../test/switch/switchWithFormTest";
+import { DefaultTest } from "../test/switch/switchDefaultTest";
 import { DisabledTest } from "../test/switch/switchDisabledTest";
+import { SizeTest } from "../test/switch/switchSizeTest";
+import { UnControlledTest } from "../test/switch/switchUnControlledTest";
+import { WithFormTest } from "../test/switch/switchWithFormTest";
 
 export default {
     title: "Example/Switch",
@@ -84,3 +85,5 @@ export const Disabled = DisabledTest;
 export const Size = SizeTest;
 
 export const WithForm = WithFormTest;
+
+export const Uncontrolled = UnControlledTest;

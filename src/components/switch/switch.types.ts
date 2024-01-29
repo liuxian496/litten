@@ -3,7 +3,7 @@ import { CheckedControlProps } from "../control/checkedControl.types";
 import { RippleColor } from "../ripple/ripple.types";
 
 export interface SwitchProps extends CheckedControlProps<HTMLInputElement> {
-    'aria-label'?: string,
+    "aria-label"?: string;
     /**
      * 设置一个值，该值表示控件的使用风格
      */
@@ -20,4 +20,12 @@ export interface SwitchProps extends CheckedControlProps<HTMLInputElement> {
      * 设置一个值，该值表示checkbox大小
      */
     size?: Size;
-};
+}
+
+/**
+ * LittenSwitch
+ */
+export interface LittenSwitch {
+    value: string;
+    checked: boolean;
+}
