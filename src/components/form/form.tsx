@@ -7,7 +7,7 @@ import { FormProps, FormContextProps, FormRegisterProps } from './form.types';
 
 import { getPrefixNs } from '../control/control';
 
-import { ExceptionBoundary } from '../control/exceptionBoundary';
+import { ExceptionBoundary } from '../exceptionBoundary/exceptionBoundary';
 import { ControlType } from '../../global/enum';
 
 

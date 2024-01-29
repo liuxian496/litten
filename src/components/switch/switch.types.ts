@@ -1,5 +1,5 @@
 import { Color, Size } from "../../global/enum";
-import { CheckedControlProps } from "../control/control.types";
+import { CheckedControlProps } from "../control/checkedControl.types";
 import { RippleColor } from "../ripple/ripple.types";
 
 export interface SwitchProps extends CheckedControlProps<HTMLInputElement> {

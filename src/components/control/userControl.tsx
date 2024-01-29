@@ -1,5 +1,5 @@
 import { useState, FocusEvent } from "react";
-import { UserControlProps } from "./control.types";
+import { UserControlProps } from "./userControl.types";
 import { FocusState, MouseState } from "../../global/enum";
 import { gettLabeMouseState, setLabeMouseState } from "../formLabel/formLabel";
 
