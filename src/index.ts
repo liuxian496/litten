@@ -7,7 +7,7 @@ export type {
     LittenContentChangeEvent,
     LittenTextChangeEvent,
     LittenCheckedChangeEvent,
-} from "./components/control/control.types";
+} from "./components/control/littenEvent.types";
 
 // button
 export { Button } from "./components/button/button";

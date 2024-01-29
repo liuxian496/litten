@@ -1,5 +1,5 @@
 import { Color, Orientation, Size } from "../../global/enum";
-import { ContentControlProps } from "../control/control.types";
+import { ContentControlProps } from "../control/contentControl.types";
 
 export type SliderMark = {
     /**

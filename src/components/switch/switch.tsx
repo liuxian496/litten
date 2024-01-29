@@ -1,4 +1,11 @@
-import React, { useState, ChangeEvent, useEffect, useRef } from "react";
+import React, {
+    useState,
+    ChangeEvent,
+    useEffect,
+    useRef,
+    forwardRef,
+    useImperativeHandle,
+} from "react";
 import "./switch.less";
 
 import { useDisabled } from "../control/disabledControl";
@@ -25,19 +32,22 @@ import {
     getRippleColor,
 } from "./switchBase";
 
-export const Switch = ({
-    disabled: disabledProp = false,
-    loading = false,
-    color = Color.default,
-    size = Size.medium,
-    style,
-    checked,
-    defaultValue,
-    defaultChecked = false,
-    value = "on",
-    onDisabledChange,
-    ...props
-}: SwitchProps) => {
+export const Switch = forwardRef(function Switch(
+    {
+        disabled: disabledProp = false,
+        loading = false,
+        color = Color.default,
+        size = Size.medium,
+        style,
+        checked,
+        defaultValue,
+        defaultChecked = false,
+        value = "on",
+        onDisabledChange,
+        ...props
+    }: SwitchProps,
+    ref
+) {
     const { onChange, name } = props;
 
     const rippleRef = useRef<LittenRipple | null>(null);
@@ -68,6 +78,13 @@ export const Switch = ({
     useEffect(() => {
         setCheckStatus(getCheckState(currentChecked));
     }, [currentChecked]);
+
+    useImperativeHandle(ref, () => {
+        return {
+            value,
+            checked: currentChecked,
+        };
+    });
 
     function handleInputChange(e: ChangeEvent<HTMLInputElement>) {
         setOriginalEvent(e);
@@ -131,6 +148,6 @@ export const Switch = ({
             />
         </span>
     );
-};
+});
 
 Switch.displayName = ControlType.Switch;

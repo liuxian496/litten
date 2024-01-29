@@ -1,4 +1,4 @@
-import { LayoutControlProps } from "../control/control.types";
+import { LayoutControlProps } from "../control/layoutControl.types";
 import { Color } from "../../global/enum";
 
 export interface SummaryProps extends LayoutControlProps {

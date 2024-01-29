@@ -5,7 +5,7 @@ import {
     Dispatch,
     SetStateAction,
 } from "react";
-import { ContentControlProps } from "./control.types";
+import { ContentControlProps } from "./contentControl.types";
 import { usePrevious } from "../../global/util";
 import { ControlType } from "../../global/enum";
 

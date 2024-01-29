@@ -8,14 +8,16 @@ import {
     useCallback,
 } from "react";
 
+import { usePrevious } from "../../global/util";
+import { ControlType } from "../../global/enum";
+
+import { getCurrentValue } from "./contentControl";
 import {
     CheckedControlGroup,
     CheckedControlProps,
     LittenCheckedGroups,
-} from "./control.types";
-import { getCurrentValue } from "./contentControl";
-import { usePrevious } from "../../global/util";
-import { ControlType } from "../../global/enum";
+} from "./checkedControl.types";
+
 
 // const LittenCheckboxGroups = {} as LittenCheckedGroups;
 const LittenRadioGroups = {} as LittenCheckedGroups;

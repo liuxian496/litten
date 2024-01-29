@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { DisabledControlProps } from "./control.types";
+import { DisabledControlProps } from "./disabledControl.types";
 import { usePrevious } from "../../global/util";
 
 /**

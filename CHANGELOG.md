@@ -1,3 +1,12 @@
+## [0.7.1](https://github.com/liuxian496/litten/compare/v0.7.0...v0.7.1) (2024-01-29)
+
+
+### Features
+
+* 支持用非受控的方式使用switch ([7390ad1](https://github.com/liuxian496/litten/commit/7390ad1c70b2599e9940e1684625c0ba0fe23759))
+
+
+
 # [0.7.0](https://github.com/liuxian496/litten/compare/v0.6.2...v0.7.0) (2024-01-25)
 
 

@@ -1,7 +1,7 @@
 import { CSSProperties, ReactNode, MouseEvent } from 'react';
 
 import { Color, Mode, Size } from "../../global/enum";
-import { UserControlProps } from '../control/control.types';
+import { UserControlProps } from '../control/userControl.types';
 import { RippleColor } from '../ripple/ripple.types';
 
 export interface ButtonBaseProps extends UserControlProps<HTMLButtonElement> {
