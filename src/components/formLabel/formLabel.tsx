@@ -3,7 +3,7 @@ import "./formLabel.less";
 import classnames from "classnames";
 
 import { MouseState, Placement, ControlType } from "../../global/enum";
-import { getPrefixNs } from "../control/control";
+import { getPrefixNs } from "../control/userControl";
 
 import { FormLabelProps } from "../formLabel/formLabel.types";
 import { useDisabled } from "../control/disabledControl";

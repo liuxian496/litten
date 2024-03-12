@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
-import { ControlProps } from "./control.types";
+import { UserControlProps } from "./control.types";
 
-export interface LayoutControlProps extends ControlProps {
+export interface LayoutControlProps extends UserControlProps {
     /**
      * 子组件
      */

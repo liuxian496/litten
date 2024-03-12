@@ -1,5 +1,7 @@
 import { TextFieldType } from "../../global/enum";
 import { ContentControlProps } from "../control/contentControl.types";
+import { DisabledControlProps } from "../control/disabledControl.types";
+import { FocusControlProps } from "../control/userControl.types";
 
 export type TextFieldValue =
     | string
@@ -8,7 +10,9 @@ export type TextFieldValue =
     | undefined;
 
 export interface TextFieldProps
-    extends ContentControlProps<HTMLInputElement, TextFieldValue> {
+    extends FocusControlProps<HTMLInputElement>,
+        DisabledControlProps,
+        ContentControlProps<HTMLInputElement, TextFieldValue> {
     placeholder?: string;
     type?: TextFieldType;
 }

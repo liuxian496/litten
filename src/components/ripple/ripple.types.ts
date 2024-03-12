@@ -1,11 +1,11 @@
 import { ReactNode } from "react";
-import { ControlProps } from "../control/control.types";
+import { UserControlProps } from "../control/control.types";
 import { MouseState, WaveMode } from "../../global/enum";
 
 /**
  * 波浪组件的参数
  */
-export interface RippleProps extends ControlProps {
+export interface RippleProps extends UserControlProps {
     /**
      * 获取一个布尔值，该值表示父控件是否获取了焦点，true表示已经获取焦点
      */
@@ -45,7 +45,7 @@ export interface RippleColor {
 /**
  * 波纹部件的参数
  */
-export interface WaveProps extends ControlProps {
+export interface WaveProps extends UserControlProps {
     isPressed: boolean;
     index: number;
     containerSpanWidth: number;
@@ -65,7 +65,7 @@ export interface WaveProps extends ControlProps {
 /**
  * 焦点部件的参数
  */
-export interface RippleFocusProps extends ControlProps {
+export interface RippleFocusProps extends UserControlProps {
     isFocused: boolean;
     containerSpanWidth: number;
     containerSpanHeight: number;

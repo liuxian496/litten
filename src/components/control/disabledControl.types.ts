@@ -1,7 +1,7 @@
-import { ControlProps } from "./control.types";
+import { UserControlProps } from "./control.types";
 import { LittenDisabledChangeEventHandler } from "./littenEvent.types";
 
-export interface DisabledControlProps extends ControlProps {
+export interface DisabledControlProps extends UserControlProps {
     /**
      * 设置一个值，表示是否禁用按钮。默认值false，表示控件可用。
      * @default false 表示按钮可以使用。

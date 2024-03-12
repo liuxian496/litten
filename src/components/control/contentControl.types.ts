@@ -1,9 +1,8 @@
-import { LittenValue } from "./control.types";
+import { LittenValue, UserControlProps } from "./control.types";
 import { LittenContentChangeEventHandler } from "./littenEvent.types";
-import { UserControlProps } from "./userControl.types";
 
 export interface ContentControlProps<T = Element, V = LittenValue>
-    extends UserControlProps<T> {
+    extends UserControlProps {
     /**
      * 输入的值
      */

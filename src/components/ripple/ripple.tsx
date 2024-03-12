@@ -13,7 +13,7 @@ import {
     ControlType,
     WaveMode,
 } from "../../global/enum";
-import { getPrefixNs } from "../control/control";
+import { getPrefixNs } from "../control/userControl";
 
 import { RippleProps } from "./ripple.types";
 import { Wave } from "./wave";

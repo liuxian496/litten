@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
-import { ControlProps } from "../control/control.types";
+import { UserControlProps } from "../control/control.types";
 
-export interface FormProps extends ControlProps {
+export interface FormProps extends UserControlProps {
     /**
      * 设置Form的引用对象
      */
@@ -12,7 +12,7 @@ export interface FormProps extends ControlProps {
     children?: ReactNode;
 }
 
-export interface FormControlProps extends ControlProps {
+export interface FormControlProps extends UserControlProps {
     /**
      * 设置用于获取value属性的属性路径
      */

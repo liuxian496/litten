@@ -11,7 +11,7 @@ import { Placement } from "../../global/enum";
 import { useForm } from "../../components/form/useForm";
 import { Button } from "../../components/button/button";
 import { Radio } from "../../components/radio/radio";
-import { RadioGroup } from "../../components/radio/radioGroup";
+import { RadioGroup } from "../../components/radioGroup/radioGroup";
 import { FormLabel } from "../../components/formLabel/formLabel";
 import { Form } from "../../components/form/form";
 import { FormControl } from "../../components/form/formControl";

@@ -1,9 +1,9 @@
 import classnames from "classnames";
 
-import { getPrefixNs } from "../control/control";
+import { getPrefixNs } from "../control/userControl";
 import { CheckState, Mode } from "../../global/enum";
 
-import { getFocusColor, getWaveColor } from "../button/buttonBase";
+import { getFocusColor, getWaveColor } from "../buttonBase/buttonBase";
 import { SwitchProps } from "./switch.types";
 
 export function getRippleColor(props: SwitchProps) {

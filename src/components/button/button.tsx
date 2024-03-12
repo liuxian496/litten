@@ -4,11 +4,11 @@ import "./button.less";
 import classnames from "classnames";
 
 import { Mode, Size, Color, ControlType } from "../../global/enum";
-import { getPrefixNs } from "../control/control";
-import { useFocusd } from "../control/userControl";
+import { getPrefixNs } from "../control/userControl";
+import { useFocusd } from "../control/focusControl";
 import { useDisabled } from "../control/disabledControl";
 
-import { getVisualStates, getFocusColor, getWaveColor } from "./buttonBase";
+import { getVisualStates, getFocusColor, getWaveColor } from "../buttonBase/buttonBase";
 import { ButtonProps } from "./button.types";
 
 import { Ripple } from "../ripple/ripple";

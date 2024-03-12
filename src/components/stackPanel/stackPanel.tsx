@@ -3,7 +3,7 @@ import "./stackPanel.less";
 
 import classnames from "classnames";
 
-import { getPrefixNs } from "../control/control";
+import { getPrefixNs } from "../control/userControl";
 import { ControlType } from "../../global/enum";
 
 function getVisualStates(props: StackPanelProps) {

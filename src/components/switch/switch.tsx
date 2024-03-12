@@ -9,7 +9,7 @@ import React, {
 import "./switch.less";
 
 import { useDisabled } from "../control/disabledControl";
-import { useFocusd } from "../control/userControl";
+import { useFocusd } from "../control/focusControl";
 import { useCurrentChecked } from "../control/checkedControl";
 import {
     Color,
