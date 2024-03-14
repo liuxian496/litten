@@ -1,7 +1,7 @@
 import React from "react";
 
 import classnames from "classnames";
-import { getPrefixNs } from "../control/control";
+import { getPrefixNs } from "../control/userControl";
 
 import { RadioProps } from './radio.types';
 import { CheckState } from "../../global/enum";

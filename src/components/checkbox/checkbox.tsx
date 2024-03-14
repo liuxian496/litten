@@ -1,13 +1,13 @@
 import React, { useState, ChangeEvent, useEffect } from "react";
 import "./checkbox.less";
 
-import { useFocusd } from "../control/userControl";
+import { useFocusd } from "../control/focusControl";
 import { useCurrentChecked } from "../control/checkedControl";
 import { useDisabled } from "../control/disabledControl";
 import { CheckState, Color, Mode, Size, ControlType } from "../../global/enum";
 
 import { Ripple } from "../ripple/ripple";
-import { getFocusColor, getWaveColor } from "../button/buttonBase";
+import { getFocusColor, getWaveColor } from "../buttonBase/buttonBase";
 import { CheckboxProps } from "./checkbox.types";
 import {
     CheckedIcon,

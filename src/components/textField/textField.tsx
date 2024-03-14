@@ -2,7 +2,7 @@ import React, { ChangeEvent, forwardRef, LegacyRef } from "react";
 import "./textField.less";
 
 import { useDisabled } from "../control/disabledControl";
-import { getStateByFocused, useFocusd } from "../control/userControl";
+import { getStateByFocused, useFocusd } from "../control/focusControl";
 import { useCurrentValue } from "../control/contentControl";
 import { TextFieldType, ControlType } from "../../global/enum";
 

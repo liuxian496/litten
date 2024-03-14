@@ -1,4 +1,5 @@
-import { ButtonBaseProps } from '../button/button.types';
+
+import { ButtonBaseProps } from '../buttonBase/buttonBase.types';
 import { RippleColor } from '../ripple/ripple.types';
 
 export interface IconButtonProps extends ButtonBaseProps {

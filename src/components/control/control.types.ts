@@ -7,7 +7,7 @@ import {
     ControlType,
 } from "../../global/enum";
 
-export interface ControlProps {
+export interface UserControlProps {
     /**
      * 设置自定义控件前缀
      */

@@ -1,7 +1,7 @@
 import classnames from "classnames";
 import NP from "number-precision";
 
-import { getPrefixNs } from "../control/control";
+import { getPrefixNs } from "../control/userControl";
 
 import { SliderProps } from "./slider.types";
 import { RelativeRect, VisualStates } from "../control/control.types";

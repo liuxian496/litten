@@ -3,15 +3,16 @@ import React, { useState } from "react";
 import { userEvent, within } from "@storybook/testing-library";
 import { expect } from "@storybook/jest";
 
-import { LittenCheckedChangeEvent } from "../../components/control/control.types";
+import { LittenCheckedChangeEvent } from "../../components/control/littenEvent.types";
 import { Button } from "../../components/button/button";
 import { Radio } from "../../components/radio/radio";
-import { RadioGroup } from "../../components/radio/radioGroup";
+import { RadioGroup } from "../../components/radioGroup/radioGroup";
 import { FormLabel } from "../../components/formLabel/formLabel";
 import { Placement } from "../../global/enum";
 
 import { RadioStory } from "../../stories/radio.stories";
 import { StackPanel } from "../../components/stackPanel/stackPanel";
+
 
 const Test = () => {
     const [value, setValue] = useState<string | undefined>();

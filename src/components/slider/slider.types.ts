@@ -1,5 +1,7 @@
 import { Color, Orientation, Size } from "../../global/enum";
 import { ContentControlProps } from "../control/contentControl.types";
+import { DisabledControlProps } from "../control/disabledControl.types";
+import { FocusControlProps } from "../control/userControl.types";
 
 export type SliderMark = {
     /**
@@ -15,7 +17,9 @@ export type SliderMark = {
 export type SliderMarks = true | [{ value: number; label: string }];
 
 export interface SliderProps
-    extends ContentControlProps<HTMLInputElement, number> {
+    extends FocusControlProps<HTMLInputElement>,
+        DisabledControlProps,
+        ContentControlProps<HTMLInputElement, number> {
     "aria-label"?: string;
     /**
      * 设置一个值，该值表示控件的使用风格

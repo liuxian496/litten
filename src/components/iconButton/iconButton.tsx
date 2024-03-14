@@ -2,7 +2,7 @@ import React from "react";
 import "./iconButton.less";
 
 import { useDisabled } from "../control/disabledControl";
-import { useFocusd } from "../control/userControl";
+import { useFocusd } from "../control/focusControl";
 import { Mode, Size, Color, ControlType } from "../../global/enum";
 
 import { IconButtonProps } from "./iconButton.types";
@@ -10,7 +10,7 @@ import {
     getVisualStates,
     getFocusColor,
     getWaveColor,
-} from "../button/buttonBase";
+} from "../buttonBase/buttonBase";
 
 import { Ripple } from "../ripple/ripple";
 

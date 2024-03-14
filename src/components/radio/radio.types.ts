@@ -2,7 +2,7 @@ import { ReactNode } from "react";
 import { Color, Size } from "../../global/enum";
 
 import { CheckedControlProps } from "../control/checkedControl.types";
-import { ControlProps } from "../control/control.types";
+import { UserControlProps } from "../control/control.types";
 import { LittenContentChangeEventHandler } from "../control/littenEvent.types";
 import { RippleColor } from "../ripple/ripple.types";
 
@@ -26,7 +26,7 @@ export interface RadioProps extends CheckedControlProps<HTMLInputElement> {
     size?: Size;
 }
 
-export interface RadioGroupProps extends ControlProps {
+export interface RadioGroupProps extends UserControlProps {
     /**
      * 输入的值
      */

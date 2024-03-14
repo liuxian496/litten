@@ -9,7 +9,8 @@ import { Mode, Placement } from "../../global/enum";
 import {
     LittenCheckedChangeEvent,
     LittenDisabledChangeEvent,
-} from "../../components/control/control.types";
+} from "../../components/control/littenEvent.types";
+
 import { Button } from "../../components/button/button";
 import { FormLabel } from "../../components/formLabel/formLabel";
 import { Checkbox } from "../../components/checkbox/checkbox";
@@ -101,7 +102,9 @@ export const DisabledTest: ButtonStory = {
 
             await waitFor(() =>
                 expect(
-                    canvas.getByText("Primary Button's disabled is changed to true")
+                    canvas.getByText(
+                        "Primary Button's disabled is changed to true"
+                    )
                 ).toBeInTheDocument()
             );
         });
@@ -119,7 +122,9 @@ export const DisabledTest: ButtonStory = {
 
                 await waitFor(() =>
                     expect(
-                        canvas.getByText("Primary Button's disabled is changed to true")
+                        canvas.getByText(
+                            "Primary Button's disabled is changed to true"
+                        )
                     ).toBeInTheDocument()
                 );
             }
@@ -138,7 +143,9 @@ export const DisabledTest: ButtonStory = {
 
                 await waitFor(() =>
                     expect(
-                        canvas.getByText("Primary Button's disabled is changed to false")
+                        canvas.getByText(
+                            "Primary Button's disabled is changed to false"
+                        )
                     ).toBeInTheDocument()
                 );
             }
@@ -157,7 +164,9 @@ export const DisabledTest: ButtonStory = {
 
                 await waitFor(() =>
                     expect(
-                        canvas.getByText("Primary Button's disabled is changed to true")
+                        canvas.getByText(
+                            "Primary Button's disabled is changed to true"
+                        )
                     ).toBeInTheDocument()
                 );
             }

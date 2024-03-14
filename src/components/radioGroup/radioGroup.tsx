@@ -1,7 +1,6 @@
 import React, { ChangeEvent, useEffect } from "react";
-import "./radio.less";
 
-import { RadioGroupProps } from "./radio.types";
+import { RadioGroupProps } from "../radio/radio.types";
 import { useCurrentValue } from "../control/contentControl";
 import { ControlType } from "../../global/enum";
 import { setCheckedByGroupValue } from "../control/checkedControl";

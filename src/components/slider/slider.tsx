@@ -20,7 +20,7 @@ import {
 
 import { useDisabled } from "../control/disabledControl";
 import { useCurrentValue } from "../control/contentControl";
-import { useRelativePosition } from "../control/control";
+import { useRelativePosition } from "../control/userControl";
 import { RelativeRect } from "../control/control.types";
 
 import { SliderProps } from "./slider.types";

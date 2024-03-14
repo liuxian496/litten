@@ -1,3 +1,12 @@
+# [0.8.0](https://github.com/liuxian496/litten/compare/v0.7.2...v0.8.0) (2024-03-14)
+
+
+### Features
+
+* 添加Popup和Loading ([46cf067](https://github.com/liuxian496/litten/commit/46cf06735a1d36a415d836c32a0c0e8d130fbe22))
+
+
+
 ## [0.7.2](https://github.com/liuxian496/litten/compare/v0.7.1...v0.7.2) (2024-02-29)
 
 

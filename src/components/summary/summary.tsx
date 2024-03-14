@@ -4,7 +4,7 @@ import "./summary.less";
 import classnames from "classnames";
 
 import { SummaryProps } from "./summary.types";
-import { getPrefixNs } from "../control/control";
+import { getPrefixNs } from "../control/userControl";
 import { Color, ControlType } from "../../global/enum";
 import { getI18NConfig } from "../../global/local";
 import { NoteIcon, WarningIcon, DeepIcon } from "../icon/icon";

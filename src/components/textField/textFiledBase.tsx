@@ -1,6 +1,6 @@
 import classnames from "classnames";
 
-import { getPrefixNs } from "../control/control";
+import { getPrefixNs } from "../control/userControl";
 
 import { TextFieldProps } from "./textField.types";
 import { VisualStates } from "../control/control.types";

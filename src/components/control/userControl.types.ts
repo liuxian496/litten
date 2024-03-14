@@ -1,8 +1,8 @@
 import { FocusEvent } from "react";
 
-import { DisabledControlProps } from "./disabledControl.types";
+import { UserControlProps } from "./control.types";
 
-export interface UserControlProps<T> extends DisabledControlProps {
+export interface FocusControlProps<T> extends UserControlProps {
     /**
      * 设置元素是否可以聚焦
      */

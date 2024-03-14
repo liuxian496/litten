@@ -2,7 +2,7 @@ import React from 'react';
 
 import { UtilStory } from '../../stories/util.stories';
 
-import { getPrefixNs } from '../../components/control/control';
+import { getPrefixNs } from '../../components/control/userControl';
 
 export const GetPrefixNsTest: UtilStory = {
     render: () => {

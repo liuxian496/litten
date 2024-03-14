@@ -3,7 +3,7 @@ import "./exceptionBoundary.less";
 
 import classnames from "classnames";
 
-import { getPrefixNs } from "../control/control";
+import { getPrefixNs } from "../control/userControl";
 
 import { ExceptionBoundaryProps } from "../exceptionBoundary/exceptionBoundary.types";
 import { error } from "../../global/util";

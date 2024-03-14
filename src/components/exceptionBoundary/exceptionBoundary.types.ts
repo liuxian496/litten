@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
-import { ControlProps } from "../control/control.types";
+import { UserControlProps } from "../control/control.types";
 
-export interface ExceptionBoundaryProps extends ControlProps {
+export interface ExceptionBoundaryProps extends UserControlProps {
     /**
      * 错误信息
      */

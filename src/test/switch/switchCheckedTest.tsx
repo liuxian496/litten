@@ -3,10 +3,11 @@ import React, { useState } from "react";
 import { within, userEvent } from "@storybook/testing-library";
 import { expect } from "@storybook/jest";
 
-import { CheckboxStory } from "../../stories/checkbox.stories";
+import { SwitchStory } from "../../stories/switch.stories";
 
-import { LittenCheckedChangeEvent } from "../../components/control/control.types";
+import { LittenCheckedChangeEvent } from "../../components/control/littenEvent.types";
 import { Placement } from "../../global/enum";
+
 import { FormLabel } from "../../components/formLabel/formLabel";
 import { Switch } from "../../components/switch/switch";
 import { StackPanel } from "../../components/stackPanel/stackPanel";
@@ -46,7 +47,7 @@ const Test = () => {
     );
 };
 
-export const CheckedTest: CheckboxStory = {
+export const CheckedTest: SwitchStory = {
     parameters: {
         controls: {
             hideNoControlsWarning: true,
