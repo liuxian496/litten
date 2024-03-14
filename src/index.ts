@@ -26,6 +26,12 @@ export { useForm } from "./components/form/useForm";
 // iconButton
 export { IconButton } from "./components/iconButton/iconButton";
 
+// loading
+export { Loading } from "./components/loading/loading";
+
+// popup
+export { usePopup } from "./components/popup/popup";
+
 // radio
 export { Radio } from "./components/radio/radio";
 export { RadioGroup } from "./components/radioGroup/radioGroup";

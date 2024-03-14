@@ -173,6 +173,7 @@ export enum ControlType {
     FormControl = "FormControl",
     FormLabel = "FormLabel",
     IconButton = "IconButton",
+    Loading = "Loading",
     Radio = "Radio",
     Ripple = "Ripple",
     RippleFocus = "RippleFocus",
