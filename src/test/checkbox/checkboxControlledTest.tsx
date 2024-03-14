@@ -5,12 +5,13 @@ import { expect } from "@storybook/jest";
 
 import { CheckboxStory } from "../../stories/checkbox.stories";
 
-import { LittenCheckedChangeEvent } from "../../components/control/control.types";
+import { Mode } from "../../global/enum";
+import { LittenCheckedChangeEvent } from "../../components/control/littenEvent.types";
+
 import { FormLabel } from "../../components/formLabel/formLabel";
 import { Checkbox } from "../../components/checkbox/checkbox";
 import { Button } from "../../components/button/button";
 import { StackPanel } from "../../components/stackPanel/stackPanel";
-import { Mode } from "../../global/enum";
 
 const Test = () => {
     const [checked, setChecked] = useState<boolean | undefined>(true);

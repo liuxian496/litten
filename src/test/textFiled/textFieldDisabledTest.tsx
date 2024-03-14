@@ -9,7 +9,8 @@ import { Placement } from "../../global/enum";
 import {
     LittenCheckedChangeEvent,
     LittenDisabledChangeEvent,
-} from "../../components/control/control.types";
+} from "../../components/control/littenEvent.types";
+
 import { FormLabel } from "../../components/formLabel/formLabel";
 import { Checkbox } from "../../components/checkbox/checkbox";
 import { TextField } from "../../components/textField/textField";

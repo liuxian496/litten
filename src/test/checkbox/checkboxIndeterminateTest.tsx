@@ -5,8 +5,9 @@ import { expect } from "@storybook/jest";
 
 import { CheckboxStory } from "../../stories/checkbox.stories";
 
-import { LittenCheckedChangeEvent } from "../../components/control/control.types";
 import { Placement } from "../../global/enum";
+import { LittenCheckedChangeEvent } from "../../components/control/littenEvent.types";
+
 import { FormLabel } from "../../components/formLabel/formLabel";
 import { Checkbox } from "../../components/checkbox/checkbox";
 import { StackPanel } from "../../components/stackPanel/stackPanel";
@@ -46,7 +47,11 @@ const Test = () => {
                 />
             </FormLabel>
 
-            <StackPanel style={{ marginLeft: "10px" }} direction="column" alignItems="flex-start">
+            <StackPanel
+                style={{ marginLeft: "10px" }}
+                direction="column"
+                alignItems="flex-start"
+            >
                 <FormLabel label="Apple" labelPlacement={Placement.right}>
                     <Checkbox
                         data-testid="apple"
@@ -96,15 +101,18 @@ export const IndeterminateTest: CheckboxStory = {
             await expect(allCheckbox).toBeChecked();
         });
 
-        await step("Unchecked Apple, then All Fruit is indeterminate", async () => {
-            await userEvent.click(appleCheckbox);
+        await step(
+            "Unchecked Apple, then All Fruit is indeterminate",
+            async () => {
+                await userEvent.click(appleCheckbox);
 
-            await expect(appleCheckbox).not.toBeChecked();
+                await expect(appleCheckbox).not.toBeChecked();
 
-            await expect(bananaCheckbox).toBeChecked();
+                await expect(bananaCheckbox).toBeChecked();
 
-            await expect(allCheckbox).not.toBeChecked();
-        });
+                await expect(allCheckbox).not.toBeChecked();
+            }
+        );
 
         await step(
             "Checked All Fruit, then Apple and Banana is checked",
