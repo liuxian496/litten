@@ -1,3 +1,12 @@
+## [0.8.1](https://github.com/liuxian496/litten/compare/v0.8.0...v0.8.1) (2024-03-21)
+
+
+### Features
+
+* layoutControl支持设置className ([0e50e44](https://github.com/liuxian496/litten/commit/0e50e44060185e4de883390c7e4da06a44c54b50))
+
+
+
 # [0.8.0](https://github.com/liuxian496/litten/compare/v0.7.2...v0.8.0) (2024-03-14)
 
 
