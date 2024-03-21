@@ -9,6 +9,7 @@ import { ControlType } from "../../global/enum";
 function getVisualStates(props: StackPanelProps) {
     const {
         prefixCls: customizePrefixCls,
+        className,
         direction,
         justifyContent,
         alignItems,
@@ -17,6 +18,7 @@ function getVisualStates(props: StackPanelProps) {
     const prefixCls = getPrefixNs("stackPanel", customizePrefixCls);
 
     const visualStates = classnames(
+        className,
         prefixCls,
         `${prefixCls}--${direction}`,
         `${prefixCls}--jc-${justifyContent}`,
