@@ -11,15 +11,15 @@ export interface UserControlProps {
     /**
      * 设置自定义控件前缀
      */
-    prefixCls?: string;
+    prefixCls?: string | undefined;
     /**
      * 设置内联样式
      */
-    style?: CSSProperties;
+    style?: CSSProperties | undefined;
     /**
      * UserControl类型，代表在litten中的唯一标识
      */
-    controlType?: ControlType;
+    controlType?: ControlType | undefined;
 }
 
 export type StyleValue<T> = T;
