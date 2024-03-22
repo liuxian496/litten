@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 
-// import { userEvent, waitFor, within } from "@storybook/testing-library";
-// import { expect } from "@storybook/jest";
+// import { userEvent, waitFor, within } from "@storybook/test";
 
 import { TextFiledStory } from "../../stories/textField.stories";
 
 import { TextFieldType } from "../../global/enum";
-import { LittenTextChangeEvent } from "../../components/control/control.types";
+import { LittenTextChangeEvent } from "../../components/control/littenEvent.types";
 import { FormLabel } from "../../components/formLabel/formLabel";
 import { TextField } from "../../components/textField/textField";
 import { TextFieldValue } from "../../components/textField/textField.types";

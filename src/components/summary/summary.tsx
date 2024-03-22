@@ -1,4 +1,3 @@
-import React from "react";
 import "./summary.less";
 
 import classnames from "classnames";

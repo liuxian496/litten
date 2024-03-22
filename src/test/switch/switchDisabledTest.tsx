@@ -1,17 +1,11 @@
 import React, { useState } from "react";
 
-import {
-    within,
-    userEvent,
-    waitFor,
-    fireEvent,
-} from "@storybook/testing-library";
-import { expect } from "@storybook/jest";
+import { within, userEvent, waitFor, fireEvent, expect } from "@storybook/test";
 
 import { CheckboxStory } from "../../stories/checkbox.stories";
 
 import { Mode } from "../../global/enum";
-import { LittenDisabledChangeEvent } from "../../components/control/control.types";
+import { LittenDisabledChangeEvent } from "../../components/control/littenEvent.types";
 import { FormLabel } from "../../components/formLabel/formLabel";
 import { Switch } from "../../components/switch/switch";
 import { Button } from "../../components/button/button";
@@ -149,12 +143,12 @@ export const DisabledTest: CheckboxStory = {
                 await expect(xbox).toBeDisabled();
 
                 await waitFor(() =>
-                expect(
-                    canvas.getByText(
-                        "The xbox Switch's disabled is changed to true"
-                    )
-                ).toBeInTheDocument()
-            );
+                    expect(
+                        canvas.getByText(
+                            "The xbox Switch's disabled is changed to true"
+                        )
+                    ).toBeInTheDocument()
+                );
             }
         );
     },

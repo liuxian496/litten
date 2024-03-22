@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useEffect } from "react";
+import  { ChangeEvent, useEffect } from "react";
 
 import { RadioGroupProps } from "../radio/radio.types";
 import { useCurrentValue } from "../control/contentControl";

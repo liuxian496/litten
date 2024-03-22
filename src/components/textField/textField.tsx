@@ -1,4 +1,4 @@
-import React, { ChangeEvent, forwardRef, LegacyRef } from "react";
+import { ChangeEvent, forwardRef, LegacyRef } from "react";
 import "./textField.less";
 
 import { useDisabled } from "../control/disabledControl";

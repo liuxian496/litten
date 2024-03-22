@@ -1,4 +1,3 @@
-import React from "react";
 import "./exceptionBoundary.less";
 
 import classnames from "classnames";

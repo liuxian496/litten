@@ -1,4 +1,3 @@
-import React from "react";
 import { max } from "lodash";
 
 import { RippleFocusProps } from "./ripple.types";

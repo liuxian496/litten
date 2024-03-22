@@ -4,27 +4,27 @@ import { DefaultTest } from "../test/stackPanel/stackPanelDefaultTest";
 import { StackPanel } from "../components/stackPanel/stackPanel";
 
 export default {
-    title: "Example/StackPanel",
-    component: StackPanel,
-    argTypes: {
-        prefixCls: {
-            control: false,
-        },
-        style: {
-            control: false,
-        },
-        children: {
-            table: {
-                disable: true,
-            },
-        },
+  title: "Example/StackPanel",
+  component: StackPanel,
+  argTypes: {
+    prefixCls: {
+      control: false,
     },
-    parameters: {
-        controls: {
-            expanded: true,
-            sort: "requiredFirst",
-        },
+    style: {
+      control: false,
     },
+    children: {
+      table: {
+        disable: true,
+      },
+    },
+  },
+  parameters: {
+    controls: {
+      expanded: true,
+      sort: "requiredFirst",
+    },
+  },
 } as Meta<typeof StackPanel>;
 
 export type StackPanelStory = StoryObj<typeof StackPanel>;

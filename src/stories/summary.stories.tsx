@@ -1,26 +1,22 @@
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from "@storybook/react";
 
-import { Summary } from '../components/summary/summary';
+import { Summary } from "../components/summary/summary";
 
-import { Default } from '../test/summary/summaryDefaultTest';
-
+import { Default } from "../test/summary/summaryDefaultTest";
 
 export default {
-    title: 'Example/Summary',
-    component: Summary,
-    argTypes: {
-        prefixCls: {
-            control: false,
-        },
-        color: {
-            control: false,
-        }
+  title: "Example/Summary",
+  component: Summary,
+  argTypes: {
+    prefixCls: {
+      control: false,
     },
-
+    color: {
+      control: false,
+    },
+  },
 } as Meta<typeof Summary>;
 
 export type SummaryStory = StoryObj<typeof Summary>;
 
-export { 
-    Default 
-}
+export { Default };

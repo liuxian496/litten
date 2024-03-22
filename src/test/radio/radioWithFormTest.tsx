@@ -2,8 +2,7 @@ import React, { useState } from "react";
 
 import { RadioStory } from "../../stories/radio.stories";
 
-import { userEvent, within } from "@storybook/testing-library";
-import { expect } from "@storybook/jest";
+import { userEvent, within, expect } from "@storybook/test";
 
 import { FormRef } from "../../components/form/form.types";
 import { Placement } from "../../global/enum";
@@ -36,7 +35,10 @@ const Test = () => {
                 <FormLabel label="Fruit: " labelPlacement={Placement.top}>
                     <FormControl valuePath="fruit">
                         <RadioGroup defaultValue="banana" name="fruit">
-                            <StackPanel direction="column" alignItems="flex-start">
+                            <StackPanel
+                                direction="column"
+                                alignItems="flex-start"
+                            >
                                 <FormLabel
                                     label="Apple"
                                     labelPlacement={Placement.right}

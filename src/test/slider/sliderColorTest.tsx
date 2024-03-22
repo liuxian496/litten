@@ -1,7 +1,6 @@
 import React from "react";
 
-import { userEvent, within } from "@storybook/testing-library";
-import { expect } from "@storybook/jest";
+import { userEvent, within, expect } from "@storybook/test";
 
 import { SliderStory } from "../../stories/slider.stories";
 
@@ -19,16 +18,40 @@ export const ColorTest: SliderStory = {
                         <Slider disabled />
                     </StackPanel>
                     <StackPanel style={{ width: 400 }}>
-                        <Slider data-testid="success" color={Color.success} defaultValue={66} />
-                        <Slider color={Color.success} defaultValue={66} disabled />
+                        <Slider
+                            data-testid="success"
+                            color={Color.success}
+                            defaultValue={66}
+                        />
+                        <Slider
+                            color={Color.success}
+                            defaultValue={66}
+                            disabled
+                        />
                     </StackPanel>
                     <StackPanel style={{ width: 400 }}>
-                        <Slider data-testid="warning" color={Color.warning} defaultValue={20} />
-                        <Slider color={Color.warning} defaultValue={20} disabled />
+                        <Slider
+                            data-testid="warning"
+                            color={Color.warning}
+                            defaultValue={20}
+                        />
+                        <Slider
+                            color={Color.warning}
+                            defaultValue={20}
+                            disabled
+                        />
                     </StackPanel>
                     <StackPanel style={{ width: 400 }}>
-                        <Slider data-testid="danger" color={Color.danger} defaultValue={15} />
-                        <Slider color={Color.danger} defaultValue={15} disabled />
+                        <Slider
+                            data-testid="danger"
+                            color={Color.danger}
+                            defaultValue={15}
+                        />
+                        <Slider
+                            color={Color.danger}
+                            defaultValue={15}
+                            disabled
+                        />
                     </StackPanel>
                 </StackPanel>
             </div>
@@ -45,33 +68,25 @@ export const ColorTest: SliderStory = {
         await step('Click Tab, then "default" slider has focus.', async () => {
             await userEvent.tab();
 
-            await expect(
-                defaultSlider
-            ).toHaveFocus();
+            await expect(defaultSlider).toHaveFocus();
         });
 
         await step('Click Tab, then "success" slider has focus.', async () => {
             await userEvent.tab();
 
-            await expect(
-                successSlider
-            ).toHaveFocus();
+            await expect(successSlider).toHaveFocus();
         });
 
         await step('Click Tab, then "warning" slider has focus.', async () => {
             await userEvent.tab();
 
-            await expect(
-                warningSlider
-            ).toHaveFocus();
+            await expect(warningSlider).toHaveFocus();
         });
 
         await step('Click Tab, then "danger" slider has focus.', async () => {
             await userEvent.tab();
 
-            await expect(
-                dangerSlider
-            ).toHaveFocus();
+            await expect(dangerSlider).toHaveFocus();
         });
     },
 };

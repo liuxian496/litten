@@ -1,4 +1,4 @@
-import React, { useState, ChangeEvent, useEffect } from "react";
+import  { useState, ChangeEvent, useEffect } from "react";
 import "./radio.less";
 
 import { useDisabled } from "../control/disabledControl";

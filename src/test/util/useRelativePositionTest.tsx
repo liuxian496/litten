@@ -3,7 +3,7 @@ import React, { useRef, useState } from "react";
 import { UtilStory } from "../../stories/util.stories";
 
 import { useRelativePosition } from "../../components/control/userControl";
-import { fireEvent, within } from "@storybook/testing-library";
+import { fireEvent, within } from "@storybook/test";
 import { StackPanel } from "../../components/stackPanel/stackPanel";
 import { RelativeRect } from "../../components/control/control.types";
 

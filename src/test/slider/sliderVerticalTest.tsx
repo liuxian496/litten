@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 
 import { SliderStory } from "../../stories/slider.stories";
-import { fireEvent, userEvent, within } from "@storybook/testing-library";
-import { expect } from "@storybook/jest";
+import { fireEvent, userEvent, within, expect } from "@storybook/test";
 
 import { StackPanel } from "../../components/stackPanel/stackPanel";
 import { Slider } from "../../components/slider/slider";
