@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 
-import { userEvent, within, expect } from "@storybook/test";
+import { userEvent, within, expect, waitFor } from "@storybook/test";
 
 import { UtilStory } from "../../stories/loading.stories";
 
 import { Button } from "../../components/button/button";
 import { usePopup } from "../../components/popup/popup";
-import { waitFor } from "@testing-library/react";
 
 const Test = () => {
     const [loading, setLoading] = useState(false);

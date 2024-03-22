@@ -1,4 +1,3 @@
-import React from "react";
 import "./button.less";
 
 import classnames from "classnames";

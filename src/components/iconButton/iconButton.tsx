@@ -1,4 +1,3 @@
-import React from "react";
 import "./iconButton.less";
 
 import { useDisabled } from "../control/disabledControl";

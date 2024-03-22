@@ -1,5 +1,3 @@
-import React from "react";
-
 import classnames from "classnames";
 import { getPrefixNs } from "../control/userControl";
 
@@ -74,7 +72,7 @@ export function getIconContainerVisualStates(props: RadioProps) {
  * @param indeterminate 是否处于不确定状态
  * @returns 转换后的CheckState
  */
-export function getCheckState(value?: boolean, indeterminate?: boolean) {
+export function getCheckState(value?: boolean) {
     let result = CheckState.unChecked;
 
     // CheckState以checked属性为准，checked为true时是CheckState.checked状态
