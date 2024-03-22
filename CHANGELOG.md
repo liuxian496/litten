@@ -1,3 +1,12 @@
+## [0.8.3](https://github.com/liuxian496/litten/compare/v0.8.2...v0.8.3) (2024-03-22)
+
+
+### Bug Fixes
+
+* 修改打包好，类型定义导出不正确的问题 ([e3d5c87](https://github.com/liuxian496/litten/commit/e3d5c8714cbc1f9f649628e8bbb66413955bf25d))
+
+
+
 ## [0.8.2](https://github.com/liuxian496/litten/compare/v0.8.1...v0.8.2) (2024-03-22)
 
 
