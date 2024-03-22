@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 
-import { expect } from "@storybook/jest";
-import { userEvent, within } from "@storybook/testing-library";
+import { userEvent, within, expect } from "@storybook/test";
 
 import { FormStory } from "../../stories/form.stories";
 
@@ -39,7 +38,11 @@ const Test = () => {
         <>
             <Form formRef={myForm}>
                 <span>今天天气不错，挺风和日丽的</span>
-                <StackPanel direction="column" justifyContent="space-evenly" alignItems="flex-start">
+                <StackPanel
+                    direction="column"
+                    justifyContent="space-evenly"
+                    alignItems="flex-start"
+                >
                     <FormLabel label="Name:">
                         <FormControl valuePath="name">
                             <TextField data-testid="nameTextField" />

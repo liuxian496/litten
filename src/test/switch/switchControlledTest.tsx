@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 
-import { within, userEvent } from "@storybook/testing-library";
-import { expect } from "@storybook/jest";
+import { within, userEvent, expect } from "@storybook/test";
 
 import { SwitchStory } from "../../stories/switch.stories";
 

@@ -1,51 +1,50 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
-import { userEvent, within } from '@storybook/testing-library';
-import { expect } from '@storybook/jest';
+import { userEvent, within, expect } from "@storybook/test";
 
-import { TextFiledStory } from '../../stories/textField.stories';
+import { TextFiledStory } from "../../stories/textField.stories";
 
-import { Mode } from '../../global/enum';
+import { Mode } from "../../global/enum";
 
-import { TextFieldValue } from '../../components/textField/textField.types';
-import { FormRef } from '../../components/form/form.types';
+import { TextFieldValue } from "../../components/textField/textField.types";
+import { FormRef } from "../../components/form/form.types";
 
-import { useForm } from '../../components/form/useForm';
+import { useForm } from "../../components/form/useForm";
 
-import { TextField } from '../../components/textField/textField';
-import { Button } from '../../components/button/button';
-import { FormLabel } from '../../components/formLabel/formLabel';
-import { Form } from '../../components/form/form';
-import { FormControl } from '../../components/form/formControl';
+import { TextField } from "../../components/textField/textField";
+import { Button } from "../../components/button/button";
+import { FormLabel } from "../../components/formLabel/formLabel";
+import { Form } from "../../components/form/form";
+import { FormControl } from "../../components/form/formControl";
 
 type Data = {
-    role: string
-}
+    role: string;
+};
 
 const Test = () => {
     const [role, setRole] = useState<TextFieldValue>();
     const myForm: FormRef<Data> = useForm();
 
     function handleShowValueBtuClick() {
-        setRole(myForm.getValueByPath('role'));
+        setRole(myForm.getValueByPath("role"));
     }
 
     return (
         <>
             <Form formRef={myForm}>
-                <FormLabel label='Role: '>
-                    <FormControl valuePath='role'>
+                <FormLabel label="Role: ">
+                    <FormControl valuePath="role">
                         <TextField data-testid="text" defaultValue="Tom" />
                     </FormControl>
                 </FormLabel>
             </Form>
-            <Button mode={Mode.outlined} onClick={handleShowValueBtuClick}>Set Value by useRef</Button>
-            <p>
-                role is {role}
-            </p>
+            <Button mode={Mode.outlined} onClick={handleShowValueBtuClick}>
+                Set Value by useRef
+            </Button>
+            <p>role is {role}</p>
         </>
-    )
-}
+    );
+};
 
 export const WithFormTest: TextFiledStory = {
     parameters: {
@@ -55,39 +54,39 @@ export const WithFormTest: TextFiledStory = {
     play: async ({ canvasElement, step }) => {
         const canvas = within(canvasElement);
 
-        const textField = canvas.getByTestId('text');
-        const setValueBtu = canvas.getByText('Set Value by useRef');
+        const textField = canvas.getByTestId("text");
+        const setValueBtu = canvas.getByText("Set Value by useRef");
 
         await step('"Role" textField default value is "Tom"', async () => {
-            await expect(
-                textField
-            ).toHaveValue("Tom");
+            await expect(textField).toHaveValue("Tom");
 
-            await expect(
-                await canvas.getByText("role is")
-            ).toBeInTheDocument();
+            await expect(await canvas.getByText("role is")).toBeInTheDocument();
         });
 
-        await step('Click "Set Value by useRef" button, then "role is Tom"', async () => {
-            await userEvent.click(setValueBtu);
+        await step(
+            'Click "Set Value by useRef" button, then "role is Tom"',
+            async () => {
+                await userEvent.click(setValueBtu);
 
-            await expect(
-                await canvas.getByText("role is Tom")
-            ).toBeInTheDocument();
-        });
+                await expect(
+                    await canvas.getByText("role is Tom")
+                ).toBeInTheDocument();
+            }
+        );
 
-        await step('"Role" textField type "&Jerry", Click "Set Value by useRef" button, then "role is Tom&Jerry"', async () => {
-            await userEvent.type(textField, "&Jerry");
+        await step(
+            '"Role" textField type "&Jerry", Click "Set Value by useRef" button, then "role is Tom&Jerry"',
+            async () => {
+                await userEvent.type(textField, "&Jerry");
 
-            await expect(
-                textField
-            ).toHaveValue("Tom&Jerry");
+                await expect(textField).toHaveValue("Tom&Jerry");
 
-            await userEvent.click(setValueBtu);
+                await userEvent.click(setValueBtu);
 
-            await expect(
-                await canvas.getByText("role is Tom&Jerry")
-            ).toBeInTheDocument();
-        });
-    }
-}
+                await expect(
+                    await canvas.getByText("role is Tom&Jerry")
+                ).toBeInTheDocument();
+            }
+        );
+    },
+};

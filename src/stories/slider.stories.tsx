@@ -11,64 +11,64 @@ import { WithFormTest } from "../test/slider/sliderWithFormTest";
 import { ColorTest } from "../test/slider/sliderColorTest";
 
 export default {
-    title: "Example/Slider",
-    component: Slider,
-    argTypes: {
-        defaultValue: {
-            control: false,
-        },
-        id: {
-            control: false,
-        },
-        marks: {
-            control: false,
-        },
-        min: {
-            control: false,
-        },
-        max: {
-            control: false,
-        },
-        orientation: {
-            control: false,
-        },
-        prefixCls: {
-            control: false,
-        },
-        step: {
-            control: false,
-        },
-        style: {
-            control: false,
-        },
-        value: {
-            control: false,
-        },
-        "aria-label": {
-            table: {
-                disable: true,
-            },
-        },
-        onChange: {
-            control: false,
-        },
-        tabIndex: {
-            table: {
-                disable: true,
-            },
-        },
-        controlType: {
-            table: {
-                disable: true,
-            },
-        },
+  title: "Example/Slider",
+  component: Slider,
+  argTypes: {
+    defaultValue: {
+      control: false,
     },
-    parameters: {
-        controls: {
-            expanded: true,
-            sort: "requiredFirst",
-        },
+    id: {
+      control: false,
     },
+    marks: {
+      control: false,
+    },
+    min: {
+      control: false,
+    },
+    max: {
+      control: false,
+    },
+    orientation: {
+      control: false,
+    },
+    prefixCls: {
+      control: false,
+    },
+    step: {
+      control: false,
+    },
+    style: {
+      control: false,
+    },
+    value: {
+      control: false,
+    },
+    "aria-label": {
+      table: {
+        disable: true,
+      },
+    },
+    onChange: {
+      control: false,
+    },
+    tabIndex: {
+      table: {
+        disable: true,
+      },
+    },
+    controlType: {
+      table: {
+        disable: true,
+      },
+    },
+  },
+  parameters: {
+    controls: {
+      expanded: true,
+      sort: "requiredFirst",
+    },
+  },
 } as Meta<typeof Slider>;
 
 export type SliderStory = StoryObj<typeof Slider>;

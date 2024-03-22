@@ -12,62 +12,62 @@ import { ColorTest } from "../test/checkbox/checkboxColorTest";
 import { CheckboxWithFormTest } from "../test/checkbox/checkboxWithFormTest";
 
 const meta: Meta<typeof Checkbox> = {
-    title: "Example/Checkbox",
-    component: Checkbox,
-    argTypes: {
-        defaultChecked: {
-            control: false,
-        },
-        defaultValue: {
-            table: {
-                disable: true,
-            },
-        },
-        id: {
-            control: false,
-        },
-        prefixCls: {
-            control: false,
-        },
-        rippleColor: {
-            control: false,
-        },
-        style: {
-            control: false,
-        },
-        value: {
-            control: false,
-        },
-        "aria-label": {
-            table: {
-                disable: true,
-            },
-        },
-        name: {
-            table: {
-                disable: true,
-            },
-        },
-        tabIndex: {
-            table: {
-                disable: true,
-            },
-        },
-        controlType: {
-            table: {
-                disable: true,
-            },
-        },
-        onChange: {
-            control: false,
-        },
+  title: "Example/Checkbox",
+  component: Checkbox,
+  argTypes: {
+    defaultChecked: {
+      control: false,
     },
-    parameters: {
-        controls: {
-            expanded: true,
-            sort: "requiredFirst",
-        },
+    defaultValue: {
+      table: {
+        disable: true,
+      },
     },
+    id: {
+      control: false,
+    },
+    prefixCls: {
+      control: false,
+    },
+    rippleColor: {
+      control: false,
+    },
+    style: {
+      control: false,
+    },
+    value: {
+      control: false,
+    },
+    "aria-label": {
+      table: {
+        disable: true,
+      },
+    },
+    name: {
+      table: {
+        disable: true,
+      },
+    },
+    tabIndex: {
+      table: {
+        disable: true,
+      },
+    },
+    controlType: {
+      table: {
+        disable: true,
+      },
+    },
+    onChange: {
+      control: false,
+    },
+  },
+  parameters: {
+    controls: {
+      expanded: true,
+      sort: "requiredFirst",
+    },
+  },
 };
 
 export default meta;

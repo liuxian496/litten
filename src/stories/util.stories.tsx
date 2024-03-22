@@ -1,39 +1,38 @@
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from "@storybook/react";
 
-import { GetPrefixNsTest } from '../test/util/getPrefixNsTest';
-import { PrintArrayItemTest } from '../test/util/printArrayItemTest';
-import { StopPropagationTest } from '../test/util/stopPropagationTest';
-import { UsePreviousTest } from '../test/util/usePreviousTest';
-import {UseRelativePositionTest} from '../test/util/useRelativePositionTest';
-
+import { GetPrefixNsTest } from "../test/util/getPrefixNsTest";
+import { PrintArrayItemTest } from "../test/util/printArrayItemTest";
+import { StopPropagationTest } from "../test/util/stopPropagationTest";
+import { UsePreviousTest } from "../test/util/usePreviousTest";
+import { UseRelativePositionTest } from "../test/util/useRelativePositionTest";
 
 export default {
-    title: 'Example/Util',
+  title: "Example/Util",
 } as Meta;
 
 export type UtilStory = StoryObj;
 
 export const GetPrefixNs = {
-    name: 'getPrefixNs',
-    ...GetPrefixNsTest
+  name: "getPrefixNs",
+  ...GetPrefixNsTest,
 };
 
 export const PrintArrayItem = {
-    name: 'printArrayItem',
-    ...PrintArrayItemTest
+  name: "printArrayItem",
+  ...PrintArrayItemTest,
 };
 
 export const StopPropagation = {
-    name: 'stopPropagation',
-    ...StopPropagationTest
+  name: "stopPropagation",
+  ...StopPropagationTest,
 };
 
 export const UsePrevious = {
-    name: 'usePrevious',
-    ...UsePreviousTest
+  name: "usePrevious",
+  ...UsePreviousTest,
 };
 
-export const UseRelativePosition= {
-    name:'useRelativePosition',
-    ...UseRelativePositionTest
-}
+export const UseRelativePosition = {
+  name: "useRelativePosition",
+  ...UseRelativePositionTest,
+};

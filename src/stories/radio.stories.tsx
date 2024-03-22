@@ -1,68 +1,68 @@
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from "@storybook/react";
 
-import { Radio } from '../components/radio/radio';
+import { Radio } from "../components/radio/radio";
 
-import { DefaultTest } from '../test/radio/radioDefaultTest';
-import { StandaloneRadioTest } from '../test/radio/standaloneRadioTest';
-import { RadioGroupTest } from '../test/radio/radioGroupTest';
-import { RadioWithFormTest } from '../test/radio/radioWithFormTest';
-import { ColorTest } from '../test/radio/radioColorTest';
-import { SizeTest } from '../test/radio/radioSizeTest';
+import { DefaultTest } from "../test/radio/radioDefaultTest";
+import { StandaloneRadioTest } from "../test/radio/standaloneRadioTest";
+import { RadioGroupTest } from "../test/radio/radioGroupTest";
+import { RadioWithFormTest } from "../test/radio/radioWithFormTest";
+import { ColorTest } from "../test/radio/radioColorTest";
+import { SizeTest } from "../test/radio/radioSizeTest";
 
 const meta: Meta<typeof Radio> = {
-    title: 'Example/Radio',
-    component: Radio,
-    argTypes: {
-        "aria-label": {
-            table: {
-                disable: true,
-            },
-        },
-        defaultChecked: {
-            control: false,
-        },
-        defaultValue: {
-            table: {
-                disable: true,
-            },
-        },
-        id: {
-            control: false,
-        },
-        prefixCls: {
-            control: false,
-        },
-        rippleColor: {
-            control: false,
-        },
-        style: {
-            table: {
-                disable: true,
-            },
-        },
-        tabIndex: {
-            table: {
-                disable: true,
-            },
-        },
-        value: {
-            table: {
-                disable: true,
-            },
-        },
-        onChange: {
-            control: false,
-        }
-        // onChange: {
-        //     action: 'checked change'
-        // },
+  title: "Example/Radio",
+  component: Radio,
+  argTypes: {
+    "aria-label": {
+      table: {
+        disable: true,
+      },
     },
-    parameters: {
-        controls: {
-            expanded: true,
-            sort: 'requiredFirst'
-        }
+    defaultChecked: {
+      control: false,
     },
+    defaultValue: {
+      table: {
+        disable: true,
+      },
+    },
+    id: {
+      control: false,
+    },
+    prefixCls: {
+      control: false,
+    },
+    rippleColor: {
+      control: false,
+    },
+    style: {
+      table: {
+        disable: true,
+      },
+    },
+    tabIndex: {
+      table: {
+        disable: true,
+      },
+    },
+    value: {
+      table: {
+        disable: true,
+      },
+    },
+    onChange: {
+      control: false,
+    },
+    // onChange: {
+    //     action: 'checked change'
+    // },
+  },
+  parameters: {
+    controls: {
+      expanded: true,
+      sort: "requiredFirst",
+    },
+  },
 };
 
 export default meta;

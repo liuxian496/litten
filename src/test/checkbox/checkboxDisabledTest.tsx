@@ -1,17 +1,11 @@
 import React, { useState } from "react";
 
-import {
-    within,
-    userEvent,
-    waitFor,
-    fireEvent,
-} from "@storybook/testing-library";
-import { expect } from "@storybook/jest";
+import { within, userEvent, waitFor, fireEvent, expect } from "@storybook/test";
 
 import { CheckboxStory } from "../../stories/checkbox.stories";
 
 import { Mode } from "../../global/enum";
-import { LittenDisabledChangeEvent } from "../../components/control/control.types";
+import { LittenDisabledChangeEvent } from "../../components/control/littenEvent.types";
 import { FormLabel } from "../../components/formLabel/formLabel";
 import { Checkbox } from "../../components/checkbox/checkbox";
 import { Button } from "../../components/button/button";
@@ -82,7 +76,9 @@ export const DisabledTest: CheckboxStory = {
 
                 await waitFor(() =>
                     expect(
-                        canvas.getByText("Switch Checkbox's disabled is changed to true")
+                        canvas.getByText(
+                            "Switch Checkbox's disabled is changed to true"
+                        )
                     ).toBeInTheDocument()
                 );
             }
@@ -117,7 +113,9 @@ export const DisabledTest: CheckboxStory = {
 
                 await waitFor(() =>
                     expect(
-                        canvas.getByText("Switch Checkbox's disabled is changed to false")
+                        canvas.getByText(
+                            "Switch Checkbox's disabled is changed to false"
+                        )
                     ).toBeInTheDocument()
                 );
             }
@@ -150,7 +148,9 @@ export const DisabledTest: CheckboxStory = {
 
                 await waitFor(() =>
                     expect(
-                        canvas.getByText("Switch Checkbox's disabled is changed to true")
+                        canvas.getByText(
+                            "Switch Checkbox's disabled is changed to true"
+                        )
                     ).toBeInTheDocument()
                 );
             }

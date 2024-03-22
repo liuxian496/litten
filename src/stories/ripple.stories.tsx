@@ -7,16 +7,16 @@ import { WaveTest } from "../test/ripple/waveTest";
 import { WaveCenterTest } from "../test/ripple/waveCenter";
 
 export default {
-    title: "Example/Ripple",
-    component: Ripple,
-    argTypes: {
-        prefixCls: {
-            control: false,
-        },
-        color: {
-            control: false,
-        },
+  title: "Example/Ripple",
+  component: Ripple,
+  argTypes: {
+    prefixCls: {
+      control: false,
     },
+    color: {
+      control: false,
+    },
+  },
 } as Meta<typeof Ripple>;
 
 export type RippleStory = StoryObj<typeof Ripple>;

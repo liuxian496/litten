@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 
-import { userEvent, within } from "@storybook/testing-library";
-import { expect } from "@storybook/jest";
+import { userEvent, within, expect } from "@storybook/test";
 
 import { SliderStory } from "../../stories/slider.stories";
 
 import { Mode } from "../../global/enum";
-import { LittenNumberChangeEvent } from "../../components/control/control.types";
+import { LittenNumberChangeEvent } from "../../components/control/littenEvent.types";
 
 import { Button } from "../../components/button/button";
 import { StackPanel } from "../../components/stackPanel/stackPanel";

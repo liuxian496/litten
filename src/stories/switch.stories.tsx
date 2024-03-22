@@ -12,62 +12,62 @@ import { UnControlledTest } from "../test/switch/switchUnControlledTest";
 import { WithFormTest } from "../test/switch/switchWithFormTest";
 
 export default {
-    title: "Example/Switch",
-    component: Switch,
-    argTypes: {
-        defaultChecked: {
-            control: false,
-        },
-        defaultValue: {
-            table: {
-                disable: true,
-            },
-        },
-        id: {
-            control: false,
-        },
-        prefixCls: {
-            control: false,
-        },
-        rippleColor: {
-            control: false,
-        },
-        style: {
-            control: false,
-        },
-        value: {
-            control: false,
-        },
-        "aria-label": {
-            table: {
-                disable: true,
-            },
-        },
-        name: {
-            table: {
-                disable: true,
-            },
-        },
-        tabIndex: {
-            table: {
-                disable: true,
-            },
-        },
-        controlType: {
-            table: {
-                disable: true,
-            },
-        },
-        onChange: {
-            control: false,
-        },
+  title: "Example/Switch",
+  component: Switch,
+  argTypes: {
+    defaultChecked: {
+      control: false,
     },
-    parameters: {
-        controls: {
-            expanded: true,
-            sort: "requiredFirst",
-        },
+    defaultValue: {
+      table: {
+        disable: true,
+      },
     },
+    id: {
+      control: false,
+    },
+    prefixCls: {
+      control: false,
+    },
+    rippleColor: {
+      control: false,
+    },
+    style: {
+      control: false,
+    },
+    value: {
+      control: false,
+    },
+    "aria-label": {
+      table: {
+        disable: true,
+      },
+    },
+    name: {
+      table: {
+        disable: true,
+      },
+    },
+    tabIndex: {
+      table: {
+        disable: true,
+      },
+    },
+    controlType: {
+      table: {
+        disable: true,
+      },
+    },
+    onChange: {
+      control: false,
+    },
+  },
+  parameters: {
+    controls: {
+      expanded: true,
+      sort: "requiredFirst",
+    },
+  },
 } as Meta<typeof Switch>;
 
 export type SwitchStory = StoryObj<typeof Switch>;

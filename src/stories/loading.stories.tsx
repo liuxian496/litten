@@ -1,33 +1,31 @@
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from "@storybook/react";
 
-import { Loading } from '../components/loading/loading';
+import { Loading } from "../components/loading/loading";
 
 import { DefaultTest } from "../test/loading/loadingDefaultTest";
 
-
-
 const meta: Meta<typeof Loading> = {
-    title: "Example/Loading",
-    component: Loading,
-    argTypes: {
-        children: {
-            table: {
-                disable: true,
-            },
-        },
-        prefixCls: {
-            control: false,
-        },
-        style: {
-            control: false,
-        },
+  title: "Example/Loading",
+  component: Loading,
+  argTypes: {
+    children: {
+      table: {
+        disable: true,
+      },
     },
-    parameters: {
-        controls: {
-            expanded: true,
-            sort: "requiredFirst",
-        },
+    prefixCls: {
+      control: false,
     },
+    style: {
+      control: false,
+    },
+  },
+  parameters: {
+    controls: {
+      expanded: true,
+      sort: "requiredFirst",
+    },
+  },
 };
 
 export default meta;

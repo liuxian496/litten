@@ -2,8 +2,7 @@ import React, { useState } from "react";
 
 import { RadioStory } from "../../stories/radio.stories";
 
-import { userEvent, within } from "@storybook/testing-library";
-import { expect } from "@storybook/jest";
+import { userEvent, within, expect } from "@storybook/test";
 
 import { FormRef } from "../../components/form/form.types";
 
