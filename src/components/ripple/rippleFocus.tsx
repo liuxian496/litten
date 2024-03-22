@@ -1,4 +1,4 @@
-import { max } from "lodash";
+import max from "lodash/max";
 
 import { RippleFocusProps } from "./ripple.types";
 import { ControlType } from "../../global/enum";

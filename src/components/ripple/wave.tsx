@@ -1,5 +1,5 @@
-import  { useState } from "react";
-import { isFunction } from "lodash";
+import { useState } from "react";
+import isFunction from "lodash/isFunction";
 import { AnimationState, ControlType, WaveMode } from "../../global/enum";
 import { WaveProps } from "./ripple.types";
 

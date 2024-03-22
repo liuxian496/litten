@@ -20,9 +20,9 @@ npm i litten
 ### 2. litten依赖的库
 litten，依赖下面的库。
 1. [react](https://github.com/facebook/react)
-1. [classnames](https://github.com/JedWatson/classnames)
-2. [lodash](https://github.com/lodash/lodash)
-3. [number-precision](https://github.com/nefe/number-precision)
+2. [classnames](https://github.com/JedWatson/classnames)
+3. [lodash](https://github.com/lodash/lodash)
+4. [number-precision](https://github.com/nefe/number-precision)
 
 ### 3. 引入litten样式
 <p>在项目的入口文件，例如：App.js或App.tsx中引入litten样式</p>
