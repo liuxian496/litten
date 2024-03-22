@@ -1,5 +1,5 @@
 import { MutableRefObject, useEffect, useState } from "react";
-import { isString } from "lodash";
+import isString  from "lodash/isString";
 import { isEmptyString, usePrevious } from "../../global/util";
 import { RelativeRect } from "./control.types";
 

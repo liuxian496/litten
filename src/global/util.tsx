@@ -1,5 +1,7 @@
-import React, { useEffect, useRef } from 'react';
-import { isString, isArray, forOwn } from 'lodash';
+import React, { useEffect, useRef } from "react";
+import isString from "lodash/isString";
+import isArray from "lodash/isArray";
+import forOwn from "lodash/forOwn";
 
 /**
  * 检测是否是空字符串
@@ -7,7 +9,7 @@ import { isString, isArray, forOwn } from 'lodash';
  * @returns isString 是否是空字符串 {boolean}
  */
 export function isEmptyString(str: any) {
-    return isString(str) && str.trim() === '';
+    return isString(str) && str.trim() === "";
 }
 
 /**
@@ -19,7 +21,7 @@ export function usePrevious(value: any) {
     const ref = useRef();
     useEffect(() => {
         ref.current = value;
-    })
+    });
 
     return ref.current;
 }
@@ -39,14 +41,14 @@ export function printArrayItem(list?: Object[]) {
     let log: string[] = [];
     if (isArray(list)) {
         list.map((item, index) => {
-            log[index] = '{'
+            log[index] = "{";
             forOwn(item, (value, key) => {
                 log[index] += key + ": " + value + ", ";
-            })
-            log[index] += '}';
+            });
+            log[index] += "}";
 
             return item;
-        })
+        });
     }
     return log.toString();
 }
@@ -60,7 +62,7 @@ export function error(msg?: string) {
     const errorMsg = `[litten error]: ${msg}`;
     console.error(errorMsg);
 
-    return errorMsg
+    return errorMsg;
 }
 
 /**
