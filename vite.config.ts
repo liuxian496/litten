@@ -12,11 +12,23 @@ export default defineConfig({
             entry: resolve(__dirname, "src/index.ts"),
             name: "litten",
             formats: ["es", "cjs"],
-            fileName: "index",
+            fileName:'index',
+            // fileName: (format,entryName) => {
+            //     let value = "";
+            //     if (format === "cjs") {
+            //         value = "index.js";
+            //     } else if (format === "es") {
+            //         value = `${entryName}.mjs`;
+            //     } else {
+            //         value = `${entryName}.${format}.js`;
+            //     }
+
+            //     return value;
+            // },
         },
         outDir: "build",
         rollupOptions: {
-            external: ["react", "react-dom","react/jsx-runtime"],
+            external: ["react", "react-dom", "react/jsx-runtime"],
             output: {
                 assetFileNames: `index.[ext]`,
             },

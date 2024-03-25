@@ -8,7 +8,6 @@
   "files": [
     "build"
   ],
-  "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
