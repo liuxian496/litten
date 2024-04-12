@@ -3,7 +3,7 @@
   "version": "0.8.6",
   "private": false,
   "main": "build/index.js",
-  "module": "build.index.mjs",
+  "module": "build/index.mjs",
   "types": "build/types/index.d.ts",
   "files": [
     "build"
