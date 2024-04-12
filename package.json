@@ -3,10 +3,18 @@
   "version": "0.8.5",
   "private": false,
   "main": "build/index.js",
-  "module": "build/index.esm.js",
+  "module": "build.index.mjs",
   "types": "build/types/index.d.ts",
   "files": [
     "build"
+  ],
+  "keywords": [
+    "react",
+    "javascript",
+    "less",
+    "components",
+    "typescript",
+    "ui-components"
   ],
   "scripts": {
     "dev": "vite",
