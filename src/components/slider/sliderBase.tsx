@@ -4,7 +4,7 @@ import NP from "number-precision";
 import { getPrefixNs } from "../control/userControl";
 
 import { SliderProps } from "./slider.types";
-import { RelativeRect, VisualStates } from "../control/control.types";
+import { RelativeRect, VisualStates } from "../control/userControl.types";
 import { Orientation } from "../../global/enum";
 
 const componentName = "slider";

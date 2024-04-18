@@ -2,7 +2,7 @@ import { ReactNode } from "react";
 import { Color, Size } from "../../global/enum";
 
 import { CheckedControlProps } from "../control/checkedControl.types";
-import { UserControlProps } from "../control/control.types";
+import { UserControlProps } from "../control/userControl.types";
 import { LittenContentChangeEventHandler } from "../control/littenEvent.types";
 import { RippleColor } from "../ripple/ripple.types";
 

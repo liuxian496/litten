@@ -1,7 +1,7 @@
 import { ReactNode, MouseEvent } from "react";
 
 import { Color, Mode, Size } from "../../global/enum";
-import { FocusControlProps } from "../control/userControl.types";
+import { FocusControlProps } from "../control/focusControl.types";
 import { DisabledControlProps } from "../control/disabledControl.types";
 
 export interface ButtonBaseProps

@@ -3,7 +3,7 @@ import classnames from "classnames";
 import { getPrefixNs } from "../control/userControl";
 
 import { TextFieldProps } from "./textField.types";
-import { VisualStates } from "../control/control.types";
+import { VisualStates } from "../control/userControl.types";
 
 
 export function getVisualStates(props: TextFieldProps, states: VisualStates) {

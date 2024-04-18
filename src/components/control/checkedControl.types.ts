@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction } from "react";
 import { ControlType } from "../../global/enum";
 import { ContentControlProps } from "./contentControl.types";
-import { FocusControlProps } from "./userControl.types";
+import { FocusControlProps } from "./focusControl.types";
 import { DisabledControlProps } from "./disabledControl.types";
 
 export interface CheckedControlProps<T>

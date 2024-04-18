@@ -1,4 +1,4 @@
-import { LittenValue, UserControlProps } from "./control.types";
+import { LittenValue, UserControlProps } from "./userControl.types";
 import { LittenContentChangeEventHandler } from "./littenEvent.types";
 
 export interface ContentControlProps<T = Element, V = LittenValue>

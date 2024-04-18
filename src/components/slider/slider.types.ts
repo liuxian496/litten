@@ -1,7 +1,7 @@
 import { Color, Orientation, Size } from "../../global/enum";
 import { ContentControlProps } from "../control/contentControl.types";
 import { DisabledControlProps } from "../control/disabledControl.types";
-import { FocusControlProps } from "../control/userControl.types";
+import { FocusControlProps } from "../control/focusControl.types";
 
 export type SliderMark = {
     /**

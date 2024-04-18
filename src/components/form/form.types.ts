@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { UserControlProps } from "../control/control.types";
+import { UserControlProps } from "../control/userControl.types";
 
 export interface FormProps extends UserControlProps {
     /**
