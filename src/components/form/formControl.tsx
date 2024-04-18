@@ -1,5 +1,4 @@
 import  { useContext, useEffect, useState } from "react";
-import "./form.less";
 
 import { ControlType } from "../../global/enum";
 

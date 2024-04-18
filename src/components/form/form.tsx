@@ -1,5 +1,4 @@
 import { createContext, useEffect, useState } from "react";
-import "./form.less";
 
 import classnames from "classnames";
 
