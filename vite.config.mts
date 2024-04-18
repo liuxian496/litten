@@ -1,7 +1,7 @@
 import react from "@vitejs/plugin-react";
 import { defineConfig } from "vite";
 import dts from "vite-plugin-dts";
-import { visualizer } from "rollup-plugin-visualizer";
+// import { visualizer } from "rollup-plugin-visualizer";
 // import { libInjectCss } from "vite-plugin-lib-inject-css";
 
 const components = [
@@ -44,7 +44,7 @@ export default defineConfig({
             name: "litten",
             fileName: "index",
         },
-        outDir: "build",
+        outDir: "dist",
         rollupOptions: {
             external: ["react", "react-dom", "react/jsx-runtime"],
             output: [
@@ -64,22 +64,28 @@ export default defineConfig({
                             return "vender";
                         }
 
-                        if (id.includes("components/ripple")) {
-                            return "ripple";
+                        if (id.includes("components/control/")) {
+                            const fileName = id
+                                .split("components/control/")[1]
+                                .split(".");
+                            return fileName[0];
                         }
 
-                        if (id.includes("components/buttonBase")) {
+                        if (id.includes("components/buttonBase/")) {
+                            console.log(id);
                             return "buttonBase";
                         }
 
-                        if (id.includes("components/icon")) {
+                        if (id.includes("components/icon/")) {
                             return "icon";
                         }
 
-                        if (id.includes("components/control")) {
-                            return id
-                                .split("components/control/")[1]
-                                .split(".")[0];
+                        if (id.includes("components/exceptionBoundary")) {
+                            return "exceptionBoundary";
+                        }
+
+                        if (id.includes("components/ripple/")) {
+                            return "ripple";
                         }
 
                         if (id.includes("global")) {
@@ -97,6 +103,6 @@ export default defineConfig({
         react(),
         // libInjectCss(),
         dts(),
-        visualizer(),
+        // visualizer(),
     ],
 });
