@@ -1,9 +1,8 @@
 import  { useContext, useEffect, useState } from "react";
-import "./form.less";
 
 import { ControlType } from "../../global/enum";
 
-import { LittenValue } from "../control/control.types";
+import { LittenValue } from "../control/userControl.types";
 import { getDefaultValueByDisplayName } from "../control/contentControl";
 import { ContentControlProps } from "../control/contentControl.types";
 import { LittenContentChangeEvent } from "../control/littenEvent.types";

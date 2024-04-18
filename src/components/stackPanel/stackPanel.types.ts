@@ -1,4 +1,4 @@
-import { StyleValue } from "../control/control.types";
+import { StyleValue } from "../control/userControl.types";
 import { LayoutControlProps } from "../control/layoutControl.types";
 
 export interface StackPanelProps extends LayoutControlProps {

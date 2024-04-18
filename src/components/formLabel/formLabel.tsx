@@ -3,24 +3,10 @@ import "./formLabel.less";
 import classnames from "classnames";
 
 import { MouseState, Placement, ControlType } from "../../global/enum";
-import { getPrefixNs } from "../control/userControl";
+import { getPrefixNs, setLabelMouseState } from "../control/userControl";
 
 import { FormLabelProps } from "../formLabel/formLabel.types";
 import { useDisabled } from "../control/disabledControl";
-
-let littenLabeMouseState = MouseState.none;
-
-export function gettLabeMouseState() {
-    return littenLabeMouseState;
-}
-
-/**
- * 设置labeMouseState
- * @param state 待设置的MouseState {MouseState}
- */
-export function setLabeMouseState(state: MouseState) {
-    littenLabeMouseState = state;
-}
 
 function getVisualStates(props: FormLabelProps) {
     const { prefixCls: customizePrefixCls, labelPlacement, disabled } = props;
@@ -75,7 +61,7 @@ export const FormLabel = ({
         const target = e.target as HTMLElement;
 
         if (target.className === getLabelVisualStates(props)) {
-            littenLabeMouseState = MouseState.mouseup;
+            setLabelMouseState(MouseState.mouseup);
         }
     }
 

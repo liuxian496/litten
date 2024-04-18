@@ -1,4 +1,4 @@
-import { UserControlProps } from "./control.types";
+import { UserControlProps } from "./userControl.types";
 import { LittenDisabledChangeEventHandler } from "./littenEvent.types";
 
 export interface DisabledControlProps extends UserControlProps {

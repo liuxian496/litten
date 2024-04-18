@@ -1,13 +1,10 @@
 {
   "name": "litten",
-  "version": "0.8.7",
+  "version": "0.9.0",
   "private": false,
-  "main": "build/index.js",
-  "module": "build/index.mjs",
-  "types": "build/types/index.d.ts",
-  "files": [
-    "build"
-  ],
+  "module": "dist/index.js",
+  "type": "module",
+  "types": "dist/index.d.ts",
   "keywords": [
     "react",
     "javascript",

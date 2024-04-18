@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { UserControlProps } from "./control.types";
+import { UserControlProps } from "./userControl.types";
 
 export interface LayoutControlProps extends UserControlProps {
     /**

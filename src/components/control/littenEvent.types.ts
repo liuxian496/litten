@@ -1,6 +1,6 @@
 import { ChangeEvent } from "react";
 import { ControlType } from "../../global/enum";
-import { LittenValue } from "./control.types";
+import { LittenValue } from "./userControl.types";
 import { TextFieldValue } from "../textField/textField.types";
 
 /**
