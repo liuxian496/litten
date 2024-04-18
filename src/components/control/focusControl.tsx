@@ -1,7 +1,7 @@
 import { useState, FocusEvent } from "react";
-import { FocusControlProps } from "./userControl.types";
+import { FocusControlProps } from "./focusControl.types";
 import { FocusState, MouseState } from "../../global/enum";
-import { gettLabeMouseState, setLabeMouseState } from "../formLabel/formLabel";
+import { getLabelMouseState, setLabelMouseState } from "./userControl";
 
 /**
  * 获取用户控件的focused属性对应的值，以及onFocus和onBlur的事件处理函数
@@ -13,11 +13,13 @@ export function useFocusd<T>(props: FocusControlProps<T>) {
     const [focused, setFocused] = useState(false);
 
     function handleFocus(e: FocusEvent<T>) {
-        if (gettLabeMouseState() === MouseState.none) {
+        if (getLabelMouseState() === MouseState.none) {
             setFocused(true);
         } else {
-            setLabeMouseState(MouseState.none);
+            // 避免点击label时，控件显示焦点样式。
+            setLabelMouseState(MouseState.none);
         }
+        
 
         onFocus?.(e);
     }

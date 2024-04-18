@@ -1,7 +1,27 @@
 import { MutableRefObject, useEffect, useState } from "react";
 import isString  from "lodash/isString";
+
+import { MouseState } from "../../global/enum";
 import { isEmptyString, usePrevious } from "../../global/util";
-import { RelativeRect } from "./control.types";
+import { RelativeRect } from "./userControl.types";
+
+let littenLabelMouseState = MouseState.none;
+
+/**
+ * 获取littenLabelMouseState
+ * @returns 
+ */
+export function getLabelMouseState() {
+    return littenLabelMouseState;
+}
+
+/**
+ * 设置littenLabelMouseState
+ * @param state 待设置的MouseState {MouseState}
+ */
+export function setLabelMouseState(state: MouseState) {
+    littenLabelMouseState = state;
+}
 
 /**
  * 获取控件css前缀
