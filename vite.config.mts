@@ -39,6 +39,7 @@ export default defineConfig({
         lib: {
             entry: {
                 index: "src/index.ts",
+                global:"src/global.ts",
                 ...getComponentsEntry(components),
             },
             name: "litten",
@@ -72,7 +73,6 @@ export default defineConfig({
                         }
 
                         if (id.includes("components/buttonBase/")) {
-                            console.log(id);
                             return "buttonBase";
                         }
 
@@ -88,7 +88,8 @@ export default defineConfig({
                             return "ripple";
                         }
 
-                        if (id.includes("global")) {
+                        if (id.includes("global/")) {
+                            console.log(id)
                             return id.split("global/")[1].split(".")[0];
                         }
                     },
