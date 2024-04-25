@@ -1,15 +1,15 @@
 import { MutableRefObject, useEffect, useState } from "react";
-import isString  from "lodash/isString";
 
 import { MouseState } from "../../global/enum";
-import { isEmptyString, usePrevious } from "../../global/util";
+import { usePrevious } from "../../global/util";
 import { RelativeRect } from "./userControl.types";
+import { getPrefixNs as getLittenPrefixNs } from "cyndi/dist/getPrefixNs";
 
 let littenLabelMouseState = MouseState.none;
 
 /**
  * 获取littenLabelMouseState
- * @returns 
+ * @returns
  */
 export function getLabelMouseState() {
     return littenLabelMouseState;
@@ -33,9 +33,7 @@ export function getPrefixNs(
     componentName: string,
     customizePrefix?: string
 ): string {
-    return isString(customizePrefix) && !isEmptyString(customizePrefix)
-        ? customizePrefix + "-" + componentName
-        : `litten-${componentName}`;
+    return getLittenPrefixNs(componentName, customizePrefix, "litten");
 }
 
 /**

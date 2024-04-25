@@ -1,16 +1,4 @@
-import React, { useEffect, useRef } from "react";
-import isString from "lodash/isString";
-import isArray from "lodash/isArray";
-import forOwn from "lodash/forOwn";
-
-/**
- * 检测是否是空字符串
- * @param 需要判断的值 {any}
- * @returns isString 是否是空字符串 {boolean}
- */
-export function isEmptyString(str: any) {
-    return isString(str) && str.trim() === "";
-}
+import { useEffect, useRef } from "react";
 
 /**
  * 保存前一个状态的值
@@ -32,25 +20,6 @@ export function usePrevious(value: any) {
  */
 export function handleMouseStopPropagation(e: React.MouseEvent) {
     e.stopPropagation();
-}
-
-/**
- * 遍历对象数组，将对的每个属性输出成字符串，不递归遍历对象属性的子属性
- */
-export function printArrayItem(list?: Object[]) {
-    let log: string[] = [];
-    if (isArray(list)) {
-        list.map((item, index) => {
-            log[index] = "{";
-            forOwn(item, (value, key) => {
-                log[index] += key + ": " + value + ", ";
-            });
-            log[index] += "}";
-
-            return item;
-        });
-    }
-    return log.toString();
 }
 
 /**

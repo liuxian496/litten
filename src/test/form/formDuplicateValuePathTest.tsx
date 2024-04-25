@@ -30,9 +30,9 @@ const Test = () => {
     );
 };
 
-function myException() {
-    throw new Error(`Please check your code.`);
-}
+// function myException() {
+//     throw new Error(`Please check your code.`);
+// }
 
 export const DuplicateValuePathTest: FormStory = {
     parameters: {
@@ -49,9 +49,9 @@ export const DuplicateValuePathTest: FormStory = {
                 )
             ).toBeInTheDocument();
 
-            await expect(() => myException()).toThrow(
-                "Please check your code."
-            );
+            // await expect(() => myException()).toThrow(
+            //     "Please check your code."
+            // );
         });
     },
 };
