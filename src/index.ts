@@ -1,14 +1,6 @@
 //global
 export * from "./global/enum";
 
-// event
-export type {
-    LittenEvent,
-    LittenContentChangeEvent,
-    LittenTextChangeEvent,
-    LittenCheckedChangeEvent,
-} from "./components/control/littenEvent.types";
-
 // button
 export { Button } from "./components/button/button";
 
