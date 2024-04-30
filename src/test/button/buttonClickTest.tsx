@@ -10,7 +10,7 @@ import { Button } from "../../components/button/button";
 const Test = () => {
     const [count, setCount] = useState(0);
 
-    function handleClick(e: any) {
+    function handleClick() {
         setCount(count + 1);
     }
 
