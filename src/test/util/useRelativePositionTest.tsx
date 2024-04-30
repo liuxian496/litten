@@ -5,7 +5,7 @@ import { UtilStory } from "../../stories/util.stories";
 import { useRelativePosition } from "../../components/control/userControl";
 import { fireEvent, within } from "@storybook/test";
 import { StackPanel } from "../../components/stackPanel/stackPanel";
-import { RelativeRect } from "../../components/control/control.types";
+import { RelativeRect } from "../../components/control/userControl.types";
 
 const Test = () => {
     const divRef = useRef<HTMLDivElement>(null);
