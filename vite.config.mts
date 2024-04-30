@@ -39,7 +39,7 @@ export default defineConfig({
         lib: {
             entry: {
                 index: "src/index.ts",
-                global:"src/global.ts",
+                enum: "src/enum.ts",
                 ...getComponentsEntry(components),
             },
             name: "litten",
@@ -61,6 +61,9 @@ export default defineConfig({
                             }
                             if (id.includes("number-precision")) {
                                 return "number-precision";
+                            }
+                            if (id.includes("cyndi")) {
+                                return "cyndi";
                             }
                             return "vender";
                         }
@@ -89,7 +92,7 @@ export default defineConfig({
                         }
 
                         if (id.includes("global/")) {
-                            console.log(id)
+                            // console.log(id);
                             return id.split("global/")[1].split(".")[0];
                         }
                     },
