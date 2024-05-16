@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 
-import { SliderStory } from "../../stories/slider.stories";
+import { Orientation } from "litten-hooks";
+import { LittenNumberChangeEvent } from "litten-hooks/dist/control/event/littenEvent.types";
+
 import { fireEvent, userEvent, within, expect } from "@storybook/test";
+import { SliderStory } from "../../stories/slider.stories";
 
 import { StackPanel } from "../../components/stackPanel/stackPanel";
 import { Slider } from "../../components/slider/slider";
-import { Orientation } from "../../global/enum";
-import { LittenNumberChangeEvent } from "../../components/control/control.types";
 
 const Test = () => {
     const [value, setValue] = useState(50);

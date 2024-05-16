@@ -1,7 +1,8 @@
 import classnames from "classnames";
+import { CheckState } from "litten-hooks/dist/enum";
 
-import { getPrefixNs } from "../control/userControl";
-import { CheckState, Mode } from "../../global/enum";
+import { getPrefixNs } from "../../global/util";
+import { Mode } from "../../global/enum";
 
 import { getFocusColor, getWaveColor } from "../buttonBase/buttonBase";
 import { SwitchProps } from "./switch.types";
@@ -9,7 +10,7 @@ import { SwitchProps } from "./switch.types";
 export function getRippleColor(props: SwitchProps) {
     const { checked, color } = props;
     const mode = checked === true ? Mode.text : Mode.primary;
-    
+
     return {
         focusColor: getFocusColor({ mode, color }),
         waveColor: getWaveColor({ mode, color }),

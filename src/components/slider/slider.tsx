@@ -1,4 +1,4 @@
-import  {
+import {
     useState,
     ChangeEvent,
     useRef,
@@ -10,18 +10,18 @@ import "./slider.less";
 import NP from "number-precision";
 
 import {
-    Color,
+    ControlType,
     FocusState,
     MouseState,
     Orientation,
-    Size,
-    ControlType,
-} from "../../global/enum";
+} from "litten-hooks/dist/enum";
+import { RelativeRect } from "litten-hooks/dist/control/userControl/userControl.types";
+import { useRelativePosition } from "litten-hooks/dist/userControl";
 
-import { useDisabled } from "../control/disabledControl";
-import { useCurrentValue } from "../control/contentControl";
-import { useRelativePosition } from "../control/userControl";
-import { RelativeRect } from "../control/userControl.types";
+import { Color, Size } from "../../global/enum";
+
+import { useDisabled } from "litten-hooks/dist/disabledControl";
+import { useCurrentValue } from "litten-hooks/dist/contentControl";
 
 import { SliderProps } from "./slider.types";
 import {
@@ -46,7 +46,7 @@ export const Slider = forwardRef(function Slider(
         max = 100,
         size = Size.medium,
         step = 1,
-        marks,
+        // marks,
         // 原生input作为range时，默认值是50
         defaultValue = 50,
         orientation = Orientation.horizontal,

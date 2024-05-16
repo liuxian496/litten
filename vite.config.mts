@@ -1,16 +1,13 @@
 import react from "@vitejs/plugin-react";
 import { defineConfig } from "vite";
 import dts from "vite-plugin-dts";
-// import { visualizer } from "rollup-plugin-visualizer";
+import { visualizer } from "rollup-plugin-visualizer";
 // import { libInjectCss } from "vite-plugin-lib-inject-css";
 
 const components = [
     "button",
     "checkbox",
-    "form",
-    "formControl",
     "formLabel",
-    "useForm",
     "iconButton",
     "loading",
     "popup",
@@ -36,6 +33,8 @@ export default defineConfig({
     build: {
         copyPublicDir: false,
         cssCodeSplit: true,
+        sourcemap: true,
+
         lib: {
             entry: {
                 index: "src/index.ts",
@@ -47,7 +46,22 @@ export default defineConfig({
         },
         outDir: "dist",
         rollupOptions: {
-            external: ["react", "react-dom", "react/jsx-runtime"],
+            external: [
+                "react",
+                "react-dom",
+                "react/jsx-runtime",
+                "classnames",
+                "cyndi/dist/getPrefixNs",
+                "litten-hooks/dist/checkedControl",
+                "litten-hooks/dist/contentControl",
+                "litten-hooks/dist/focusControl",
+                "litten-hooks/dist/disabledControl",
+                "litten-hooks/dist/enum",
+                "litten-hooks/dist/userControl",
+                "lodash/max",
+                "lodash/isFunction",
+                "number-precision",
+            ],
             output: [
                 {
                     format: "es",
@@ -107,6 +121,6 @@ export default defineConfig({
         react(),
         // libInjectCss(),
         dts(),
-        // visualizer(),
+        visualizer(),
     ],
 });

@@ -1,7 +1,7 @@
 import max from "lodash/max";
 
 import { RippleFocusProps } from "./ripple.types";
-import { ControlType } from "../../global/enum";
+import { ControlType } from "litten-hooks/dist/enum";
 
 //直径需要减少的值
 const offset = 16;
@@ -9,7 +9,12 @@ const offset = 16;
 /**
  * 获取focus部件的样式
  */
-function getFocusStyle(props: any) {
+function getFocusStyle(props: {
+    containerSpanWidth: number;
+    containerSpanHeight: number;
+    color: string;
+    diameterOffset: number;
+}) {
     const { containerSpanWidth, containerSpanHeight, color, diameterOffset } =
         props;
 

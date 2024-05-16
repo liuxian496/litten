@@ -1,6 +1,8 @@
 import { useState } from "react";
 import isFunction from "lodash/isFunction";
-import { AnimationState, ControlType, WaveMode } from "../../global/enum";
+import { ControlType } from "litten-hooks/dist/enum";
+
+import { AnimationState, WaveMode } from "../../global/enum";
 import { WaveProps } from "./ripple.types";
 
 // 用一个足够大的圆全覆盖父定位容器

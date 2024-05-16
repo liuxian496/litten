@@ -1,7 +1,8 @@
-import { Color, Orientation, Size } from "../../global/enum";
-import { ContentControlProps } from "../control/contentControl.types";
-import { DisabledControlProps } from "../control/disabledControl.types";
-import { FocusControlProps } from "../control/focusControl.types";
+import { Orientation } from "litten-hooks/dist/enum";
+import { ContentControlProps } from "litten-hooks/dist/control/contentControl/contentControl.types";
+import { DisabledControlProps } from "litten-hooks/dist/control/disabledControl/disabledControl.types";
+import { FocusControlProps } from "litten-hooks/dist/control/focusControl/focusControl.types";
+import { Color, Size } from "../../global/enum";
 
 export type SliderMark = {
     /**

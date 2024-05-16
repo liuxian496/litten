@@ -1,9 +1,10 @@
 import { ReactNode } from "react";
 import { Color, Size } from "../../global/enum";
 
-import { CheckedControlProps } from "../control/checkedControl.types";
-import { UserControlProps } from "../control/userControl.types";
-import { LittenContentChangeEventHandler } from "../control/littenEvent.types";
+import { CheckedControlProps } from "litten-hooks/dist/control/checkedControl/checkedControl.types";
+import { UserControlProps } from "litten-hooks/dist/control/userControl/userControl.types";
+import { LittenContentChangeEventHandler } from "litten-hooks/dist/control/event/littenEvent.types";
+
 import { RippleColor } from "../ripple/ripple.types";
 
 export interface RadioProps extends CheckedControlProps<HTMLInputElement> {

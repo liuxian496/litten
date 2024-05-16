@@ -2,12 +2,12 @@ import React, { useState } from "react";
 
 import { userEvent, within, expect } from "@storybook/test";
 
-import { LittenCheckedChangeEvent } from "../../components/control/littenEvent.types";
+import { LittenCheckedChangeEvent } from "litten-hooks/dist/control/event/littenEvent.types";
 import { Button } from "../../components/button/button";
 import { Radio } from "../../components/radio/radio";
 import { RadioGroup } from "../../components/radioGroup/radioGroup";
 import { FormLabel } from "../../components/formLabel/formLabel";
-import { Placement } from "../../global/enum";
+import { Placement } from "litten-hooks/dist/enum";
 
 import { RadioStory } from "../../stories/radio.stories";
 import { StackPanel } from "../../components/stackPanel/stackPanel";

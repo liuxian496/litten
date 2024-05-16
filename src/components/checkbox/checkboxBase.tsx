@@ -1,8 +1,9 @@
 import classnames from "classnames";
-import { getPrefixNs } from "../control/userControl";
+import { CheckState } from "litten-hooks/dist/enum";
+
+import { getPrefixNs } from "../../global/util";
 
 import { CheckboxProps } from './checkbox.types';
-import { CheckState } from "../../global/enum";
 
 export const CheckedIcon = () => {
     return (

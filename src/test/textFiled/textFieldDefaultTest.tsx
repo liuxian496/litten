@@ -1,9 +1,10 @@
 import React from "react";
 
+import { TextFieldType } from "litten-hooks/dist/enum";
+
 import { TextFiledStory } from "../../stories/textField.stories";
 
 import { TextField } from "../../components/textField/textField";
-import { TextFieldType } from "../../global/enum";
 
 export const DefaultTest: TextFiledStory = {
     args: {

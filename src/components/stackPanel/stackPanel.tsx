@@ -3,8 +3,8 @@ import "./stackPanel.less";
 
 import classnames from "classnames";
 
-import { getPrefixNs } from "../control/userControl";
-import { ControlType } from "../../global/enum";
+import { getPrefixNs } from "../../global/util";
+import { ControlType } from "litten-hooks/dist/enum";
 
 function getVisualStates(props: StackPanelProps) {
     const {

@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 
-import { ContentControlProps } from "../control/contentControl.types";
+import { ContentControlProps } from "litten-hooks/dist/control/contentControl/contentControl.types";
 
 export interface RadioGroupProps extends ContentControlProps<HTMLInputElement, string> {
     /**

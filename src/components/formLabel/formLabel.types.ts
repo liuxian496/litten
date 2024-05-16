@@ -1,7 +1,6 @@
 import { CSSProperties } from "react";
-import { Placement } from "../../global/enum";
-import { LayoutControlProps } from "../control/layoutControl.types";
-
+import { Placement } from "litten-hooks/dist/enum";
+import { LayoutControlProps } from "litten-hooks/dist/control/layoutControl/layoutControl.types";
 
 export interface FormLabelProps extends LayoutControlProps {
     disabled?: boolean;

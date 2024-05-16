@@ -1,6 +1,6 @@
 import classnames from "classnames";
 
-import { getPrefixNs } from "../control/userControl";
+import { getPrefixNs } from "../../global/util";
 
 import { LoadingProps } from "./loading.types";
 

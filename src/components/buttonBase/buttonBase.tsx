@@ -1,5 +1,5 @@
 import classnames from "classnames";
-import { getPrefixNs } from "../control/userControl";
+import { getPrefixNs } from "../../global/util";
 
 import { ButtonBaseProps } from '../buttonBase/buttonBase.types';
 import { Color, Mode, White, Blue, Red, Green, Orange } from "../../global/enum";

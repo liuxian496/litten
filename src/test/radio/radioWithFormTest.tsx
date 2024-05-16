@@ -1,28 +1,29 @@
 import React, { useState } from "react";
 
-import { RadioStory } from "../../stories/radio.stories";
+import { Placement } from "litten-hooks/dist/enum";
+import { Form, FormControl, useForm } from "litten-form";
 
 import { userEvent, within, expect } from "@storybook/test";
 
-import { FormRef } from "../../components/form/form.types";
-import { Placement } from "../../global/enum";
+import { RadioStory } from "../../stories/radio.stories";
 
-import { useForm } from "../../components/form/useForm";
 import { Button } from "../../components/button/button";
 import { Radio } from "../../components/radio/radio";
 import { RadioGroup } from "../../components/radioGroup/radioGroup";
 import { FormLabel } from "../../components/formLabel/formLabel";
-import { Form } from "../../components/form/form";
-import { FormControl } from "../../components/form/formControl";
 import { StackPanel } from "../../components/stackPanel/stackPanel";
 
-const Test = () => {
-    const [formData, setFormData] = useState<any>({});
+type Data = {
+    fruit: boolean;
+};
 
-    const myForm: FormRef = useForm();
+const Test = () => {
+    const [formData, setFormData] = useState<Data>();
+
+    const myForm = useForm();
 
     function handleShowFormDataBtuClick() {
-        setFormData(myForm.getValues());
+        setFormData(myForm.getValues() as Data);
     }
 
     function handleSetFruitBtuClick() {
@@ -87,7 +88,7 @@ const Test = () => {
             >
                 Set Fruit Apple
             </Button>
-            <div>{`formData.fruit is ${formData.fruit}`}</div>
+            <div>{`formData.fruit is ${formData?.fruit}`}</div>
         </>
     );
 };

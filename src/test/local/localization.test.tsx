@@ -4,13 +4,14 @@ import { userEvent, within, expect } from "@storybook/test";
 
 import { LocalStory } from "../../stories/i18N.stories";
 
+import { Lexicon } from "../../global/local.types";
 import { Red, I18N } from "../../global/enum";
 import { getI18NConfig, setI18N, getI18N, getLocal } from "../../global/local";
 import { Blue } from "../../global/enum";
 
 const TestLocalization = () => {
     const [currentI18N, setCurrentI18N] = useState(I18N.enUs);
-    const [config, setConfig] = useState<any>(getI18NConfig());
+    const [config, setConfig] = useState<Lexicon>(getI18NConfig());
 
     function handleI18NSelectChange(e: ChangeEvent<HTMLSelectElement>) {
         const current = e.target.value as I18N;

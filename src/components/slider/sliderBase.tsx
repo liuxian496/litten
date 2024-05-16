@@ -1,11 +1,14 @@
 import classnames from "classnames";
 import NP from "number-precision";
+import { Orientation } from "litten-hooks/dist/enum";
+import {
+    RelativeRect,
+    VisualStates,
+} from "litten-hooks/dist/control/userControl/userControl.types";
 
-import { getPrefixNs } from "../control/userControl";
+import { getPrefixNs } from "../../global/util";
 
 import { SliderProps } from "./slider.types";
-import { RelativeRect, VisualStates } from "../control/userControl.types";
-import { Orientation } from "../../global/enum";
 
 const componentName = "slider";
 
@@ -115,7 +118,7 @@ export function getThumbDisplacement(
 ) {
     const value = orientation === Orientation.horizontal ? rect.left : rect.top;
 
-    let displacement = value < 0 ? 0 : value;
+    const displacement = value < 0 ? 0 : value;
 
     const max =
         orientation === Orientation.horizontal

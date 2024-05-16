@@ -7,19 +7,17 @@ import React, {
 } from "react";
 
 import "./ripple.less";
-import {
-    AnimationState,
-    MouseState,
-    ControlType,
-    WaveMode,
-} from "../../global/enum";
-import { getPrefixNs } from "../control/userControl";
 
-import { RippleProps } from "./ripple.types";
+import { MouseState, ControlType } from "litten-hooks/dist/enum";
+
+import { AnimationState, WaveMode } from "../../global/enum";
+import { getPrefixNs } from "../../global/util";
+
+import { RippleProps, WaveStateList } from "./ripple.types";
 import { Wave } from "./wave";
 import { RippleFocus } from "./rippleFocus";
 
-function addWaveList(prevWaveList: any[]) {
+function addWaveList(prevWaveList: WaveStateList) {
     return [
         ...prevWaveList,
         {
@@ -30,7 +28,7 @@ function addWaveList(prevWaveList: any[]) {
     ];
 }
 
-function checkWaveList(prevWaveList: any[]) {
+function checkWaveList(prevWaveList: WaveStateList) {
     for (let i = prevWaveList.length - 1; i >= 0; i--) {
         const item = prevWaveList[i];
         if (
@@ -45,7 +43,7 @@ function checkWaveList(prevWaveList: any[]) {
     return [...prevWaveList];
 }
 
-function updateWaveListPressed(list: any[]) {
+function updateWaveListPressed(list: WaveStateList) {
     list.map((item) => {
         //找到数组中第一个isPressed值不是ture的元素，将它的值设置成false
         item && item.isPressed === true && (item.isPressed = false);
@@ -67,11 +65,11 @@ export const Ripple = forwardRef(function Ripple(
     } = props;
     const prefixCls = getPrefixNs("ripple", customizePrefixCls);
 
-    const [waveList, setWaveList] = useState<any[]>([]);
+    const [waveList, setWaveList] = useState<WaveStateList>([]);
 
     const [isFocusChanged, setIsFocusChanged] = useState(false);
 
-    const containerSpan = useRef(null);
+    const containerSpan = useRef<HTMLSpanElement>(null);
     const [containerSpanWidth, setContainerSpanWidth] = useState(0);
     const [containerSpanHeight, setContainerSpanHeight] = useState(0);
     const [parentOffsetLeft, setParentOffsetLeft] = useState(0);
@@ -93,8 +91,8 @@ export const Ripple = forwardRef(function Ripple(
                 setContainerRange(containerSpan.current);
             containerSpan &&
                 containerSpan.current &&
-                containerSpan.current["offsetParent"] &&
-                setOffsetParentRange(containerSpan.current["offsetParent"]);
+                containerSpan.current.offsetParent &&
+                setOffsetParentRange(containerSpan.current.offsetParent as HTMLSpanElement);
         }, 100);
 
         return () => {
@@ -159,14 +157,14 @@ export const Ripple = forwardRef(function Ripple(
         }
     }, [isPressed]);
 
-    function setContainerRange(current: any) {
-        setContainerSpanWidth(current["offsetWidth"]);
-        setContainerSpanHeight(current["offsetHeight"]);
+    function setContainerRange(current: HTMLSpanElement) {
+        setContainerSpanWidth(current.offsetWidth);
+        setContainerSpanHeight(current.offsetHeight);
     }
 
-    function setOffsetParentRange(current: any) {
-        setParentOffsetLeft(current["offsetLeft"]);
-        setParentOffsetTop(current["offsetTop"]);
+    function setOffsetParentRange(current: HTMLSpanElement) {
+        setParentOffsetLeft(current.offsetLeft);
+        setParentOffsetTop(current.offsetTop);
     }
 
     function setWaveAnimationStateByIndex(

@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 
-// import { userEvent, waitFor, within } from "@storybook/test";
+import { TextFieldType } from "litten-hooks/dist/enum";
 
 import { TextFiledStory } from "../../stories/textField.stories";
 
-import { TextFieldType } from "../../global/enum";
-import { LittenTextChangeEvent } from "../../components/control/littenEvent.types";
+import { LittenTextChangeEvent } from "litten-hooks/dist/control/event/littenEvent.types";
 import { FormLabel } from "../../components/formLabel/formLabel";
 import { TextField } from "../../components/textField/textField";
 import { TextFieldValue } from "../../components/textField/textField.types";

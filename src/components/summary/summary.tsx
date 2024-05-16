@@ -1,10 +1,11 @@
 import "./summary.less";
 
 import classnames from "classnames";
+import { ControlType } from "litten-hooks/dist/enum";
 
 import { SummaryProps } from "./summary.types";
-import { getPrefixNs } from "../control/userControl";
-import { Color, ControlType } from "../../global/enum";
+import { getPrefixNs } from "../../global/util";
+import { Color } from "../../global/enum";
 import { getI18NConfig } from "../../global/local";
 import { NoteIcon, WarningIcon, DeepIcon } from "../icon/icon";
 

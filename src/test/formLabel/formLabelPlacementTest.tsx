@@ -4,7 +4,7 @@ import { FormLabelStory } from "../../stories/formLabel.stories";
 
 import { Checkbox } from "../../components/checkbox/checkbox";
 import { FormLabel } from "../../components/formLabel/formLabel";
-import { Placement } from "../../global/enum";
+import { Placement } from "litten-hooks/dist/enum";
 
 export const PlacementTest: FormLabelStory = {
     parameters: {

@@ -5,7 +5,7 @@ import { userEvent, within, expect } from "@storybook/test";
 import { SliderStory } from "../../stories/slider.stories";
 
 import { Mode } from "../../global/enum";
-import { LittenNumberChangeEvent } from "../../components/control/littenEvent.types";
+import { LittenNumberChangeEvent } from "litten-hooks/dist/control/event/littenEvent.types";
 
 import { Button } from "../../components/button/button";
 import { StackPanel } from "../../components/stackPanel/stackPanel";

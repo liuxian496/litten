@@ -3,7 +3,7 @@ import "./popup.less";
 
 import classnames from "classnames";
 
-import { getPrefixNs } from "../control/userControl";
+import { getPrefixNs } from "../../global/util";
 
 import { PopupProps } from "./popup.types";
 

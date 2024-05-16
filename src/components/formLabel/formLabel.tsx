@@ -1,38 +1,14 @@
 import "./formLabel.less";
 
-import classnames from "classnames";
+import { useDisabled } from "litten-hooks/dist/disabledControl";
+import { ControlType, MouseState, Placement } from "litten-hooks/dist/enum";
 
-import { MouseState, Placement, ControlType } from "../../global/enum";
-import { getPrefixNs, setLabelMouseState } from "../control/userControl";
-
+import {
+    getLabelVisualStates,
+    getVisualStates,
+    setLabelMouseState,
+} from "./formLabelBase";
 import { FormLabelProps } from "../formLabel/formLabel.types";
-import { useDisabled } from "../control/disabledControl";
-
-function getVisualStates(props: FormLabelProps) {
-    const { prefixCls: customizePrefixCls, labelPlacement, disabled } = props;
-
-    const prefixCls = getPrefixNs("formLabel", customizePrefixCls);
-
-    const visualStates = classnames(
-        prefixCls,
-        `${prefixCls}--${labelPlacement}`,
-        {
-            [`${prefixCls}--disabled`]: disabled === true,
-        }
-    );
-
-    return visualStates;
-}
-
-function getLabelVisualStates(props: FormLabelProps) {
-    const { prefixCls: customizePrefixCls } = props;
-
-    const prefixCls = getPrefixNs("formLabel", customizePrefixCls);
-
-    const visualStates = classnames(`${prefixCls}__label`);
-
-    return visualStates;
-}
 
 function renderLabel(props: FormLabelProps) {
     const { label, labelStyle } = props;
