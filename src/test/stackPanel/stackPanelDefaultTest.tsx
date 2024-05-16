@@ -5,7 +5,7 @@ import { StackPanelStory } from "../../stories/stackPanel.stories";
 import { StackPanel } from "../../components/stackPanel/stackPanel";
 import { FormLabel } from "../../components/formLabel/formLabel";
 import { Checkbox } from "../../components/checkbox/checkbox";
-import { Placement } from "../../global/enum";
+import { Placement } from "litten-hooks/dist/enum";
 
 export const DefaultTest: StackPanelStory = {
     args: {},

@@ -1,12 +1,15 @@
-import  { useState, ChangeEvent, useEffect } from "react";
+import { useState, ChangeEvent, useEffect } from "react";
 import "./radio.less";
 
-import { useDisabled } from "../control/disabledControl";
-import { RadioProps } from "./radio.types";
-import { useFocusd } from "../control/focusControl";
-import { useCurrentChecked } from "../control/checkedControl";
-import { CheckState, Color, Mode, Size, ControlType } from "../../global/enum";
+import { CheckState, ControlType } from "litten-hooks/dist/enum";
+import { useDisabled } from "litten-hooks/dist/disabledControl";
+import { useFocused } from "litten-hooks/dist/focusControl";
+import { useCurrentChecked } from "litten-hooks/dist/checkedControl";
 
+import { Color, Mode, Size } from "../../global/enum";
+
+import { handleLabelMouseStateCheck } from "../formLabel/formLabelBase";
+import { RadioProps } from "./radio.types";
 import { Ripple } from "../ripple/ripple";
 import { getFocusColor, getWaveColor } from "../buttonBase/buttonBase";
 import {
@@ -27,9 +30,7 @@ export const Radio = ({
         waveColor: getWaveColor({ mode: Mode.text, color }),
     },
     size = Size.medium,
-    style,
     checked,
-    defaultValue,
     defaultChecked = false,
     value = "on",
     onDisabledChange,
@@ -54,7 +55,10 @@ export const Radio = ({
             onChange,
         });
 
-    const [focused, handleFocus, handleBlur] = useFocusd(props);
+        const [focused, handleFocus, handleBlur] = useFocused({
+            onLabelMouseStateCheck: handleLabelMouseStateCheck,
+            ...props,
+        });
 
     const [checkStatus, setCheckStatus] = useState(
         getCheckState(currentChecked)

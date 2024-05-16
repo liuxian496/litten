@@ -1,16 +1,22 @@
 import "./button.less";
 
 import classnames from "classnames";
+import { ControlType } from "litten-hooks/dist/enum";
+import { useFocused } from "litten-hooks/dist/focusControl";
+import { useDisabled } from "litten-hooks/dist/disabledControl";
 
-import { Mode, Size, Color, ControlType } from "../../global/enum";
-import { getPrefixNs } from "../control/userControl";
-import { useFocusd } from "../control/focusControl";
-import { useDisabled } from "../control/disabledControl";
+import { Mode, Size, Color } from "../../global/enum";
+import { getPrefixNs } from "../../global/util";
 
-import { getVisualStates, getFocusColor, getWaveColor } from "../buttonBase/buttonBase";
+import {
+    getVisualStates,
+    getFocusColor,
+    getWaveColor,
+} from "../buttonBase/buttonBase";
 import { ButtonProps } from "./button.types";
 
 import { Ripple } from "../ripple/ripple";
+import { handleLabelMouseStateCheck } from "../formLabel/formLabelBase";
 
 /**
  * 获取start icon的视觉状态
@@ -54,7 +60,10 @@ export const Button = ({
 }: ButtonProps) => {
     const { children } = props;
 
-    const [focused, handleFocus, handleBlur] = useFocusd(props);
+    const [focused, handleFocus, handleBlur] = useFocused({
+        onLabelMouseStateCheck: handleLabelMouseStateCheck,
+        ...props,
+    });
 
     const disabled = useDisabled({
         disabled: disabledProp,

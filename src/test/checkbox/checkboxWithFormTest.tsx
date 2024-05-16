@@ -1,25 +1,27 @@
 import React, { useState } from "react";
 
-import { RadioStory } from "../../stories/radio.stories";
+import { Form, FormControl, useForm } from "litten-form";
 
 import { userEvent, within, expect } from "@storybook/test";
 
-import { FormRef } from "../../components/form/form.types";
+import { RadioStory } from "../../stories/radio.stories";
 
-import { useForm } from "../../components/form/useForm";
 import { Button } from "../../components/button/button";
 import { Checkbox } from "../../components/checkbox/checkbox";
 import { FormLabel } from "../../components/formLabel/formLabel";
-import { Form } from "../../components/form/form";
-import { FormControl } from "../../components/form/formControl";
+
+type Data = {
+    fruit: boolean;
+};
 
 const Test = () => {
-    const [formData, setFormData] = useState<any>({});
+    const [msg, setMsg] = useState("");
 
-    const myForm: FormRef = useForm();
+    const myForm = useForm();
 
     function handleShowFormDataBtuClick() {
-        setFormData(myForm.getValues());
+        const { fruit } = myForm.getValues() as Data;
+        setMsg(`fruit is: ${fruit}`);
     }
 
     function handleSetFruitBtuClick() {
@@ -48,7 +50,7 @@ const Test = () => {
             >
                 Set Fruit False
             </Button>
-            <div>{`formData.fruit is ${formData.fruit}`}</div>
+            <div>{msg}</div>
         </>
     );
 };
@@ -67,16 +69,11 @@ export const CheckboxWithFormTest: RadioStory = {
         const setFormDataBtu = canvas.getByTestId("setFormDataBtu");
 
         await step(
-            'Set "Fruit" checkbox defaultChecked is false, Click "Show Form Data" button. Then fruit is false',
+            '"Fruit" checkbox defaultChecked is false, Click "Show Form Data" button. Then "fruit is: false" to be in the document.',
             async () => {
-                await expect(
-                    await canvas.findByText("formData.fruit is undefined")
-                ).toBeInTheDocument();
-
                 await userEvent.click(showFormDataBtu);
-
                 await expect(
-                    await canvas.findByText("formData.fruit is false")
+                    canvas.getByText("fruit is: false")
                 ).toBeInTheDocument();
 
                 await expect(fruitCheckbox).not.toBeChecked();
@@ -84,14 +81,14 @@ export const CheckboxWithFormTest: RadioStory = {
         );
 
         await step(
-            'Click "Fruit" checkbox, Click "Show Form Data" button. Then fruit is true',
+            'Click "Fruit" checkbox, Click "Show Form Data" button. Then "fruit is: true" to be in the document.',
             async () => {
                 await userEvent.click(fruitCheckbox);
 
                 await userEvent.click(showFormDataBtu);
 
                 await expect(
-                    await canvas.findByText("formData.fruit is true")
+                    canvas.getByText("fruit is: true")
                 ).toBeInTheDocument();
 
                 await expect(fruitCheckbox).toBeChecked();
@@ -99,7 +96,7 @@ export const CheckboxWithFormTest: RadioStory = {
         );
 
         await step(
-            'Click "Set Fruit False" button, Click "Show Form Data" button. Then fruit is false',
+            'Click "Set Fruit False" button, Click "Show Form Data" button. Then "fruit is: true" to be in the document.',
             async () => {
                 await userEvent.click(setFormDataBtu);
 
@@ -108,7 +105,7 @@ export const CheckboxWithFormTest: RadioStory = {
                 await userEvent.click(showFormDataBtu);
 
                 await expect(
-                    await canvas.findByText("formData.fruit is false")
+                    canvas.getByText("fruit is: false")
                 ).toBeInTheDocument();
             }
         );

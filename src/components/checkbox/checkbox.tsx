@@ -1,13 +1,18 @@
 import { useState, ChangeEvent, useEffect } from "react";
 import "./checkbox.less";
 
-import { useFocusd } from "../control/focusControl";
-import { useCurrentChecked } from "../control/checkedControl";
-import { useDisabled } from "../control/disabledControl";
-import { CheckState, Color, Mode, Size, ControlType } from "../../global/enum";
+import { useFocused } from "litten-hooks/dist/focusControl";
+import { useCurrentChecked } from "litten-hooks/dist/checkedControl";
+import { CheckState, ControlType } from "litten-hooks/dist/enum";
+
+import { useDisabled } from "litten-hooks/dist/disabledControl";
+
+import { Color, Mode, Size } from "../../global/enum";
 
 import { Ripple } from "../ripple/ripple";
+import { handleLabelMouseStateCheck } from "../formLabel/formLabelBase";
 import { getFocusColor, getWaveColor } from "../buttonBase/buttonBase";
+
 import { CheckboxProps } from "./checkbox.types";
 import {
     CheckedIcon,
@@ -27,10 +32,8 @@ export const Checkbox = ({
         waveColor: getWaveColor({ mode: Mode.text, color }),
     },
     size = Size.medium,
-    style,
     checked,
     defaultChecked = false,
-    defaultValue,
     value = "on",
     indeterminate = false,
     onDisabledChange,
@@ -53,7 +56,10 @@ export const Checkbox = ({
             onChange,
         });
 
-    const [focused, handleFocus, handleBlur] = useFocusd(props);
+    const [focused, handleFocus, handleBlur] = useFocused({
+        onLabelMouseStateCheck: handleLabelMouseStateCheck,
+        ...props,
+    });
 
     const [checkStatus, setCheckStatus] = useState(
         getCheckState(currentChecked, indeterminate)

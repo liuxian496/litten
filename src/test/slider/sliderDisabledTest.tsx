@@ -4,11 +4,11 @@ import { userEvent, waitFor, within, expect } from "@storybook/test";
 
 import { SliderStory } from "../../stories/slider.stories";
 
-import { Placement } from "../../global/enum";
+import { Placement } from "litten-hooks/dist/enum";
 import {
     LittenCheckedChangeEvent,
     LittenDisabledChangeEvent,
-} from "../../components/control/littenEvent.types";
+} from "litten-hooks/dist/control/event/littenEvent.types";
 
 import { FormLabel } from "../../components/formLabel/formLabel";
 import { Checkbox } from "../../components/checkbox/checkbox";

@@ -1,14 +1,16 @@
 import React, { useState } from "react";
 
+import { Placement } from "litten-hooks/dist/enum";
+
 import { userEvent, waitFor, within, expect } from "@storybook/test";
 
 import { ButtonStory } from "../../stories/button.stories";
 
-import { Mode, Placement } from "../../global/enum";
+import { Mode } from "../../global/enum";
 import {
     LittenCheckedChangeEvent,
     LittenDisabledChangeEvent,
-} from "../../components/control/littenEvent.types";
+} from "litten-hooks/dist/control/event/littenEvent.types";
 
 import { Button } from "../../components/button/button";
 import { FormLabel } from "../../components/formLabel/formLabel";

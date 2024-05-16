@@ -19,14 +19,21 @@ npm i litten
 
 ### 2. litten依赖的库
 litten，依赖下面的库。
-1. [react](https://github.com/facebook/react)
-2. [classnames](https://github.com/JedWatson/classnames)
-3. [lodash](https://github.com/lodash/lodash)
-4. [number-precision](https://github.com/nefe/number-precision)
+<code>classnames</code>
+<code>cyndi</code>
+<code>litten-hooks</code>
+<code>lodash</code>
+<code>number-precision</code>
+<code>react</code>
+<code>react-dom</code>
 
-### 3. 引入litten样式
-<p>在项目的入口文件，例如：App.js或App.tsx中引入litten样式</p>
-<code>import 'litten/build/index.css';</code>
+### 3. 引入样式
+控件的样式，在打包好的dist/assets下，请按需引用
+<code>import "litten/dist/assets/button.css";</code>
+
+### 3. form
+可以使用litten-form进行表单数据的收集和控制
+[litten-form](https://liuxian496.github.io/litten/)
 
 ## 开发与测试
 <p>使用Storybook进行litten的开发和测试。使用TypeScript作为主要的开发语言。</p>

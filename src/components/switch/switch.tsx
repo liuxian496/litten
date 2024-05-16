@@ -8,20 +8,18 @@ import {
 } from "react";
 import "./switch.less";
 
-import { useDisabled } from "../control/disabledControl";
-import { useFocusd } from "../control/focusControl";
-import { useCurrentChecked } from "../control/checkedControl";
-import {
-    Color,
-    MouseState,
-    Size,
-    ControlType,
-    WaveMode,
-} from "../../global/enum";
+import { ControlType, MouseState } from "litten-hooks/dist/enum";
+import { useDisabled } from "litten-hooks/dist/disabledControl";
+import { useFocused } from "litten-hooks/dist/focusControl";
+import { useCurrentChecked } from "litten-hooks/dist/checkedControl";
 
+import { Color, Size, WaveMode } from "../../global/enum";
+
+import { handleLabelMouseStateCheck } from "../formLabel/formLabelBase";
 import { SwitchProps } from "./switch.types";
 import { LittenRipple } from "../ripple/ripple.types";
 import { Ripple } from "../ripple/ripple";
+
 import {
     getCheckState,
     getTrackVisualStates,
@@ -38,9 +36,7 @@ export const Switch = forwardRef(function Switch(
         loading = false,
         color = Color.default,
         size = Size.medium,
-        style,
         checked,
-        defaultValue,
         defaultChecked = false,
         value = "on",
         onDisabledChange,
@@ -69,7 +65,10 @@ export const Switch = forwardRef(function Switch(
             onChange,
         });
 
-    const [focused, handleFocus, handleBlur] = useFocusd(props);
+        const [focused, handleFocus, handleBlur] = useFocused({
+            onLabelMouseStateCheck: handleLabelMouseStateCheck,
+            ...props,
+        });
 
     const [checkStatus, setCheckStatus] = useState(
         getCheckState(currentChecked)

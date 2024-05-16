@@ -1,10 +1,13 @@
 import { ChangeEvent, forwardRef, LegacyRef } from "react";
 import "./textField.less";
+import { TextFieldType } from "litten-hooks/dist/enum";
 
-import { useDisabled } from "../control/disabledControl";
-import { getStateByFocused, useFocusd } from "../control/focusControl";
-import { useCurrentValue } from "../control/contentControl";
-import { TextFieldType, ControlType } from "../../global/enum";
+import { ControlType } from "litten-hooks/dist/enum";
+import { useDisabled } from "litten-hooks/dist/disabledControl";
+import { getStateByFocused, useFocused } from "litten-hooks/dist/focusControl";
+import { useCurrentValue } from "litten-hooks/dist/contentControl";
+
+import { handleLabelMouseStateCheck } from "../formLabel/formLabelBase";
 
 import { TextFieldProps, TextFieldValue } from "./textField.types";
 import { getVisualStates, getInputVisualStates } from "./textFiledBase";
@@ -17,7 +20,6 @@ export const TextField = forwardRef(function TextField(
         defaultValue,
         style,
         type = TextFieldType.text,
-        controlType,
         onDisabledChange,
         ...props
     }: TextFieldProps,
@@ -42,7 +44,10 @@ export const TextField = forwardRef(function TextField(
         onChange,
     });
 
-    const [focused, handleFocus, handleBlur] = useFocusd(props);
+    const [focused, handleFocus, handleBlur] = useFocused({
+        onLabelMouseStateCheck: handleLabelMouseStateCheck,
+        ...props,
+    });
 
     function handleChange(e: ChangeEvent<HTMLInputElement>) {
         setOriginalEvent(e);

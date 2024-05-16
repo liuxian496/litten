@@ -6,7 +6,7 @@ import { FormLabelStory } from "../../stories/formLabel.stories";
 
 import { Checkbox } from "../../components/checkbox/checkbox";
 import { FormLabel } from "../../components/formLabel/formLabel";
-import { Placement } from "../../global/enum";
+import { Placement } from "litten-hooks/dist/enum";
 import { FormLabelProps } from "../../components/formLabel/formLabel.types";
 
 const Test = (props: FormLabelProps) => {

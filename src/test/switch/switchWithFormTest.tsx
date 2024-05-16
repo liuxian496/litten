@@ -4,22 +4,23 @@ import { RadioStory } from "../../stories/radio.stories";
 
 import { userEvent, within, expect } from "@storybook/test";
 
-import { FormRef } from "../../components/form/form.types";
+import { Form, FormControl, useForm } from "litten-form";
 
-import { useForm } from "../../components/form/useForm";
 import { Button } from "../../components/button/button";
 import { Switch } from "../../components/switch/switch";
 import { FormLabel } from "../../components/formLabel/formLabel";
-import { Form } from "../../components/form/form";
-import { FormControl } from "../../components/form/formControl";
+
+type Data = {
+    fruit: boolean;
+};
 
 const Test = () => {
-    const [formData, setFormData] = useState<any>({});
+    const [formData, setFormData] = useState<Data>();
 
-    const myForm: FormRef = useForm();
+    const myForm = useForm();
 
     function handleShowFormDataBtuClick() {
-        setFormData(myForm.getValues());
+        setFormData(myForm.getValues() as Data);
     }
 
     function handleSetFruitBtuClick() {
@@ -48,7 +49,7 @@ const Test = () => {
             >
                 Set Fruit False
             </Button>
-            <div>{`formData.fruit is ${formData.fruit}`}</div>
+            <div>{`formData.fruit is ${formData?.fruit}`}</div>
         </>
     );
 };

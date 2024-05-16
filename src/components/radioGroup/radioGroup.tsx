@@ -1,9 +1,10 @@
-import  { ChangeEvent, useEffect } from "react";
+import { ChangeEvent, useEffect } from "react";
+
+import { ControlType } from "litten-hooks/dist/enum";
+import { useCurrentValue } from "litten-hooks/dist/contentControl";
+import { setCheckedByGroupValue } from "litten-hooks/dist/checkedControl";
 
 import { RadioGroupProps } from "../radio/radio.types";
-import { useCurrentValue } from "../control/contentControl";
-import { ControlType } from "../../global/enum";
-import { setCheckedByGroupValue } from "../control/checkedControl";
 
 export const RadioGroup = (props: RadioGroupProps) => {
     const { name, value, defaultValue, children, onChange } = props;

@@ -43,34 +43,6 @@ export enum Color {
 }
 
 /**
- * 鼠标状态
- */
-export enum MouseState {
-    mouseup = "mouseup",
-    mousedown = "mousedown",
-    mouseover = "mouseover",
-    mouseout = "mouseout",
-    mousemove = "mousemove",
-    none = "mousenone",
-}
-
-/**
- * 焦点状态
- */
-export enum FocusState {
-    focus = "focus",
-    blur = "blur",
-}
-
-/**
- * 可用状态
- */
-export enum EnableState {
-    disabled = "disabled",
-    enabled = "enabled",
-}
-
-/**
  * 动画状态
  * @param none animationNone 无动画
  * @param start start 动画开始
@@ -80,14 +52,6 @@ export enum AnimationState {
     none = "animationNone",
     start = "start",
     end = "end",
-}
-
-/**
- * 形状
- */
-export enum Shape {
-    circle = "circle",
-    rectangle = "rectangle",
 }
 
 /**
@@ -164,75 +128,6 @@ export enum Orange {
 }
 
 /**
- * UserControl类型
- */
-export enum ControlType {
-    Button = "Button",
-    Checkbox = "Checkbox",
-    Form = "Form",
-    FormControl = "FormControl",
-    FormLabel = "FormLabel",
-    IconButton = "IconButton",
-    Loading = "Loading",
-    Radio = "Radio",
-    Ripple = "Ripple",
-    RippleFocus = "RippleFocus",
-    RadioGroup = "RadioGroup",
-    Summary = "Summary",
-    Switch = "Switch",
-    StackPanel = "StackPanel",
-    Slider = "Slider",
-    TextField = "TextField",
-    Wave = "Wave",
-}
-
-/**
- * ChangeEvent状态
- */
-export enum ChangeEventState {
-    //默认状态
-    Default = "Default",
-    //用户输入
-    UserInput = "UserInput",
-    //
-    DevSet = "DevSet",
-}
-
-/**
- * 勾选状态
- */
-export enum CheckState {
-    // 选中
-    checked = "checked",
-    // 未选中
-    unChecked = "unChecked",
-    // 不确定
-    indeterminate = "indeterminate",
-}
-
-/**
- * 位置
- */
-export enum Placement {
-    // 上边
-    top = "placementTop",
-    // 下边
-    bottom = "placementBottom",
-    // 左边
-    left = "placementLeft",
-    // 右边
-    right = "placementRight",
-}
-
-/**
- * TextField类型
- */
-export enum TextFieldType {
-    text = "text",
-    password = "password",
-}
-
-/**
  * wave部件的计算的方式
  */
 export enum WaveMode {
@@ -240,14 +135,4 @@ export enum WaveMode {
     normal = "normal",
     // wave的圆心是容器的中心
     center = "center",
-}
-
-/**
- * 定义控件或布局可以具有的不同方向。
- */
-export enum Orientation {
-    //垂直
-    vertical = "vertical",
-    // 水平
-    horizontal = "horizontal",
 }

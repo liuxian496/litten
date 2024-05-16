@@ -1,8 +1,12 @@
 import "./iconButton.less";
 
-import { useDisabled } from "../control/disabledControl";
-import { useFocusd } from "../control/focusControl";
-import { Mode, Size, Color, ControlType } from "../../global/enum";
+import { ControlType } from "litten-hooks/dist/enum";
+import { useDisabled } from "litten-hooks/dist/disabledControl";
+import { useFocused } from "litten-hooks/dist/focusControl";
+
+import { Mode, Size, Color } from "../../global/enum";
+
+import { handleLabelMouseStateCheck } from "../formLabel/formLabelBase";
 
 import { IconButtonProps } from "./iconButton.types";
 import {
@@ -28,7 +32,10 @@ export const IconButton = ({
 }: IconButtonProps) => {
     const { children } = props;
 
-    const [focused, handleFocus, handleBlur] = useFocusd(props);
+    const [focused, handleFocus, handleBlur] = useFocused({
+        onLabelMouseStateCheck: handleLabelMouseStateCheck,
+        ...props,
+    });
 
     const disabled = useDisabled({
         disabled: disabledProp,

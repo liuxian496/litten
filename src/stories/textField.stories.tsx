@@ -8,7 +8,7 @@ import { FocusTest } from "../test/textFiled/textFieldFocusTest";
 import { DisabledTest } from "../test/textFiled/textFieldDisabledTest";
 import { UnControlledTest } from "../test/textFiled/textFieldUnControlledTest";
 import { WithFormTest } from "../test/textFiled/textFieldWithFormTest";
-import { PasswordTest } from "../test/textFiled/textFieldPassword";
+import { PasswordTest } from "../test/textFiled/textFieldPasswordTest";
 
 export default {
   title: "Example/TextField",

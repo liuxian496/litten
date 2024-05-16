@@ -1,32 +1,24 @@
 import React, { useState } from "react";
 
+import { Form, FormControl, useForm } from "litten-form";
+
 import { fireEvent, userEvent, within, expect } from "@storybook/test";
 
 import { SliderStory } from "../../stories/slider.stories";
 
 import { Mode } from "../../global/enum";
 
-import { FormRef } from "../../components/form/form.types";
-
-import { useForm } from "../../components/form/useForm";
-
 import { Button } from "../../components/button/button";
 import { FormLabel } from "../../components/formLabel/formLabel";
-import { Form } from "../../components/form/form";
-import { FormControl } from "../../components/form/formControl";
 import { Slider } from "../../components/slider/slider";
 import { StackPanel } from "../../components/stackPanel/stackPanel";
 
-type Data = {
-    volume: string;
-};
-
 const Test = () => {
     const [volume, setVolume] = useState(50);
-    const myForm: FormRef<Data> = useForm();
+    const myForm = useForm();
 
     function handleShowValueBtuClick() {
-        setVolume(myForm.getValueByPath("volume"));
+        setVolume(myForm.getValueByPath("volume") as number);
     }
 
     function handleFormClear() {
@@ -86,9 +78,7 @@ export const WithFormTest: SliderStory = {
         await step('"Volume" slider default value is 50.', async () => {
             await expect(volumeSlider).toHaveValue("50");
 
-            await expect(
-                await canvas.getByText("volume is 50")
-            ).toBeInTheDocument();
+            await expect(canvas.getByText("volume is 50")).toBeInTheDocument();
         });
 
         await step(
@@ -105,7 +95,7 @@ export const WithFormTest: SliderStory = {
                 await userEvent.click(setValueBtu);
 
                 await expect(
-                    await canvas.getByText("volume is 66")
+                    canvas.getByText("volume is 66")
                 ).toBeInTheDocument();
             }
         );

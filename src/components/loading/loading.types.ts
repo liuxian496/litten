@@ -1,4 +1,4 @@
-import { LayoutControlProps } from "../control/layoutControl.types";
+import { LayoutControlProps } from "litten-hooks/dist/control/layoutControl/layoutControl.types"
 
 export interface LoadingProps extends LayoutControlProps {
     /**

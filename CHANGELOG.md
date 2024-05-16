@@ -1,3 +1,7 @@
+# [1.0.0](https://github.com/liuxian496/litten/compare/v0.9.5...v1.0.0) (2024-05-16)
+
+
+
 ## [0.9.5](https://github.com/liuxian496/litten/compare/v0.9.4...v0.9.5) (2024-04-30)
 
 

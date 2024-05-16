@@ -5,7 +5,7 @@ import { userEvent, within, expect } from "@storybook/test";
 import { TextFiledStory } from "../../stories/textField.stories";
 
 import { Mode } from "../../global/enum";
-import { LittenTextChangeEvent } from "../../components/control/littenEvent.types";
+import { LittenTextChangeEvent } from "litten-hooks/dist/control/event/littenEvent.types";
 import { TextField } from "../../components/textField/textField";
 import { Button } from "../../components/button/button";
 import { TextFieldValue } from "../../components/textField/textField.types";

@@ -1,7 +1,7 @@
 import { createPortal } from "react-dom";
 import "./loading.less";
 
-import { ControlType } from "../../global/enum";
+import { ControlType } from "litten-hooks/dist/enum";
 
 import { usePopup } from "../popup/popup";
 

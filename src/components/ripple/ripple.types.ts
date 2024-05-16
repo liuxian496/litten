@@ -1,6 +1,7 @@
 import { ReactNode } from "react";
-import { UserControlProps } from "../control/userControl.types";
-import { MouseState, WaveMode } from "../../global/enum";
+import { MouseState } from "litten-hooks/dist/enum";
+import { UserControlProps } from "litten-hooks/dist/control/userControl/userControl.types";
+import { AnimationState, WaveMode } from "../../global/enum";
 
 /**
  * 波浪组件的参数
@@ -61,6 +62,31 @@ export interface WaveProps extends UserControlProps {
     waveMode?: WaveMode;
     onWaveAnimationEnd?: (index: number) => void;
 }
+
+/**
+ * 波纹部件的状态
+ */
+export type WaveState =
+    | {
+          /**
+           * 是否处于按下状态
+           */
+          isPressed: boolean;
+          /**
+           * 动画状态
+           */
+          animationState: AnimationState;
+          /**
+           * 序号
+           */
+          index: number;
+      }
+    | undefined;
+
+/**
+ * 波纹部件的状态集合
+ */
+export type WaveStateList = WaveState[];
 
 /**
  * 焦点部件的参数
