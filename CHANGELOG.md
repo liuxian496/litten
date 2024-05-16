@@ -1,3 +1,12 @@
+## [1.0.1](https://github.com/liuxian496/litten/compare/v1.0.0...v1.0.1) (2024-05-16)
+
+
+### Bug Fixes
+
+* 修改sourcemap打包时没有关闭的问题 ([ea0efdf](https://github.com/liuxian496/litten/commit/ea0efdfa9145911ec9f86a876e0263aef4e07c41))
+
+
+
 # [1.0.0](https://github.com/liuxian496/litten/compare/v0.9.5...v1.0.0) (2024-05-16)
 
 
