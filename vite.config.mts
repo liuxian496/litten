@@ -20,8 +20,12 @@ const components = [
     "textField",
 ];
 
+type entry = {
+    [index: string]: string;
+};
+
 function getComponentsEntry(components: string[]) {
-    const value: any = {};
+    const value: entry = {};
     components.map((component) => {
         value[component] = `src/${component}.ts`;
     });
@@ -33,8 +37,6 @@ export default defineConfig({
     build: {
         copyPublicDir: false,
         cssCodeSplit: true,
-        sourcemap: true,
-
         lib: {
             entry: {
                 index: "src/index.ts",
