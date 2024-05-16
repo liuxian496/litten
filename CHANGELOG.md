@@ -1,3 +1,12 @@
+## [1.0.2](https://github.com/liuxian496/litten/compare/v1.0.1...v1.0.2) (2024-05-16)
+
+
+### Bug Fixes
+
+* 修改FormLabel没有导出的问题 ([7742a12](https://github.com/liuxian496/litten/commit/7742a12ccfa6368e61e5a70fdc5cccb680ee3480))
+
+
+
 ## [1.0.1](https://github.com/liuxian496/litten/compare/v1.0.0...v1.0.1) (2024-05-16)
 
 
