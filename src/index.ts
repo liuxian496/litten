@@ -7,6 +7,12 @@ export { Button } from "./components/button/button";
 // checkbox
 export { Checkbox } from "./components/checkbox/checkbox";
 
+export { FormLabel } from "./components/formLabel/formLabel";
+export {
+    setLabelMouseState,
+    handleLabelMouseStateCheck,
+} from "./components/formLabel/formLabelBase";
+
 // icon
 
 // iconButton
