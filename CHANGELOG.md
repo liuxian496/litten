@@ -1,3 +1,12 @@
+## [1.0.3](https://github.com/liuxian496/litten/compare/v1.0.2...v1.0.3) (2024-05-19)
+
+
+### Bug Fixes
+
+* 修改稿Formla样式没有正确匹配的问题。 ([a247455](https://github.com/liuxian496/litten/commit/a247455ced433a8164a702d20d04763a56a9a041))
+
+
+
 ## [1.0.2](https://github.com/liuxian496/litten/compare/v1.0.1...v1.0.2) (2024-05-16)
 
 
