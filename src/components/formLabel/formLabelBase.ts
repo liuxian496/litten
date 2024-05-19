@@ -1,8 +1,8 @@
 import classnames from "classnames";
-import { getPrefixNs } from "cyndi/dist/getPrefixNs";
 import { MouseState } from "litten-hooks/dist/enum";
 
 import { FormLabelProps } from "./formLabel.types";
+import { getPrefixNs } from "../../global/util";
 
 let littenLabelMouseState = MouseState.none;
 
