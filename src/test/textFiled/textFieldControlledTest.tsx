@@ -16,7 +16,7 @@ const Test = () => {
 
     function handleTextFieldChange(event: LittenTextChangeEvent) {
         const { value } = event;
-        setRole(value);
+        // setRole(value);
     }
 
     function handleResetBtuClick() {
