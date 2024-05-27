@@ -71,7 +71,18 @@ export const Checkbox = ({
 
     function handleInputChange(e: ChangeEvent<HTMLInputElement>) {
         setOriginalEvent(e);
-        setCurrentChecked(e.target.checked);
+        if (value === undefined) {
+            //非受控
+            setCurrentChecked(e.target.checked);
+        } else {
+            //受控
+            onChange?.({
+                e,
+                value,
+                controlType: ControlType.Checkbox,
+                checked: e.target.checked,
+            });
+        }
     }
 
     return (
