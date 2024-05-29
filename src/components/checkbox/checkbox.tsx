@@ -71,7 +71,7 @@ export const Checkbox = ({
 
     function handleInputChange(e: ChangeEvent<HTMLInputElement>) {
         setOriginalEvent(e);
-        if (value === undefined) {
+        if (checked === undefined) {
             //非受控
             setCurrentChecked(e.target.checked);
         } else {
