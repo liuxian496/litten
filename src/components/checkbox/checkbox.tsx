@@ -51,6 +51,7 @@ export const Checkbox = ({
     const [currentChecked, setCurrentChecked, setOriginalEvent] =
         useCurrentChecked({
             checked,
+            value,
             defaultChecked,
             controlType: ControlType.Checkbox,
             onChange,
