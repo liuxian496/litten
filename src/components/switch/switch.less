@@ -22,23 +22,23 @@
     text-decoration: none;
 
     &:hover:is(&--unChecked):not(&--disabled) &__thumbContainer {
-        background-color: @gray-alphaPoint04;
+        background-color: @black-a04;
     }
 
     // unchecked
     &:is(&--unChecked):not(&--disabled) {
-        color: @white;
+        color: @white-main;
 
         .@{track} {
-            background-color: @gray-deep;
+            background-color: @black-a60;
         }
     }
 
     &:is(&--unChecked):is(&--disabled) {
-        color: @gray-light;
+        color: @black-light;
 
         .@{track} {
-            background-color: @gray-dark;
+            background-color: @black-deep;
         }
     }
 
@@ -54,15 +54,15 @@
     }
 
     &:is(&--defaultColor):is(&--checked):is(&--disabled) {
-        color: @blue-primary-deepLight;
+        color: @blue-primary-deep;
 
         .@{track} {
-            background-color: @blue-primary-deepLight;
+            background-color: @blue-primary-a16;
         }
     }
 
     &:hover:is(&--defaultColor):is(&--checked):not(&--disabled) &__thumbContainer {
-        background-color: @blue-primary-light;
+        background-color: @blue-primary-a04;
     }
 
     // end default
@@ -77,10 +77,10 @@
     }
 
     &:is(&--danger):is(&--checked):is(&--disabled) {
-        color: @red-error-deepLight;
+        color: @red-error-deep;
 
         .@{track} {
-            background-color: @red-error-deepLight;
+            background-color: @red-error-a16;
         }
     }
 
@@ -96,10 +96,10 @@
     }
 
     &:is(&--success):is(&--checked):is(&--disabled) {
-        color: @green-success-deepLight;
+        color: @green-success-deep;
 
         .@{track} {
-            background-color:@green-success-deepLight;
+            background-color: @green-success-a16;
         }
     }
 
@@ -115,10 +115,10 @@
     }
 
     &:is(&--warning):is(&--checked):is(&--disabled) {
-        color: @orange-warning-deepLight;
+        color: @orange-warning-deep;
 
         .@{track} {
-            background-color: @orange-warning-deepLight;
+            background-color: @orange-warning-a16;
         }
     }
 

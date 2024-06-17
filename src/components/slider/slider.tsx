@@ -160,7 +160,6 @@ export const Slider = forwardRef(function Slider(
     // 使用键盘，如上、下、左、右键操作更改value时触发
     function handleInputChange(e: ChangeEvent<HTMLInputElement>) {
         const { value: current } = e.target;
-
         setCurrentValue(parseFloat(current));
     }
 

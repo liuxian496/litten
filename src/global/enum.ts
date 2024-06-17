@@ -76,55 +76,65 @@ export enum LocalType {
  * 蓝色
  */
 export enum Blue {
-    main = "#1976d2",
-    deepLight = "rgba(25,118,210,0.16)",
-    dark = "1565c0",
-    focus = "rgba(25,118,210,0.3)",
+    dark = "rgb(21,101,192)",
+    main = "rgb(25, 118, 210)",
+    // ripple组件wave部件的颜色
+    rippleWave = "rgba(25,118,210,0.16)",
+    // ripple组件focus部件的颜色
+    rippleFocus = "rgba(25,118,210,0.3)",
 }
 
 /**
  * 白色
  */
 export enum White {
-    primary = "#ffffff",
-    focus = "rgba(255,255,255,0.3)",
+    main = "rgb(255,255,255)",
+    // ripple组件focus部件的颜色
+    rippleFocus = "rgba(255,255,255,0.3)",
 }
 
 /**
  * 灰色
  */
-export enum Gray {
-    primary = "#e0e0e0",
+export enum Black {
+    // ripple组件wave部件的颜色
+    rippleWave = "rgba(0,0,0,0.16)",
 }
 
 /**
  * 红色
  */
 export enum Red {
-    main = "rgba(211,47,47)",
-    dark = "#c62828",
-    focus = "rgba(211,47,47,0.3)",
-    deepLight = "rgba(211,47,47,0.16)",
+    main = "rgb(211, 47, 47)",
+    dark = "rgb(198, 40, 40)",
+    // ripple组件wave部件的颜色
+    rippleWave = "rgba(211,47,47,0.16)",
+    // ripple组件focus部件的颜色
+    rippleFocus = "rgba(211,47,47,0.3)",
 }
 
 /**
  * 绿色
  */
 export enum Green {
-    main = "rgba(46, 125, 50)",
-    dark = "#1b5e20",
-    focus = "rgba(46, 125, 50, 0.30)",
-    deepLight = "rgba(46, 125, 50, 0.16)",
+    main = "rgb(46, 125, 50)",
+    dark = "rgb(27, 94, 32)",
+    // ripple组件wave部件的颜色
+    rippleWave = "rgba(46, 125, 50, 0.16)",
+    // ripple组件focus部件的颜色
+    rippleFocus = "rgba(46, 125, 50, 0.30)",
 }
 
 /**
  * 橙色
  */
 export enum Orange {
-    main = "rgba(237,108,2)",
-    dark = "#e65100",
-    focus = "rgba(237,108,2,0.30)",
-    deepLight = "rgba(237,108,2,0.16)",
+    main = "rgb(237,108,2)",
+    dark = "rgb(230, 81, 0)",
+    // ripple组件wave部件的颜色
+    rippleWave = "rgba(237,108,2,0.16)",
+    // ripple组件focus部件的颜色
+    rippleFocus = "rgba(237,108,2,0.30)",
 }
 
 /**

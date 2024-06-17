@@ -48,8 +48,8 @@ const Test = () => {
                     parentOffsetLeft={16}
                     parentOffsetTop={16}
                     color={{
-                        focusColor: Blue.focus,
-                        waveColor: Blue.deepLight,
+                        focusColor: Blue.rippleFocus,
+                        waveColor: Blue.rippleWave,
                     }}
                     waveMode={WaveMode.center}
                     onWaveAnimationEnd={handleWaveAnimationEnd}

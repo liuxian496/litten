@@ -34,20 +34,20 @@ export function getVisualStates(props: ButtonBaseProps, componentName: string) {
 
 export function getFocusColor(props: ButtonBaseProps) {
     const { mode, color } = props;
-    let focusColor: string = White.focus;
+    let focusColor: string = White.rippleFocus;
 
     switch (color) {
         case Color.default:
-            focusColor = (mode === Mode.text || mode === Mode.outlined) ? Blue.focus : White.focus;
+            focusColor = (mode === Mode.text || mode === Mode.outlined) ? Blue.rippleFocus : White.rippleFocus;
             break;
         case Color.danger:
-            focusColor = (mode === Mode.text || mode === Mode.outlined) ? Red.focus : White.focus;
+            focusColor = (mode === Mode.text || mode === Mode.outlined) ? Red.rippleFocus : White.rippleFocus;
             break;
         case Color.success:
-            focusColor = (mode === Mode.text || mode === Mode.outlined) ? Green.focus : White.focus;
+            focusColor = (mode === Mode.text || mode === Mode.outlined) ? Green.rippleFocus : White.rippleFocus;
             break;
         case Color.warning:
-            focusColor = (mode === Mode.text || mode === Mode.outlined) ? Orange.focus : White.focus;
+            focusColor = (mode === Mode.text || mode === Mode.outlined) ? Orange.rippleFocus : White.rippleFocus;
             break;
     }
 
@@ -56,20 +56,20 @@ export function getFocusColor(props: ButtonBaseProps) {
 
 export function getWaveColor(props: ButtonBaseProps) {
     const { mode, color } = props;
-    let waveColor: string = White.primary;
+    let waveColor: string = White.main;
 
     switch (color) {
         case Color.default:
-            waveColor = (mode === Mode.text || mode === Mode.outlined) ? Blue.deepLight : White.focus;
+            waveColor = (mode === Mode.text || mode === Mode.outlined) ? Blue.rippleWave : White.rippleFocus;
             break;
         case Color.danger:
-            waveColor = (mode === Mode.text || mode === Mode.outlined) ? Red.deepLight : White.focus;
+            waveColor = (mode === Mode.text || mode === Mode.outlined) ? Red.rippleWave : White.rippleFocus;
             break;
         case Color.success:
-            waveColor = (mode === Mode.text || mode === Mode.outlined) ? Green.deepLight : White.focus;
+            waveColor = (mode === Mode.text || mode === Mode.outlined) ? Green.rippleWave : White.rippleFocus;
             break;
         case Color.warning:
-            waveColor = (mode === Mode.text || mode === Mode.outlined) ? Orange.deepLight : White.focus;
+            waveColor = (mode === Mode.text || mode === Mode.outlined) ? Orange.rippleWave : White.rippleFocus;
             break;
     }
 
