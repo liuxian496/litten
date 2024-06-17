@@ -9,6 +9,7 @@ import { ListboxKeyboardTest } from "../test/listbox/listboxKeyboardTest";
 import { UndefinedTest } from "../test/listbox/listboxValueUndefinedTest";
 import { SelectAllTest } from "../test/listbox/listboxSelectAllTest";
 import { ControlledTest } from "../test/listbox/listboxControledlTest";
+import { ListboxWithFormTest } from "../test/listbox/listboxWithFormTest";
 
 const meta: Meta<typeof Listbox> = {
     title: "Example/Listbox",
@@ -52,3 +53,8 @@ export const Undefined = {
     name: "Without value and defaultValue",
     ...UndefinedTest,
 };
+
+export const ListboxWithForm = {
+    name: "With Form",
+    ...ListboxWithFormTest,  
+}
