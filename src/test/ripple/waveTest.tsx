@@ -48,8 +48,8 @@ const Test = () => {
                     parentOffsetLeft={16}
                     parentOffsetTop={16}
                     color={{
-                        focusColor: Blue.focus,
-                        waveColor: Blue.deepLight,
+                        focusColor: Blue.rippleFocus,
+                        waveColor: Blue.rippleWave,
                     }}
                     waveMode={WaveMode.normal}
                     onWaveAnimationEnd={handleWaveAnimationEnd}
@@ -66,8 +66,8 @@ const Test = () => {
                     parentOffsetTop={16}
                     waveMode={WaveMode.normal}
                     color={{
-                        focusColor: Blue.focus,
-                        waveColor: Blue.deepLight,
+                        focusColor: Blue.rippleFocus,
+                        waveColor: Blue.rippleWave,
                     }}
                 />
                 <p>State:{state}</p>

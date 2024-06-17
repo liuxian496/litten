@@ -47,24 +47,24 @@
     }
 
     &--text:hover:not(&--disabled) {
-        background-color: @blue-primary-light;
+        background-color: @blue-primary-a04;
     }
 
     &--text:hover:not(&--disabled):is(&--danger) {
-        background-color: @red-error-light;
+        background-color: @red-error-a04;
     }
 
     &--text:hover:not(&--disabled):is(&--success) {
-        background-color: @green-success-light;
+        background-color: @green-success-a04;
     }
 
     &--text:hover:not(&--disabled):is(&--warning) {
-        background-color: @orange-warning-light;
+        background-color: @orange-warning-a04;
     }
 
     //主要按钮
     &--primary:not(&--disabled) {
-        color: @white;
+        color: @white-main;
         background-color: @blue-primary-main;
         border: none;
         box-shadow:
@@ -104,47 +104,47 @@
     //轮廓按钮
     &--outlined {
         color: @blue-primary-main;
-        border: 1px solid @blue-primary-deepLight;
+        border: 1px solid @blue-primary-a16;
         background-color: transparent;
     }
 
     &--outlined:not(&--disabled):is(&--danger) {
         color: @red-error-dark;
-        border: 1px solid @red-error-deep;
+        border: 1px solid @red-error-a50;
     }
 
     &--outlined:not(&--disabled):is(&--success) {
         color: @green-success-dark;
-        border: 1px solid @green-success-deep;
+        border: 1px solid @green-success-a50;
     }
 
     &--outlined:not(&--disabled):is(&--warning) {
         color: @orange-warning-dark;
-        border: 1px solid @orange-warning-deep;
+        border: 1px solid @orange-warning-a50;
     }
 
     &--outlined:hover:not(&--disabled) {
         border-color: @blue-primary-main;
-        background-color: @blue-primary-light;
+        background-color: @blue-primary-a04;
     }
 
     &--outlined:hover:not(&--disabled):is(&--danger) {
         border-color: @red-error-main;
-        background-color: @red-error-light;
+        background-color: @red-error-a04;
     }
 
     &--outlined:hover:not(&--disabled):is(&--success) {
         border-color: @green-success-main;
-        background-color: @green-success-light;
+        background-color: @green-success-a04;
     }
 
     &--outlined:hover:not(&--disabled):is(&--warning) {
         border-color: @orange-warning-main;
-        background-color: @orange-warning-light;
+        background-color: @orange-warning-a04;
     }
 
     &--outlined:is(&--disabled) {
-        border: 1px solid @gray-main;
+        border: 1px solid @black-a12;
     }
 
     //size
@@ -185,11 +185,11 @@
 
     //禁用
     &--disabled {
-        color: @gray-dark;
+        color: @black-deep;
 
     }
 
     &--disabled:is(&--primary) {
-        background-color: @gray-main;
+        background-color: @black-a12;
     }
 }

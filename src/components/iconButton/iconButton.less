@@ -15,7 +15,7 @@
     background-color: transparent;
 
     &:not(&--disabled) {
-        color: @white;
+        color: @white-main;
     }
 
     &:is(&--defaultColor):not(&--disabled) {
@@ -35,19 +35,19 @@
     }
 
     &:hover:not(&--disabled) {
-        background-color: @blue-primary-light;
+        background-color: @blue-primary-a04;
     }
 
     &:hover:not(&--disabled):is(&--danger) {
-        background-color: @red-error-light;
+        background-color: @red-error-a04;
     }
 
     &:hover:not(&--disabled):is(&--success) {
-        background-color: @green-success-light;
+        background-color: @green-success-a04;
     }
 
     &:hover:not(&--disabled):is(&--warning) {
-        background-color: @orange-warning-light;
+        background-color: @orange-warning-a04;
     }
 
     //size
@@ -69,10 +69,10 @@
 
     //禁用
     &--disabled {
-        color: @gray-dark;
+        color: @black-deep;
     }
 
     &--disabled:is(&--primary) {
-        background-color: @gray-main;
+        background-color: @black-a12;
     }
 }

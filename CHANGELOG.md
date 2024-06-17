@@ -1,3 +1,20 @@
+# [1.1.0](https://github.com/liuxian496/litten/compare/v1.0.3...v1.1.0) (2024-06-17)
+
+
+### Bug Fixes
+
+* 修改Checkbox出发onChange时，没有传递value的问题 ([c399763](https://github.com/liuxian496/litten/commit/c3997633fcb72608042d66f967f8af061b537c95))
+* 修改Checkbox非受控时，checked检测错误的问题。 ([bd71888](https://github.com/liuxian496/litten/commit/bd71888f5ea73665cf98e994283b90fd6f0c935e))
+* 修改Checkbox受控时，没有在onChange事件更新checked，控件仍然能更改选中状态的问题（修改后与react默认逻辑保持一致） ([32f00ba](https://github.com/liuxian496/litten/commit/32f00ba26861048a21380c7bdf95948c9f701a0e))
+* 修改textField受控时，没有在onChange事件更新value，控件仍然能输入的问题（修改后与react默认逻辑保持一致） ([166a689](https://github.com/liuxian496/litten/commit/166a689763a1ebe60acdf88b234da98de5aa1240))
+
+
+### Features
+
+* 添加Listbox，ListItem，ListGroup ([10640b8](https://github.com/liuxian496/litten/commit/10640b822213aadd2211ff2dace20bebc259b2ca))
+
+
+
 ## [1.0.3](https://github.com/liuxian496/litten/compare/v1.0.2...v1.0.3) (2024-05-19)
 
 

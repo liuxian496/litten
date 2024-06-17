@@ -51,7 +51,17 @@ export const TextField = forwardRef(function TextField(
 
     function handleChange(e: ChangeEvent<HTMLInputElement>) {
         setOriginalEvent(e);
-        setCurrentValue(e.target.value);
+        if (value === undefined) {
+            //非受控
+            setCurrentValue(e.target.value);
+        } else {
+            //受控
+            onChange?.({
+                e,
+                controlType: ControlType.TextField,
+                value: e.target.value,
+            });
+        }
     }
 
     return (
