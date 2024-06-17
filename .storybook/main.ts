@@ -1,17 +1,18 @@
-import type { AddonOptionsBabel } from "@storybook/addon-coverage";
 import type { StorybookConfig } from "@storybook/react-vite";
+import type { AddonOptionsVite } from "@storybook/addon-coverage";
 
-const coverageConfig: AddonOptionsBabel = {
+const coverageConfig: AddonOptionsVite = {
     istanbul: {
         include: ["**"],
         exclude: ["**/src/test/**"],
-        excludeNodeModules: true,
     },
 };
 
 const config: StorybookConfig = {
-    stories: ["../src/**/*.mdx", "../src/**/*.stories.@(js|jsx|ts|tsx)"],
-
+    stories: ["../src/**/*.mdx", "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)"],
+    core:{
+        disableTelemetry: true, // 👈 Disables telemetry
+    },
     addons: [
         "@storybook/addon-onboarding",
         "@storybook/addon-links",
@@ -25,18 +26,13 @@ const config: StorybookConfig = {
             },
         },
     ],
-
     framework: {
         name: "@storybook/react-vite",
         options: {},
-      },
-
-    docs: {},
-
+    },
+    docs: {
+        autodocs: "tag",
+    },
     staticDirs: ["../public"],
-
-    typescript: {
-        reactDocgen: "react-docgen-typescript"
-    }
 };
 export default config;
