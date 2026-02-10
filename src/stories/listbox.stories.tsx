@@ -5,11 +5,10 @@ import { Listbox } from "../components/listbox/listbox";
 import { DefaultTest } from "../test/listbox/listDefaultTest";
 import { MultiTest } from "../test/listbox/listMultiTest";
 import { MultiValueNotArrayTest } from "../test/listbox/listMultiValueNotArrayTest";
-import { ListboxKeyboardTest } from "../test/listbox/listboxKeyboardTest";
-import { UndefinedTest } from "../test/listbox/listboxValueUndefinedTest";
-import { SelectAllTest } from "../test/listbox/listboxSelectAllTest";
 import { ControlledTest } from "../test/listbox/listboxControledlTest";
-import { ListboxWithFormTest } from "../test/listbox/listboxWithFormTest";
+import { ListboxKeyboardTest } from "../test/listbox/listboxKeyboardTest";
+import { SelectAllTest } from "../test/listbox/listboxSelectAllTest";
+import { UndefinedTest } from "../test/listbox/listboxValueUndefinedTest";
 
 const meta: Meta<typeof Listbox> = {
     title: "Example/Listbox",
@@ -53,8 +52,3 @@ export const Undefined = {
     name: "Without value and defaultValue",
     ...UndefinedTest,
 };
-
-export const ListboxWithForm = {
-    name: "With Form",
-    ...ListboxWithFormTest,  
-}

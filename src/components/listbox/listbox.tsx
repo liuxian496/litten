@@ -3,17 +3,17 @@ import "./listbox.less";
 import { KeyboardEvent, useEffect, useState } from "react";
 
 import { ExceptionBoundary } from "exception-boundary";
-import { ControlType, MouseState } from "litten-hooks/dist/enum";
+import { useCurrentValue } from "litten-hooks/dist/contentControl";
 import {
     LittenItem,
     LittenItems,
     SelectedValue,
 } from "litten-hooks/dist/control/userControl/userControl.types";
-import { useCurrentValue } from "litten-hooks/dist/contentControl";
+import { ControlType, MouseState } from "litten-hooks/dist/enum";
 import { usePrevious } from "litten-hooks/dist/usePrevious";
 import {
-    getNextListFocusIndex,
     getLastSelectedIndex,
+    getNextListFocusIndex,
     useVirtualFocus,
 } from "litten-hooks/dist/useVirtualFocus";
 import isArray from "lodash/isArray";
@@ -22,8 +22,8 @@ import { ListContextProps, ListboxProps } from "./listbox.types";
 import {
     ListContext,
     getListItem,
-    getVisualStates,
     getNextMultiSelectedValue,
+    getVisualStates,
 } from "./listboxBase";
 
 export const Listbox = ({
@@ -151,8 +151,10 @@ export const Listbox = ({
     function handleListFocus() {
         if (itemMouseState !== MouseState.mousedown) {
             let index = getLastSelectedIndex(listItems, currentValue, multiple);
-            index = index >= 0 ? index : 0;
-            setFocusValue(listItems[index].value);
+            index = Math.max(index, 0);
+            if(listItems[index]){
+              setFocusValue(listItems[index].value);
+            }
         }
     }
 
