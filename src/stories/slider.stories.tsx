@@ -2,13 +2,12 @@ import { Meta, StoryObj } from "@storybook/react";
 
 import { Slider } from "../components/slider/slider";
 
+import { ColorTest } from "../test/slider/sliderColorTest";
+import { ControlledTest } from "../test/slider/sliderControlledTest";
 import { DefaultTest } from "../test/slider/sliderDefaultTest";
 import { DisabledTest } from "../test/slider/sliderDisabledTest";
-import { ControlledTest } from "../test/slider/sliderControlledTest";
 import { UnControlledTest } from "../test/slider/sliderUnControlledTest";
 import { VerticalTest } from "../test/slider/sliderVerticalTest";
-import { WithFormTest } from "../test/slider/sliderWithFormTest";
-import { ColorTest } from "../test/slider/sliderColorTest";
 
 export default {
   title: "Example/Slider",
@@ -84,5 +83,3 @@ export const Controlled = ControlledTest;
 export const Uncontrolled = UnControlledTest;
 
 export const Vertical = VerticalTest;
-
-export const WithForm = WithFormTest;

@@ -2,12 +2,11 @@ import { Meta, StoryObj } from "@storybook/react";
 
 import { Radio } from "../components/radio/radio";
 
-import { DefaultTest } from "../test/radio/radioDefaultTest";
-import { StandaloneRadioTest } from "../test/radio/standaloneRadioTest";
-import { RadioGroupTest } from "../test/radio/radioGroupTest";
-import { RadioWithFormTest } from "../test/radio/radioWithFormTest";
 import { ColorTest } from "../test/radio/radioColorTest";
+import { DefaultTest } from "../test/radio/radioDefaultTest";
+import { RadioGroupTest } from "../test/radio/radioGroupTest";
 import { SizeTest } from "../test/radio/radioSizeTest";
+import { StandaloneRadioTest } from "../test/radio/standaloneRadioTest";
 
 const meta: Meta<typeof Radio> = {
   title: "Example/Radio",
@@ -74,4 +73,3 @@ export const Color = ColorTest;
 export const Size = SizeTest;
 export const StandaloneRadio = StandaloneRadioTest;
 export const RadioGroup = RadioGroupTest;
-export const WithForm = RadioWithFormTest;
