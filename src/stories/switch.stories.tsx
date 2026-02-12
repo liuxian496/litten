@@ -9,7 +9,6 @@ import { DefaultTest } from "../test/switch/switchDefaultTest";
 import { DisabledTest } from "../test/switch/switchDisabledTest";
 import { SizeTest } from "../test/switch/switchSizeTest";
 import { UnControlledTest } from "../test/switch/switchUnControlledTest";
-import { WithFormTest } from "../test/switch/switchWithFormTest";
 
 export default {
   title: "Example/Switch",
@@ -83,7 +82,5 @@ export const Controlled = ControlledTest;
 export const Disabled = DisabledTest;
 
 export const Size = SizeTest;
-
-export const WithForm = WithFormTest;
 
 export const Uncontrolled = UnControlledTest;

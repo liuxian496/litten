@@ -2,14 +2,14 @@ import { Meta, StoryObj } from "@storybook/react";
 
 import { Checkbox } from "../components/checkbox/checkbox";
 
-import { DefaultTest } from "../test/checkbox/checkboxDefaultTest";
 import { CheckedTest } from "../test/checkbox/checkboxCheckedTest";
-import { ControlledTest } from "../test/checkbox/checkboxControlledTest";
-import { DisabledTest } from "../test/checkbox/checkboxDisabledTest";
-import { SizeTest } from "../test/checkbox/checkboxSizeTest";
-import { IndeterminateTest } from "../test/checkbox/checkboxIndeterminateTest";
 import { ColorTest } from "../test/checkbox/checkboxColorTest";
-import { CheckboxWithFormTest } from "../test/checkbox/checkboxWithFormTest";
+import { ControlledTest } from "../test/checkbox/checkboxControlledTest";
+import { DefaultTest } from "../test/checkbox/checkboxDefaultTest";
+import { DisabledTest } from "../test/checkbox/checkboxDisabledTest";
+import { IndeterminateTest } from "../test/checkbox/checkboxIndeterminateTest";
+import { SizeTest } from "../test/checkbox/checkboxSizeTest";
+import { UnControlledTest } from "../test/checkbox/checkboxUnControlledTest";
 
 const meta: Meta<typeof Checkbox> = {
   title: "Example/Checkbox",
@@ -81,10 +81,10 @@ export const Color = ColorTest;
 
 export const Controlled = ControlledTest;
 
+export const UnControlled = UnControlledTest;
+
 export const Disabled = DisabledTest;
 
 export const Indeterminate = IndeterminateTest;
 
 export const Size = SizeTest;
-
-export const WithForm = CheckboxWithFormTest;

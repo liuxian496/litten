@@ -2,13 +2,12 @@ import { Meta, StoryObj } from "@storybook/react";
 
 import { TextField } from "../components/textField/textField";
 
-import { DefaultTest } from "../test/textFiled/textFieldDefaultTest";
 import { ControlledTest } from "../test/textFiled/textFieldControlledTest";
-import { FocusTest } from "../test/textFiled/textFieldFocusTest";
+import { DefaultTest } from "../test/textFiled/textFieldDefaultTest";
 import { DisabledTest } from "../test/textFiled/textFieldDisabledTest";
-import { UnControlledTest } from "../test/textFiled/textFieldUnControlledTest";
-import { WithFormTest } from "../test/textFiled/textFieldWithFormTest";
+import { FocusTest } from "../test/textFiled/textFieldFocusTest";
 import { PasswordTest } from "../test/textFiled/textFieldPasswordTest";
+import { UnControlledTest } from "../test/textFiled/textFieldUnControlledTest";
 
 export default {
   title: "Example/TextField",
@@ -68,5 +67,3 @@ export const UnControlled = {
   name: "Uncontrolled",
   ...UnControlledTest,
 };
-
-export const WithForm = WithFormTest;
