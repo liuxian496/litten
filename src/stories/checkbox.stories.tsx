@@ -2,7 +2,6 @@ import { Meta, StoryObj } from "@storybook/react";
 
 import { Checkbox } from "../components/checkbox/checkbox";
 
-import { CheckedTest } from "../test/checkbox/checkboxCheckedTest";
 import { ColorTest } from "../test/checkbox/checkboxColorTest";
 import { ControlledTest } from "../test/checkbox/checkboxControlledTest";
 import { DefaultTest } from "../test/checkbox/checkboxDefaultTest";
@@ -74,8 +73,6 @@ export default meta;
 export type CheckboxStory = StoryObj<typeof Checkbox>;
 
 export const Default = DefaultTest;
-
-export const Checked = CheckedTest;
 
 export const Color = ColorTest;
 

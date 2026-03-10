@@ -6,6 +6,7 @@ import { ColorTest } from "../test/radio/radioColorTest";
 import { DefaultTest } from "../test/radio/radioDefaultTest";
 import { RadioGroupTest } from "../test/radio/radioGroupTest";
 import { SizeTest } from "../test/radio/radioSizeTest";
+import { UnControlledTest } from "../test/radio/radioUnControlledTest";
 import { StandaloneRadioTest } from "../test/radio/standaloneRadioTest";
 
 const meta: Meta<typeof Radio> = {
@@ -72,4 +73,5 @@ export const Default = DefaultTest;
 export const Color = ColorTest;
 export const Size = SizeTest;
 export const StandaloneRadio = StandaloneRadioTest;
+export const UnControlled = UnControlledTest;
 export const RadioGroup = RadioGroupTest;

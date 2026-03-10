@@ -2,7 +2,6 @@ import { Meta, StoryObj } from "@storybook/react";
 
 import { Switch } from "../components/switch/switch";
 
-import { CheckedTest } from "../test/switch/switchCheckedTest";
 import { ColorTest } from "../test/switch/switchColorTest";
 import { ControlledTest } from "../test/switch/switchControlledTest";
 import { DefaultTest } from "../test/switch/switchDefaultTest";
@@ -72,8 +71,6 @@ export default {
 export type SwitchStory = StoryObj<typeof Switch>;
 
 export const Default = DefaultTest;
-
-export const Checked = CheckedTest;
 
 export const Color = ColorTest;
 
