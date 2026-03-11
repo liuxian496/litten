@@ -34,21 +34,31 @@ const Test = () => {
   return (
     <>
       <FormLabel label="Fruit: " labelPlacement={Placement.top}>
-        <RadioGroup
-          defaultValue="banana"
-          name="fruit"
-          value={value}
-          onChange={handleRadioGroupChange}
-        >
+        <RadioGroup onChange={handleRadioGroupChange}>
           <StackPanel direction="column" alignItems="flex-start">
             <FormLabel label="Apple" labelPlacement={Placement.right}>
-              <Radio data-testid="apple" value="apple" name="fruit" />
+              <Radio
+                data-testid="apple"
+                value="apple"
+                checked={value === "apple"}
+                name="fruit"
+              />
             </FormLabel>
             <FormLabel label="Banana" labelPlacement={Placement.right}>
-              <Radio data-testid="banana" value="banana" name="fruit" />
+              <Radio
+                data-testid="banana"
+                value="banana"
+                checked={value === "banana"}
+                name="fruit"
+              />
             </FormLabel>
             <FormLabel label="Peach" labelPlacement={Placement.right}>
-              <Radio data-testid="peach" value="peach" name="fruit" />
+              <Radio
+                data-testid="peach"
+                value="peach"
+                checked={value === "peach"}
+                name="fruit"
+              />
             </FormLabel>
           </StackPanel>
         </RadioGroup>

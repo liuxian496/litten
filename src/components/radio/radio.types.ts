@@ -1,9 +1,6 @@
-import { ReactNode } from "react";
 import { Color, Size } from "../../global/enum";
 
 import { CheckedControlProps } from "litten-hooks/dist/control/checkedControl/checkedControl.types";
-import { LittenContentChangeEventHandler } from "litten-hooks/dist/control/event/littenEvent.types";
-import { UserControlProps } from "litten-hooks/dist/control/userControl/userControl.types";
 
 import { RippleColor } from "../ripple/ripple.types";
 
@@ -25,29 +22,6 @@ export interface RadioProps extends CheckedControlProps<HTMLInputElement> {
    * 设置一个值，该值表示checkbox大小
    */
   size?: Size;
-}
-
-export interface RadioGroupProps extends UserControlProps {
-  /**
-   * 输入的值
-   */
-  value?: string;
-  /**
-   * 默认值
-   */
-  defaultValue?: string;
-  /**
-   * 子组件
-   */
-  children?: ReactNode;
-  /**
-   * 单选按钮组的名称。当按钮组中的任一单选按钮选中时，其他单选按钮会自动取消选中状态
-   */
-  name?: string;
-  /**
-   * 输入的值变化时触发。
-   */
-  onChange?: LittenContentChangeEventHandler<HTMLInputElement, string>;
 }
 
 export interface RadioIconProps {
