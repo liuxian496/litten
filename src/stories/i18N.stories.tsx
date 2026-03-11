@@ -1,12 +1,20 @@
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from '@storybook/react-vite';
 
-import { Localization } from "../test/local/localization.test";
-import { I18N } from "../test/local/i18N.test";
+import { I18N as I18NTest } from '../test/local/i18N.test';
+import { Localization as LocalizationTest } from '../test/local/localization.test';
 
 export default {
-  title: "Example/Local",
-} as Meta<typeof Object>;
+  title: 'Example/Local',
+} as Meta;
 
-export type LocalStory = StoryObj<typeof Object>;
+export type LocalStory = StoryObj;
 
-export { I18N, Localization };
+export const I18N: LocalStory = {
+  name: 'I18N',
+  ...I18NTest,
+};
+
+export const Localization: LocalStory = {
+  name: 'Localization',
+  ...LocalizationTest,
+};

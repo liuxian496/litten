@@ -6,26 +6,26 @@ import {
   useImperativeHandle,
   useRef,
   useState,
-} from "react";
-import "./slider.less";
+} from 'react';
+import './slider.less';
 
-import NP from "number-precision";
+import NP from 'number-precision';
 
-import { RelativeRect } from "litten-hooks/dist/control/userControl/userControl.types";
+import { RelativeRect } from 'litten-hooks/dist/control/userControl/userControl.types';
 import {
   ControlType,
   FocusState,
   MouseState,
   Orientation,
-} from "litten-hooks/dist/enum";
-import { useRelativePosition } from "litten-hooks/dist/userControl";
+} from 'litten-hooks/dist/enum';
+import { useRelativePosition } from 'litten-hooks/dist/userControl';
 
-import { Color, Size } from "../../global/enum";
+import { Color, Size } from '../../global/enum';
 
-import { useCurrentValue } from "litten-hooks/dist/contentControl";
-import { useDisabled } from "litten-hooks/dist/disabledControl";
+import { useCurrentValue } from 'litten-hooks/dist/contentControl';
+import { useDisabled } from 'litten-hooks/dist/disabledControl';
 
-import { SliderProps } from "./slider.types";
+import { SliderProps } from './slider.types';
 import {
   getInputVisualStates,
   getPersentByValue,
@@ -37,7 +37,7 @@ import {
   getTrackStyle,
   getTrackVisualStates,
   getVisualStates,
-} from "./sliderBase";
+} from './sliderBase';
 
 export const Slider = forwardRef(function Slider(
   {
@@ -57,7 +57,7 @@ export const Slider = forwardRef(function Slider(
     onDisabledChange,
     ...props
   }: SliderProps,
-  ref,
+  ref
 ) {
   const inputRef = useRef<HTMLInputElement | null>(null);
 
@@ -125,9 +125,7 @@ export const Slider = forwardRef(function Slider(
 
     setCurrentValue(newValue);
 
-    if (inputRef.current) {
-      inputRef.current.value = newValue.toString();
-    }
+    inputRef.current!.value = newValue.toString();
 
     onChange?.({
       controlType: ControlType.Slider,
@@ -138,24 +136,24 @@ export const Slider = forwardRef(function Slider(
   function handleSliderMouseDown() {
     disabled !== true && startMeasure();
     disabled !== true &&
-      document.addEventListener("mouseup", handleDocumentMouseUpBySlider);
+      document.addEventListener('mouseup', handleDocumentMouseUpBySlider);
   }
 
   function handleThumbMouseDown() {
     setThumbMouseState(MouseState.mousedown);
-    document.addEventListener("mouseup", handleDocumentMouseUpByThumb);
+    document.addEventListener('mouseup', handleDocumentMouseUpByThumb);
   }
 
   // 鼠标拖动thumb，释放后触发
   function handleDocumentMouseUpByThumb() {
-    document.removeEventListener("mouseup", handleDocumentMouseUpByThumb);
+    document.removeEventListener('mouseup', handleDocumentMouseUpByThumb);
     setThumbMouseState(MouseState.mouseup);
     inputRef.current?.focus();
   }
 
   // 点击滑轨，thumb移动后触发
   function handleDocumentMouseUpBySlider() {
-    document.removeEventListener("mouseup", handleDocumentMouseUpBySlider);
+    document.removeEventListener('mouseup', handleDocumentMouseUpBySlider);
     inputRef.current?.focus();
   }
 
@@ -184,7 +182,7 @@ export const Slider = forwardRef(function Slider(
       HTMLInputElement
     > = {
       ...props,
-      type: "range",
+      type: 'range',
       className: getInputVisualStates(props),
       min: min,
       max: max,
@@ -237,7 +235,7 @@ export const Slider = forwardRef(function Slider(
           {
             mouseState: thumbMouseState,
             focusState: thumbFocusState,
-          },
+          }
         )}
         style={getTrackStyle(orientation, getPersentByValue(currentValue, min))}
       ></span>
@@ -252,7 +250,7 @@ export const Slider = forwardRef(function Slider(
           {
             mouseState: thumbMouseState,
             focusState: thumbFocusState,
-          },
+          }
         )}
         style={getThumbStyle(orientation, getPersentByValue(currentValue, min))}
         onMouseDown={handleThumbMouseDown}

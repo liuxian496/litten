@@ -1,10 +1,10 @@
-import { Meta, StoryObj } from "@storybook/react";
-import { Default } from "../test/iconButton/iconButtonDefaultTest";
+import { Meta, StoryObj } from '@storybook/react-vite';
+import { Default as DefaultTest } from '../test/iconButton/iconButtonDefaultTest';
 
-import { IconButton } from "../components/iconButton/iconButton";
+import { IconButton } from '../components/iconButton/iconButton';
 
 export default {
-  title: "Example/IconButton",
+  title: 'Example/IconButton',
   component: IconButton,
   argTypes: {
     rippleColor: {
@@ -25,11 +25,14 @@ export default {
       },
     },
     onClick: {
-      action: "点击",
+      action: '点击',
     },
   },
 } as Meta<typeof IconButton>;
 
 export type IconStoryStory = StoryObj<typeof IconButton>;
 
-export { Default };
+export const Default: IconStoryStory = {
+  name: 'Default',
+  ...DefaultTest,
+};

@@ -1,18 +1,18 @@
-import { useState } from "react";
+import { useState } from 'react';
 
-import { expect, userEvent, within } from "@storybook/test";
+import { expect, userEvent, within } from 'storybook/test';
 
-import { RadioStory } from "../../stories/radio.stories";
+import { RadioStory } from '../../stories/radio.stories';
 
-import { LittenCheckedChangeEvent } from "litten-hooks/dist/control/event/littenEvent.types";
-import { Placement } from "litten-hooks/dist/enum";
+import { LittenCheckedChangeEvent } from 'litten-hooks/dist/control/event/littenEvent.types';
+import { Placement } from 'litten-hooks/dist/enum';
 
-import { FormLabel } from "../../components/formLabel/formLabel";
-import { Radio } from "../../components/radio/radio";
-import { StackPanel } from "../../components/stackPanel/stackPanel";
+import { FormLabel } from '../../components/formLabel/formLabel';
+import { Radio } from '../../components/radio/radio';
+import { StackPanel } from '../../components/stackPanel/stackPanel';
 
 const Test = () => {
-  const [value, setValue] = useState<string | undefined>("banana");
+  const [value, setValue] = useState<string | undefined>('banana');
 
   function handleChange(e: LittenCheckedChangeEvent) {
     const { checked, value } = e;
@@ -61,12 +61,12 @@ export const StandaloneRadioTest: RadioStory = {
   play: async ({ canvasElement, step }) => {
     const canvas = within(canvasElement);
 
-    const appleRadio = canvas.getByTestId("apple");
-    const bananaRadio = canvas.getByTestId("banana");
-    const peachRadio = canvas.getByTestId("peach");
+    const appleRadio = canvas.getByTestId('apple');
+    const bananaRadio = canvas.getByTestId('banana');
+    const peachRadio = canvas.getByTestId('peach');
 
     await step(
-      "Banana is default checked, other radios are unchecked",
+      'Banana is default checked, other radios are unchecked',
       async () => {
         await expect(appleRadio).not.toBeChecked();
 
@@ -75,9 +75,9 @@ export const StandaloneRadioTest: RadioStory = {
         await expect(peachRadio).not.toBeChecked();
 
         await expect(
-          await canvas.findByText("banana is checked"),
+          await canvas.findByText('banana is checked')
         ).toBeInTheDocument();
-      },
+      }
     );
 
     await step(
@@ -92,9 +92,9 @@ export const StandaloneRadioTest: RadioStory = {
         await expect(peachRadio).toBeChecked();
 
         await expect(
-          await canvas.findByText("peach is checked"),
+          await canvas.findByText('peach is checked')
         ).toBeInTheDocument();
-      },
+      }
     );
 
     await step(
@@ -109,9 +109,9 @@ export const StandaloneRadioTest: RadioStory = {
         await expect(peachRadio).not.toBeChecked();
 
         await expect(
-          await canvas.findByText("apple is checked"),
+          await canvas.findByText('apple is checked')
         ).toBeInTheDocument();
-      },
+      }
     );
   },
 };

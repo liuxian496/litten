@@ -1,34 +1,34 @@
-import { useState } from "react";
+import { useState } from 'react';
 
-import { expect, userEvent, waitFor, within } from "@storybook/test";
+import { expect, userEvent, waitFor, within } from 'storybook/test';
 
-import { LittenCheckedChangeEvent } from "litten-hooks/dist/control/event/littenEvent.types";
-import { Placement } from "litten-hooks/dist/enum";
-import { Button } from "../../components/button/button";
-import { FormLabel } from "../../components/formLabel/formLabel";
-import { Radio } from "../../components/radio/radio";
-import { RadioGroup } from "../../components/radioGroup/radioGroup";
+import { LittenCheckedChangeEvent } from 'litten-hooks/dist/control/event/littenEvent.types';
+import { Placement } from 'litten-hooks/dist/enum';
+import { Button } from '../../components/button/button';
+import { FormLabel } from '../../components/formLabel/formLabel';
+import { Radio } from '../../components/radio/radio';
+import { RadioGroup } from '../../components/radioGroup/radioGroup';
 
-import { StackPanel } from "../../components/stackPanel/stackPanel";
-import { RadioStory } from "../../stories/radio.stories";
+import { StackPanel } from '../../components/stackPanel/stackPanel';
+import { RadioStory } from '../../stories/radio.stories';
 
 const Test = () => {
-  const [value, setValue] = useState<string | undefined>("banana");
+  const [value, setValue] = useState<string | undefined>('banana');
 
   function handleRadioGroupChange(e: LittenCheckedChangeEvent) {
     setValue(e.value);
   }
 
   function handleCheckAppleBtuClick() {
-    setValue("apple");
+    setValue('apple');
   }
 
   function handleCheckBananaBtuClick() {
-    setValue("banana");
+    setValue('banana');
   }
 
   function handleCheckPeachBtuClick() {
-    setValue("peach");
+    setValue('peach');
   }
 
   return (
@@ -40,7 +40,7 @@ const Test = () => {
               <Radio
                 data-testid="apple"
                 value="apple"
-                checked={value === "apple"}
+                checked={value === 'apple'}
                 name="fruit"
               />
             </FormLabel>
@@ -48,7 +48,7 @@ const Test = () => {
               <Radio
                 data-testid="banana"
                 value="banana"
-                checked={value === "banana"}
+                checked={value === 'banana'}
                 name="fruit"
               />
             </FormLabel>
@@ -56,7 +56,7 @@ const Test = () => {
               <Radio
                 data-testid="peach"
                 value="peach"
-                checked={value === "peach"}
+                checked={value === 'peach'}
                 name="fruit"
               />
             </FormLabel>
@@ -87,18 +87,18 @@ export const RadioGroupTest: RadioStory = {
   play: async ({ canvasElement, step }) => {
     const canvas = within(canvasElement);
 
-    const appleRadio = canvas.getByTestId("apple");
-    const bananaRadio = canvas.getByTestId("banana");
-    const peachRadio = canvas.getByTestId("peach");
+    const appleRadio = canvas.getByTestId('apple');
+    const bananaRadio = canvas.getByTestId('banana');
+    const peachRadio = canvas.getByTestId('peach');
 
-    const appleBtu = canvas.getByTestId("appleBtu");
-    const peachBtu = canvas.getByTestId("peachBtu");
+    const appleBtu = canvas.getByTestId('appleBtu');
+    const peachBtu = canvas.getByTestId('peachBtu');
 
     await step(
       ' Set "Fruit" radioGroup defaultValue is "banana", then "Banana" radio is checked, other radios are unchecked',
       async () => {
         await expect(
-          await canvas.findByText('"Fruit" radioGroup value is banana'),
+          await canvas.findByText('"Fruit" radioGroup value is banana')
         ).toBeInTheDocument();
 
         await expect(appleRadio).not.toBeChecked();
@@ -106,7 +106,7 @@ export const RadioGroupTest: RadioStory = {
         await waitFor(() => expect(bananaRadio).toBeChecked());
 
         await expect(peachRadio).not.toBeChecked();
-      },
+      }
     );
 
     await step(
@@ -115,7 +115,7 @@ export const RadioGroupTest: RadioStory = {
         await userEvent.click(appleBtu);
 
         await expect(
-          await canvas.findByText('"Fruit" radioGroup value is apple'),
+          await canvas.findByText('"Fruit" radioGroup value is apple')
         ).toBeInTheDocument();
 
         await waitFor(() => expect(appleRadio).toBeChecked());
@@ -123,7 +123,7 @@ export const RadioGroupTest: RadioStory = {
         await expect(bananaRadio).not.toBeChecked();
 
         await expect(peachRadio).not.toBeChecked();
-      },
+      }
     );
 
     await step(
@@ -132,7 +132,7 @@ export const RadioGroupTest: RadioStory = {
         await userEvent.click(peachBtu);
 
         await expect(
-          await canvas.findByText('"Fruit" radioGroup value is peach'),
+          await canvas.findByText('"Fruit" radioGroup value is peach')
         ).toBeInTheDocument();
 
         await waitFor(() => expect(appleRadio).not.toBeChecked());
@@ -140,7 +140,7 @@ export const RadioGroupTest: RadioStory = {
         await expect(bananaRadio).not.toBeChecked();
 
         await expect(peachRadio).toBeChecked();
-      },
+      }
     );
 
     await step(
@@ -149,7 +149,7 @@ export const RadioGroupTest: RadioStory = {
         await userEvent.click(appleRadio);
 
         await expect(
-          await canvas.findByText('"Fruit" radioGroup value is apple'),
+          await canvas.findByText('"Fruit" radioGroup value is apple')
         ).toBeInTheDocument();
 
         await waitFor(() => expect(appleRadio).toBeChecked());
@@ -157,7 +157,7 @@ export const RadioGroupTest: RadioStory = {
         await expect(bananaRadio).not.toBeChecked();
 
         await expect(peachRadio).not.toBeChecked();
-      },
+      }
     );
   },
 };

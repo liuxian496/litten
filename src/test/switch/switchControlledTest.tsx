@@ -1,15 +1,15 @@
-import { useState } from "react";
+import { useState } from 'react';
 
-import { expect, userEvent, within } from "@storybook/test";
+import { expect, userEvent, within } from 'storybook/test';
 
-import { SwitchStory } from "../../stories/switch.stories";
+import { SwitchStory } from '../../stories/switch.stories';
 
-import { LittenCheckedChangeEvent } from "litten-hooks/dist/control/event/littenEvent.types";
+import { LittenCheckedChangeEvent } from 'litten-hooks/dist/control/event/littenEvent.types';
 
-import { Button } from "../../components/button/button";
-import { FormLabel } from "../../components/formLabel/formLabel";
-import { StackPanel } from "../../components/stackPanel/stackPanel";
-import { Switch } from "../../components/switch/switch";
+import { Button } from '../../components/button/button';
+import { FormLabel } from '../../components/formLabel/formLabel';
+import { StackPanel } from '../../components/stackPanel/stackPanel';
+import { Switch } from '../../components/switch/switch';
 
 const Test = () => {
   const [checked, setChecked] = useState<boolean | undefined>(true);
@@ -34,7 +34,7 @@ const Test = () => {
         />
       </FormLabel>
       <Button onClick={handleChangeBtuClick}>Change Checked</Button>
-      <div>{`飞行模式  ${checked === true ? "打开" : "关闭"}`}</div>
+      <div>{`飞行模式  ${checked === true ? '打开' : '关闭'}`}</div>
     </StackPanel>
   );
 };
@@ -47,8 +47,8 @@ export const ControlledTest: SwitchStory = {
   play: async ({ canvasElement, step }) => {
     const canvas = within(canvasElement);
 
-    const flySwitch = canvas.getByTestId("fly");
-    const changeBtu = canvas.getByText("Change Checked");
+    const flySwitch = canvas.getByTestId('fly');
+    const changeBtu = canvas.getByText('Change Checked');
 
     await step(
       'The "checked" initialState is true, then "飞行模式" switch is checked.',
@@ -58,8 +58,8 @@ export const ControlledTest: SwitchStory = {
         await userEvent.hover(flySwitch);
         await userEvent.unhover(flySwitch);
 
-        await expect(canvas.getByText("飞行模式 打开")).toBeInTheDocument();
-      },
+        await expect(canvas.getByText('飞行模式 打开')).toBeInTheDocument();
+      }
     );
 
     await step(
@@ -68,8 +68,8 @@ export const ControlledTest: SwitchStory = {
         await userEvent.click(changeBtu);
 
         await expect(flySwitch).not.toBeChecked();
-        await expect(canvas.getByText("飞行模式 关闭")).toBeInTheDocument();
-      },
+        await expect(canvas.getByText('飞行模式 关闭')).toBeInTheDocument();
+      }
     );
   },
 };

@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react-vite";
 
 import { DefaultTest } from "../test/stackPanel/stackPanelDefaultTest";
 import { StackPanel } from "../components/stackPanel/stackPanel";

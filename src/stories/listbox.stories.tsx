@@ -1,19 +1,21 @@
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from '@storybook/react-vite';
 
-import { Listbox } from "../components/listbox/listbox";
+import { Listbox } from '../components/listbox/listbox';
 
-import { DefaultTest } from "../test/listbox/listDefaultTest";
-import { MultiTest } from "../test/listbox/listMultiTest";
-import { MultiValueNotArrayTest } from "../test/listbox/listMultiValueNotArrayTest";
-import { ControlledTest } from "../test/listbox/listboxControledlTest";
-import { ListboxKeyboardTest } from "../test/listbox/listboxKeyboardTest";
-import { MultiUnControlledTest } from "../test/listbox/listboxMultiUnControlledTest";
-import { SelectAllTest } from "../test/listbox/listboxSelectAllTest";
-import { UnControlledTest } from "../test/listbox/listboxUnControlledTest";
-import { UndefinedTest } from "../test/listbox/listboxValueUndefinedTest";
+import { GetListItemTest } from '../test/listbox/getListItemTest';
+import { DefaultTest } from '../test/listbox/listDefaultTest';
+import { MultiTest } from '../test/listbox/listMultiTest';
+import { MultiValueNotArrayTest } from '../test/listbox/listMultiValueNotArrayTest';
+import { ControlledTest } from '../test/listbox/listboxControledlTest';
+import { FocusEmptyItemsTest } from '../test/listbox/listboxFocusEmptyItemsTest';
+import { ListboxKeyboardTest } from '../test/listbox/listboxKeyboardTest';
+import { MultiUnControlledTest } from '../test/listbox/listboxMultiUnControlledTest';
+import { SelectAllTest } from '../test/listbox/listboxSelectAllTest';
+import { UnControlledTest } from '../test/listbox/listboxUnControlledTest';
+import { UndefinedTest } from '../test/listbox/listboxValueUndefinedTest';
 
 const meta: Meta<typeof Listbox> = {
-  title: "Example/Listbox",
+  title: 'Example/Listbox',
   component: Listbox,
   argTypes: {
     children: {
@@ -31,7 +33,7 @@ const meta: Meta<typeof Listbox> = {
   parameters: {
     controls: {
       expanded: true,
-      sort: "requiredFirst",
+      sort: 'requiredFirst',
     },
   },
 };
@@ -46,13 +48,20 @@ export const Keyboard = ListboxKeyboardTest;
 export const MultiSelection = MultiTest;
 export const MultiUnControlled = MultiUnControlledTest;
 export const MultiValueNotArray = {
-  name: "Value is not array with multi mode",
+  name: 'Value is not array with multi mode',
   ...MultiValueNotArrayTest,
 };
 
 export const SelectAll = SelectAllTest;
 
 export const Undefined = {
-  name: "Without value and defaultValue",
+  name: 'Without value and defaultValue',
   ...UndefinedTest,
+};
+
+export const GetListItem = GetListItemTest;
+
+export const FocusEmptyItems = {
+  name: 'Focus with Empty Items',
+  ...FocusEmptyItemsTest,
 };

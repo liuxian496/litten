@@ -1,16 +1,16 @@
-import { useState } from "react";
+import { useState } from 'react';
 
-import { expect, userEvent, within } from "@storybook/test";
+import { expect, userEvent, within } from 'storybook/test';
 
-import { CheckboxStory } from "../../stories/checkbox.stories";
+import { CheckboxStory } from '../../stories/checkbox.stories';
 
-import { LittenCheckedChangeEvent } from "litten-hooks/dist/control/event/littenEvent.types";
-import { Mode } from "../../global/enum";
+import { LittenCheckedChangeEvent } from 'litten-hooks/dist/control/event/littenEvent.types';
+import { Mode } from '../../global/enum';
 
-import { Button } from "../../components/button/button";
-import { Checkbox } from "../../components/checkbox/checkbox";
-import { FormLabel } from "../../components/formLabel/formLabel";
-import { StackPanel } from "../../components/stackPanel/stackPanel";
+import { Button } from '../../components/button/button';
+import { Checkbox } from '../../components/checkbox/checkbox';
+import { FormLabel } from '../../components/formLabel/formLabel';
+import { StackPanel } from '../../components/stackPanel/stackPanel';
 
 const Test = () => {
   const [checked, setChecked] = useState<boolean | undefined>(true);
@@ -49,10 +49,10 @@ export const ControlledTest: CheckboxStory = {
   play: async ({ canvasElement, step }) => {
     const canvas = within(canvasElement);
 
-    await step("Switch is false", async () => {
-      await userEvent.click(canvas.getByTestId("switch"));
+    await step('Switch is false', async () => {
+      await userEvent.click(canvas.getByTestId('switch'));
 
-      await expect(canvas.getByText("Switch is false")).toBeInTheDocument();
+      await expect(canvas.getByText('Switch is false')).toBeInTheDocument();
     });
   },
 };

@@ -1,18 +1,18 @@
-import { expect, userEvent, within } from "@storybook/test";
-import { useState } from "react";
+import { useState } from 'react';
+import { expect, userEvent, within } from 'storybook/test';
 
-import { ListboxStory } from "../../stories/listbox.stories";
+import { ListboxStory } from '../../stories/listbox.stories';
 
-import { Placement } from "litten-hooks";
-import { LittenListChangeEvent } from "litten-hooks/dist/control/event/littenEvent.types";
-import { FormLabel } from "../../components/formLabel/formLabel";
-import { Listbox } from "../../components/listbox/listbox";
-import { ListItem } from "../../components/listItem/listItem";
-import { StackPanel } from "../../components/stackPanel/stackPanel";
+import { Placement } from 'litten-hooks';
+import { LittenListChangeEvent } from 'litten-hooks/dist/control/event/littenEvent.types';
+import { FormLabel } from '../../components/formLabel/formLabel';
+import { Listbox } from '../../components/listbox/listbox';
+import { ListItem } from '../../components/listItem/listItem';
+import { StackPanel } from '../../components/stackPanel/stackPanel';
 
 const Test = () => {
   // 受控时listbox的value需要设置成不是undefined的值
-  const [selectedFruit, setSelectedFruit] = useState<string>("");
+  const [selectedFruit, setSelectedFruit] = useState<string>('');
 
   function handleFruitListboxChange(e: LittenListChangeEvent) {
     setSelectedFruit(e.value as string);
@@ -38,15 +38,15 @@ export const ControlledTest: ListboxStory = {
   play: async ({ canvasElement, step }) => {
     const canvas = within(canvasElement);
 
-    const mangosteenItem = canvas.getByTestId("mangosteen");
+    const mangosteenItem = canvas.getByTestId('mangosteen');
 
     await step(
       'Listbox defaultValue is "". Then "SelectedFruit is:" to be in the document.',
       async () => {
         await expect(
-          await canvas.findByText("SelectedFruit is:"),
+          await canvas.findByText('SelectedFruit is:')
         ).toBeInTheDocument();
-      },
+      }
     );
 
     await step(
@@ -55,9 +55,9 @@ export const ControlledTest: ListboxStory = {
         await userEvent.click(mangosteenItem);
 
         await expect(
-          await canvas.findByText("SelectedFruit is:mangosteen"),
+          await canvas.findByText('SelectedFruit is:mangosteen')
         ).toBeInTheDocument();
-      },
+      }
     );
   },
 };

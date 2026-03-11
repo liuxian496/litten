@@ -1,29 +1,29 @@
-import { expect, userEvent, waitFor, within } from "@storybook/test";
-import { Placement } from "litten-hooks/dist/enum";
-import { useEffect, useState } from "react";
+import { Placement } from 'litten-hooks/dist/enum';
+import { useEffect, useState } from 'react';
+import { expect, userEvent, waitFor, within } from 'storybook/test';
 
-import { ListboxStory } from "../../stories/listbox.stories";
+import { ListboxStory } from '../../stories/listbox.stories';
 
 import {
   LittenCheckedChangeEvent,
   LittenListChangeEvent,
   LittenTextChangeEvent,
-} from "litten-hooks/dist/control/event/littenEvent.types";
-import { Checkbox } from "../../components/checkbox/checkbox";
-import { FormLabel } from "../../components/formLabel/formLabel";
-import { Listbox } from "../../components/listbox/listbox";
-import { ListItem } from "../../components/listItem/listItem";
-import { Ripple } from "../../components/ripple/ripple";
-import { StackPanel } from "../../components/stackPanel/stackPanel";
-import { TextField } from "../../components/textField/textField";
+} from 'litten-hooks/dist/control/event/littenEvent.types';
+import { Checkbox } from '../../components/checkbox/checkbox';
+import { FormLabel } from '../../components/formLabel/formLabel';
+import { Listbox } from '../../components/listbox/listbox';
+import { ListItem } from '../../components/listItem/listItem';
+import { Ripple } from '../../components/ripple/ripple';
+import { StackPanel } from '../../components/stackPanel/stackPanel';
+import { TextField } from '../../components/textField/textField';
 
 type Item = { value: string; label: string };
 
 const items: Item[] = [
-  { value: "apple", label: "苹果" },
-  { value: "banana", label: "香蕉" },
-  { value: "pitahaya", label: "火龙果" },
-  { value: "mangosteen", label: "山竹" },
+  { value: 'apple', label: '苹果' },
+  { value: 'banana', label: '香蕉' },
+  { value: 'pitahaya', label: '火龙果' },
+  { value: 'mangosteen', label: '山竹' },
 ];
 
 // 用受控的方式控制listbox
@@ -59,7 +59,7 @@ const Test = () => {
 
   function handleSearchChange(e: LittenTextChangeEvent) {
     const { value } = e;
-    if (value === "") {
+    if (value === '') {
       setListData([...items]);
     } else {
       setListData([...items.filter((item) => item.label === value)]);
@@ -86,7 +86,7 @@ const Test = () => {
   }
 
   return (
-    <div style={{ border: "1px solid #e0e0e0" }}>
+    <div style={{ border: '1px solid #e0e0e0' }}>
       <StackPanel alignItems="center">
         <span>Search:</span>
         <TextField
@@ -125,8 +125,8 @@ const Test = () => {
                     <Ripple
                       focused={false}
                       color={{
-                        focusColor: "rgba(0,0,0,0)",
-                        waveColor: "rgba(0,0,0,0)",
+                        focusColor: 'rgba(0,0,0,0)',
+                        waveColor: 'rgba(0,0,0,0)',
                       }}
                     />
                   </>
@@ -145,20 +145,18 @@ export const SelectAllTest: ListboxStory = {
   render: () => <Test />,
   play: async ({ canvasElement, step }) => {
     const canvas = within(canvasElement);
-    const searchTextField = canvas.getByTestId("search");
-    const selectAllCheckbox = canvas.getByTestId("selectAll");
-    const appleListItem = canvas.getByTestId("listItem-apple");
-    const mangosteenListItem = canvas.getByTestId("listItem-mangosteen");
+    const searchTextField = canvas.getByTestId('search');
+    const selectAllCheckbox = canvas.getByTestId('selectAll');
+    const appleListItem = canvas.getByTestId('listItem-apple');
+    const mangosteenListItem = canvas.getByTestId('listItem-mangosteen');
 
     await step(
       'Listbox default select all. Then "listValue: apple,banana,pitahaya,mangosteen" to be in the document.',
       async () => {
         await expect(
-          await canvas.findByText(
-            "listValue: apple,banana,pitahaya,mangosteen",
-          ),
+          await canvas.findByText('listValue: apple,banana,pitahaya,mangosteen')
         ).toBeInTheDocument();
-      },
+      }
     );
 
     await step(
@@ -167,11 +165,11 @@ export const SelectAllTest: ListboxStory = {
         await userEvent.click(appleListItem);
 
         await expect(
-          await canvas.findByText("listValue: banana,pitahaya,mangosteen"),
+          await canvas.findByText('listValue: banana,pitahaya,mangosteen')
         ).toBeInTheDocument();
 
         await expect(selectAllCheckbox).toBeChecked();
-      },
+      }
     );
 
     await step(
@@ -179,10 +177,10 @@ export const SelectAllTest: ListboxStory = {
       async () => {
         await userEvent.click(selectAllCheckbox);
 
-        await expect(await canvas.findByText("listValue:")).toBeInTheDocument();
+        await expect(await canvas.findByText('listValue:')).toBeInTheDocument();
 
         await expect(selectAllCheckbox).not.toBeChecked();
-      },
+      }
     );
 
     await step(
@@ -191,11 +189,11 @@ export const SelectAllTest: ListboxStory = {
         await userEvent.click(mangosteenListItem);
 
         await expect(
-          await canvas.findByText("listValue: mangosteen"),
+          await canvas.findByText('listValue: mangosteen')
         ).toBeInTheDocument();
 
         await expect(selectAllCheckbox).not.toBeChecked();
-      },
+      }
     );
 
     await step(
@@ -204,38 +202,36 @@ export const SelectAllTest: ListboxStory = {
         await userEvent.click(selectAllCheckbox);
 
         await expect(
-          await canvas.findByText(
-            "listValue: apple,banana,pitahaya,mangosteen",
-          ),
+          await canvas.findByText('listValue: apple,banana,pitahaya,mangosteen')
         ).toBeInTheDocument();
 
         await expect(selectAllCheckbox).toBeChecked();
-      },
+      }
     );
 
     await step(
       'Type "苹果" in "Search" TextField. Then "listValue: apple" to be in the document.',
       async () => {
-        await userEvent.type(searchTextField, "苹果");
+        await userEvent.type(searchTextField, '苹果');
 
         await expect(
-          await canvas.findByText("listValue: apple"),
+          await canvas.findByText('listValue: apple')
         ).toBeInTheDocument();
 
         await expect(selectAllCheckbox).toBeChecked();
-      },
+      }
     );
 
     await step(
       'Click "苹果" ListItem. Then "listValue:" to be in the document.',
       async () => {
         // 搜索之后，文档重新渲染，listItem-apple需要重新查找
-        await userEvent.click(canvas.getByTestId("listItem-apple"));
+        await userEvent.click(canvas.getByTestId('listItem-apple'));
 
-        await expect(await canvas.findByText("listValue:")).toBeInTheDocument();
+        await expect(await canvas.findByText('listValue:')).toBeInTheDocument();
 
         await expect(selectAllCheckbox).not.toBeChecked();
-      },
+      }
     );
 
     await step(
@@ -244,13 +240,11 @@ export const SelectAllTest: ListboxStory = {
         await userEvent.clear(searchTextField);
 
         await expect(
-          await canvas.findByText(
-            "listValue: apple,banana,pitahaya,mangosteen",
-          ),
+          await canvas.findByText('listValue: apple,banana,pitahaya,mangosteen')
         ).toBeInTheDocument();
 
         await waitFor(() => expect(selectAllCheckbox).toBeChecked());
-      },
+      }
     );
   },
 };

@@ -1,83 +1,75 @@
-import React, { useState } from "react";
+import { useState } from 'react';
 
-import { userEvent, waitFor, within, expect } from "@storybook/test";
+import { expect, userEvent, waitFor, within } from 'storybook/test';
 
-import { LoadingStory } from "../../stories/loading.stories";
+import { LoadingStory } from '../../stories/loading.stories';
 
-import { Button } from "../../components/button/button";
-import { Loading } from "../../components/loading/loading";
+import { Button } from '../../components/button/button';
+import { Loading } from '../../components/loading/loading';
 
 const Test = () => {
-    const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-    function handleShowBtuClick() {
-        setLoading(true);
-    }
+  function handleShowBtuClick() {
+    setLoading(true);
+  }
 
-    function handleHideBtuClick() {
-        setLoading(false);
-    }
+  function handleHideBtuClick() {
+    setLoading(false);
+  }
 
-    return (
-        <>
-            <Loading opened={loading} />
-            <Button loading={loading} onClick={handleShowBtuClick}>
-                Show Loading
-            </Button>
-            <Button onClick={handleHideBtuClick}>Hide Loading</Button>
-        </>
-    );
+  return (
+    <>
+      <Loading opened={loading} />
+      <Button loading={loading} onClick={handleShowBtuClick}>
+        Show Loading
+      </Button>
+      <Button onClick={handleHideBtuClick}>Hide Loading</Button>
+    </>
+  );
 };
 
 export const DefaultTest: LoadingStory = {
-    render: () => <Test />,
-    play: async ({ canvasElement, step }) => {
-        const canvas = within(canvasElement);
-        const body = within(document.body);
+  render: () => <Test />,
+  play: async ({ canvasElement, step }) => {
+    const canvas = within(canvasElement);
+    const body = within(document.body);
 
-        const showBtu = canvas.getByText("Show Loading");
-        const hideBtu = canvas.getByText("Hide Loading");
+    const showBtu = canvas.getByText('Show Loading');
+    const hideBtu = canvas.getByText('Hide Loading');
 
-        await step(
-            'Click "Show Loading" button, then loading is opened.',
-            async () => {
-                await userEvent.click(showBtu);
+    await step(
+      'Click "Show Loading" button, then loading is opened.',
+      async () => {
+        await userEvent.click(showBtu);
 
-                await waitFor(() => expect(showBtu).toBeDisabled());
+        await waitFor(() => expect(showBtu).toBeDisabled());
 
-                await expect(
-                    await body.findByTestId("litten-popup")
-                ).toBeVisible();
+        await expect(await body.findByTestId('litten-popup')).toBeVisible();
 
-                await expect(
-                    await body.findByTestId("litten-overlay")
-                ).toBeVisible();
+        await expect(await body.findByTestId('litten-overlay')).toBeVisible();
 
-                await expect(
-                    await body.findByTestId("litten-progress")
-                ).toBeInTheDocument();
-            }
-        );
+        await expect(
+          await body.findByTestId('litten-progress')
+        ).toBeInTheDocument();
+      }
+    );
 
-        await step(
-            'Click "Hide Loading" button, then loading is closed.',
-            async () => {
-                await userEvent.click(hideBtu);
+    await step(
+      'Click "Hide Loading" button, then loading is closed.',
+      async () => {
+        await userEvent.click(hideBtu);
 
-                await waitFor(() => expect(showBtu).toBeEnabled());
+        await waitFor(() => expect(showBtu).toBeEnabled());
 
-                await expect(
-                    await body.findByTestId("litten-popup")
-                ).not.toBeVisible();
+        await expect(await body.findByTestId('litten-popup')).not.toBeVisible();
 
-                await expect(
-                    await body.findByTestId("litten-overlay")
-                ).not.toBeVisible();
+        await expect(
+          await body.findByTestId('litten-overlay')
+        ).not.toBeVisible();
 
-                await expect(
-                    await body.queryByTestId("litten-progress")
-                ).toBeNull();
-            }
-        );
-    },
+        await expect(await body.queryByTestId('litten-progress')).toBeNull();
+      }
+    );
+  },
 };
