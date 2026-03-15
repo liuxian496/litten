@@ -35,7 +35,7 @@ jobs:
             "npx wait-on tcp:6006 && yarn test-storybook --coverage"
 
       - name: Locv Report
-        run: npx nyc report --reporter=lcov -t coverage --report-dir coverage
+        run: npx c8 report --reporter=lcov -t coverage --report-dir coverage
 
       - name: Coveralls GitHub Action
         uses: coverallsapp/github-action@v2
