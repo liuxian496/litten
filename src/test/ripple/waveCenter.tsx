@@ -1,85 +1,85 @@
-import React, { useState } from "react";
+import { useState } from 'react';
 
-import { fireEvent, within, expect } from "@storybook/test";
+import { expect, fireEvent, within } from 'storybook/test';
 
-import { RippleStory } from "../../stories/ripple.stories";
+import { RippleStory } from '../../stories/ripple.stories';
 
-import { Blue, WaveMode } from "../../global/enum";
-import { Wave } from "../../components/ripple/wave";
+import { Wave } from '../../components/ripple/wave';
+import { Blue, WaveMode } from '../../global/enum';
 
 const Test = () => {
-    const [isPressed, setIsPressed] = useState(false);
-    const [state, setState] = useState("");
+  const [isPressed, setIsPressed] = useState(false);
+  const [state, setState] = useState('');
 
-    function handleWaveAnimationEnd(index: number) {
-        setState(index + "Animation end");
-    }
+  function handleWaveAnimationEnd(index: number) {
+    setState(index + 'Animation end');
+  }
 
-    function handleMouseDown() {
-        setIsPressed(true);
-    }
+  function handleMouseDown() {
+    setIsPressed(true);
+  }
 
-    function handleMouseUp() {
-        setIsPressed(false);
-        setState("MouseUp");
-    }
+  function handleMouseUp() {
+    setIsPressed(false);
+    setState('MouseUp');
+  }
 
-    return (
-        <>
-            <div
-                data-testid="parent"
-                onMouseDown={handleMouseDown}
-                onMouseUp={handleMouseUp}
-                style={{
-                    position: "relative",
-                    width: "300px",
-                    height: "300px",
-                    border: "1px solid #ababab",
-                }}
-            >
-                <Wave
-                    index={0}
-                    prefixCls="litten-ripple"
-                    isPressed={isPressed}
-                    containerSpanWidth={300}
-                    containerSpanHeight={300}
-                    mouseClientX={19}
-                    mouseClientY={39}
-                    parentOffsetLeft={16}
-                    parentOffsetTop={16}
-                    color={{
-                        focusColor: Blue.rippleFocus,
-                        waveColor: Blue.rippleWave,
-                    }}
-                    waveMode={WaveMode.center}
-                    onWaveAnimationEnd={handleWaveAnimationEnd}
-                />
-                <p>State:{state}</p>
-            </div>
-        </>
-    );
+  return (
+    <>
+      <div
+        data-testid="parent"
+        onMouseDown={handleMouseDown}
+        onMouseUp={handleMouseUp}
+        style={{
+          position: 'relative',
+          width: '300px',
+          height: '300px',
+          border: '1px solid #ababab',
+        }}
+      >
+        <Wave
+          index={0}
+          prefixCls="litten-ripple"
+          isPressed={isPressed}
+          containerSpanWidth={300}
+          containerSpanHeight={300}
+          mouseClientX={19}
+          mouseClientY={39}
+          parentOffsetLeft={16}
+          parentOffsetTop={16}
+          color={{
+            focusColor: Blue.rippleFocus,
+            waveColor: Blue.rippleWave,
+          }}
+          waveMode={WaveMode.center}
+          onWaveAnimationEnd={handleWaveAnimationEnd}
+        />
+        <p>State:{state}</p>
+      </div>
+    </>
+  );
 };
 
 export const WaveCenterTest: RippleStory = {
-    render: () => <Test />,
-    play: async ({ canvasElement }) => {
-        const canvas = within(canvasElement);
+  render: () => <Test />,
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
 
-        await fireEvent.mouseDown(canvas.getByTestId("parent"));
+    await fireEvent.mouseDown(canvas.getByTestId('parent'));
 
-        await fireEvent.animationStart(
-            canvas.queryAllByTestId("litten-ripple__wave")[0]
-        );
-        await fireEvent.animationEnd(
-            canvas.queryAllByTestId("litten-ripple__wave")[0]
-        );
+    await fireEvent.animationStart(
+      canvas.queryAllByTestId('litten-ripple__wave')[0]
+    );
+    await fireEvent.animationEnd(
+      canvas.queryAllByTestId('litten-ripple__wave')[0]
+    );
 
-        await expect(
-            await canvas.findByText("State:0Animation end")
-        ).toBeInTheDocument();
+    await expect(
+      await canvas.findByText('State:0Animation end')
+    ).toBeInTheDocument();
 
-        await fireEvent.mouseUp(canvas.getByTestId("parent"));
+    await fireEvent.mouseUp(canvas.getByTestId('parent'));
 
-        await expect(canvas.getByText("State:MouseUp")).toBeInTheDocument();
-    },
+    await expect(canvas.getByText('State:MouseUp')).toBeInTheDocument();
+  },
 };

@@ -1,17 +1,17 @@
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from '@storybook/react-vite';
 
-import { Slider } from "../components/slider/slider";
+import { Slider } from '../components/slider/slider';
 
-import { DefaultTest } from "../test/slider/sliderDefaultTest";
-import { DisabledTest } from "../test/slider/sliderDisabledTest";
-import { ControlledTest } from "../test/slider/sliderControlledTest";
-import { UnControlledTest } from "../test/slider/sliderUnControlledTest";
-import { VerticalTest } from "../test/slider/sliderVerticalTest";
-import { WithFormTest } from "../test/slider/sliderWithFormTest";
-import { ColorTest } from "../test/slider/sliderColorTest";
+import { BaseBranchTest } from '../test/slider/sliderBaseBranchTest';
+import { ColorTest } from '../test/slider/sliderColorTest';
+import { ControlledTest } from '../test/slider/sliderControlledTest';
+import { DefaultTest } from '../test/slider/sliderDefaultTest';
+import { DisabledTest } from '../test/slider/sliderDisabledTest';
+import { UnControlledTest } from '../test/slider/sliderUnControlledTest';
+import { VerticalTest } from '../test/slider/sliderVerticalTest';
 
 export default {
-  title: "Example/Slider",
+  title: 'Example/Slider',
   component: Slider,
   argTypes: {
     defaultValue: {
@@ -44,7 +44,7 @@ export default {
     value: {
       control: false,
     },
-    "aria-label": {
+    'aria-label': {
       table: {
         disable: true,
       },
@@ -66,7 +66,7 @@ export default {
   parameters: {
     controls: {
       expanded: true,
-      sort: "requiredFirst",
+      sort: 'requiredFirst',
     },
   },
 } as Meta<typeof Slider>;
@@ -85,4 +85,7 @@ export const Uncontrolled = UnControlledTest;
 
 export const Vertical = VerticalTest;
 
-export const WithForm = WithFormTest;
+export const BaseBranches = {
+  name: 'Base Branches',
+  ...BaseBranchTest,
+};

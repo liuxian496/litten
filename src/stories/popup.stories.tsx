@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react-vite";
 
 import { PopupTest } from "../test/popup/popupTest";
 import { OverLayTest } from "../test/popup/overlayTest";

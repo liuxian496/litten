@@ -1,98 +1,113 @@
-import { ChangeEvent, forwardRef, LegacyRef } from "react";
-import "./textField.less";
 import { TextFieldType } from "litten-hooks/dist/enum";
+import {
+  ChangeEvent,
+  DetailedHTMLProps,
+  forwardRef,
+  InputHTMLAttributes,
+  LegacyRef,
+} from "react";
+import "./textField.less";
 
-import { ControlType } from "litten-hooks/dist/enum";
-import { useDisabled } from "litten-hooks/dist/disabledControl";
-import { getStateByFocused, useFocused } from "litten-hooks/dist/focusControl";
 import { useCurrentValue } from "litten-hooks/dist/contentControl";
+import { useDisabled } from "litten-hooks/dist/disabledControl";
+import { ControlType } from "litten-hooks/dist/enum";
+import { getStateByFocused, useFocused } from "litten-hooks/dist/focusControl";
 
 import { handleLabelMouseStateCheck } from "../formLabel/formLabelBase";
 
 import { TextFieldProps, TextFieldValue } from "./textField.types";
-import { getVisualStates, getInputVisualStates } from "./textFiledBase";
+import { getInputVisualStates, getVisualStates } from "./textFiledBase";
 
 export const TextField = forwardRef(function TextField(
-    {
-        disabled: disabledProp = false,
-        loading = false,
-        value,
-        defaultValue,
-        style,
-        type = TextFieldType.text,
-        onDisabledChange,
-        ...props
-    }: TextFieldProps,
-    ref?: LegacyRef<HTMLInputElement>
+  {
+    disabled: disabledProp = false,
+    loading = false,
+    value,
+    defaultValue,
+    style,
+    type = TextFieldType.text,
+    onDisabledChange,
+    ...props
+  }: TextFieldProps,
+  ref?: LegacyRef<HTMLInputElement>,
 ) {
-    const { onChange } = props;
+  const { onChange } = props;
 
-    const disabled = useDisabled({
-        disabled: disabledProp,
-        loading,
-        controlType: ControlType.TextField,
-        onDisabledChange,
+  const disabled = useDisabled({
+    disabled: disabledProp,
+    loading,
+    controlType: ControlType.TextField,
+    onDisabledChange,
+  });
+
+  const [currentValue, setCurrentValue] = useCurrentValue<
+    HTMLInputElement,
+    TextFieldValue
+  >({
+    value,
+    defaultValue,
+    controlType: ControlType.TextField,
+    onChange,
+  });
+
+  const [focused, handleFocus, handleBlur] = useFocused({
+    onLabelMouseStateCheck: handleLabelMouseStateCheck,
+    ...props,
+  });
+
+  function handleInputChange(e: ChangeEvent<HTMLInputElement>) {
+    setCurrentValue(e.target.value);
+    onChange?.({
+      e,
+      controlType: ControlType.TextField,
+      value: e.target.value,
     });
+  }
 
-    const [currentValue, setCurrentValue, setOriginalEvent] = useCurrentValue<
-        HTMLInputElement,
-        TextFieldValue
-    >({
-        value,
-        defaultValue,
-        controlType: ControlType.TextField,
-        onChange,
-    });
-
-    const [focused, handleFocus, handleBlur] = useFocused({
-        onLabelMouseStateCheck: handleLabelMouseStateCheck,
+  function renderInput() {
+    const inputProps: DetailedHTMLProps<
+      InputHTMLAttributes<HTMLInputElement>,
+      HTMLInputElement
+    > = {
+      disabled,
+      ...props,
+      className: getInputVisualStates({
+        disabled,
         ...props,
-    });
+      }),
+      type,
+      onChange: handleInputChange,
+      onFocus: handleFocus,
+      onBlur: handleBlur,
+    };
 
-    function handleChange(e: ChangeEvent<HTMLInputElement>) {
-        setOriginalEvent(e);
-        if (value === undefined) {
-            //非受控
-            setCurrentValue(e.target.value);
-        } else {
-            //受控
-            onChange?.({
-                e,
-                controlType: ControlType.TextField,
-                value: e.target.value,
-            });
-        }
+    if (value === undefined) {
+      // 非受控时设置defaultValue属性
+      inputProps.defaultValue = defaultValue;
+    } else {
+      // 受控时设置value属性
+      inputProps.value = currentValue;
     }
 
-    return (
-        <div
-            className={getVisualStates(
-                {
-                    disabled,
-                    ...props,
-                },
-                {
-                    focusState: getStateByFocused(focused),
-                }
-            )}
-            style={style}
-        >
-            <input
-                className={getInputVisualStates({
-                    disabled,
-                    ...props,
-                })}
-                disabled={disabled}
-                {...props}
-                type={type}
-                ref={ref}
-                value={currentValue}
-                onChange={handleChange}
-                onFocus={handleFocus}
-                onBlur={handleBlur}
-            />
-        </div>
-    );
+    return <input {...inputProps} ref={ref} />;
+  }
+
+  return (
+    <div
+      className={getVisualStates(
+        {
+          disabled,
+          ...props,
+        },
+        {
+          focusState: getStateByFocused(focused),
+        },
+      )}
+      style={style}
+    >
+      {renderInput()}
+    </div>
+  );
 });
 
 TextField.displayName = ControlType.TextField;

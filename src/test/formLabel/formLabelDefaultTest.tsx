@@ -1,52 +1,50 @@
-import React from "react";
+import { expect, userEvent, within } from 'storybook/test';
 
-import { userEvent, within, expect } from "@storybook/test";
+import { FormLabelStory } from '../../stories/formLabel.stories';
 
-import { FormLabelStory } from "../../stories/formLabel.stories";
-
-import { Checkbox } from "../../components/checkbox/checkbox";
-import { FormLabel } from "../../components/formLabel/formLabel";
-import { Placement } from "litten-hooks/dist/enum";
-import { FormLabelProps } from "../../components/formLabel/formLabel.types";
+import { Placement } from 'litten-hooks/dist/enum';
+import { Checkbox } from '../../components/checkbox/checkbox';
+import { FormLabel } from '../../components/formLabel/formLabel';
+import { FormLabelProps } from '../../components/formLabel/formLabel.types';
 
 const Test = (props: FormLabelProps) => {
-    const { disabled, loading } = props;
+  const { disabled, loading } = props;
 
-    return (
-        <FormLabel {...props} label="Name:">
-            <Checkbox
-                data-testid="nameCheckbox"
-                disabled={disabled}
-                loading={loading}
-            />
-        </FormLabel>
-    );
+  return (
+    <FormLabel {...props} label="Name:">
+      <Checkbox
+        data-testid="nameCheckbox"
+        disabled={disabled}
+        loading={loading}
+      />
+    </FormLabel>
+  );
 };
 
 export const DefaultTest: FormLabelStory = {
-    args: {
-        disabled: false,
-        loading: false,
-        labelPlacement: Placement.left,
-    },
-    render: (args) => <Test {...args} />,
-    play: async ({ canvasElement, step }) => {
-        const canvas = within(canvasElement);
+  args: {
+    disabled: false,
+    loading: false,
+    labelPlacement: Placement.left,
+  },
+  render: (args) => <Test {...args} />,
+  play: async ({ canvasElement, step }) => {
+    const canvas = within(canvasElement);
 
-        const nameLabel = canvas.getByText("Name:");
-        const nameCheckbox = canvas.getByTestId("nameCheckbox");
+    const nameLabel = canvas.getByText('Name:');
+    const nameCheckbox = canvas.getByTestId('nameCheckbox');
 
-        await step(
-            'Click "Name:" label. Then checkbox is cheked; Ripple focused part is not in the document. ',
-            async () => {
-                await userEvent.click(nameLabel);
+    await step(
+      'Click "Name:" label. Then checkbox is cheked; Ripple focused part is not in the document. ',
+      async () => {
+        await userEvent.click(nameLabel);
 
-                await expect(nameCheckbox).toBeChecked();
+        await expect(nameCheckbox).toBeChecked();
 
-                expect(
-                    canvas.queryByTestId("litten-ripple__focus")
-                ).not.toBeInTheDocument();
-            }
-        );
-    },
+        expect(
+          canvas.queryByTestId('litten-ripple__focus')
+        ).not.toBeInTheDocument();
+      }
+    );
+  },
 };

@@ -1,11 +1,11 @@
-import { Meta, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from '@storybook/react-vite';
 
-import { Summary } from "../components/summary/summary";
+import { Summary } from '../components/summary/summary';
 
-import { Default } from "../test/summary/summaryDefaultTest";
+import { Default as DefaultTest } from '../test/summary/summaryDefaultTest';
 
 export default {
-  title: "Example/Summary",
+  title: 'Example/Summary',
   component: Summary,
   argTypes: {
     prefixCls: {
@@ -19,4 +19,7 @@ export default {
 
 export type SummaryStory = StoryObj<typeof Summary>;
 
-export { Default };
+export const Default: SummaryStory = {
+  name: 'Default',
+  ...DefaultTest,
+};

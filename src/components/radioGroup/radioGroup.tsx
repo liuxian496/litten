@@ -1,36 +1,27 @@
-import { ChangeEvent, useEffect } from "react";
+import { ChangeEvent } from "react";
 
 import { ControlType } from "litten-hooks/dist/enum";
-import { useCurrentValue } from "litten-hooks/dist/contentControl";
-import { setCheckedByGroupValue } from "litten-hooks/dist/checkedControl";
 
-import { RadioGroupProps } from "../radio/radio.types";
+import { RadioGroupProps } from "./radioGroup.types";
 
-export const RadioGroup = (props: RadioGroupProps) => {
-    const { name, value, defaultValue, children, onChange } = props;
-
-    const [currentValue, setCurrentValue, setOriginalEvent] = useCurrentValue<
-        HTMLInputElement,
-        string
-    >({
-        value,
-        defaultValue,
-        controlType: ControlType.Radio,
-        onChange,
+export const RadioGroup = ({ children, onChange }: RadioGroupProps) => {
+  /**
+   * 使用事件委托的方式监听RadioGroup下的Radio组件的change事件
+   * @param e 事件对象
+   */
+  function handleRadioChange(e: ChangeEvent<HTMLInputElement>) {
+    onChange?.({
+      e,
+      controlType: ControlType.RadioGroup,
+      value: e.target.value,
     });
+  }
 
-    useEffect(() => {
-        currentValue !== undefined &&
-            name !== undefined &&
-            setCheckedByGroupValue(name, ControlType.Radio, currentValue);
-    }, [currentValue, name]);
-
-    function handleRadioChange(e: ChangeEvent<HTMLInputElement>) {
-        setOriginalEvent(e);
-        setCurrentValue(e.target.value);
-    }
-
+  function render() {
     return <span onChange={handleRadioChange}>{children}</span>;
+  }
+
+  return render();
 };
 
 RadioGroup.displayName = ControlType.RadioGroup;
