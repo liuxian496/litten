@@ -158,7 +158,7 @@ export default defineConfig({
     coverage: {
       provider: 'istanbul',
       all: true,
-      reporter: ['text', 'html', 'clover', 'json-summary'],
+      reporter: ['text', 'html', 'clover', 'json-summary', 'lcov'],
       include: ['src/**/*.{ts,tsx}'],
       exclude: [
         'src/**/*.stories.{ts,tsx}',
