@@ -1,7 +1,7 @@
-import { ContentControlProps } from "litten-hooks/dist/control/contentControl/contentControl.types";
-import { SelectedValue } from "litten-hooks/dist/control/userControl/userControl.types";
-import { MouseState } from "litten-hooks/dist/enum";
-import { ReactNode } from "react";
+import type { ContentControlProps } from 'litten-hooks/dist/control/contentControl/contentControl.types';
+import type { SelectedValue } from 'litten-hooks/dist/control/userControl/userControl.types';
+import { MouseState } from 'litten-hooks/dist/enum';
+import type { ReactNode } from 'react';
 
 export interface ListContextProps {
   /**
@@ -39,8 +39,10 @@ export interface ListContextProps {
  * @param defaultValue 默认选中值
  * @param onChange 选中值改变时的回调函数
  */
-export interface ListboxProps
-  extends ContentControlProps<HTMLUListElement, SelectedValue> {
+export interface ListboxProps extends ContentControlProps<
+  HTMLUListElement,
+  SelectedValue
+> {
   /**
    * 子组件
    */

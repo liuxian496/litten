@@ -1,25 +1,25 @@
 import {
-  ChangeEvent,
-  DetailedHTMLProps,
+  type ChangeEvent,
+  type DetailedHTMLProps,
   forwardRef,
-  InputHTMLAttributes,
+  type InputHTMLAttributes,
   useEffect,
   useRef,
   useState,
-} from "react";
-import "./switch.less";
+} from 'react';
+import './switch.less';
 
-import { useCurrentChecked } from "litten-hooks/dist/checkedControl";
-import { useDisabled } from "litten-hooks/dist/disabledControl";
-import { ControlType, MouseState } from "litten-hooks/dist/enum";
-import { useFocused } from "litten-hooks/dist/focusControl";
+import { useCurrentChecked } from 'litten-hooks/dist/checkedControl';
+import { useDisabled } from 'litten-hooks/dist/disabledControl';
+import { ControlType, MouseState } from 'litten-hooks/dist/enum';
+import { useFocused } from 'litten-hooks/dist/focusControl';
 
-import { Color, Size, WaveMode } from "../../global/enum";
+import { Color, Size, WaveMode } from '../../global/enum';
 
-import { handleLabelMouseStateCheck } from "../formLabel/formLabelBase";
-import { Ripple } from "../ripple/ripple";
-import { LittenRipple } from "../ripple/ripple.types";
-import { SwitchProps } from "./switch.types";
+import { handleLabelMouseStateCheck } from '../formLabel/formLabelBase';
+import { Ripple } from '../ripple/ripple';
+import type { LittenRipple } from '../ripple/ripple.types';
+import type { SwitchProps } from './switch.types';
 
 import {
   getCheckState,
@@ -29,7 +29,7 @@ import {
   getThumbVisualStates,
   getTrackVisualStates,
   getVisualStates,
-} from "./switchBase";
+} from './switchBase';
 
 export const Switch = forwardRef<HTMLInputElement, SwitchProps>(function Switch(
   {
@@ -39,11 +39,11 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(function Switch(
     size = Size.medium,
     checked,
     defaultChecked = false,
-    value = "on",
+    value = 'on',
     onDisabledChange,
     ...props
   }: SwitchProps,
-  ref,
+  ref
 ) {
   const { onChange, name } = props;
 
@@ -111,8 +111,8 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(function Switch(
       HTMLInputElement
     > = {
       ...props,
-      type: "checkbox",
-      role: "switch",
+      type: 'checkbox',
+      role: 'switch',
       className: getInputVisualStates(props),
       disabled: disabled,
       value: value,
@@ -145,7 +145,7 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(function Switch(
           disabled,
           ...props,
         },
-        checkStatus,
+        checkStatus
       )}
     >
       <span className={getThumbContainerVisualStates(props, checkStatus)}>

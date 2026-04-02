@@ -1,8 +1,8 @@
-import classnames from "classnames";
-import { MouseState } from "litten-hooks/dist/enum";
+import classnames from 'classnames';
+import { MouseState } from 'litten-hooks/dist/enum';
 
-import { FormLabelProps } from "./formLabel.types";
-import { getPrefixNs } from "../../global/util";
+import { getPrefixNs } from '../../global/util';
+import { type FormLabelProps } from './formLabel.types';
 
 let littenLabelMouseState = MouseState.none;
 
@@ -11,7 +11,7 @@ let littenLabelMouseState = MouseState.none;
  * @returns
  */
 function getLabelMouseState() {
-    return littenLabelMouseState;
+  return littenLabelMouseState;
 }
 
 /**
@@ -19,33 +19,33 @@ function getLabelMouseState() {
  * @param state 待设置的MouseState {MouseState}
  */
 export function setLabelMouseState(state: MouseState) {
-    littenLabelMouseState = state;
+  littenLabelMouseState = state;
 }
 
 export function getVisualStates(props: FormLabelProps) {
-    const { prefixCls: customizePrefixCls, labelPlacement, disabled } = props;
+  const { prefixCls: customizePrefixCls, labelPlacement, disabled } = props;
 
-    const prefixCls = getPrefixNs("formLabel", customizePrefixCls);
+  const prefixCls = getPrefixNs('formLabel', customizePrefixCls);
 
-    const visualStates = classnames(
-        prefixCls,
-        `${prefixCls}--${labelPlacement}`,
-        {
-            [`${prefixCls}--disabled`]: disabled === true,
-        }
-    );
+  const visualStates = classnames(
+    prefixCls,
+    `${prefixCls}--${labelPlacement}`,
+    {
+      [`${prefixCls}--disabled`]: disabled === true,
+    }
+  );
 
-    return visualStates;
+  return visualStates;
 }
 
 export function getLabelVisualStates(props: FormLabelProps) {
-    const { prefixCls: customizePrefixCls } = props;
+  const { prefixCls: customizePrefixCls } = props;
 
-    const prefixCls = getPrefixNs("formLabel", customizePrefixCls);
+  const prefixCls = getPrefixNs('formLabel', customizePrefixCls);
 
-    const visualStates = classnames(`${prefixCls}__label`);
+  const visualStates = classnames(`${prefixCls}__label`);
 
-    return visualStates;
+  return visualStates;
 }
 
 /**
@@ -53,12 +53,12 @@ export function getLabelVisualStates(props: FormLabelProps) {
  * @returns result 检测后的结果 {boolean}
  */
 export function handleLabelMouseStateCheck() {
-    let result = false;
-    if (getLabelMouseState() === MouseState.none) {
-        result = true;
-    } else {
-        setLabelMouseState(MouseState.none);
-    }
+  let result = false;
+  if (getLabelMouseState() === MouseState.none) {
+    result = true;
+  } else {
+    setLabelMouseState(MouseState.none);
+  }
 
-    return result;
+  return result;
 }
