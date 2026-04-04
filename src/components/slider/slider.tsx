@@ -1,8 +1,8 @@
 import {
-  ChangeEvent,
-  DetailedHTMLProps,
+  type ChangeEvent,
+  type DetailedHTMLProps,
   forwardRef,
-  InputHTMLAttributes,
+  type InputHTMLAttributes,
   useImperativeHandle,
   useRef,
   useState,
@@ -11,7 +11,7 @@ import './slider.less';
 
 import NP from 'number-precision';
 
-import { RelativeRect } from 'litten-hooks/dist/control/userControl/userControl.types';
+import type { RelativeRect } from 'litten-hooks/dist/control/userControl/userControl.types';
 import {
   ControlType,
   FocusState,
@@ -25,7 +25,7 @@ import { Color, Size } from '../../global/enum';
 import { useCurrentValue } from 'litten-hooks/dist/contentControl';
 import { useDisabled } from 'litten-hooks/dist/disabledControl';
 
-import { SliderProps } from './slider.types';
+import type { SliderProps } from './slider.types';
 import {
   getInputVisualStates,
   getPersentByValue,

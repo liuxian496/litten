@@ -1,26 +1,26 @@
 import {
-  ChangeEvent,
-  DetailedHTMLProps,
-  InputHTMLAttributes,
+  type ChangeEvent,
+  type DetailedHTMLProps,
+  type InputHTMLAttributes,
   forwardRef,
   useEffect,
   useImperativeHandle,
   useRef,
   useState,
-} from "react";
-import "./radio.less";
+} from 'react';
+import './radio.less';
 
-import { useCurrentChecked } from "litten-hooks/dist/checkedControl";
-import { useDisabled } from "litten-hooks/dist/disabledControl";
-import { CheckState, ControlType } from "litten-hooks/dist/enum";
-import { useFocused } from "litten-hooks/dist/focusControl";
+import { useCurrentChecked } from 'litten-hooks/dist/checkedControl';
+import { useDisabled } from 'litten-hooks/dist/disabledControl';
+import { CheckState, ControlType } from 'litten-hooks/dist/enum';
+import { useFocused } from 'litten-hooks/dist/focusControl';
 
-import { Color, Mode, Size } from "../../global/enum";
+import { Color, Mode, Size } from '../../global/enum';
 
-import { getFocusColor, getWaveColor } from "../buttonBase/buttonBase";
-import { handleLabelMouseStateCheck } from "../formLabel/formLabelBase";
-import { Ripple } from "../ripple/ripple";
-import { RadioProps } from "./radio.types";
+import { getFocusColor, getWaveColor } from '../buttonBase/buttonBase';
+import { handleLabelMouseStateCheck } from '../formLabel/formLabelBase';
+import { Ripple } from '../ripple/ripple';
+import type { RadioProps } from './radio.types';
 import {
   CheckedIcon,
   UnCheckedIcon,
@@ -28,7 +28,7 @@ import {
   getIconContainerVisualStates,
   getInputVisualStates,
   getVisualStates,
-} from "./radioBase";
+} from './radioBase';
 
 export const Radio = forwardRef<HTMLInputElement, RadioProps>(
   (
@@ -43,11 +43,11 @@ export const Radio = forwardRef<HTMLInputElement, RadioProps>(
       size = Size.medium,
       checked,
       defaultChecked = false,
-      value = "on",
+      value = 'on',
       onDisabledChange,
       ...props
     }: RadioProps,
-    ref,
+    ref
   ) => {
     const inputRef = useRef<HTMLInputElement>(null);
     const { onChange, name } = props;
@@ -100,7 +100,7 @@ export const Radio = forwardRef<HTMLInputElement, RadioProps>(
     useEffect(() => {
       if (isUnControlled) {
         setCheckStatus(getCheckState(inputRef.current?.checked));
-        console.log("sync inputRef.current?.checked to checkStatus");
+        console.log('sync inputRef.current?.checked to checkStatus');
       }
     }, [inputRef.current?.checked, isUnControlled]);
 
@@ -120,7 +120,7 @@ export const Radio = forwardRef<HTMLInputElement, RadioProps>(
         HTMLInputElement
       > = {
         ...props,
-        type: "radio",
+        type: 'radio',
         className: getInputVisualStates(props),
         disabled: disabled,
         value: value,
@@ -149,7 +149,7 @@ export const Radio = forwardRef<HTMLInputElement, RadioProps>(
             disabled,
             ...props,
           },
-          checkStatus,
+          checkStatus
         )}
       >
         <span className={getIconContainerVisualStates(props)}>
@@ -164,7 +164,7 @@ export const Radio = forwardRef<HTMLInputElement, RadioProps>(
         </Ripple>
       </span>
     );
-  },
+  }
 );
 
 Radio.displayName = ControlType.Radio;

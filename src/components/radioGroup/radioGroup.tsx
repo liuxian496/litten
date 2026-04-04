@@ -1,8 +1,8 @@
-import { ChangeEvent } from "react";
+import type { ChangeEvent } from 'react';
 
-import { ControlType } from "litten-hooks/dist/enum";
+import { ControlType } from 'litten-hooks/dist/enum';
 
-import { RadioGroupProps } from "./radioGroup.types";
+import type { RadioGroupProps } from './radioGroup.types';
 
 export const RadioGroup = ({ children, onChange }: RadioGroupProps) => {
   /**

@@ -1,22 +1,22 @@
-import { TextFieldType } from "litten-hooks/dist/enum";
+import { TextFieldType } from 'litten-hooks/dist/enum';
 import {
-  ChangeEvent,
-  DetailedHTMLProps,
+  type ChangeEvent,
+  type DetailedHTMLProps,
   forwardRef,
-  InputHTMLAttributes,
-  LegacyRef,
-} from "react";
-import "./textField.less";
+  type InputHTMLAttributes,
+  type LegacyRef,
+} from 'react';
+import './textField.less';
 
-import { useCurrentValue } from "litten-hooks/dist/contentControl";
-import { useDisabled } from "litten-hooks/dist/disabledControl";
-import { ControlType } from "litten-hooks/dist/enum";
-import { getStateByFocused, useFocused } from "litten-hooks/dist/focusControl";
+import { useCurrentValue } from 'litten-hooks/dist/contentControl';
+import { useDisabled } from 'litten-hooks/dist/disabledControl';
+import { ControlType } from 'litten-hooks/dist/enum';
+import { getStateByFocused, useFocused } from 'litten-hooks/dist/focusControl';
 
-import { handleLabelMouseStateCheck } from "../formLabel/formLabelBase";
+import { handleLabelMouseStateCheck } from '../formLabel/formLabelBase';
 
-import { TextFieldProps, TextFieldValue } from "./textField.types";
-import { getInputVisualStates, getVisualStates } from "./textFiledBase";
+import type { TextFieldProps, TextFieldValue } from './textField.types';
+import { getInputVisualStates, getVisualStates } from './textFiledBase';
 
 export const TextField = forwardRef(function TextField(
   {
@@ -29,7 +29,7 @@ export const TextField = forwardRef(function TextField(
     onDisabledChange,
     ...props
   }: TextFieldProps,
-  ref?: LegacyRef<HTMLInputElement>,
+  ref?: LegacyRef<HTMLInputElement>
 ) {
   const { onChange } = props;
 
@@ -101,7 +101,7 @@ export const TextField = forwardRef(function TextField(
         },
         {
           focusState: getStateByFocused(focused),
-        },
+        }
       )}
       style={style}
     >

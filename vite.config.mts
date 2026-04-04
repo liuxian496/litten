@@ -151,13 +151,11 @@ export default defineConfig({
               },
             ],
           },
-          setupFiles: ['.storybook/vitest.setup.ts'],
         },
       },
     ],
     coverage: {
       provider: 'istanbul',
-      all: true,
       reporter: ['text', 'html', 'clover', 'json-summary', 'lcov'],
       include: ['src/**/*.{ts,tsx}'],
       exclude: [

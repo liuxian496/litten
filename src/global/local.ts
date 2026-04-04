@@ -1,7 +1,7 @@
-import { LocalType, I18N } from "./enum";
-import { Local, Lexicon } from './local.types';
-import zhCN from "./zhCN";
-import enUS from "./enUS";
+import { I18N, LocalType } from './enum';
+import enUS from './enUS';
+import type { Lexicon, Local } from './local.types';
+import zhCN from './zhCN';
 
 const local: Local = {};
 
@@ -12,7 +12,7 @@ let currentI18N: I18N | string = I18N.enUs;
  * @param type 国际化对于的类型名称
  */
 export function getI18N() {
-    return currentI18N;
+  return currentI18N;
 }
 
 /**
@@ -20,7 +20,7 @@ export function getI18N() {
  * @param type 国际化对于的类型名称
  */
 export function setI18N(type: I18N | string) {
-    currentI18N = type;
+  currentI18N = type;
 }
 
 /**
@@ -28,7 +28,7 @@ export function setI18N(type: I18N | string) {
  * @returns 当前的国际化配装
  */
 export function getI18NConfig(): Lexicon {
-    return getLocal(LocalType.i18n, currentI18N) as Lexicon;
+  return getLocal(LocalType.i18n, currentI18N) as Lexicon;
 }
 
 /**
@@ -38,10 +38,10 @@ export function getI18NConfig(): Lexicon {
  * @returns 要获取的配置
  */
 export function getLocal(type: string, name: string): object {
-    if (local[type]) {
-        return local[type][name] || {};
-    }
-    return {};
+  if (local[type]) {
+    return local[type][name] || {};
+  }
+  return {};
 }
 
 /**
@@ -51,10 +51,10 @@ export function getLocal(type: string, name: string): object {
  * @param config 子类型对应的配置
  */
 export function register(type: LocalType, name: string, config: object) {
-    if (!local[type]) {
-        local[type] = {};
-    }
-    local[type][name] = config;
+  if (!local[type]) {
+    local[type] = {};
+  }
+  local[type][name] = config;
 }
 
 register(LocalType.i18n, I18N.zhCn, zhCN);

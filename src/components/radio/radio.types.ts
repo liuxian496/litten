@@ -1,11 +1,11 @@
-import { Color, Size } from "../../global/enum";
+import { Color, Size } from '../../global/enum';
 
-import { CheckedControlProps } from "litten-hooks/dist/control/checkedControl/checkedControl.types";
+import type { CheckedControlProps } from 'litten-hooks/dist/control/checkedControl/checkedControl.types';
 
-import { RippleColor } from "../ripple/ripple.types";
+import type { RippleColor } from '../ripple/ripple.types';
 
 export interface RadioProps extends CheckedControlProps<HTMLInputElement> {
-  "aria-label"?: string;
+  'aria-label'?: string;
   /**
    * 设置一个值，该值表示控件的使用风格
    */

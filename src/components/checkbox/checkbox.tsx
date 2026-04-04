@@ -1,26 +1,26 @@
 import {
-  ChangeEvent,
-  DetailedHTMLProps,
-  InputHTMLAttributes,
+  type ChangeEvent,
+  type DetailedHTMLProps,
+  type InputHTMLAttributes,
   forwardRef,
   useEffect,
   useState,
-} from "react";
-import "./checkbox.less";
+} from 'react';
+import './checkbox.less';
 
-import { useCurrentChecked } from "litten-hooks/dist/checkedControl";
-import { CheckState, ControlType } from "litten-hooks/dist/enum";
-import { useFocused } from "litten-hooks/dist/focusControl";
+import { useCurrentChecked } from 'litten-hooks/dist/checkedControl';
+import { CheckState, ControlType } from 'litten-hooks/dist/enum';
+import { useFocused } from 'litten-hooks/dist/focusControl';
 
-import { useDisabled } from "litten-hooks/dist/disabledControl";
+import { useDisabled } from 'litten-hooks/dist/disabledControl';
 
-import { Color, Mode, Size } from "../../global/enum";
+import { Color, Mode, Size } from '../../global/enum';
 
-import { getFocusColor, getWaveColor } from "../buttonBase/buttonBase";
-import { handleLabelMouseStateCheck } from "../formLabel/formLabelBase";
-import { Ripple } from "../ripple/ripple";
+import { getFocusColor, getWaveColor } from '../buttonBase/buttonBase';
+import { handleLabelMouseStateCheck } from '../formLabel/formLabelBase';
+import { Ripple } from '../ripple/ripple';
 
-import { CheckboxProps } from "./checkbox.types";
+import type { CheckboxProps } from './checkbox.types';
 import {
   CheckedIcon,
   IndeterminateIcon,
@@ -28,7 +28,7 @@ import {
   getCheckState,
   getInputVisualStates,
   getVisualStates,
-} from "./checkboxBase";
+} from './checkboxBase';
 
 export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
   (
@@ -43,13 +43,13 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
       size = Size.medium,
       checked,
       defaultChecked = false,
-      value = "on",
+      value = 'on',
       indeterminate = false,
       onDisabledChange,
       onChange,
       ...props
     }: CheckboxProps,
-    ref,
+    ref
   ) => {
     const disabled = useDisabled({
       disabled: disabledProp,
@@ -71,7 +71,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
     });
 
     const [checkStatus, setCheckStatus] = useState(
-      getCheckState(currentChecked, indeterminate),
+      getCheckState(currentChecked, indeterminate)
     );
 
     const isUnControlled = checked === undefined;
@@ -96,7 +96,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
         HTMLInputElement
       > = {
         ...props,
-        type: "checkbox",
+        type: 'checkbox',
         className: getInputVisualStates(props),
         disabled: disabled,
         value: value,
@@ -125,7 +125,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
             disabled,
             ...props,
           },
-          checkStatus,
+          checkStatus
         )}
       >
         {checkStatus === CheckState.checked && <CheckedIcon />}
@@ -137,7 +137,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
         </Ripple>
       </span>
     );
-  },
+  }
 );
 
 Checkbox.displayName = ControlType.Checkbox;

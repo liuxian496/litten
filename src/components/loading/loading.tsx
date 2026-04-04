@@ -1,37 +1,37 @@
-import { createPortal } from "react-dom";
-import "./loading.less";
+import { createPortal } from 'react-dom';
+import './loading.less';
 
-import { ControlType } from "litten-hooks/dist/enum";
+import { ControlType } from 'litten-hooks/dist/enum';
 
-import { usePopup } from "../popup/popup";
+import { usePopup } from '../popup/popup';
 
-import { LoadingProps } from "./loading.types";
+import type { LoadingProps } from './loading.types';
 import {
-    CircleProgressIcon,
-    getProgressVisualStates,
-    getVisualStates,
-} from "./loadingBase";
+  CircleProgressIcon,
+  getProgressVisualStates,
+  getVisualStates,
+} from './loadingBase';
 
 export const Loading = (props: LoadingProps) => {
-    const { opened } = props;
+  const { opened } = props;
 
-    const [popup] = usePopup({ opened: opened, hasOverlay: opened });
+  const [popup] = usePopup({ opened: opened, hasOverlay: opened });
 
-    return (
-        opened &&
-        popup &&
-        createPortal(
-            <div className={getVisualStates(props)}>
-                <span
-                    className={getProgressVisualStates(props)}
-                    data-testid="litten-progress"
-                >
-                    <CircleProgressIcon {...props} />
-                </span>
-            </div>,
-            popup
-        )
-    );
+  return (
+    opened &&
+    popup &&
+    createPortal(
+      <div className={getVisualStates(props)}>
+        <span
+          className={getProgressVisualStates(props)}
+          data-testid="litten-progress"
+        >
+          <CircleProgressIcon {...props} />
+        </span>
+      </div>,
+      popup
+    )
+  );
 };
 
 Loading.displayName = ControlType.Loading;

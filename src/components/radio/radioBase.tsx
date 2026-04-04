@@ -1,16 +1,16 @@
-import classnames from "classnames";
-import { CheckState } from "litten-hooks/dist/enum";
+import classnames from 'classnames';
+import { CheckState } from 'litten-hooks/dist/enum';
 
-import { getPrefixNs } from "../../global/util";
+import { getPrefixNs } from '../../global/util';
 
-import { RadioIconProps, RadioProps } from "./radio.types";
+import type { RadioIconProps, RadioProps } from './radio.types';
 
 export const CheckedIcon = ({ value, name }: RadioIconProps) => {
   const testId = `radioCheckedIcon-${name}-${value}`;
   return (
     <svg
       className="litten-svg"
-      style={{ position: "absolute" }}
+      style={{ position: 'absolute' }}
       focusable="false"
       aria-hidden="true"
       viewBox="0 0 24 24"
@@ -39,7 +39,7 @@ export const UnCheckedIcon = ({ value, name }: RadioIconProps) => {
 export function getVisualStates(props: RadioProps, checkStatus: CheckState) {
   const { prefixCls: customizePrefixCls, color, disabled, size } = props;
 
-  const prefixCls = getPrefixNs("radio", customizePrefixCls);
+  const prefixCls = getPrefixNs('radio', customizePrefixCls);
 
   const visualStates = classnames(
     prefixCls,
@@ -48,7 +48,7 @@ export function getVisualStates(props: RadioProps, checkStatus: CheckState) {
     `${prefixCls}--${checkStatus}`,
     {
       [`${prefixCls}--disabled`]: disabled === true,
-    },
+    }
   );
 
   return visualStates;
@@ -57,7 +57,7 @@ export function getVisualStates(props: RadioProps, checkStatus: CheckState) {
 export function getInputVisualStates(props: RadioProps) {
   const { prefixCls: customizePrefixCls } = props;
 
-  const prefixCls = getPrefixNs("radio", customizePrefixCls);
+  const prefixCls = getPrefixNs('radio', customizePrefixCls);
 
   const visualStates = classnames(`${prefixCls}__input`);
 
@@ -67,7 +67,7 @@ export function getInputVisualStates(props: RadioProps) {
 export function getIconContainerVisualStates(props: RadioProps) {
   const { prefixCls: customizePrefixCls } = props;
 
-  const prefixCls = getPrefixNs("radio", customizePrefixCls);
+  const prefixCls = getPrefixNs('radio', customizePrefixCls);
 
   const visualStates = classnames(`${prefixCls}__iconContainer`);
 
@@ -81,6 +81,6 @@ export function getIconContainerVisualStates(props: RadioProps) {
  */
 export function getCheckState(checked?: boolean) {
   const result = checked === true ? CheckState.checked : CheckState.unChecked;
-  console.log("getCheckState", { checked, result });
+  console.log('getCheckState', { checked, result });
   return result;
 }

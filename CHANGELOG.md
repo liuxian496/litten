@@ -1,11 +1,24 @@
+# [2.0.0](https://github.com/liuxian496/litten/compare/v1.1.0...v2.0.0) (2026-04-04)
+
+
+### Features
+
+*  radioGroup支持新的受控和非受控处理逻 ([3cee2f2](https://github.com/liuxian496/litten/commit/3cee2f2b269e071610da871dea04604fdf68dca7))
+* checkbox, radio, radioGroup, switch支持新的受控和非受控处理逻辑 ([6c4fd4c](https://github.com/liuxian496/litten/commit/6c4fd4ce1d6bf6173c93d450ef2edce1f3e6bb31))
+* listbox, textField支持新的受控和非受控处理逻辑 ([b0a2d48](https://github.com/liuxian496/litten/commit/b0a2d48b8eb4825195b92b74f248b63eb116cc98))
+* listbox支持新的受控和非受控处理逻辑 ([b5ea52f](https://github.com/liuxian496/litten/commit/b5ea52f7d2cb2c007ae9aacfe47fcc49e89dbc07))
+* radioGroup, slider支持新的受控和非受控处理逻辑 ([f8097fd](https://github.com/liuxian496/litten/commit/f8097fd9f88fab7b296bdcb8442be3a59715f0fd))
+
+
+
 # [1.1.0](https://github.com/liuxian496/litten/compare/v1.0.3...v1.1.0) (2024-06-17)
 
 
 ### Bug Fixes
 
 * 修改Checkbox出发onChange时，没有传递value的问题 ([c399763](https://github.com/liuxian496/litten/commit/c3997633fcb72608042d66f967f8af061b537c95))
-* 修改Checkbox非受控时，checked检测错误的问题。 ([bd71888](https://github.com/liuxian496/litten/commit/bd71888f5ea73665cf98e994283b90fd6f0c935e))
 * 修改Checkbox受控时，没有在onChange事件更新checked，控件仍然能更改选中状态的问题（修改后与react默认逻辑保持一致） ([32f00ba](https://github.com/liuxian496/litten/commit/32f00ba26861048a21380c7bdf95948c9f701a0e))
+* 修改Checkbox非受控时，checked检测错误的问题。 ([bd71888](https://github.com/liuxian496/litten/commit/bd71888f5ea73665cf98e994283b90fd6f0c935e))
 * 修改textField受控时，没有在onChange事件更新value，控件仍然能输入的问题（修改后与react默认逻辑保持一致） ([166a689](https://github.com/liuxian496/litten/commit/166a689763a1ebe60acdf88b234da98de5aa1240))
 
 
@@ -162,8 +175,8 @@
 
 ### Bug Fixes
 
-* 添加getDefaultValueByDisplayName，修改form获取defaultValue不正确的问题 ([ca67acf](https://github.com/liuxian496/litten/commit/ca67acf28e552e493932166d035cebfaacd15748))
 * 修改TextField 受控Story，控制台出现warning的问题。 ([72529f1](https://github.com/liuxian496/litten/commit/72529f1dbe5761b6786f39397e0520bbb50ed02c))
+* 添加getDefaultValueByDisplayName，修改form获取defaultValue不正确的问题 ([ca67acf](https://github.com/liuxian496/litten/commit/ca67acf28e552e493932166d035cebfaacd15748))
 
 
 ### Features
@@ -224,9 +237,9 @@
 
 ### Features
 
-* 添加StackPanel ([489f4ee](https://github.com/liuxian496/litten/commit/489f4eef6aa096240df7fbb0770fffcc20fde95c))
-* 完善StackPanel，支持控制子元素在主轴或副轴中的位置 ([224f27f](https://github.com/liuxian496/litten/commit/224f27fd415be05d80241e09c11b46f21edcaef7))
 * textField支持password类型，支持placeholder ([5ae2ded](https://github.com/liuxian496/litten/commit/5ae2ded1094340b4ce64680e14fb8442b258bf1f))
+* 完善StackPanel，支持控制子元素在主轴或副轴中的位置 ([224f27f](https://github.com/liuxian496/litten/commit/224f27fd415be05d80241e09c11b46f21edcaef7))
+* 添加StackPanel ([489f4ee](https://github.com/liuxian496/litten/commit/489f4eef6aa096240df7fbb0770fffcc20fde95c))
 
 
 
@@ -244,8 +257,8 @@
 
 ### Features
 
-* 添加switch控件 ([1ac6f2d](https://github.com/liuxian496/litten/commit/1ac6f2d6d1c925678b87323c41cccd9061533989))
 * ripple控件支持用ref的方式使用；wave部件添加waveMode，添加作为容器内切（椭）圆的显示方式 ([f1fedbd](https://github.com/liuxian496/litten/commit/f1fedbd41356efbf5732f5a7b91b6d1bd4ee0f2d))
+* 添加switch控件 ([1ac6f2d](https://github.com/liuxian496/litten/commit/1ac6f2d6d1c925678b87323c41cccd9061533989))
 
 
 
@@ -286,16 +299,16 @@
 
 ### Features
 
+* ripple控件支持children ([63939c1](https://github.com/liuxian496/litten/commit/63939c11b037b8eb7a50e12dc74de95e2a707643))
+* 完善useForm的生成和销毁逻辑 ([8663ec6](https://github.com/liuxian496/litten/commit/8663ec61e31b035fa1c6c58a5cfe8c9ca3f9643d))
 * 控件FormControl支持defaultValue ([a249ac3](https://github.com/liuxian496/litten/commit/a249ac3518098caad1d404b3b48e474d939b5a75))
 * 控件TextFiled支持defaultValue ([ea80f54](https://github.com/liuxian496/litten/commit/ea80f54f9e6dcf513b3679d8a3e579a81d1c6635))
-* 添加接口CheckedControlProps，接口ContentControlProps添加defaultValue ([dad51e1](https://github.com/liuxian496/litten/commit/dad51e11deba5a873c4b08de7ee58340505c7275))
 * 添加checkbox控件 ([befe8a6](https://github.com/liuxian496/litten/commit/befe8a64c251dfba7b4f3066c609b0449085877f))
 * 添加CheckState和Placement枚举 ([98af78e](https://github.com/liuxian496/litten/commit/98af78e13f45258c7ac7d941af99979d0ee7edb3))
 * 添加ContentControl ([cbe7fa4](https://github.com/liuxian496/litten/commit/cbe7fa46a37c11e2089b68ac4cbb66cfa4c07b26))
 * 添加formLabel 在不可用（disabled）状态时的样式 ([84020c5](https://github.com/liuxian496/litten/commit/84020c5076d71018bfa36e7d322bbc7bfa0ab91b))
 * 添加formLabel控件 ([d7a7020](https://github.com/liuxian496/litten/commit/d7a7020afdeb58b9ee034284ba0e438ba2684ec1))
-* 完善useForm的生成和销毁逻辑 ([8663ec6](https://github.com/liuxian496/litten/commit/8663ec61e31b035fa1c6c58a5cfe8c9ca3f9643d))
-* ripple控件支持children ([63939c1](https://github.com/liuxian496/litten/commit/63939c11b037b8eb7a50e12dc74de95e2a707643))
+* 添加接口CheckedControlProps，接口ContentControlProps添加defaultValue ([dad51e1](https://github.com/liuxian496/litten/commit/dad51e11deba5a873c4b08de7ee58340505c7275))
 
 
 

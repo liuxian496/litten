@@ -1,45 +1,45 @@
-import "./listbox.less";
+import './listbox.less';
 
 import {
-  KeyboardEvent,
+  type KeyboardEvent,
   forwardRef,
   useEffect,
   useImperativeHandle,
   useState,
-} from "react";
+} from 'react';
 
-import { ExceptionBoundary } from "exception-boundary";
-import { useCurrentValue } from "litten-hooks/dist/contentControl";
-import {
+import { ExceptionBoundary } from 'exception-boundary';
+import { useCurrentValue } from 'litten-hooks/dist/contentControl';
+import type {
   LittenItem,
   LittenItems,
   SelectedValue,
-} from "litten-hooks/dist/control/userControl/userControl.types";
-import { ControlType, MouseState } from "litten-hooks/dist/enum";
-import { usePrevious } from "litten-hooks/dist/usePrevious";
+} from 'litten-hooks/dist/control/userControl/userControl.types';
+import { ControlType, MouseState } from 'litten-hooks/dist/enum';
+import { usePrevious } from 'litten-hooks/dist/usePrevious';
 import {
   getLastSelectedIndex,
   getNextListFocusIndex,
   useVirtualFocus,
-} from "litten-hooks/dist/useVirtualFocus";
-import isArray from "lodash/isArray";
+} from 'litten-hooks/dist/useVirtualFocus';
+import isArray from 'lodash/isArray';
 
-import { ListContextProps, ListboxProps } from "./listbox.types";
+import type { ListContextProps, ListboxProps } from './listbox.types';
 import {
   ListContext,
   getListItem,
   getNextMultiSelectedValue,
   getVisualStates,
-} from "./listboxBase";
+} from './listboxBase';
 
 // listbox组件，支持单选和多选两种模式，受控和非受控两种使用方式
 export const Listbox = forwardRef(function Listbox(
   { multiple, value, defaultValue, children, onChange, ...props }: ListboxProps,
-  ref,
+  ref
 ) {
   const [listItems, setListItems] = useState<LittenItems>([]);
 
-  const [activedescendant, setActivedescendant] = useState("");
+  const [activedescendant, setActivedescendant] = useState('');
 
   const [itemMouseState, setItemMouseState] = useState(MouseState.none);
 
@@ -119,7 +119,7 @@ export const Listbox = forwardRef(function Listbox(
     if (isMultiple && isUnControlled) {
       !isArray(defaultValue) &&
         setErrorMsg(
-          "listbox defaultValue must be a sting[].when multiple is true.",
+          'listbox defaultValue must be a sting[].when multiple is true.'
         );
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -128,7 +128,7 @@ export const Listbox = forwardRef(function Listbox(
   useEffect(() => {
     if (isMultiple && isControlled) {
       !isArray(currentValue) &&
-        setErrorMsg("listbox value must be a sting[].when multiple is true.");
+        setErrorMsg('listbox value must be a sting[].when multiple is true.');
     }
   }, [currentValue, isControlled, isMultiple]);
 
@@ -152,15 +152,11 @@ export const Listbox = forwardRef(function Listbox(
     });
   }, [currentValue, focusValue]);
 
-  useImperativeHandle(
-    ref,
-    () => {
-      return {
-        value: currentValue,
-      };
-    },
-    [currentValue],
-  );
+  useImperativeHandle(ref, () => {
+    return {
+      value: currentValue,
+    };
+  }, [currentValue]);
 
   function handleListKeyDown(e: KeyboardEvent) {
     const { key } = e;
@@ -168,7 +164,7 @@ export const Listbox = forwardRef(function Listbox(
     const nextIndex = getNextListFocusIndex(focusIndex, listItems, key);
     const { value, disabled } = listItems[nextIndex];
 
-    if (key === " ") {
+    if (key === ' ') {
       // 选中可选项
       disabled !== true && setSelectedValue(value as string);
     } else {

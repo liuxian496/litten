@@ -1,22 +1,22 @@
-import "./button.less";
+import './button.less';
 
-import classnames from "classnames";
-import { ControlType } from "litten-hooks/dist/enum";
-import { useFocused } from "litten-hooks/dist/focusControl";
-import { useDisabled } from "litten-hooks/dist/disabledControl";
+import classnames from 'classnames';
+import { useDisabled } from 'litten-hooks/dist/disabledControl';
+import { ControlType } from 'litten-hooks/dist/enum';
+import { useFocused } from 'litten-hooks/dist/focusControl';
 
-import { Mode, Size, Color } from "../../global/enum";
-import { getPrefixNs } from "../../global/util";
+import { Color, Mode, Size } from '../../global/enum';
+import { getPrefixNs } from '../../global/util';
 
 import {
-    getVisualStates,
-    getFocusColor,
-    getWaveColor,
-} from "../buttonBase/buttonBase";
-import { ButtonProps } from "./button.types";
+  getFocusColor,
+  getVisualStates,
+  getWaveColor,
+} from '../buttonBase/buttonBase';
+import type { ButtonProps } from './button.types';
 
-import { Ripple } from "../ripple/ripple";
-import { handleLabelMouseStateCheck } from "../formLabel/formLabelBase";
+import { handleLabelMouseStateCheck } from '../formLabel/formLabelBase';
+import { Ripple } from '../ripple/ripple';
 
 /**
  * 获取start icon的视觉状态
@@ -24,87 +24,83 @@ import { handleLabelMouseStateCheck } from "../formLabel/formLabelBase";
  * @returns visualStates 控件当前的视觉状态集合（css类组成的字符串） {string}
  */
 function getStartIconVisualStates(props: ButtonProps) {
-    const { prefixCls: customizePrefixCls } = props;
+  const { prefixCls: customizePrefixCls } = props;
 
-    const prefixCls = getPrefixNs("button", customizePrefixCls);
+  const prefixCls = getPrefixNs('button', customizePrefixCls);
 
-    const visualStates = classnames(`${prefixCls}__icon--start`);
+  const visualStates = classnames(`${prefixCls}__icon--start`);
 
-    return visualStates;
+  return visualStates;
 }
 
 function getEndIconVisualStates(props: ButtonProps) {
-    const { prefixCls: customizePrefixCls } = props;
+  const { prefixCls: customizePrefixCls } = props;
 
-    const prefixCls = getPrefixNs("button", customizePrefixCls);
+  const prefixCls = getPrefixNs('button', customizePrefixCls);
 
-    const visualStates = classnames(`${prefixCls}__icon--end`);
+  const visualStates = classnames(`${prefixCls}__icon--end`);
 
-    return visualStates;
+  return visualStates;
 }
 
 export const Button = ({
-    color = Color.default,
-    mode = Mode.text,
-    size = Size.medium,
-    disabled: disabledProp = false,
-    loading = false,
-    startIcon,
-    endIcon,
-    rippleColor = {
-        focusColor: getFocusColor({ mode, color }),
-        waveColor: getWaveColor({ mode, color }),
-    },
-    onDisabledChange,
-    ...props
+  color = Color.default,
+  mode = Mode.text,
+  size = Size.medium,
+  disabled: disabledProp = false,
+  loading = false,
+  startIcon,
+  endIcon,
+  rippleColor = {
+    focusColor: getFocusColor({ mode, color }),
+    waveColor: getWaveColor({ mode, color }),
+  },
+  onDisabledChange,
+  ...props
 }: ButtonProps) => {
-    const { children } = props;
+  const { children } = props;
 
-    const [focused, handleFocus, handleBlur] = useFocused({
-        onLabelMouseStateCheck: handleLabelMouseStateCheck,
-        ...props,
-    });
+  const [focused, handleFocus, handleBlur] = useFocused({
+    onLabelMouseStateCheck: handleLabelMouseStateCheck,
+    ...props,
+  });
 
-    const disabled = useDisabled({
-        disabled: disabledProp,
-        loading,
-        controlType: ControlType.Button,
-        onDisabledChange,
-    });
+  const disabled = useDisabled({
+    disabled: disabledProp,
+    loading,
+    controlType: ControlType.Button,
+    onDisabledChange,
+  });
 
-    return (
-        <button
-            type="button"
-            disabled={disabled}
-            aria-disabled={disabled}
-            className={getVisualStates(
-                {
-                    color,
-                    mode,
-                    size,
-                    disabled,
-                    ...props,
-                },
-                "button"
-            )}
-            {...props}
-            onFocus={handleFocus}
-            onBlur={handleBlur}
-        >
-            {startIcon && (
-                <span className={getStartIconVisualStates(props)}>
-                    {startIcon}
-                </span>
-            )}
-            {children}
-            {endIcon && (
-                <span className={getEndIconVisualStates(props)}>{endIcon}</span>
-            )}
-            {disabled !== true && (
-                <Ripple focused={focused} color={rippleColor} />
-            )}
-        </button>
-    );
+  return (
+    <button
+      type="button"
+      disabled={disabled}
+      aria-disabled={disabled}
+      className={getVisualStates(
+        {
+          color,
+          mode,
+          size,
+          disabled,
+          ...props,
+        },
+        'button'
+      )}
+      {...props}
+      onFocus={handleFocus}
+      onBlur={handleBlur}
+    >
+      {startIcon && (
+        <span className={getStartIconVisualStates(props)}>{startIcon}</span>
+      )}
+      {children}
+      {endIcon && (
+        <span className={getEndIconVisualStates(props)}>{endIcon}</span>
+      )}
+      {disabled !== true && <Ripple focused={focused} color={rippleColor} />}
+    </button>
+  );
 };
 
 Button.displayName = ControlType.Button;

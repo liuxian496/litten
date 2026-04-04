@@ -1,256 +1,254 @@
 import React, {
-    useRef,
-    useState,
-    useEffect,
-    forwardRef,
-    useImperativeHandle,
-} from "react";
+  forwardRef,
+  useEffect,
+  useImperativeHandle,
+  useRef,
+  useState,
+} from 'react';
 
-import "./ripple.less";
+import './ripple.less';
 
-import { MouseState, ControlType } from "litten-hooks/dist/enum";
+import { ControlType, MouseState } from 'litten-hooks/dist/enum';
 
-import { AnimationState, WaveMode } from "../../global/enum";
-import { getPrefixNs } from "../../global/util";
+import { AnimationState, WaveMode } from '../../global/enum';
+import { getPrefixNs } from '../../global/util';
 
-import { RippleProps, WaveStateList } from "./ripple.types";
-import { Wave } from "./wave";
-import { RippleFocus } from "./rippleFocus";
+import type { RippleProps, WaveStateList } from './ripple.types';
+import { RippleFocus } from './rippleFocus';
+import { Wave } from './wave';
 
 function addWaveList(prevWaveList: WaveStateList) {
-    return [
-        ...prevWaveList,
-        {
-            isPressed: true,
-            animationState: AnimationState.none,
-            index: prevWaveList.length,
-        },
-    ];
+  return [
+    ...prevWaveList,
+    {
+      isPressed: true,
+      animationState: AnimationState.none,
+      index: prevWaveList.length,
+    },
+  ];
 }
 
 function checkWaveList(prevWaveList: WaveStateList) {
-    for (let i = prevWaveList.length - 1; i >= 0; i--) {
-        const item = prevWaveList[i];
-        if (
-            item &&
-            item.isPressed === false &&
-            item.animationState === AnimationState.end
-        ) {
-            prevWaveList[i] = undefined;
-        }
+  for (let i = prevWaveList.length - 1; i >= 0; i--) {
+    const item = prevWaveList[i];
+    if (
+      item &&
+      item.isPressed === false &&
+      item.animationState === AnimationState.end
+    ) {
+      prevWaveList[i] = undefined;
     }
-    // console.log(printArrayItem(prevWaveList));
-    return [...prevWaveList];
+  }
+  // console.log(printArrayItem(prevWaveList));
+  return [...prevWaveList];
 }
 
 function updateWaveListPressed(list: WaveStateList) {
-    list.map((item) => {
-        //找到数组中第一个isPressed值不是ture的元素，将它的值设置成false
-        item && item.isPressed === true && (item.isPressed = false);
+  list.map((item) => {
+    //找到数组中第一个isPressed值不是ture的元素，将它的值设置成false
+    item && item.isPressed === true && (item.isPressed = false);
 
-        return item;
-    });
+    return item;
+  });
 }
 
 export const Ripple = forwardRef(function Ripple(
-    { waveMode = WaveMode.normal, ...props }: RippleProps,
-    ref
+  { waveMode = WaveMode.normal, ...props }: RippleProps,
+  ref
 ) {
-    const {
-        prefixCls: customizePrefixCls,
-        focused,
-        color,
-        diameterOffset,
-        children,
-    } = props;
-    const prefixCls = getPrefixNs("ripple", customizePrefixCls);
+  const {
+    prefixCls: customizePrefixCls,
+    focused,
+    color,
+    diameterOffset,
+    children,
+  } = props;
+  const prefixCls = getPrefixNs('ripple', customizePrefixCls);
 
-    const [waveList, setWaveList] = useState<WaveStateList>([]);
+  const [waveList, setWaveList] = useState<WaveStateList>([]);
 
-    const [isFocusChanged, setIsFocusChanged] = useState(false);
+  const [isFocusChanged, setIsFocusChanged] = useState(false);
 
-    const containerSpan = useRef<HTMLSpanElement>(null);
-    const [containerSpanWidth, setContainerSpanWidth] = useState(0);
-    const [containerSpanHeight, setContainerSpanHeight] = useState(0);
-    const [parentOffsetLeft, setParentOffsetLeft] = useState(0);
-    const [parentOffsetTop, setParentOffsetTop] = useState(0);
+  const containerSpan = useRef<HTMLSpanElement>(null);
+  const [containerSpanWidth, setContainerSpanWidth] = useState(0);
+  const [containerSpanHeight, setContainerSpanHeight] = useState(0);
+  const [parentOffsetLeft, setParentOffsetLeft] = useState(0);
+  const [parentOffsetTop, setParentOffsetTop] = useState(0);
 
-    const [mouseClientX, setMouseClientX] = useState(0);
-    const [mouseClientY, setMouseClientY] = useState(0);
+  const [mouseClientX, setMouseClientX] = useState(0);
+  const [mouseClientY, setMouseClientY] = useState(0);
 
-    const [mouseState, setMouseState] = useState(MouseState.none);
+  const [mouseState, setMouseState] = useState(MouseState.none);
 
-    const [isFocused, setIsFocused] = useState(false);
+  const [isFocused, setIsFocused] = useState(false);
 
-    const [isPressed, setIsPressed] = useState(false);
+  const [isPressed, setIsPressed] = useState(false);
 
-    useEffect(() => {
-        const timer = setTimeout(() => {
-            containerSpan &&
-                containerSpan.current &&
-                setContainerRange(containerSpan.current);
-            containerSpan &&
-                containerSpan.current &&
-                containerSpan.current.offsetParent &&
-                setOffsetParentRange(containerSpan.current.offsetParent as HTMLSpanElement);
-        }, 100);
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      containerSpan &&
+        containerSpan.current &&
+        setContainerRange(containerSpan.current);
+      containerSpan &&
+        containerSpan.current &&
+        containerSpan.current.offsetParent &&
+        setOffsetParentRange(
+          containerSpan.current.offsetParent as HTMLSpanElement
+        );
+    }, 100);
 
-        return () => {
-            clearTimeout(timer);
-        };
-    }, []);
+    return () => {
+      clearTimeout(timer);
+    };
+  }, []);
 
-    useImperativeHandle(ref, () => {
-        return {
-            setMouseState: (state: MouseState) => {
-                setMouseState(state);
-            },
-        };
-    });
+  useImperativeHandle(ref, () => {
+    return {
+      setMouseState: (state: MouseState) => {
+        setMouseState(state);
+      },
+    };
+  });
 
-    useEffect(() => {
-        if (focused === true) {
-            //获取焦点
-            setIsFocusChanged(true);
-            // mouseState !== MouseState.mousedown && setIsFocused(true);
-        } else {
-            //失去焦点
-            setMouseState(MouseState.none);
-            setIsFocused(false);
-            setWaveList([]);
-        }
-    }, [focused]);
-
-    useEffect(() => {
-        if (isFocusChanged === true) {
-            mouseState !== MouseState.mousedown && setIsFocused(true);
-            setIsFocusChanged(false);
-        }
-    }, [isFocusChanged, mouseState]);
-
-    useEffect(() => {
-        if (
-            mouseState === MouseState.mouseout ||
-            mouseState === MouseState.mouseup
-        ) {
-            setIsFocused(false);
-        }
-
-        if (mouseState === MouseState.mousedown) {
-            setIsPressed(true);
-            setWaveList(addWaveList);
-        } else if (
-            mouseState === MouseState.mouseup ||
-            mouseState === MouseState.mouseout
-        ) {
-            //鼠标抬起时，取消Pressed状态
-            setIsPressed(false);
-        }
-    }, [mouseState]);
-
-    useEffect(() => {
-        if (isPressed === false) {
-            setWaveList((prevList) => {
-                updateWaveListPressed(prevList);
-                return checkWaveList(prevList);
-            });
-        }
-    }, [isPressed]);
-
-    function setContainerRange(current: HTMLSpanElement) {
-        setContainerSpanWidth(current.offsetWidth);
-        setContainerSpanHeight(current.offsetHeight);
+  useEffect(() => {
+    if (focused === true) {
+      //获取焦点
+      setIsFocusChanged(true);
+      // mouseState !== MouseState.mousedown && setIsFocused(true);
+    } else {
+      //失去焦点
+      setMouseState(MouseState.none);
+      setIsFocused(false);
+      setWaveList([]);
     }
+  }, [focused]);
 
-    function setOffsetParentRange(current: HTMLSpanElement) {
-        setParentOffsetLeft(current.offsetLeft);
-        setParentOffsetTop(current.offsetTop);
+  useEffect(() => {
+    if (isFocusChanged === true) {
+      mouseState !== MouseState.mousedown && setIsFocused(true);
+      setIsFocusChanged(false);
     }
+  }, [isFocusChanged, mouseState]);
 
-    function setWaveAnimationStateByIndex(
-        animationState: AnimationState,
-        index: number
+  useEffect(() => {
+    if (
+      mouseState === MouseState.mouseout ||
+      mouseState === MouseState.mouseup
     ) {
-        const item = waveList[index];
-
-        item && (item.animationState = animationState);
+      setIsFocused(false);
     }
 
-    function handleMouseUp() {
-        setMouseState(MouseState.mouseup);
+    if (mouseState === MouseState.mousedown) {
+      setIsPressed(true);
+      setWaveList(addWaveList);
+    } else if (
+      mouseState === MouseState.mouseup ||
+      mouseState === MouseState.mouseout
+    ) {
+      //鼠标抬起时，取消Pressed状态
+      setIsPressed(false);
     }
+  }, [mouseState]);
 
-    function handleMouseDown(event: React.MouseEvent<HTMLSpanElement>) {
-        const { clientX, clientY } = event;
-        setMouseClientX(clientX);
-        setMouseClientY(clientY);
-        setMouseState(MouseState.mousedown);
+  useEffect(() => {
+    if (isPressed === false) {
+      setWaveList((prevList) => {
+        updateWaveListPressed(prevList);
+        return checkWaveList(prevList);
+      });
     }
+  }, [isPressed]);
 
-    function handleMouseOver() {
-        setMouseState(MouseState.mouseover);
-    }
+  function setContainerRange(current: HTMLSpanElement) {
+    setContainerSpanWidth(current.offsetWidth);
+    setContainerSpanHeight(current.offsetHeight);
+  }
 
-    function handleMouseOut() {
-        setMouseState(MouseState.mouseout);
-    }
+  function setOffsetParentRange(current: HTMLSpanElement) {
+    setParentOffsetLeft(current.offsetLeft);
+    setParentOffsetTop(current.offsetTop);
+  }
 
-    function handleWaveAnimationEnd(index: number) {
-        setWaveAnimationStateByIndex(AnimationState.end, index);
-        setWaveList(checkWaveList);
-    }
+  function setWaveAnimationStateByIndex(
+    animationState: AnimationState,
+    index: number
+  ) {
+    const item = waveList[index];
 
-    return (
-        <span
-            className={prefixCls}
-            onMouseDown={handleMouseDown}
-            onMouseUp={handleMouseUp}
-            onMouseOver={handleMouseOver}
-            onMouseOut={handleMouseOut}
-            ref={containerSpan}
-            data-testid="litten-ripple"
-        >
-            {
-                <>
-                    {waveList &&
-                        waveList.map((item, index) => {
-                            return (
-                                item && (
-                                    <Wave
-                                        key={index}
-                                        index={index}
-                                        isPressed={isPressed}
-                                        prefixCls={prefixCls}
-                                        containerSpanWidth={containerSpanWidth}
-                                        containerSpanHeight={
-                                            containerSpanHeight
-                                        }
-                                        mouseClientX={mouseClientX}
-                                        mouseClientY={mouseClientY}
-                                        parentOffsetLeft={parentOffsetLeft}
-                                        parentOffsetTop={parentOffsetTop}
-                                        color={color}
-                                        waveMode={waveMode}
-                                        onWaveAnimationEnd={
-                                            handleWaveAnimationEnd
-                                        }
-                                    />
-                                )
-                            );
-                        })}
-                </>
-            }
-            <RippleFocus
-                prefixCls={prefixCls}
-                isFocused={isFocused}
-                containerSpanWidth={containerSpanWidth}
-                containerSpanHeight={containerSpanHeight}
-                color={color}
-                diameterOffset={diameterOffset}
-            />
-            {children}
-        </span>
-    );
+    item && (item.animationState = animationState);
+  }
+
+  function handleMouseUp() {
+    setMouseState(MouseState.mouseup);
+  }
+
+  function handleMouseDown(event: React.MouseEvent<HTMLSpanElement>) {
+    const { clientX, clientY } = event;
+    setMouseClientX(clientX);
+    setMouseClientY(clientY);
+    setMouseState(MouseState.mousedown);
+  }
+
+  function handleMouseOver() {
+    setMouseState(MouseState.mouseover);
+  }
+
+  function handleMouseOut() {
+    setMouseState(MouseState.mouseout);
+  }
+
+  function handleWaveAnimationEnd(index: number) {
+    setWaveAnimationStateByIndex(AnimationState.end, index);
+    setWaveList(checkWaveList);
+  }
+
+  return (
+    <span
+      className={prefixCls}
+      onMouseDown={handleMouseDown}
+      onMouseUp={handleMouseUp}
+      onMouseOver={handleMouseOver}
+      onMouseOut={handleMouseOut}
+      ref={containerSpan}
+      data-testid="litten-ripple"
+    >
+      {
+        <>
+          {waveList &&
+            waveList.map((item, index) => {
+              return (
+                item && (
+                  <Wave
+                    key={index}
+                    index={index}
+                    isPressed={isPressed}
+                    prefixCls={prefixCls}
+                    containerSpanWidth={containerSpanWidth}
+                    containerSpanHeight={containerSpanHeight}
+                    mouseClientX={mouseClientX}
+                    mouseClientY={mouseClientY}
+                    parentOffsetLeft={parentOffsetLeft}
+                    parentOffsetTop={parentOffsetTop}
+                    color={color}
+                    waveMode={waveMode}
+                    onWaveAnimationEnd={handleWaveAnimationEnd}
+                  />
+                )
+              );
+            })}
+        </>
+      }
+      <RippleFocus
+        prefixCls={prefixCls}
+        isFocused={isFocused}
+        containerSpanWidth={containerSpanWidth}
+        containerSpanHeight={containerSpanHeight}
+        color={color}
+        diameterOffset={diameterOffset}
+      />
+      {children}
+    </span>
+  );
 });
 
 Ripple.displayName = ControlType.Ripple;

@@ -1,28 +1,28 @@
-import classnames from "classnames";
-import { VisualStates } from "litten-hooks/dist/control/userControl/userControl.types";
+import classnames from 'classnames';
+import type { VisualStates } from 'litten-hooks/dist/control/userControl/userControl.types';
 
-import { getPrefixNs } from "../../global/util";
+import { getPrefixNs } from '../../global/util';
 
-import { TextFieldProps } from "./textField.types";
+import type { TextFieldProps } from './textField.types';
 
 export function getVisualStates(props: TextFieldProps, states: VisualStates) {
-    const { prefixCls: customizePrefixCls, disabled } = props;
+  const { prefixCls: customizePrefixCls, disabled } = props;
 
-    const { focusState } = states;
-    const prefixCls = getPrefixNs("textField", customizePrefixCls);
+  const { focusState } = states;
+  const prefixCls = getPrefixNs('textField', customizePrefixCls);
 
-    const visualStates = classnames(prefixCls, `${prefixCls}--${focusState}`, {
-        [`${prefixCls}--disabled`]: disabled === true,
-    });
+  const visualStates = classnames(prefixCls, `${prefixCls}--${focusState}`, {
+    [`${prefixCls}--disabled`]: disabled === true,
+  });
 
-    return visualStates;
+  return visualStates;
 }
 
 export function getInputVisualStates(props: TextFieldProps) {
-    const { prefixCls: customizePrefixCls } = props;
-    const prefixCls = getPrefixNs("textField", customizePrefixCls);
+  const { prefixCls: customizePrefixCls } = props;
+  const prefixCls = getPrefixNs('textField', customizePrefixCls);
 
-    const visualStates = classnames(`${prefixCls}__input`);
+  const visualStates = classnames(`${prefixCls}__input`);
 
-    return visualStates;
+  return visualStates;
 }

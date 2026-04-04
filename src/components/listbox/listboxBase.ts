@@ -1,8 +1,8 @@
-import { Children, ReactNode, createContext } from 'react';
+import { Children, type ReactNode, createContext } from 'react';
 
 import classnames from 'classnames';
 import { ControlType } from 'litten-hooks';
-import {
+import type {
   LittenItems,
   SelectedValue,
 } from 'litten-hooks/dist/control/userControl/userControl.types';
@@ -10,7 +10,7 @@ import isArray from 'lodash/isArray';
 
 import { getPrefixNs } from '../../global/util';
 
-import { ListContextProps, ListboxProps } from './listbox.types';
+import type { ListContextProps, ListboxProps } from './listbox.types';
 
 export const ListContext = createContext<ListContextProps | undefined>(
   undefined
