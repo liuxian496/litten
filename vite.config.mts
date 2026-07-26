@@ -133,6 +133,7 @@ export default defineConfig({
         'src/enum.ts',
         'src/global',
         'src/components',
+        'src/vite-env.d.ts',
         ...components.map((c) => `src/${c}.ts`),
       ],
       outDir: 'dist',
