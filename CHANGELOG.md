@@ -1,3 +1,12 @@
+## [2.0.1](https://github.com/liuxian496/litten/compare/v2.0.0...v2.0.1) (2026-07-26)
+
+
+### Bug Fixes
+
+* 修改导出失败的问题，完善导出规则 ([5cde370](https://github.com/liuxian496/litten/commit/5cde370e1b93bab4bc86ed57f4736c1e4a618e87))
+
+
+
 # [2.0.0](https://github.com/liuxian496/litten/compare/v1.1.0...v2.0.0) (2026-04-04)
 
 
