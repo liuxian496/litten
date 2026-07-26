@@ -125,7 +125,20 @@ export default defineConfig({
   plugins: [
     react(),
     // libInjectCss(),
-    dts(),
+    dts({
+      entryRoot: 'src',
+      include: [
+        'src/index.ts',
+        'src/index.types.ts',
+        'src/enum.ts',
+        'src/global',
+        'src/components',
+        ...components.map((c) => `src/${c}.ts`),
+      ],
+      outDir: 'dist',
+      insertTypesEntry: true,
+      tsconfigPath: path.join(dirname, 'tsconfig.app.json'),
+    }),
     visualizer(),
   ],
   test: {
