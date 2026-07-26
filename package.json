@@ -1,6 +1,6 @@
 {
   "name": "litten",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "private": false,
   "module": "dist/index.js",
   "type": "module",

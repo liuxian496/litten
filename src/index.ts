@@ -1,5 +1,19 @@
 //global
-export * from './global/enum';
+export {
+  Size,
+  Mode,
+  Color,
+  AnimationState,
+  I18N,
+  LocalType,
+  Blue,
+  White,
+  Black,
+  Red,
+  Green,
+  Orange,
+  WaveMode,
+} from './global/enum';
 
 // types
 export type * from './index.types';
@@ -12,10 +26,6 @@ export { Checkbox } from './components/checkbox/checkbox';
 
 // formLabel
 export { FormLabel } from './components/formLabel/formLabel';
-export {
-  handleLabelMouseStateCheck,
-  setLabelMouseState,
-} from './components/formLabel/formLabelBase';
 
 // iconButton
 export { IconButton } from './components/iconButton/iconButton';

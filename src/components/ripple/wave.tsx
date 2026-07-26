@@ -70,7 +70,9 @@ function getCenterWaveStyle(props: WaveProps) {
 export const Wave = (props: WaveProps) => {
   const { prefixCls, isPressed, waveMode, onWaveAnimationEnd } = props;
 
-  const [animationState, setAnimationState] = useState(AnimationState.none);
+  const [animationState, setAnimationState] = useState<AnimationState>(
+    AnimationState.none
+  );
 
   function handleAnimationStart() {
     setAnimationState(AnimationState.start);
